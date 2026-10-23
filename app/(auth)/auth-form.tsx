@@ -14,7 +14,7 @@ export function AuthForm({ mode }: { mode: "signin" | "signup" }) {
     return (
       <div role="status" className="mt-6 border-t-2 border-ok pt-4">
         <p className="font-semibold">Vérifiez votre boîte de réception</p>
-        <p className="mt-1 text-ink-2">{state.notice}</p>
+        <p className="mt-1 text-ink-2 [overflow-wrap:anywhere]">{state.notice}</p>
       </div>
     );
   }

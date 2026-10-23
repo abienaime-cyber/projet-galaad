@@ -22,6 +22,10 @@ type Band = { title: string; rows: SizeRow[]; result: SizeRecommendation | null 
 
 export function SizeTape({ chestCm, estimated, bands }: { chestCm: number | null; estimated: boolean; bands: Band[] }) {
   const [top, bottom] = bands;
+  // Hors du mètre, le repère collé au bord mentirait : on affiche la valeur au bord, côté dépassement.
+  let overflow: "left" | "right" | null = null;
+  if (chestCm !== null && chestCm < MIN_CM) overflow = "left";
+  else if (chestCm !== null && chestCm > MAX_CM) overflow = "right";
   return (
     <figure aria-label="Votre tour de poitrine placé sur le mètre, avec les tailles de chemise et de costume" className="relative overflow-x-clip select-none">
       <BandRow band={top} />
@@ -36,10 +40,21 @@ export function SizeTape({ chestCm, estimated, bands }: { chestCm: number | null
             {cm}
           </span>
         ))}
+        {overflow && chestCm !== null && (
+          <span
+            className={`figures absolute top-1 flex items-center gap-1 rounded-[2px] bg-navy px-1.5 py-0.5 text-sm leading-none whitespace-nowrap text-chalk ${overflow === "left" ? "left-1 flex-row-reverse" : "right-1"}`}
+          >
+            {chestCm.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} cm
+            <svg aria-hidden viewBox="0 0 10 10" className={`size-2.5 ${overflow === "left" ? "rotate-180" : ""}`}>
+              <path d="M2 1l5 4-5 4" fill="none" stroke="currentColor" strokeWidth="1.6" />
+            </svg>
+            <span className="sr-only">{overflow === "left" ? ", en deçà du mètre" : ", au-delà du mètre"}</span>
+          </span>
+        )}
       </div>
       <BandRow band={bottom} />
 
-      {chestCm !== null && (
+      {chestCm !== null && !overflow && (
         <div
           aria-hidden
           className="pointer-events-none absolute inset-y-0 left-0 w-full transition-transform duration-200 ease-in-out motion-reduce:transition-none"
@@ -57,6 +72,9 @@ function BandRow({ band }: { band: Band }) {
   const alternative = band.result?.alternative;
   return (
     <div className="relative h-8" role="list" aria-label={band.title}>
+      {band.rows.length === 0 && (
+        <p className="flex h-full items-center text-xs text-ink-2">Tableau des {band.title.toLowerCase()} indisponible.</p>
+      )}
       {band.rows.map((row) => {
         let state = "idle";
         if (row.label === size) state = "chosen";

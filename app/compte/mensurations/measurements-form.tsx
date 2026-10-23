@@ -157,8 +157,8 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
           <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-rule pt-6">
             <Reading label="Tour de poitrine" value={cm(preview.chest)} estimated={m.chestCm === null} />
             <Reading label="Tour de taille" value={cm(preview.waist)} estimated={m.waistCm === null} />
-            <SizeReading label="Chemise" result={preview.shirt} />
-            <SizeReading label="Costume" result={preview.suit} />
+            <SizeReading label="Chemise" result={preview.shirt} hasChart={charts.shirt.length > 0} />
+            <SizeReading label="Costume" result={preview.suit} hasChart={charts.suit.length > 0} />
           </dl>
         )}
       </section>
@@ -187,21 +187,25 @@ function Reading({ label, value, estimated }: { label: string; value: string; es
   );
 }
 
-function SizeReading({ label, result }: { label: string; result: ReturnType<typeof recommendSize> }) {
+function SizeReading({ label, result, hasChart }: { label: string; result: ReturnType<typeof recommendSize>; hasChart: boolean }) {
+  let reading: React.ReactNode;
+  if (!hasChart) {
+    reading = <span className="block text-sm">Tableau de tailles indisponible pour le moment.</span>;
+  } else if (result.size) {
+    reading = (
+      <>
+        <span className="figures text-5xl leading-none">{result.size}</span>
+        {result.alternative && <span className="ml-2 text-sm text-ink-2">ou {result.alternative}</span>}
+        <span className="mt-1.5 block text-sm text-ink-2">Taille estimée, {CONFIDENCE[result.confidence]}</span>
+      </>
+    );
+  } else {
+    reading = <span className="block text-sm">Hors de notre tableau de tailles pour l’instant.</span>;
+  }
   return (
     <div>
       <dt className="text-sm text-ink-2">{label}</dt>
-      <dd className="mt-1">
-        {result.size ? (
-          <>
-            <span className="figures text-5xl leading-none">{result.size}</span>
-            {result.alternative && <span className="ml-2 text-sm text-ink-2">ou {result.alternative}</span>}
-            <span className="mt-1.5 block text-sm text-ink-2">Taille estimée, {CONFIDENCE[result.confidence]}</span>
-          </>
-        ) : (
-          <span className="block text-sm">Hors de notre tableau de tailles pour l’instant.</span>
-        )}
-      </dd>
+      <dd className="mt-1">{reading}</dd>
     </div>
   );
 }

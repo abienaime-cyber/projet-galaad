@@ -76,7 +76,7 @@ async function MeasurementsSection() {
   return (
     <>
       <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-2">
-        <span className="min-w-0 break-all">Connecté avec {auth.user.email}</span>
+        <span className="min-w-0 [overflow-wrap:anywhere]">Connecté avec {auth.user.email}</span>
         <form action={signOut}>
           <button type="submit" className="inline-flex min-h-11 cursor-pointer items-center text-navy underline decoration-rule underline-offset-4 hover:decoration-navy">
             Se déconnecter
