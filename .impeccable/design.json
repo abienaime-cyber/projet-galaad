@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-10-23T10:44:35.933Z",
-  "title": "Design System: Galaad",
+  "title": "Design System: Carrure",
   "extensions": {
     "colorMeta": {
       "canvas": {
@@ -393,8 +393,8 @@
       "name": "Barre de navigation",
       "kind": "nav",
       "refersTo": "nav-bar",
-      "description": "Barre claire translucide de 48 px, mot Galaad à gauche.",
-      "html": "<header class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">Galaad</a><a class=\"ds-navlink\" href=\"#\">Mon compte</a></header>",
+      "description": "Barre claire translucide de 48 px, mot Carrure à gauche.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">Carrure</a><a class=\"ds-navlink\" href=\"#\">Mon compte</a></header>",
       "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;height:48px;padding:0 22px;background:rgb(250 250 252/.8);backdrop-filter:blur(24px) saturate(1.8);font-family:var(--font-sans, -apple-system, BlinkMacSystemFont, Inter, \"Helvetica Neue\", Arial, sans-serif)}.ds-brand{font-size:20px;font-weight:600;letter-spacing:-0.03em;color:#1d1d1f;text-decoration:none}.ds-navlink{display:inline-flex;height:44px;align-items:center;padding:0 8px;font-size:12px;color:rgb(29 29 31/.8);text-decoration:none;transition:color 150ms ease}.ds-navlink:hover{color:#1d1d1f}"
     },
     {
@@ -416,7 +416,7 @@
   ],
   "narrative": {
     "northStar": "La page de l'Apple Store",
-    "overview": "Le compte Galaad se lit comme une page de l'Apple Store (apple.com/fr/shop) : fond blanc, grandes tuiles gris clair très arrondies, texte quasi noir et gris, un seul bleu pour tout ce qui agit. La page est calme et aérée ; la densité vient des chiffres, pas des cadres. Le look est épinglé par l'utilisateur.\n\nLe geste signature est la jauge en curseur iOS : une piste grise, une partie remplie en bleu jusqu'au tour de poitrine, un pouce blanc ombré qui suit un ressort à amortissement critique, et les pastilles de tailles chemise et costume qui s'allument au passage. Les commandes empruntent le vocabulaire iOS : contrôle segmenté, champs à libellé flottant, tuiles de choix à bordure bleue comme le choix de capacité d'un iPhone, boutons pilule.\n\nLe monde « atelier de coupe » (marine, mètre jaune, angles carrés) a été rejeté par l'utilisateur le 23/10/2026. Rien n'en subsiste.",
+    "overview": "Le compte Carrure se lit comme une page de l'Apple Store (apple.com/fr/shop) : fond blanc, grandes tuiles gris clair très arrondies, texte quasi noir et gris, un seul bleu pour tout ce qui agit. La page est calme et aérée ; la densité vient des chiffres, pas des cadres. Le look est épinglé par l'utilisateur.\n\nLe geste signature est la jauge en curseur iOS : une piste grise, une partie remplie en bleu jusqu'au tour de poitrine, un pouce blanc ombré qui suit un ressort à amortissement critique, et les pastilles de tailles chemise et costume qui s'allument au passage. Les commandes empruntent le vocabulaire iOS : contrôle segmenté, champs à libellé flottant, tuiles de choix à bordure bleue comme le choix de capacité d'un iPhone, boutons pilule.\n\nLe monde « atelier de coupe » (marine, mètre jaune, angles carrés) a été rejeté par l'utilisateur le 23/10/2026. Rien n'en subsiste.",
     "keyCharacteristics": [
       "Blanc et tuiles #f5f5f7 à 28 px de rayon, sans ombre.",
       "Un seul bleu d'action ; liens dans un bleu plus sombre.",

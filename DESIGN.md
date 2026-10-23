@@ -1,5 +1,5 @@
 ---
-name: Galaad
+name: Carrure
 description: Chemises et costumes pour homme, taille calculée pour chaque article, dans le look de l'Apple Store.
 colors:
   canvas: "#ffffff"
@@ -202,13 +202,13 @@ components:
     typography: "{typography.micro}"
 ---
 
-# Design System: Galaad
+# Design System: Carrure
 
 ## Overview
 
 **Creative North Star: "La page de l'Apple Store"**
 
-Le compte Galaad se lit comme une page de l'Apple Store (apple.com/fr/shop) : fond blanc, grandes tuiles gris clair très arrondies, texte quasi noir et gris, un seul bleu pour tout ce qui agit. La page est calme et aérée ; la densité vient des chiffres, pas des cadres. Le look est épinglé par l'utilisateur.
+Le compte Carrure se lit comme une page de l'Apple Store (apple.com/fr/shop) : fond blanc, grandes tuiles gris clair très arrondies, texte quasi noir et gris, un seul bleu pour tout ce qui agit. La page est calme et aérée ; la densité vient des chiffres, pas des cadres. Le look est épinglé par l'utilisateur.
 
 Le geste signature est la jauge en curseur iOS : une piste grise, une partie remplie en bleu jusqu'au tour de poitrine, un pouce blanc ombré qui suit un ressort à amortissement critique, et les pastilles de tailles chemise et costume qui s'allument au passage. Les commandes empruntent le vocabulaire iOS : contrôle segmenté, champs à libellé flottant, tuiles de choix à bordure bleue comme le choix de capacité d'un iPhone, boutons pilule.
 
@@ -279,7 +279,7 @@ Une palette de gris froids d'Apple, une seule couleur d'action, et un rouge rés
 
 Un seul conteneur de 980 px centré, avec une gouttière de 16 px puis 22 px dès 640 px, partagé par la barre, la connexion et les mensurations. Haut de page à 40 px, 64 px dès 768 px.
 
-- **Barre** : 48 px de haut, collante, mot Galaad à gauche, liens du compte à droite.
+- **Barre** : 48 px de haut, collante, mot Carrure à gauche, liens du compte à droite.
 - **Connexion / inscription** : colonne centrée de 460 px (contrôle segmenté, titre centré, champs empilés à 16 px, bouton pleine largeur), puis une tuile pleine largeur du conteneur 64 px plus bas, en trois colonnes dès 640 px.
 - **Mensurations** : formulaire à gauche, tuile de lecture à droite dès 1024 px (colonnes 1fr / 1,1fr, écart 56 px) ; empilés à 48 px en dessous. La tuile de lecture colle à 68 px du haut (barre + 20 px). Groupes de champs séparés de 40 px, champs à 12 px, trois champs par ligne pour l'essentiel dès 640 px, deux pour les mesures facultatives.
 - **Zone de suppression** : sous les deux colonnes, sur toute la largeur, après un filet.
@@ -335,7 +335,7 @@ Des coins doux partout, jamais d'angle vif. Trois familles : la pilule pour tout
 - **Internal Padding :** voir Layout (40 px dès 640 px, 48 px pour l'encart de connexion).
 
 ### Navigation
-- **Style :** barre de 48 px, verre clair translucide, collante, sans filet (filet et fond blanc en contraste renforcé). Mot Galaad en 20 px 600 à -0,03em ; liens en 12 px, encre à 80 %, encre pleine au survol, 44 px de cible.
+- **Style :** barre de 48 px, verre clair translucide, collante, sans filet (filet et fond blanc en contraste renforcé). Mot Carrure en 20 px 600 à -0,03em ; liens en 12 px, encre à 80 %, encre pleine au survol, 44 px de cible.
 
 ### Jauge du mètre (composant signature)
 Curseur iOS horizontal de 80 à 140 cm. Piste gris remplissage de 6 px, partie remplie bleue jusqu'au tour de poitrine, pouce blanc de 24 px ombré. Au-dessus, la rangée des tailles de chemise ; au-dessous, les graduations tous les 10 cm (90 à 130 cm) puis la rangée des tailles de costume. Chaque pastille occupe la plage de tour de poitrine de sa taille : retenue, pastille bleue pleine à texte blanc ; voisine, texte bleu et liseré bleu sur fond blanc dès 640 px ; sinon texte gris. Le pouce et le remplissage suivent un ressort à amortissement critique (réponse 0,4 s) qui repart de sa position et de sa vitesse à chaque saisie ; position immédiate si le mouvement est réduit. Hors de la plage, le pouce disparaît et une pastille bleue avec la valeur et une flèche se pose au bord dépassé.
@@ -344,11 +344,13 @@ Curseur iOS horizontal de 80 à 140 cm. Piste gris remplissage de 6 px, partie r
 Liste en deux colonnes sous un filet : libellé en 14 px gris, valeur en chiffres de lecture, puis « estimé » ou « mesuré » en 12 px. La taille recommandée s'affiche en display, la taille voisine en 17 px gris (« ou L »), puis « Taille estimée, confiance … ».
 
 ### Boutique
-- **Illustrations de vêtements :** aucune photo produit n'existe. Chaque costume et chaque chemise est dessiné en SVG, en aplat de la couleur de l'article (motif rayé, carreaux ou vichy compris), manches légèrement ombrées, ombre portée douce au sol. Jamais présentés comme des photos.
-- **Tuile produit :** gris tuile, 28 px de rayon dès 640 px (20 px en dessous), vêtement centré, nom en 19 px 600 (15 px sur téléphone), couleur et matière en gris, prix en chiffres tabulaires ; pastille bleue pleine avec la taille calculée, barrée sur fond gris remplissage si elle est épuisée. Deux colonnes sur téléphone, trois dès 1024 px.
+- **Photos :** photos portées (Pexels) recadrées en 4:5, servies par `next/image`. Coins arrondis à 18–28 px, jamais de bordure ni d'ombre. Au survol (pointeur fin seulement) la photo grossit de 3 % en 300 ms dans son cadre.
+- **Tuile produit :** gris tuile, 28 px de rayon dès 640 px (20 px en dessous), photo en haut avec une marge fine, nom en 19 px 600 (15 px sur téléphone), couleur et matière en gris, prix en chiffres tabulaires ; pastille bleue pleine avec la taille calculée, barrée sur fond gris remplissage si elle est épuisée. Deux colonnes sur téléphone, trois dès 1024 px.
 - **Page de catégorie :** titre de 56 px « Costumes. » suivi d'une phrase grise ; ligne « Votre taille estimée » et contrôle segmenté Pour moi / Tout voir, sous un filet. Sans mensurations, une tuile invite à créer un compte.
-- **Fiche produit :** vêtement dans une grande tuile collante à gauche ; à droite nom, prix, description, encart « Votre taille » (18 px de rayon, taille en display), pastilles de disponibilité par taille, caractéristiques sous un filet.
-- **Accueil :** grand titre centré de 80 px, deux pilules d'action, vitrine de trois costumes qui montent en fondu (600 ms, décalage de 80 ms, fondu seul si le mouvement est réduit), puis deux grandes tuiles Costumes / Chemises.
+- **Fiche produit :** grande photo collante à gauche ; à droite nom, prix, description, encart « Votre taille » (18 px de rayon, taille en display), choix de la taille en pastilles radio (sélection noire, taille estimée cerclée de bleu, épuisée barrée), bouton « Ajouter au panier », conseiller IA en bouton contour, caractéristiques, avis.
+- **Panier, commande, historique :** listes sous filets, vignette 4:5 à gauche, prix tabulaires alignés à droite ; récapitulatif en tuile collante. Le paiement simulé est annoncé dans une tuile grise avant le bouton « Payer ».
+- **Admin :** quatre indicateurs dans une tuile divisée par des filets d'1 px, puis des tableaux simples (en-têtes gris, chiffres à droite). Pas de graphique décoratif.
+- **Accueil :** grand titre centré de 80 px, deux pilules d'action, vitrine de trois photos de costumes qui montent en fondu (600 ms, décalage de 80 ms, fondu seul si le mouvement est réduit), puis deux grandes tuiles Costumes / Chemises avec photo.
 
 ## Do's and Don'ts
 

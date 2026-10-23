@@ -1,36 +1,178 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Carrure
 
-## Getting Started
+Boutique en ligne de chemises et de costumes pour homme. Le client crée un compte, donne sa taille, son poids et son âge, et la boutique lui montre les articles en stock dans **sa** taille. La taille vient d'un calcul déterministe et s'affiche comme une estimation, avec un niveau de confiance.
 
-First, run the development server:
+Projet étudiant : Next.js 16, Supabase (Postgres, Auth, RLS), déploiement Vercel.
+
+- **Démo en ligne :** _à renseigner après le déploiement Vercel_ (voir [Déploiement](#déploiement-sur-vercel)).
+- **Comptes de test** (créés par le seed, mot de passe `carrure-demo`) :
+  - client : `client@carrure.test` (mensurations saisies, une commande livrée) ;
+  - admin : `admin@carrure.test` (tableau de bord et fiches produit).
+
+Ce mot de passe est public. Changez-le avant toute mise en ligne réelle.
+
+## Démo en trois minutes
+
+1. **Inscription** sur `/inscription`, puis **profil** : taille, poids, âge (tour de poitrine et coupe préférée en option).
+2. On arrive sur **`/costumes`**, onglet **« Pour moi »** : seuls les costumes en stock dans la taille calculée, les plus sûrs d'abord.
+3. **Fiche produit** : bandeau « Votre taille », choix de la taille, **Ajouter au panier**. Le bouton « Pourquoi cette taille ? » appelle le conseiller IA.
+4. **Panier** (enregistré en base), **commande** avec paiement simulé, puis **historique** dans `/compte/commandes`, avec demande de retour.
+5. Connexion en **admin** : `/admin` affiche le CA, le panier moyen, les meilleures ventes, le taux de retour pour mauvaise taille, les tailles les plus vendues et les nouveaux clients. `/admin/produits` rédige une fiche avec l'IA.
+
+## Installation
+
+Prérequis : Node 20+, pnpm, Docker (pour Supabase en local).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+cp .env.example .env.local          # puis remplir les valeurs
+npx supabase start                  # Postgres, Auth et API en local ; affiche l'URL et la clé anon
+npx supabase db reset               # applique les migrations et le seed
+pnpm dev                            # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Vérifications :
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm lint && pnpm exec tsc --noEmit # ESLint et TypeScript strict
+pnpm test                           # tests unitaires (calcul de taille, filtre « Pour moi », validation)
+npx supabase test db                # tests pgTAP : RLS, contraintes, commande (24 tests)
+bash supabase/tests/oversell.sh     # deux achats simultanés du dernier article : un seul passe
+pnpm build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Variables d'environnement
 
-## Learn More
+| Variable | Où | Rôle |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | navigateur et serveur | URL du projet Supabase |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | navigateur et serveur | clé publique, protégée par la RLS |
+| `ANTHROPIC_API_KEY` | serveur uniquement | clé de l'API Claude pour les deux skills IA ; sans elle le site marche, l'IA affiche « non activé » |
 
-To learn more about Next.js, take a look at the following resources:
+Aucune clé secrète n'est dans le dépôt : `.env*` est ignoré par git, seul `.env.example` (sans valeur) est versionné. La clé `service_role` de Supabase n'est jamais utilisée par l'application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Déploiement sur Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Créer un projet Supabase, puis pousser le schéma : `npx supabase link --project-ref <ref>` et `npx supabase db push`. Exécuter `supabase/seed.sql` dans l'éditeur SQL pour les données de démo.
+2. Dans Supabase > Authentication > URL Configuration, mettre l'URL Vercel en *Site URL* et ajouter `<url>/auth/confirm` aux *Redirect URLs*.
+3. Importer le dépôt sur Vercel et renseigner les trois variables ci-dessus dans *Settings > Environment Variables* (Production et Preview).
+4. Déployer, puis reporter l'URL publique en haut de ce README.
 
-## Deploy on Vercel
+## Base de données
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Migrations versionnées dans `supabase/migrations/`, seed dans `supabase/seed.sql` (30 produits fictifs, 2 comptes de test, 12 clients fictifs, environ 60 commandes et leurs retours).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```mermaid
+erDiagram
+  profiles ||--o| measurements : "a"
+  profiles ||--o{ addresses : "a"
+  profiles ||--o| carts : "a"
+  carts ||--o{ cart_items : "contient"
+  product_variants ||--o{ cart_items : ""
+  size_charts ||--o{ size_chart_rows : "définit"
+  size_charts ||--o{ products : "mesure"
+  products ||--o{ product_variants : "taille et stock"
+  profiles ||--o{ orders : "passe"
+  orders ||--o{ order_items : "contient"
+  product_variants ||--o{ order_items : ""
+  order_items ||--o| returns : "peut revenir"
+  products ||--o{ reviews : "reçoit"
+  profiles ||--o{ reviews : "écrit"
+```
+
+- **Contraintes** : clés primaires et étrangères partout ; `NOT NULL`, `CHECK` (bornes des mensurations, stock ≥ 0, quantité 1 à 10, note 1 à 5, code postal) et `UNIQUE` (un panier par client, une taille par produit, un avis par client et par produit, un retour par ligne). Un trigger refuse une variante dont la taille n'existe pas dans le tableau du produit, un autre refuse un retour sur la commande d'un autre client.
+- **Index** sur les colonnes filtrées ou jointes : catégorie des produits actifs, commandes par client et par date, lignes par variante, retours par motif.
+- **Copies figées** : une commande garde l'adresse, le nom et le prix au moment de l'achat. Modifier une fiche ne réécrit pas l'historique.
+- **RLS activée sur toutes les tables.** Un client ne lit que son profil, ses mensurations, ses adresses, son panier, ses commandes et ses retours. Le catalogue et les avis sont publics en lecture. Un avis n'est accepté que d'un acheteur du produit. Un client ne peut pas se donner le rôle admin : seule la colonne `full_name` de `profiles` lui est ouverte.
+- **Rôle admin** : colonne `profiles.role`, lue par la fonction `is_admin()`. Les pages `/admin` vérifient le rôle côté serveur (`requireAdmin()` dans `lib/commerce.ts`) et répondent « introuvable » aux autres ; la RLS bloque de toute façon leurs requêtes.
+- **KPIs en SQL** : vues `admin_kpis`, `admin_top_products`, `admin_sizes_sold`, `admin_returns_by_reason`, en `security_invoker` pour que la RLS de l'appelant s'applique. La page admin ne fait qu'afficher.
+
+### La commande sans survente : `place_order()`
+
+Fonction SQL (`supabase/migrations/20261023140000_commerce.sql`) appelée par l'action serveur de paiement. Tout se passe dans **une seule transaction** :
+
+1. elle verrouille les variantes du panier avec `SELECT … FOR UPDATE`, dans l'ordre des identifiants pour éviter les interblocages : une autre commande sur la même taille attend ;
+2. elle vérifie le stock sous verrou et refuse toute la commande si une ligne manque (« Stock insuffisant : Costume gris anthracite (52) ») ;
+3. elle crée la commande et ses lignes, décrémente le stock et vide le panier.
+
+Si une étape échoue, rien n'est écrit. La contrainte `CHECK (stock >= 0)` reste le dernier filet. Le script `supabase/tests/oversell.sh` lance deux achats simultanés du dernier article : un seul aboutit, le stock finit à 0.
+
+## Le calcul de taille
+
+Code : `lib/sizing.ts`, testé dans `lib/sizing.test.ts`. Il est **déterministe** : mêmes mensurations, même taille.
+
+1. **Tours de corps.** Le tour de poitrine et le tour de taille saisis sont utilisés tels quels. S'ils manquent, ils sont estimés à partir de la taille, du poids (IMC) et de l'âge. Cette formule est une heuristique maison, non validée scientifiquement : la taille est alors marquée « estimée ».
+2. **Aisance.** Une coupe ajustée demande 2 cm de plus, une coupe ample 2 cm de moins ; la coupe préférée du client joue en sens inverse.
+3. **Choix de la taille.** Chaque ligne du tableau de tailles du produit reçoit un écart : distance au tour de poitrine, plus la moitié de la distance au tour de taille pour un costume. La ligne la plus proche gagne. Au-delà de 4 cm d'écart, aucune taille n'est proposée.
+4. **Confiance.** Élevée par défaut. Elle baisse d'un cran si les tours sont estimés, d'un cran si le client est à moins de 1,5 cm d'une limite (la taille voisine est alors indiquée).
+
+Le filtre **« Pour moi »** (`lib/shop.ts`) garde les articles en stock dans la taille calculée, les plus sûrs d'abord, puis la coupe préférée.
+
+## Les skills IA
+
+Code : `lib/ai.ts`. Les appels partent **uniquement du serveur** (actions serveur Next.js), avec le SDK officiel `@anthropic-ai/sdk` et le modèle `claude-opus-5-5`. Délai de 25 s par tentative, une seule nouvelle tentative, sortie JSON validée par un schéma Zod. Chaque erreur (clé absente, délai dépassé, quota, refus, panne) donne un message clair au lieu d'une page cassée.
+
+### 1. Conseiller taille et style (fiche produit)
+
+Le bouton « Pourquoi cette taille ? » envoie à l'IA **le résultat du calcul** (taille, taille voisine, confiance, tours mesurés ou estimés) et la liste des articles en stock dans la taille du client. L'IA explique ce résultat en quelques phrases et compose jusqu'à trois tenues.
+
+- **Elle ne calcule pas la taille** : la consigne le lui interdit, et l'interface affiche toujours la taille issue de `lib/sizing.ts`.
+- **Elle ne peut pas inventer d'article** : seuls les slugs présents dans la liste fournie sont gardés côté serveur.
+- **Valeur ajoutée** : le client comprend pourquoi on lui conseille un 50 plutôt qu'un 52 (et qu'il gagnerait à mesurer son tour de poitrine), ce qui doit faire baisser les retours pour mauvaise taille. Les tenues font monter le panier moyen avec des articles qui lui vont.
+
+### 2. Rédaction des fiches produit (admin)
+
+Sur `/admin/produits/<slug>`, l'admin demande une description. L'IA la rédige à partir des seules caractéristiques du produit (nom, coupe, couleur, matière, notes de l'admin), sans provenance ni label inventés. Le texte arrive dans un champ modifiable : **rien n'est publié avant que l'admin ait relu et cliqué sur « Publier »**.
+
+- **Valeur ajoutée** : 30 fiches homogènes, dans le ton de la marque, en quelques minutes, avec un humain qui garde la main.
+
+## Structure
+
+```
+app/
+  (boutique)/        costumes, chemises, fiche produit, conseiller IA, avis
+  (auth)/            connexion, inscription
+  panier/ commande/  panier persistant, paiement simulé
+  compte/            mensurations, commandes, retours
+  admin/             tableau de bord, fiches produit
+components/          composants d'interface partagés
+lib/                 calcul de taille, catalogue, commerce, IA, validation (Zod)
+supabase/            migrations, seed, tests pgTAP et test de survente
+```
+
+## Crédits photos
+
+Photos de [Pexels](https://www.pexels.com/license/), libres d'utilisation, attribution non requise. Elles illustrent la démo ; les personnes photographiées n'ont aucun lien avec la marque fictive Carrure. À remplacer par de vraies photos produit avant toute utilisation commerciale.
+
+| Produit | Photo |
+| --- | --- |
+| `costume-laine-marine` | [pexels.com/photo/18642682](https://www.pexels.com/photo/18642682/) |
+| `costume-gris-anthracite` | [pexels.com/photo/28446973](https://www.pexels.com/photo/28446973/) |
+| `costume-ajuste-noir` | [pexels.com/photo/19934396](https://www.pexels.com/photo/19934396/) |
+| `costume-flanelle-gris-chine` | [pexels.com/photo/8250214](https://www.pexels.com/photo/8250214/) |
+| `costume-lin-beige` | [pexels.com/photo/17739667](https://www.pexels.com/photo/17739667/) |
+| `costume-prince-de-galles` | [pexels.com/photo/6050427](https://www.pexels.com/photo/6050427/) |
+| `costume-croise-gris-bleu` | [pexels.com/photo/32670005](https://www.pexels.com/photo/32670005/) |
+| `smoking-noir-revers-satin` | [pexels.com/photo/37263477](https://www.pexels.com/photo/37263477/) |
+| `costume-tweed-marron` | [pexels.com/photo/5060805](https://www.pexels.com/photo/5060805/) |
+| `costume-trois-pieces-bleu-nuit` | [pexels.com/photo/2474308](https://www.pexels.com/photo/2474308/) |
+| `costume-vert-sapin` | [pexels.com/photo/3600142](https://www.pexels.com/photo/3600142/) |
+| `costume-rayure-tennis` | [pexels.com/photo/7918095](https://www.pexels.com/photo/7918095/) |
+| `chemise-oxford-blanche` | [pexels.com/photo/3986129](https://www.pexels.com/photo/3986129/) |
+| `chemise-oxford-bleu-ciel` | [pexels.com/photo/7447362](https://www.pexels.com/photo/7447362/) |
+| `chemise-popeline-blanche-ajustee` | [pexels.com/photo/16825851](https://www.pexels.com/photo/16825851/) |
+| `chemise-popeline-rayee-bleue` | [pexels.com/photo/3799790](https://www.pexels.com/photo/3799790/) |
+| `chemise-lin-bleu-ciel` | [pexels.com/photo/1043474](https://www.pexels.com/photo/1043474/) |
+| `chemise-lin-blanche` | [pexels.com/photo/4736680](https://www.pexels.com/photo/4736680/) |
+| `chemise-flanelle-carreaux` | [pexels.com/photo/2834009](https://www.pexels.com/photo/2834009/) |
+| `chemise-denim-indigo` | [pexels.com/photo/10004175](https://www.pexels.com/photo/10004175/) |
+| `chemise-twill-rose-pale` | [pexels.com/photo/37070445](https://www.pexels.com/photo/37070445/) |
+| `chemise-noire-stretch` | [pexels.com/photo/18935840](https://www.pexels.com/photo/18935840/) |
+| `chemise-vichy-bleue` | [pexels.com/photo/18297281](https://www.pexels.com/photo/18297281/) |
+| `chemise-petits-carreaux` | [pexels.com/photo/18800071](https://www.pexels.com/photo/18800071/) |
+| `chemise-smoking-blanche` | [pexels.com/photo/3598433](https://www.pexels.com/photo/3598433/) |
+| `chemise-chambray` | [pexels.com/photo/4584191](https://www.pexels.com/photo/4584191/) |
+| `surchemise-carreaux-ecrus` | [pexels.com/photo/34947524](https://www.pexels.com/photo/34947524/) |
+| `chemise-fil-a-fil-bleue` | [pexels.com/photo/1043473](https://www.pexels.com/photo/1043473/) |
+| `chemise-maille-marine` | [pexels.com/photo/35495782](https://www.pexels.com/photo/35495782/) |
+| `chemise-carreaux-noir-blanc` | [pexels.com/photo/8498401](https://www.pexels.com/photo/8498401/) |

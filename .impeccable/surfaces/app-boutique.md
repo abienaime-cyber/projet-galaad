@@ -7,7 +7,7 @@ related_targets: ["app/page.tsx","components"]
 
 # Boutique (accueil, costumes, chemises, fiche produit)
 
-Mode : Persuade pour l'accueil, Operate pour les pages de catégorie et la fiche. Public : client Galaad qui vient d'enregistrer ses mensurations, ou visiteur qui découvre. Tâche : voir les costumes (et chemises) qui existent dans sa taille, sans passer par le sur-mesure. Succès : en un clic après les mensurations, le client voit les meilleurs costumes à sa taille, la taille affichée sur chaque article.
+Mode : Persuade pour l'accueil, Operate pour les pages de catégorie et la fiche. Public : client Carrure qui vient d'enregistrer ses mensurations, ou visiteur qui découvre. Tâche : voir les costumes (et chemises) qui existent dans sa taille, sans passer par le sur-mesure. Succès : en un clic après les mensurations, le client voit les meilleurs costumes à sa taille, la taille affichée sur chaque article.
 
 Contraintes : aucune photo produit, donc des illustrations SVG honnêtes teintes à la couleur du produit ; aucun avis, aucun chiffre de vente inventé ; taille toujours « estimée » avec son niveau de confiance ; pas de bouton panier tant que le panier (partie B) n'existe pas.
 

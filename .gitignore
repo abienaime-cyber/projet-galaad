@@ -60,3 +60,6 @@ graphify-out/.graphify_labels.pending.json
 **/.impeccable/live/previews/
 **/.impeccable/live/annotations/
 **/.impeccable/live/cache/
+
+# exemple de configuration, sans secret
+!.env.example

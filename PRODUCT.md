@@ -19,7 +19,7 @@ Second public : l'administrateur de la boutique, qui suit les ventes et rédige 
 
 ## Product Purpose
 
-Galaad est une boutique en ligne de chemises et de costumes. Le client saisit sa taille, son poids et son âge (et, s'il les connaît, son tour de poitrine, son tour de taille et sa coupe préférée). Le site calcule sa taille pour chaque produit et peut n'afficher que les articles disponibles dans cette taille.
+Carrure est une boutique en ligne de chemises et de costumes. Le client saisit sa taille, son poids et son âge (et, s'il les connaît, son tour de poitrine, son tour de taille et sa coupe préférée). Le site calcule sa taille pour chaque produit et peut n'afficher que les articles disponibles dans cette taille.
 
 Succès : le client commande la bonne taille du premier coup, et le taux de retour pour mauvaise taille baisse.
 
@@ -44,7 +44,7 @@ La taille est calculée par un algorithme déterministe et affichée comme une e
 
 ## Brand Commitments
 
-- Nom : Galaad.
+- Nom : Carrure.
 - Voix : vouvoiement, sobre, le ton d'un tailleur. Poli, précis, sans familiarité ni superlatifs.
 - Interface en français.
 - Look : celui de l'Apple Store (apple.com), demandé explicitement par l'utilisateur. Blanc, tuiles gris clair, un seul bleu d'action, boutons pilule.
@@ -52,7 +52,7 @@ La taille est calculée par un algorithme déterministe et affichée comme une e
 ## Evidence on Hand
 
 - 30 produits fictifs avec descriptions (`supabase/seed.sql`).
-- Aucune photo produit, aucun avis réel, aucun client réel, aucun chiffre de vente réel. Ne rien inventer de tel dans l'interface.
+- Photos produit : photos Pexels (licence Pexels, attribution non requise) choisies pour la démo, sans lien avec la marque. Aucun avis réel, aucun client réel, aucun chiffre de vente réel. Ne rien inventer de tel dans l'interface.
 
 ## Product Principles
 
