@@ -126,9 +126,9 @@
     "semantic_hash": ""
   },
   "app/(auth)/auth-form.tsx": {
-    "mtime": 1792750187.9332151,
-    "seen": 1792750253.3493261,
-    "ast_hash": "8152e67f77f7c2236c29ecccf6d1f38d",
+    "mtime": 1792751137.0002856,
+    "seen": 1792751193.7414567,
+    "ast_hash": "eb60f789f1d814050a14100c0e531aae",
     "semantic_hash": ""
   },
   "app/(auth)/auth-shell.tsx": {
@@ -162,15 +162,15 @@
     "semantic_hash": ""
   },
   "app/compte/mensurations/measurements-form.tsx": {
-    "mtime": 1792750184.037215,
-    "seen": 1792750253.3493397,
-    "ast_hash": "68cc7692ca79652b936d135d7a558716",
+    "mtime": 1792751137.0006099,
+    "seen": 1792751193.7414756,
+    "ast_hash": "caacdb6621c37a3a75fa61b7fd8e4a17",
     "semantic_hash": ""
   },
   "app/compte/mensurations/page.tsx": {
-    "mtime": 1792750033.9619746,
-    "seen": 1792750253.3493412,
-    "ast_hash": "03e6dfcbf1934d1635ab39ee8a48f8dc",
+    "mtime": 1792750872.812313,
+    "seen": 1792751193.7414777,
+    "ast_hash": "d989515ba84bf550f018d2c28a6d59bc",
     "semantic_hash": ""
   },
   "app/compte/page.tsx": {
@@ -186,15 +186,15 @@
     "semantic_hash": ""
   },
   "components/site-header.tsx": {
-    "mtime": 1792750138.5078027,
-    "seen": 1792750253.3493533,
-    "ast_hash": "4f9c11788d04ed77f9de00c3a7fd9b23",
+    "mtime": 1792751056.3523765,
+    "seen": 1792751193.7414885,
+    "ast_hash": "f1dc0115a316a1eef9e988f83c86e728",
     "semantic_hash": ""
   },
   "components/size-tape.tsx": {
-    "mtime": 1792750185.2452152,
-    "seen": 1792750253.3493545,
-    "ast_hash": "bc3283f023f5470e3c33a88e13976984",
+    "mtime": 1792751137.0008376,
+    "seen": 1792751193.7414901,
+    "ast_hash": "013e7f68b18014d332f2d486a1c6db0e",
     "semantic_hash": ""
   },
   "lib/auth.ts": {
@@ -243,6 +243,18 @@
     "mtime": 1792748924.7531402,
     "seen": 1792750253.3493874,
     "ast_hash": "8bb0b0ad14ea1bacf623ddadbc8668df",
+    "semantic_hash": ""
+  },
+  "components/spinner.tsx": {
+    "mtime": 1792750946.5652604,
+    "seen": 1792751193.7414925,
+    "ast_hash": "f684fed4bf962fb60d0b427f8c022437",
+    "semantic_hash": ""
+  },
+  "components/spring-marker.tsx": {
+    "mtime": 1792750969.080662,
+    "seen": 1792751193.741495,
+    "ast_hash": "3679050c81dcce379fb5a712758468cd",
     "semantic_hash": ""
   }
 }
