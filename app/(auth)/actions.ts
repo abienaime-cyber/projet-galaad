@@ -12,9 +12,11 @@ const field = (formData: FormData, name: string) => String(formData.get(name) ??
 export async function signIn(_prev: AuthState, formData: FormData): Promise<AuthState> {
   const email = field(formData, "email");
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password: String(formData.get("password") ?? "") });
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password: String(formData.get("password") ?? "") });
   if (error) return { error: "E-mail ou mot de passe incorrect.", email };
-  redirect(safeNextPath(formData.get("next")));
+  // Sans destination demandée : la boutique si les mensurations sont connues, sinon leur saisie.
+  const { data: measured } = await supabase.from("measurements").select("user_id").eq("user_id", data.user.id).maybeSingle();
+  redirect(safeNextPath(formData.get("next"), measured ? "/costumes" : "/compte/mensurations"));
 }
 
 export async function signUp(_prev: AuthState, formData: FormData): Promise<AuthState> {

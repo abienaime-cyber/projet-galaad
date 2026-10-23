@@ -5,29 +5,21 @@ import { Field, primaryButton } from "@/components/field";
 import { SizeTape } from "@/components/size-tape";
 import { Spinner } from "@/components/spinner";
 import { FITS, MEASUREMENT_FIELDS, parseMeasurements } from "@/lib/measurements";
-import { estimateChest, estimateWaist, PREFERENCE_EASE, recommendSize, type Confidence, type SizeRow } from "@/lib/sizing";
+import { CONFIDENCE_LABEL } from "@/lib/shop";
+import { estimateChest, estimateWaist, PREFERENCE_EASE, recommendSize, type SizeRow } from "@/lib/sizing";
 import { deleteMeasurements, saveMeasurements, type MeasurementsState } from "./actions";
 
 export type Charts = { shirt: SizeRow[]; suit: SizeRow[] };
-
-const CONFIDENCE: Record<Confidence, string> = {
-  high: "confiance élevée",
-  medium: "confiance moyenne",
-  low: "confiance faible",
-};
 
 const cm = (n: number) => `${n.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} cm`;
 
 export function MeasurementsForm({ initial, charts }: { initial: Record<string, string>; charts: Charts }) {
   const [values, setValues] = useState(initial);
-  const [editedAt, setEditedAt] = useState(0);
   const [state, formAction, pending] = useActionState<MeasurementsState, FormData>(saveMeasurements, {});
   const errors = state.errors ?? {};
-  const saved = state.savedAt !== undefined && state.savedAt > editedAt;
 
   const set = (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues((v) => ({ ...v, [name]: e.target.value }));
-    setEditedAt(Date.now());
   };
 
   // Aperçu en direct : calculé seulement quand la saisie est complète et valide.
@@ -112,11 +104,8 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
         <div className="flex flex-wrap items-center gap-4">
           <button type="submit" disabled={pending} className={primaryButton}>
             {pending && <Spinner className="mr-2" />}
-            {pending ? "Enregistrement…" : "Enregistrer mes mensurations"}
+            {pending ? "Enregistrement…" : "Enregistrer et voir les costumes"}
           </button>
-          <p role="status" className="text-sm text-ok">
-            {saved && "Mensurations enregistrées."}
-          </p>
           {state.error && (
             <p role="alert" className="text-sm text-danger">
               {state.error}
@@ -195,7 +184,7 @@ function SizeReading({ label, result, hasChart }: { label: string; result: Retur
       <>
         <span className="figures text-[56px] leading-none">{result.size}</span>
         {result.alternative && <span className="ml-2 text-[17px] text-label-2">ou {result.alternative}</span>}
-        <span className="mt-2 block text-xs text-label-2">Taille estimée, {CONFIDENCE[result.confidence]}</span>
+        <span className="mt-2 block text-xs text-label-2">Taille estimée, {CONFIDENCE_LABEL[result.confidence]}</span>
       </>
     );
   } else {

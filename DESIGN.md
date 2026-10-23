@@ -244,7 +244,7 @@ Une palette de gris froids d'Apple, une seule couleur d'action, et un rouge rés
 ### Statut
 - **Rouge erreur** (danger) : texte et bordure d'erreur, bouton de suppression confirmée.
 - **Rose erreur** (danger-tint) : fond d'un champ en erreur, des alertes et du survol du bouton de suppression.
-- **Vert enregistré** (ok) : message « Mensurations enregistrées. » seulement.
+- **Vert stock** (ok) : mention « En stock dans votre taille. » sur la fiche produit, seulement.
 
 ### Named Rules
 **The Seul Bleu Rule.** Le bleu #0071e3 est la seule couleur d'action. Pas de deuxième accent, pas de bleu décoratif : s'il est bleu, il agit ou il marque la sélection.
@@ -342,6 +342,13 @@ Curseur iOS horizontal de 80 à 140 cm. Piste gris remplissage de 6 px, partie r
 
 ### Lecture
 Liste en deux colonnes sous un filet : libellé en 14 px gris, valeur en chiffres de lecture, puis « estimé » ou « mesuré » en 12 px. La taille recommandée s'affiche en display, la taille voisine en 17 px gris (« ou L »), puis « Taille estimée, confiance … ».
+
+### Boutique
+- **Illustrations de vêtements :** aucune photo produit n'existe. Chaque costume et chaque chemise est dessiné en SVG, en aplat de la couleur de l'article (motif rayé, carreaux ou vichy compris), manches légèrement ombrées, ombre portée douce au sol. Jamais présentés comme des photos.
+- **Tuile produit :** gris tuile, 28 px de rayon dès 640 px (20 px en dessous), vêtement centré, nom en 19 px 600 (15 px sur téléphone), couleur et matière en gris, prix en chiffres tabulaires ; pastille bleue pleine avec la taille calculée, barrée sur fond gris remplissage si elle est épuisée. Deux colonnes sur téléphone, trois dès 1024 px.
+- **Page de catégorie :** titre de 56 px « Costumes. » suivi d'une phrase grise ; ligne « Votre taille estimée » et contrôle segmenté Pour moi / Tout voir, sous un filet. Sans mensurations, une tuile invite à créer un compte.
+- **Fiche produit :** vêtement dans une grande tuile collante à gauche ; à droite nom, prix, description, encart « Votre taille » (18 px de rayon, taille en display), pastilles de disponibilité par taille, caractéristiques sous un filet.
+- **Accueil :** grand titre centré de 80 px, deux pilules d'action, vitrine de trois costumes qui montent en fondu (600 ms, décalage de 80 ms, fondu seul si le mouvement est réduit), puis deux grandes tuiles Costumes / Chemises.
 
 ## Do's and Don'ts
 

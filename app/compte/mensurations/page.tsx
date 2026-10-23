@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
-import type { SizeRow } from "@/lib/sizing";
+import { toSizeRows } from "@/lib/catalog";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/app/(auth)/actions";
@@ -23,19 +24,6 @@ export default function MeasurementsPage() {
     </div>
   );
 }
-
-type ChartRow = { label: string; sort_order: number; chest_min: number; chest_max: number; waist_min: number | null; waist_max: number | null };
-
-const toSizeRows = (rows: ChartRow[]): SizeRow[] =>
-  [...rows]
-    .sort((a, b) => a.sort_order - b.sort_order)
-    .map((r) => ({
-      label: r.label,
-      chestMin: Number(r.chest_min),
-      chestMax: Number(r.chest_max),
-      waistMin: r.waist_min === null ? null : Number(r.waist_min),
-      waistMax: r.waist_max === null ? null : Number(r.waist_max),
-    }));
 
 // Affichage français : virgule décimale, champ vide si la valeur manque.
 const fr = (n: number | null | undefined) => (n == null ? "" : String(n).replace(".", ","));
@@ -61,7 +49,7 @@ async function MeasurementsSection() {
 
   const charts: Charts = { shirt: [], suit: [] };
   for (const chart of chartData ?? []) {
-    charts[chart.category as keyof Charts] = toSizeRows(chart.size_chart_rows as ChartRow[]);
+    charts[chart.category as keyof Charts] = toSizeRows(chart.size_chart_rows);
   }
 
   const initial = {
@@ -82,6 +70,11 @@ async function MeasurementsSection() {
             Se déconnecter
           </button>
         </form>
+        {m && (
+          <Link href="/costumes" className="inline-flex min-h-11 items-center text-link hover:underline">
+            Voir les costumes à ma taille
+          </Link>
+        )}
       </div>
       <MeasurementsForm initial={initial} charts={charts} />
     </>

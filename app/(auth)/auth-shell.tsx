@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { SegmentedNav } from "@/components/segmented-nav";
 
 const TABS = [
   { href: "/connexion", key: "connexion", label: "Se connecter" },
@@ -25,19 +25,11 @@ export function AuthShell({ active, title, children }: { active: (typeof TABS)[n
   return (
     <div className="mx-auto max-w-[980px] px-4 pt-10 pb-16 sm:px-[22px] md:pt-16">
       <section aria-labelledby="auth-title" className="mx-auto max-w-[460px]">
-        {/* Contrôle segmenté iOS : deux pages sœurs, un seul geste pour passer de l'une à l'autre. */}
-        <nav aria-label="Accès au compte" className="mx-auto grid w-fit grid-cols-2 rounded-[10px] bg-fill p-[3px]">
-          {TABS.map((tab) => (
-            <Link
-              key={tab.key}
-              href={tab.href}
-              aria-current={tab.key === active ? "page" : undefined}
-              className="inline-flex min-h-9 items-center justify-center rounded-[8px] px-5 text-sm text-label-2 transition-colors duration-150 ease-[ease] hover:text-label aria-[current=page]:bg-white aria-[current=page]:font-medium aria-[current=page]:text-label aria-[current=page]:shadow-[0_3px_8px_rgb(0_0_0/0.12),0_1px_1px_rgb(0_0_0/0.04)]"
-            >
-              {tab.label}
-            </Link>
-          ))}
-        </nav>
+        <SegmentedNav
+          label="Accès au compte"
+          className="mx-auto"
+          items={TABS.map((tab) => ({ href: tab.href, label: tab.label, current: tab.key === active }))}
+        />
         <h1 id="auth-title" className="mt-10 text-center text-[40px] font-semibold">
           {title}
         </h1>

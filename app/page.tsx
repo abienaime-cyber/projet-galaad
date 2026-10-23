@@ -1,69 +1,131 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Suspense } from "react";
+import { primaryButton } from "@/components/field";
+import { Garment } from "@/components/garment";
+import { getProducts, getShopper } from "@/lib/catalog";
+import { CATEGORY_PATH, price, type CatalogProduct } from "@/lib/shop";
+import type { Category } from "@/lib/sizing";
 
-export default function Home() {
+const textLink = "inline-flex min-h-11 items-center text-[17px] text-link hover:underline";
+
+const STEPS = [
+  { title: "Créez votre compte.", text: "Une adresse e-mail et un mot de passe." },
+  {
+    title: "Donnez vos mesures.",
+    text: "Taille, poids et âge suffisent. Votre tour de poitrine et votre tour de taille rendent le calcul plus sûr.",
+  },
+  {
+    title: "Choisissez dans votre taille.",
+    text: "La boutique n’affiche que les articles en stock dans votre taille, avec le niveau de confiance du calcul.",
+  },
+];
+
+// Trois costumes du catalogue en vitrine, le plus classique au centre.
+const SHOWCASE = ["Gris anthracite", "Bleu marine", "Beige"];
+
+export default async function Home() {
+  const products = await getProducts();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section aria-labelledby="hero-title" className="mx-auto max-w-[980px] px-4 pt-14 text-center sm:px-[22px] md:pt-24">
+        <h1 id="hero-title" className="mx-auto max-w-[12ch] text-5xl font-semibold md:text-[80px] md:tracking-[-0.035em]">
+          Le costume à votre taille.
+        </h1>
+        <p className="mx-auto mt-5 max-w-[34rem] text-[19px] leading-snug text-label-2 md:text-[24px]">
+          Votre taille, votre poids, votre âge. Galaad calcule la taille à prendre pour chaque costume et chaque chemise.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          <Suspense fallback={<Actions measured={false} />}>
+            <ShopperActions />
+          </Suspense>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+
+        <div aria-hidden className="mx-auto mt-14 flex max-w-[44rem] items-end justify-center md:mt-20">
+          {SHOWCASE.map((color, i) => (
+            <Garment
+              key={color}
+              id={`vitrine-${i}`}
+              category="suit"
+              color={color}
+              className={`animate-rise w-[38%] [animation-delay:calc(var(--i)*80ms)] ${i === 1 ? "z-10 w-[44%]" : "-mx-[6%] opacity-95"}`}
+              style={{ "--i": i } as React.CSSProperties}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section aria-label="Les collections" className="mx-auto mt-16 grid max-w-[980px] gap-5 px-4 sm:px-[22px] md:mt-24 md:grid-cols-2">
+        <CollectionTile category="suit" title="Costumes" range="Du 44 au 58" products={products} color="Bleu marine" />
+        <CollectionTile category="shirt" title="Chemises" range="Du S au 3XL" products={products} color="Bleu ciel" />
+      </section>
+
+      <section aria-labelledby="how-title" className="mx-auto max-w-[980px] px-4 pt-24 pb-28 sm:px-[22px] md:pt-32">
+        <h2 id="how-title" className="max-w-[18ch] text-[40px] font-semibold md:text-5xl">
+          Votre taille, sans cabine d’essayage.
+        </h2>
+        <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-12">
+          {STEPS.map((step, i) => (
+            <li key={step.title} className="border-t border-separator pt-6">
+              <span className="figures block text-[40px] leading-none text-label-2">{i + 1}</span>
+              <h3 className="mt-5 text-[21px] font-semibold tracking-[-0.02em]">{step.title}</h3>
+              <p className="mt-2 text-label-2">{step.text}</p>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-12 max-w-[40rem] text-sm text-label-2">
+          La taille affichée reste une estimation : notre calcul indique toujours à quel point il est sûr de lui, et la taille
+          voisine quand vous êtes entre deux.
+        </p>
+      </section>
+    </>
+  );
+}
+
+async function ShopperActions() {
+  const { measurements } = await getShopper();
+  return <Actions measured={measurements !== null} />;
+}
+
+function Actions({ measured }: { measured: boolean }) {
+  return measured ? (
+    <>
+      <Link href="/costumes" className={primaryButton}>
+        Voir les costumes à ma taille
+      </Link>
+      <Link href="/compte/mensurations" className={textLink}>
+        Modifier mes mensurations ›
+      </Link>
+    </>
+  ) : (
+    <>
+      <Link href="/inscription" className={primaryButton}>
+        Trouver ma taille
+      </Link>
+      <Link href="/costumes" className={textLink}>
+        Voir les costumes ›
+      </Link>
+    </>
+  );
+}
+
+type TileProps = { category: Category; title: string; range: string; products: CatalogProduct[]; color: string };
+
+function CollectionTile({ category, title, range, products, color }: TileProps) {
+  const prices = products.filter((p) => p.category === category).map((p) => p.priceCents);
+  return (
+    <Link href={CATEGORY_PATH[category]} className="group flex flex-col items-center rounded-[28px] bg-tile px-6 pt-12 text-center transition-transform duration-150 ease-out active:scale-[0.99]">
+      <h2 className="text-[40px] font-semibold">{title}</h2>
+      <p className="mt-2 text-[19px] text-label-2">
+        {range}.{prices.length > 0 && <> À partir de {price(Math.min(...prices))}.</>}
+      </p>
+      <span className="mt-3 inline-flex min-h-11 items-center text-[17px] text-link group-hover:underline">Découvrir ›</span>
+      <Garment
+        id={`collection-${category}`}
+        category={category}
+        color={color}
+        className="mt-6 w-[72%] max-w-72 transition-transform duration-300 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:-translate-y-1.5"
+      />
+    </Link>
   );
 }

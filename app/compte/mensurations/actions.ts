@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { parseMeasurements, type MeasurementErrors } from "@/lib/measurements";
 import { createClient } from "@/lib/supabase/server";
 
-export type MeasurementsState = { errors?: MeasurementErrors; error?: string; savedAt?: number };
+export type MeasurementsState = { errors?: MeasurementErrors; error?: string };
 
 async function requireUser() {
   const supabase = await createClient();
@@ -30,8 +30,8 @@ export async function saveMeasurements(_prev: MeasurementsState, formData: FormD
     preferred_fit: m.preferredFit,
   });
   if (error) return { error: "L'enregistrement a échoué. Réessayez dans un instant." };
-  refresh();
-  return { savedAt: Date.now() };
+  // Les tailles sont prêtes : le client arrive directement sur les costumes à sa taille.
+  redirect("/costumes");
 }
 
 export async function deleteMeasurements() {

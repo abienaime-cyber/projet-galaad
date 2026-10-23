@@ -12,6 +12,10 @@ export function SiteHeader() {
         <Link href="/" className="inline-flex h-11 items-center text-xl font-semibold tracking-[-0.03em]">
           Galaad
         </Link>
+        <nav aria-label="Boutique" className="flex items-center gap-2 sm:gap-6">
+          <Link href="/costumes" className={navLink}>Costumes</Link>
+          <Link href="/chemises" className={navLink}>Chemises</Link>
+        </nav>
         <nav aria-label="Compte" className="flex items-center">
           <Suspense fallback={<Link href="/compte/mensurations" className={navLink}>Mon compte</Link>}>
             <AccountLinks />
