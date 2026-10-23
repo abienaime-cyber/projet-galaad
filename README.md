@@ -48,6 +48,8 @@ pnpm build
 | `NEXT_PUBLIC_SUPABASE_URL` | navigateur et serveur | URL du projet Supabase |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | navigateur et serveur | clé publique, protégée par la RLS |
 | `ANTHROPIC_API_KEY` | serveur uniquement | clé de l'API Claude pour les deux skills IA ; sans elle le site marche, l'IA affiche « non activé » |
+| `NEXT_PUBLIC_SITE_URL` | facultatif | URL publique (sitemap, robots.txt, image de partage). Sur Vercel, `VERCEL_PROJECT_PRODUCTION_URL` suffit |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | facultatif | adresse affichée sur la page Confidentialité pour exercer ses droits. **À renseigner avant une mise en ligne publique** |
 
 Aucune clé secrète n'est dans le dépôt : `.env*` est ignoré par git, seul `.env.example` (sans valeur) est versionné. La clé `service_role` de Supabase n'est jamais utilisée par l'application.
 
@@ -56,7 +58,35 @@ Aucune clé secrète n'est dans le dépôt : `.env*` est ignoré par git, seul `
 1. Créer un projet Supabase, puis pousser le schéma : `npx supabase link --project-ref <ref>` et `npx supabase db push`. Exécuter `supabase/seed.sql` dans l'éditeur SQL pour les données de démo.
 2. Dans Supabase > Authentication > URL Configuration, mettre l'URL Vercel en *Site URL* et ajouter `<url>/auth/confirm` aux *Redirect URLs*.
 3. Importer le dépôt sur Vercel et renseigner les trois variables ci-dessus dans *Settings > Environment Variables* (Production et Preview).
-4. Déployer, puis reporter l'URL publique en haut de ce README.
+4. Dans Vercel > *Analytics*, activer Web Analytics (le composant n'est chargé que sur Vercel).
+5. Déployer, puis reporter l'URL publique en haut de ce README.
+
+## Avant la mise en ligne : les 20 points
+
+| Point | Où |
+| --- | --- |
+| Page RGPD | `/confidentialite` |
+| CGU et mentions légales | `/cgu` |
+| API côté serveur | clé Claude lue seulement dans `lib/ai.ts` ; clé Supabase publique protégée par la RLS |
+| HTTPS forcé | Vercel redirige HTTP vers HTTPS (308) ; en-têtes HSTS et de sécurité dans `next.config.ts` |
+| Bandeau cookies | `components/cookie-notice.tsx` : information seule, car seuls des cookies de connexion (exemptés par la CNIL) sont déposés |
+| Meta title et description | `metadata` du layout et de chaque page |
+| Image réseaux | `app/opengraph-image.jpg` ; la photo de l'article sur chaque fiche |
+| Favicon | `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png` |
+| Sitemap et robots.txt | `app/sitemap.ts`, `app/robots.ts` (pages privées exclues) |
+| Textes alternatifs | photos produit décrites ; images décoratives en `alt=""` |
+| Images compressées | `next/image` sert de l'AVIF ou du WebP (14 Ko au lieu de 118 Ko pour une photo en 640 px) |
+| Vitesse | Lighthouse mobile 93 à 99 en performance |
+| Contraste | Lighthouse accessibilité 100 |
+| Responsive | vérifié de 320 à 1440 px |
+| Page 404 | `app/not-found.tsx` |
+| Liens cassés | parcours automatique de 199 pages (visiteur, client, admin) : aucun |
+| Validation des formulaires | Zod côté serveur (`lib/validation.ts`) et contraintes SQL |
+| Anti-spam | pot de miel à l'inscription, limites de Supabase Auth, 20 appels IA par heure et par compte (`consume_ai_quota`) |
+| Analytics | Vercel Web Analytics, sans cookie, numéros de commande masqués |
+| Un seul CTA | un bouton principal par écran |
+
+Données « pire cas » pour tester l'interface : `supabase/fixtures/worst-case.sql` (compte `pire@carrure.test`). `supabase db reset` remet les données de démo.
 
 ## Base de données
 

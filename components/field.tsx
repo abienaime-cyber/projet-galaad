@@ -57,3 +57,7 @@ export function Field({ name, label, unit, hint, error, className, ...input }: F
 
 export const primaryButton =
   "inline-flex h-11 cursor-pointer items-center justify-center rounded-full bg-accent px-[22px] text-[17px] text-white transition-[background-color,transform] duration-150 ease-out hover:bg-accent-hover active:scale-[0.97] disabled:cursor-default disabled:opacity-60 disabled:active:scale-100";
+
+// Bouton secondaire, contour bleu : une seule action principale (pleine) par écran.
+export const secondaryButton =
+  "inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-full px-5 text-[17px] text-link shadow-[inset_0_0_0_1px_var(--color-link)] transition-[background-color,transform] duration-150 ease-out hover:bg-[rgb(0_102_204/0.06)] active:scale-[0.97] disabled:cursor-default";

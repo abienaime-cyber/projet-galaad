@@ -1,9 +1,10 @@
 "use server";
 
 import { refresh } from "next/cache";
-import { AI_ERROR_MESSAGE, AiError, adviseSize } from "@/lib/ai";
+import { AI_ERROR_MESSAGE, AI_QUOTA_MESSAGE, AiError, adviseSize } from "@/lib/ai";
 import { getProduct, getProducts, getShopper } from "@/lib/catalog";
 import { requireUser } from "@/lib/commerce";
+import { createClient } from "@/lib/supabase/server";
 import { fitAll, FIT_LABEL, forMe, price } from "@/lib/shop";
 import { parseForm, reviewSchema, type FieldErrors } from "@/lib/validation";
 
@@ -24,6 +25,9 @@ export async function askAdvisor(_prev: AdviceState, formData: FormData): Promis
   const available = forMe(fitAll(products, measurements), measurements.preferredFit);
   const bySlug = new Map(available.map((f) => [f.product.slug, f]));
   bySlug.set(product.slug, { product, rec, inStock: true });
+
+  const { data: allowed } = await (await createClient()).rpc("consume_ai_quota");
+  if (!allowed) return { error: AI_QUOTA_MESSAGE };
 
   try {
     const advice = await adviseSize({

@@ -17,6 +17,8 @@ export class AiError extends Error {
   }
 }
 
+export const AI_QUOTA_MESSAGE = "Vous avez atteint la limite de 20 demandes par heure. Réessayez plus tard.";
+
 export const AI_ERROR_MESSAGE: Record<AiErrorKind, string> = {
   not_configured: "Le conseiller n’est pas activé sur ce site : la clé ANTHROPIC_API_KEY manque côté serveur.",
   timeout: "Le conseiller a mis trop de temps à répondre. Réessayez dans un instant.",

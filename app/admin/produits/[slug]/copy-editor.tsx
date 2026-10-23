@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import { primaryButton } from "@/components/field";
+import { primaryButton, secondaryButton } from "@/components/field";
 import { Spinner } from "@/components/spinner";
 import { generateCopy, publishCopy, type CopyState } from "../../actions";
 
@@ -28,7 +28,7 @@ export function CopyEditor({ productId, current }: { productId: string; current:
         <button
           type="submit"
           disabled={generating}
-          className="inline-flex h-11 cursor-pointer items-center gap-2 justify-self-start rounded-full px-5 text-link shadow-[inset_0_0_0_1px_var(--color-link)] transition-[background-color,transform] duration-150 ease-out hover:bg-[rgb(0_102_204/0.06)] active:scale-[0.97]"
+          className={`${secondaryButton} justify-self-start`}
         >
           {generating && <Spinner />}
           {generating ? "Rédaction…" : "Proposer une description"}

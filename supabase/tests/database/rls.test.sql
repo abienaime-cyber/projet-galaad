@@ -1,6 +1,6 @@
 -- Tests pgTAP de la RLS, des contraintes et de la commande. Lancer : npx supabase test db
 begin;
-select plan(24);
+select plan(27);
 
 -- Deux clients et un admin, créés dans la transaction (annulée à la fin).
 insert into auth.users (id, email) values
@@ -93,6 +93,16 @@ set local role authenticated;
 set local request.jwt.claim.sub = '10000000-0000-4000-8000-0000000000ad';
 select is((select count(*)::int from public.orders), (select n from t_total), 'l''admin voit toutes les commandes');
 select ok((select orders_count from public.admin_kpis) >= 1, 'l''admin lit les KPIs');
+reset role;
+
+-- Quota IA ----------------------------------------------------------------
+set local role anon;
+select throws_ok($$select public.consume_ai_quota()$$, '42501', null, 'un visiteur anonyme ne peut pas appeler l''IA');
+reset role;
+set local role authenticated;
+set local request.jwt.claim.sub = '10000000-0000-4000-8000-00000000000b';
+select is((select bool_and(public.consume_ai_quota()) from generate_series(1, 20)), true, 'B a droit à 20 appels par heure');
+select is(public.consume_ai_quota(), false, 'le 21e appel de B est refusé');
 reset role;
 
 select * from finish();

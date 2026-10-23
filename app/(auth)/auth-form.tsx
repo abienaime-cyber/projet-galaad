@@ -31,6 +31,10 @@ export function AuthForm({ mode }: { mode: "signin" | "signup" }) {
         </p>
       )}
       <input type="hidden" name="next" value={searchParams.get("suite") ?? ""} />
+      {/* Pot de miel : invisible pour un humain, rempli par les robots qui remplissent tout. */}
+      {mode === "signup" && (
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] size-px opacity-0" />
+      )}
       {mode === "signup" && <Field name="full_name" label="Nom (facultatif)" autoComplete="name" maxLength={120} />}
       <Field name="email" label="Adresse e-mail" type="email" autoComplete="email" required defaultValue={state.email} />
       <Field

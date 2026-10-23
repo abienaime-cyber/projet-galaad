@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useActionState } from "react";
+import { secondaryButton } from "@/components/field";
 import { Spinner } from "@/components/spinner";
 import { askAdvisor, type AdviceState } from "./actions";
 
@@ -23,11 +24,7 @@ export function Advisor({ slug }: { slug: string }) {
       {!answered && (
         <form action={action} className="mt-4">
           <input type="hidden" name="slug" value={slug} />
-          <button
-            type="submit"
-            disabled={pending}
-            className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-full px-5 text-[17px] text-link shadow-[inset_0_0_0_1px_var(--color-link)] transition-[background-color,transform] duration-150 ease-out hover:bg-[rgb(0_102_204/0.06)] active:scale-[0.97] disabled:cursor-default"
-          >
+          <button type="submit" disabled={pending} className={secondaryButton}>
             {pending && <Spinner />}
             {pending ? "Le conseiller rédige…" : "Pourquoi cette taille ?"}
           </button>

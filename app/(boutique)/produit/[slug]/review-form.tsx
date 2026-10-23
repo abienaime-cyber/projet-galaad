@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { primaryButton } from "@/components/field";
+import { secondaryButton } from "@/components/field";
 import { FIT_FEEDBACK } from "@/lib/validation";
 import { addReview, type ReviewState } from "./actions";
 
@@ -54,7 +54,7 @@ export function ReviewForm({ productId, slug }: { productId: string; slug: strin
           {state.error ?? Object.values(state.errors ?? {})[0]}
         </p>
       )}
-      <button type="submit" disabled={pending} className={`${primaryButton} justify-self-start`}>
+      <button type="submit" disabled={pending} className={`${secondaryButton} justify-self-start`}>
         {pending ? "Publication…" : "Publier mon avis"}
       </button>
     </form>

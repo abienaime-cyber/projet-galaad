@@ -1,7 +1,7 @@
 "use server";
 
 import { updateTag } from "next/cache";
-import { AI_ERROR_MESSAGE, AiError, writeProductCopy } from "@/lib/ai";
+import { AI_ERROR_MESSAGE, AI_QUOTA_MESSAGE, AiError, writeProductCopy } from "@/lib/ai";
 import { CATALOG_TAG } from "@/lib/catalog";
 import { requireAdmin } from "@/lib/commerce";
 import { FIT_LABEL } from "@/lib/shop";
@@ -18,6 +18,8 @@ export async function generateCopy(_prev: CopyState, formData: FormData): Promis
     .eq("id", String(formData.get("product_id") ?? ""))
     .maybeSingle();
   if (!p) return { error: "Produit introuvable." };
+  const { data: allowed } = await supabase.rpc("consume_ai_quota");
+  if (!allowed) return { error: AI_QUOTA_MESSAGE };
   try {
     const { description } = await writeProductCopy({
       name: p.name,

@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { primaryButton } from "@/components/field";
+import { secondaryButton } from "@/components/field";
 import { getProduct, getShopper } from "@/lib/catalog";
+import { OPEN_GRAPH } from "@/lib/site";
 import { createClient } from "@/lib/supabase/server";
 import { CATEGORY_PATH, CONFIDENCE_LABEL, FIT_LABEL, fitAll, price, type CatalogProduct } from "@/lib/shop";
 import { FIT_FEEDBACK } from "@/lib/validation";
@@ -14,7 +15,12 @@ import { ReviewForm } from "./review-form";
 
 export async function generateMetadata({ params }: PageProps<"/produit/[slug]">): Promise<Metadata> {
   const product = await getProduct((await params).slug);
-  return { title: product?.name ?? "Article introuvable", description: product?.description };
+  if (!product) return { title: "Article introuvable" };
+  return {
+    title: product.name,
+    description: product.description,
+    openGraph: { ...OPEN_GRAPH, images: product.image ? [{ url: product.image, width: 1000, height: 1250, alt: product.name }] : undefined },
+  };
 }
 
 export default function ProductPage({ params }: PageProps<"/produit/[slug]">) {
@@ -134,7 +140,7 @@ async function YourSize({ product }: { product: CatalogProduct }) {
             <p className="mt-2 max-w-[30rem] text-[17px]">
               Donnez votre taille, votre poids et votre âge : nous calculons la taille à prendre pour cet article.
             </p>
-            <Link href={signedIn ? "/compte/mensurations" : "/inscription"} className={`${primaryButton} mt-5`}>
+            <Link href={signedIn ? "/compte/mensurations" : "/inscription"} className={`${secondaryButton} mt-5`}>
               {signedIn ? "Saisir mes mensurations" : "Créer un compte"}
             </Link>
           </>

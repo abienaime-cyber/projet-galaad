@@ -19,8 +19,13 @@ export async function signIn(_prev: AuthState, formData: FormData): Promise<Auth
   redirect(safeNextPath(formData.get("next"), measured ? "/costumes" : "/compte/mensurations"));
 }
 
+const CONFIRMATION_SENT = (email: string) =>
+  `Un e-mail de confirmation vient d'être envoyé à ${email}. Ouvrez le lien qu'il contient pour activer votre compte.`;
+
 export async function signUp(_prev: AuthState, formData: FormData): Promise<AuthState> {
   const email = field(formData, "email");
+  // Un robot a rempli le pot de miel : on lui répond comme à un humain, sans rien créer.
+  if (field(formData, "website")) return { notice: CONFIRMATION_SENT(email) };
   const password = String(formData.get("password") ?? "");
   if (password.length < 8) return { error: "Choisissez un mot de passe d'au moins 8 caractères.", email };
 
@@ -35,7 +40,7 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
     },
   });
   if (error) return { error: "La création du compte a échoué. Vérifiez l'adresse e-mail, ou connectez-vous si vous avez déjà un compte.", email };
-  if (!data.session) return { notice: `Un e-mail de confirmation vient d'être envoyé à ${email}. Ouvrez le lien qu'il contient pour activer votre compte.` };
+  if (!data.session) return { notice: CONFIRMATION_SENT(email) };
   redirect("/compte/mensurations");
 }
 
