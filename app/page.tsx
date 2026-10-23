@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { primaryButton } from "@/components/field";
-import { Garment } from "@/components/garment";
 import { getProducts, getShopper } from "@/lib/catalog";
 import { CATEGORY_PATH, price, type CatalogProduct } from "@/lib/shop";
 import type { Category } from "@/lib/sizing";
@@ -21,7 +21,7 @@ const STEPS = [
 ];
 
 // Trois costumes du catalogue en vitrine, le plus classique au centre.
-const SHOWCASE = ["Gris anthracite", "Bleu marine", "Beige"];
+const SHOWCASE = ["costume-lin-beige", "costume-laine-marine", "costume-prince-de-galles"];
 
 export default async function Home() {
   const products = await getProducts();
@@ -33,7 +33,7 @@ export default async function Home() {
           Le costume à votre taille.
         </h1>
         <p className="mx-auto mt-5 max-w-[34rem] text-[19px] leading-snug text-label-2 md:text-[24px]">
-          Votre taille, votre poids, votre âge. Galaad calcule la taille à prendre pour chaque costume et chaque chemise.
+          Votre taille, votre poids, votre âge. Carrure calcule la taille à prendre pour chaque costume et chaque chemise.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
           <Suspense fallback={<Actions measured={false} />}>
@@ -41,23 +41,34 @@ export default async function Home() {
           </Suspense>
         </div>
 
-        <div aria-hidden className="mx-auto mt-14 flex max-w-[44rem] items-end justify-center md:mt-20">
-          {SHOWCASE.map((color, i) => (
-            <Garment
-              key={color}
-              id={`vitrine-${i}`}
-              category="suit"
-              color={color}
-              className={`animate-rise w-[38%] [animation-delay:calc(var(--i)*80ms)] ${i === 1 ? "z-10 w-[44%]" : "-mx-[6%] opacity-95"}`}
-              style={{ "--i": i } as React.CSSProperties}
-            />
-          ))}
+        <div className="mx-auto mt-14 flex max-w-[52rem] items-end justify-center gap-3 md:mt-20 md:gap-5">
+          {SHOWCASE.map((slug, i) => {
+            const product = products.find((p) => p.slug === slug);
+            return product?.image ? (
+              <Link
+                key={slug}
+                href={`/produit/${slug}`}
+                className={`animate-rise block overflow-hidden rounded-[20px] [animation-delay:calc(var(--i)*80ms)] md:rounded-[28px] ${i === 1 ? "w-[38%]" : "w-[29%]"}`}
+                style={{ "--i": i } as React.CSSProperties}
+              >
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={600}
+                  height={750}
+                  priority
+                  sizes="(min-width: 768px) 320px, 38vw"
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              </Link>
+            ) : null;
+          })}
         </div>
       </section>
 
       <section aria-label="Les collections" className="mx-auto mt-16 grid max-w-[980px] gap-5 px-4 sm:px-[22px] md:mt-24 md:grid-cols-2">
-        <CollectionTile category="suit" title="Costumes" range="Du 44 au 58" products={products} color="Bleu marine" />
-        <CollectionTile category="shirt" title="Chemises" range="Du S au 3XL" products={products} color="Bleu ciel" />
+        <CollectionTile category="suit" title="Costumes" range="Du 44 au 58" products={products} cover="costume-gris-anthracite" />
+        <CollectionTile category="shirt" title="Chemises" range="Du S au 3XL" products={products} cover="chemise-oxford-bleu-ciel" />
       </section>
 
       <section aria-labelledby="how-title" className="mx-auto max-w-[980px] px-4 pt-24 pb-28 sm:px-[22px] md:pt-32">
@@ -109,23 +120,30 @@ function Actions({ measured }: { measured: boolean }) {
   );
 }
 
-type TileProps = { category: Category; title: string; range: string; products: CatalogProduct[]; color: string };
+type TileProps = { category: Category; title: string; range: string; products: CatalogProduct[]; cover: string };
 
-function CollectionTile({ category, title, range, products, color }: TileProps) {
+function CollectionTile({ category, title, range, products, cover }: TileProps) {
   const prices = products.filter((p) => p.category === category).map((p) => p.priceCents);
+  const image = products.find((p) => p.slug === cover)?.image;
   return (
-    <Link href={CATEGORY_PATH[category]} className="group flex flex-col items-center rounded-[28px] bg-tile px-6 pt-12 text-center transition-transform duration-150 ease-out active:scale-[0.99]">
+    <Link href={CATEGORY_PATH[category]} className="group flex flex-col items-center overflow-hidden rounded-[28px] bg-tile px-6 pt-12 text-center transition-transform duration-150 ease-out active:scale-[0.99]">
       <h2 className="text-[40px] font-semibold">{title}</h2>
       <p className="mt-2 text-[19px] text-label-2">
         {range}.{prices.length > 0 && <> À partir de {price(Math.min(...prices))}.</>}
       </p>
       <span className="mt-3 inline-flex min-h-11 items-center text-[17px] text-link group-hover:underline">Découvrir ›</span>
-      <Garment
-        id={`collection-${category}`}
-        category={category}
-        color={color}
-        className="mt-6 w-[72%] max-w-72 transition-transform duration-300 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:-translate-y-1.5"
-      />
+      {image && (
+        <div className="mt-8 w-full max-w-80 overflow-hidden rounded-t-[20px]">
+          <Image
+            src={image}
+            alt=""
+            width={640}
+            height={800}
+            sizes="(min-width: 768px) 320px, 80vw"
+            className="aspect-[4/5] w-full object-cover transition-transform duration-300 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
+          />
+        </div>
+      )}
     </Link>
   );
 }

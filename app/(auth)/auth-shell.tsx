@@ -41,7 +41,7 @@ export function AuthShell({ active, title, children }: { active: (typeof TABS)[n
           Votre taille, article par article
         </h2>
         <p className="mx-auto mt-3 max-w-[38rem] text-center text-label-2">
-          Votre compte garde vos mensurations. Galaad les compare au tableau de tailles de chaque chemise et de chaque
+          Votre compte garde vos mensurations. Carrure les compare au tableau de tailles de chaque chemise et de chaque
           costume, et vous indique la taille à commander.
         </p>
         <dl className="mt-10 grid gap-8 text-sm sm:grid-cols-3 sm:gap-10">

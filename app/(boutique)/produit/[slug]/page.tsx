@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { primaryButton } from "@/components/field";
-import { Garment } from "@/components/garment";
 import { getProduct, getShopper } from "@/lib/catalog";
+import { createClient } from "@/lib/supabase/server";
 import { CATEGORY_PATH, CONFIDENCE_LABEL, FIT_LABEL, fitAll, price, type CatalogProduct } from "@/lib/shop";
+import { FIT_FEEDBACK } from "@/lib/validation";
+import { AddToCart } from "./add-to-cart";
+import { Advisor } from "./advisor";
+import { ReviewForm } from "./review-form";
 
 export async function generateMetadata({ params }: PageProps<"/produit/[slug]">): Promise<Metadata> {
   const product = await getProduct((await params).slug);
-  return { title: product?.name ?? "Article introuvable" };
+  return { title: product?.name ?? "Article introuvable", description: product?.description };
 }
 
 export default function ProductPage({ params }: PageProps<"/produit/[slug]">) {
@@ -36,8 +41,20 @@ async function ProductView({ slug }: { slug: string }) {
         ‹ {isSuit ? "Costumes" : "Chemises"}
       </Link>
       <div className="mt-4 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14">
-        <div className="rounded-[28px] bg-tile px-8 py-10 sm:px-16 sm:py-14 lg:sticky lg:top-[68px] lg:self-start">
-          <Garment id={product.slug} category={product.category} color={product.color} className="mx-auto aspect-[4/5] w-full max-w-[22rem]" />
+        <div className="lg:sticky lg:top-[68px] lg:self-start">
+          {product.image ? (
+            <Image
+              src={product.image}
+              alt={`${product.name}, porté`}
+              width={1000}
+              height={1250}
+              priority
+              sizes="(min-width: 1024px) 500px, 100vw"
+              className="aspect-[4/5] w-full rounded-[28px] bg-tile object-cover"
+            />
+          ) : (
+            <div className="aspect-[4/5] rounded-[28px] bg-tile" />
+          )}
         </div>
 
         <div>
@@ -45,7 +62,7 @@ async function ProductView({ slug }: { slug: string }) {
           <p className="mt-3 text-[21px] tabular-nums">{price(product.priceCents)}</p>
           <p className="mt-6 max-w-[34rem] text-pretty">{product.description}</p>
 
-          <Suspense fallback={<div aria-busy className="mt-8 h-44 rounded-[18px] bg-tile" />}>
+          <Suspense fallback={<div aria-busy className="mt-8 h-72 rounded-[18px] bg-tile" />}>
             <YourSize product={product} />
           </Suspense>
 
@@ -65,6 +82,10 @@ async function ProductView({ slug }: { slug: string }) {
               </>
             )}
           </dl>
+
+          <Suspense fallback={null}>
+            <Reviews product={product} />
+          </Suspense>
         </div>
       </div>
     </>
@@ -74,6 +95,12 @@ async function ProductView({ slug }: { slug: string }) {
 async function YourSize({ product }: { product: CatalogProduct }) {
   const { signedIn, measurements } = await getShopper();
   const [{ rec, inStock }] = fitAll([product], measurements);
+  const sizes = product.sizes.map(({ label }) => ({
+    label,
+    variantId: product.variantIds[label],
+    inStock: (product.stock[label] ?? 0) > 0,
+    state: label === rec?.size ? ("chosen" as const) : label === rec?.alternative ? ("alternative" as const) : ("idle" as const),
+  }));
 
   return (
     <>
@@ -114,30 +141,52 @@ async function YourSize({ product }: { product: CatalogProduct }) {
         )}
       </section>
 
-      <section aria-labelledby="stock-title" className="mt-8">
-        <h2 id="stock-title" className="text-[17px] font-semibold">
-          Disponibilité par taille
-        </h2>
-        <ul className="mt-3 flex flex-wrap gap-2">
-          {product.sizes.map(({ label }) => {
-            const available = (product.stock[label] ?? 0) > 0;
-            const state = label === rec?.size ? "chosen" : label === rec?.alternative ? "alternative" : "idle";
-            return (
-              <li
-                key={label}
-                data-state={state}
-                className={`inline-flex h-10 min-w-12 items-center justify-center rounded-full px-3 text-sm font-semibold tabular-nums data-[state=alternative]:text-accent data-[state=alternative]:shadow-[inset_0_0_0_1px_var(--color-accent)] data-[state=chosen]:bg-accent data-[state=chosen]:text-white data-[state=idle]:bg-tile ${
-                  available ? "" : "text-label-2 line-through"
-                }`}
-              >
-                {label}
-                <span className="sr-only">{available ? ", en stock" : ", épuisé"}</span>
-              </li>
-            );
-          })}
-        </ul>
-        <p className="mt-3 text-xs text-label-2">Les tailles barrées sont épuisées.</p>
-      </section>
+      <AddToCart slug={product.slug} sizes={sizes} defaultSize={inStock ? rec!.size : null} />
+      {rec?.size && <Advisor slug={product.slug} />}
     </>
+  );
+}
+
+const monthYear = new Intl.DateTimeFormat("fr-FR", { month: "long", year: "numeric" });
+
+async function Reviews({ product }: { product: CatalogProduct }) {
+  const supabase = await createClient();
+  const [{ data: reviews }, { data: purchased }, { data: auth }] = await Promise.all([
+    supabase.from("reviews").select("id, user_id, rating, fit_feedback, comment, created_at").eq("product_id", product.id).order("created_at", { ascending: false }),
+    supabase.rpc("has_purchased", { p_product_id: product.id }),
+    supabase.auth.getUser(),
+  ]);
+  const list = reviews ?? [];
+  const canReview = purchased === true && !list.some((r) => r.user_id === auth.user?.id);
+  const average = list.length ? list.reduce((s, r) => s + r.rating, 0) / list.length : 0;
+
+  return (
+    <section aria-labelledby="reviews-title" className="mt-10 border-t border-separator pt-8">
+      <h2 id="reviews-title" className="text-[21px] font-semibold">
+        Avis clients
+      </h2>
+      {list.length === 0 ? (
+        <p className="mt-2 text-sm text-label-2">Aucun avis pour le moment. Seuls les clients qui ont acheté l’article peuvent le noter.</p>
+      ) : (
+        <>
+          <p className="mt-2 text-sm text-label-2">
+            <span className="figures text-[17px] text-label">{average.toFixed(1).replace(".", ",")}</span> sur 5, {list.length} avis
+          </p>
+          <ul className="mt-5 grid gap-5">
+            {list.map((r) => (
+              <li key={r.id} className="text-sm">
+                <p>
+                  <span className="font-semibold tabular-nums">{r.rating}/5</span>
+                  {r.fit_feedback && <span className="text-label-2"> · {FIT_FEEDBACK[r.fit_feedback as keyof typeof FIT_FEEDBACK]}</span>}
+                  <span className="text-label-2"> · {monthYear.format(new Date(r.created_at))}</span>
+                </p>
+                {r.comment && <p className="mt-1 max-w-[34rem] [overflow-wrap:anywhere]">{r.comment}</p>}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {canReview && <ReviewForm productId={product.id} slug={product.slug} />}
+    </section>
   );
 }

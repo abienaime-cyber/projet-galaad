@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: { default: "Galaad, chemises et costumes", template: "%s · Galaad" },
+  title: { default: "Carrure, chemises et costumes", template: "%s · Carrure" },
   description: "Chemises et costumes pour homme, avec une taille calculée pour chaque article à partir de vos mensurations.",
 };
 

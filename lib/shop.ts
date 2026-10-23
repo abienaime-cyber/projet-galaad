@@ -1,6 +1,7 @@
 import { recommendSize, type Category, type Confidence, type Fit, type Measurements, type SizeRecommendation, type SizeRow } from "./sizing";
 
 export type CatalogProduct = {
+  id: string;
   slug: string;
   name: string;
   description: string;
@@ -9,8 +10,10 @@ export type CatalogProduct = {
   color: string;
   material: string;
   priceCents: number;
+  image: string | null;
   sizes: SizeRow[];
   stock: Record<string, number>;
+  variantIds: Record<string, string>;
 };
 
 export type Fitted = { product: CatalogProduct; rec: SizeRecommendation | null; inStock: boolean };
@@ -29,6 +32,8 @@ const CONFIDENCE_RANK: Record<Confidence, number> = { high: 0, medium: 1, low: 2
 
 const euros = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
 export const price = (cents: number) => euros.format(cents / 100);
+
+export const dateFr = new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric" });
 
 export function fitAll(products: CatalogProduct[], m: Measurements | null): Fitted[] {
   return products.map((product) => {

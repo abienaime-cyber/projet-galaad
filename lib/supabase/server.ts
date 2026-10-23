@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { connection } from "next/server";
 import { supabaseKey, supabaseUrl } from "./config";
 
 export async function createClient() {
@@ -7,6 +8,8 @@ export async function createClient() {
     throw new Error("Supabase n'est pas configuré : renseignez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY.");
   }
   const cookieStore = await cookies();
+  // Le client lit l'heure (expiration de session) : il ne doit tourner qu'à la requête, jamais au prérendu.
+  await connection();
   return createServerClient(supabaseUrl, supabaseKey, {
     cookies: {
       getAll: () => cookieStore.getAll(),

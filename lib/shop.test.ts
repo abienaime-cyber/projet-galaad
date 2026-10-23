@@ -9,6 +9,7 @@ const sizes = [
 ];
 
 const suit = (slug: string, fit: Fit, stock: Record<string, number>): CatalogProduct => ({
+  id: slug,
   slug,
   name: slug,
   description: "",
@@ -17,8 +18,10 @@ const suit = (slug: string, fit: Fit, stock: Record<string, number>): CatalogPro
   color: "Bleu marine",
   material: "Laine",
   priceCents: 39900,
+  image: null,
   sizes,
   stock,
+  variantIds: {},
 });
 
 const measured = { heightCm: 180, weightKg: 78, age: 35, chestCm: 100, waistCm: 88, preferredFit: null };
