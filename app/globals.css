@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Atelier de coupe : papier patron, drap marine, mètre ruban jaune et ses dizaines rouges. */
+@theme {
+  --color-paper: #f5f6f3;
+  --color-paper-2: #eaece8;
+  --color-rule: #c4cacf;
+  --color-ink: #1a1d21;
+  --color-ink-2: #4a5058;
+  --color-navy: #1c2a44;
+  --color-navy-2: #2a3c5f;
+  --color-chalk: #e8edf5;
+  --color-tape: #f2c21b;
+  --color-tape-red: #c0241c;
+  --color-ok: #2f6b45;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-tap-highlight-color: transparent;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background: var(--color-navy);
+    color: var(--color-chalk);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-navy);
+    outline-offset: 2px;
+  }
+
+  input {
+    caret-color: var(--color-navy);
+  }
+
+  a {
+    text-underline-offset: 0.2em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Chiffres du mètre : Archivo resserrée et grasse. */
+@utility figures {
+  font-stretch: 72%;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Fil à bâtir : une valeur estimée est provisoire, comme un bâti avant la couture. */
+@utility basted {
+  text-decoration: underline dashed var(--color-ink-2);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.25em;
 }
