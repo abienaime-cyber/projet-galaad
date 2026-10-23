@@ -9,8 +9,8 @@ cd "$CLAUDE_PROJECT_DIR"
 
 pnpm install
 
-if ! command -v graphify >/dev/null; then
-  pip install --quiet graphifyy==0.9.94
+if ! python3 -c "import graphify, tree_sitter_sql" 2>/dev/null; then
+  pip install --quiet "graphifyy[sql]==0.9.94"
 fi
 
 if ! claude plugin list 2>/dev/null | grep -q "code-simplifier@"; then
