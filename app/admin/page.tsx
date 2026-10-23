@@ -99,7 +99,7 @@ function Table({ title, head, rows }: { title: string; head: string[]; rows: Rea
           <thead>
             <tr className="border-b border-separator text-left text-label-2">
               {head.map((h, i) => (
-                <th key={h} scope="col" className={`py-2 font-normal ${i > 0 ? "text-right" : ""}`}>
+                <th key={h} scope="col" className={`py-2 font-normal ${i > 0 ? "pl-4 text-right whitespace-nowrap" : ""}`}>
                   {h}
                 </th>
               ))}
@@ -109,7 +109,7 @@ function Table({ title, head, rows }: { title: string; head: string[]; rows: Rea
             {rows.map((row, r) => (
               <tr key={r} className="border-b border-separator">
                 {row.map((cell, i) => (
-                  <td key={i} className={`py-2.5 ${i > 0 ? "text-right tabular-nums" : "min-w-0 [overflow-wrap:anywhere]"}`}>
+                  <td key={i} className={`py-2.5 ${i > 0 ? "pl-4 text-right whitespace-nowrap tabular-nums" : "min-w-0 [overflow-wrap:anywhere]"}`}>
                     {cell}
                   </td>
                 ))}

@@ -45,7 +45,7 @@ async function Cart() {
           const problem = lineProblem(line);
           return (
             <li key={line.variantId} className="grid grid-cols-[5.5rem_minmax(0,1fr)] gap-4 py-6 sm:grid-cols-[8rem_minmax(0,1fr)_auto] sm:gap-6">
-              <Link href={`/produit/${line.product.slug}`} className="block overflow-hidden rounded-[14px] bg-tile">
+              <Link href={`/produit/${line.product.slug}`} tabIndex={-1} aria-hidden className="block self-start overflow-hidden rounded-[14px] bg-tile">
                 {line.product.image && (
                   <Image src={line.product.image} alt="" width={256} height={320} sizes="128px" className="aspect-[4/5] w-full object-cover" />
                 )}
@@ -61,7 +61,7 @@ async function Cart() {
                 </p>
                 {problem && <p className="mt-2 text-sm text-danger">{problem}</p>}
                 <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
-                  <form action={updateQuantity} className="flex items-center gap-2">
+                  <form action={updateQuantity} className="flex flex-wrap items-center gap-x-2">
                     <input type="hidden" name="variant_id" value={line.variantId} />
                     <label htmlFor={`q-${line.variantId}`} className="text-sm text-label-2">
                       Quantité
@@ -78,7 +78,7 @@ async function Cart() {
                         </option>
                       ))}
                     </select>
-                    <button type="submit" className="inline-flex min-h-11 cursor-pointer items-center text-sm text-link hover:underline">
+                    <button type="submit" className="inline-flex min-h-11 cursor-pointer items-center text-sm whitespace-nowrap text-link hover:underline">
                       Mettre à jour
                     </button>
                   </form>

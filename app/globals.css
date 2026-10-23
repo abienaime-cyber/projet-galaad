@@ -81,8 +81,20 @@
     outline-offset: 2px;
   }
 
-  input {
+  input,
+  textarea {
     caret-color: var(--color-accent);
+  }
+
+  /* Le gris par défaut du navigateur (#a9a9a9) tombe à 2,3:1 sur blanc. */
+  ::placeholder {
+    color: var(--color-label-2);
+    opacity: 1;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
   }
 
   a {
