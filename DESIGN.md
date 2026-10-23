@@ -268,7 +268,7 @@ Une palette de gris froids d'Apple, une seule couleur d'action, et un rouge rés
 - **Body** (400, 17 px, 1,47, -0,022em) : texte courant, saisie, libellé de bouton principal.
 - **Label** (400, 14 px) : aides de groupe, libellés de lecture, alertes, segments, boutons secondaires.
 - **Caption** (400, 12 px) : liens de la barre, aides et erreurs sous un champ, mention « estimé » / « mesuré ».
-- **Micro** (600, 11 px, tabulaire) : pastilles de tailles et graduations de la jauge ; 500 pour les titres « Chemises » / « Costumes ».
+- **Micro** (600, 11 px, tabulaire) : pastilles de tailles de la jauge ; 400 pour les graduations, 500 pour les titres « Chemises » / « Costumes ».
 
 ### Named Rules
 **The Chiffres Tabulaires Rule.** Tout chiffre lu (mesure, taille, graduation) est en chiffres tabulaires ; les lectures sont en 600 à -0,03em.
