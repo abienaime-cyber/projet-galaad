@@ -11,13 +11,13 @@ export const metadata: Metadata = { title: "Vos mensurations" };
 
 export default function MeasurementsPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 md:py-14">
-      <h1 className="text-3xl font-semibold">Vos mensurations</h1>
-      <p className="mt-2 max-w-prose text-ink-2">
+    <div className="mx-auto max-w-[1080px] px-4 pt-10 pb-20 sm:px-[22px] md:pt-16">
+      <h1 className="text-[40px] font-semibold md:text-5xl">Vos mensurations</h1>
+      <p className="mt-3 max-w-[40rem] text-[19px] leading-snug text-label-2 md:text-[21px]">
         Elles servent uniquement à calculer votre taille pour chaque chemise et chaque costume. Le calcul reste une
         estimation : il vous dit à quel point il est sûr de lui.
       </p>
-      <Suspense fallback={<div aria-busy className="mt-10 h-[28rem] rounded-[3px] bg-paper-2/60" />}>
+      <Suspense fallback={<div aria-busy className="mt-10 h-[28rem] rounded-[28px] bg-tile" />}>
         <MeasurementsSection />
       </Suspense>
     </div>
@@ -43,7 +43,7 @@ const fr = (n: number | null | undefined) => (n == null ? "" : String(n).replace
 async function MeasurementsSection() {
   if (!isSupabaseConfigured) {
     return (
-      <p role="alert" className="mt-10 max-w-prose border-t-2 border-tape-red pt-4">
+      <p role="alert" className="mt-10 max-w-prose rounded-[18px] bg-danger-tint p-5 text-danger">
         La base de données n’est pas encore branchée. Renseignez <code>NEXT_PUBLIC_SUPABASE_URL</code> et{" "}
         <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> dans <code>.env.local</code>, puis relancez le serveur.
       </p>
@@ -75,10 +75,10 @@ async function MeasurementsSection() {
 
   return (
     <>
-      <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-2">
+      <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-label-2">
         <span className="min-w-0 [overflow-wrap:anywhere]">Connecté avec {auth.user.email}</span>
         <form action={signOut}>
-          <button type="submit" className="inline-flex min-h-11 cursor-pointer items-center text-navy underline decoration-rule underline-offset-4 hover:decoration-navy">
+          <button type="submit" className="inline-flex min-h-11 cursor-pointer items-center text-link hover:underline">
             Se déconnecter
           </button>
         </form>

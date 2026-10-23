@@ -47,6 +47,7 @@ La taille est calculée par un algorithme déterministe et affichée comme une e
 - Nom : Galaad.
 - Voix : vouvoiement, sobre, le ton d'un tailleur. Poli, précis, sans familiarité ni superlatifs.
 - Interface en français.
+- Look : celui de l'Apple Store (apple.com), demandé explicitement par l'utilisateur. Blanc, tuiles gris clair, un seul bleu d'action, boutons pilule.
 
 ## Evidence on Hand
 

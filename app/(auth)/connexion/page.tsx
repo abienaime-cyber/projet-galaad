@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Se connecter" };
 export default function SignInPage() {
   return (
     <AuthShell active="connexion" title="Bon retour chez Galaad">
-      <Suspense fallback={<div className="mt-6 h-72" />}>
+      <Suspense fallback={<div className="mt-8 h-72" />}>
         <AuthForm mode="signin" />
       </Suspense>
     </AuthShell>

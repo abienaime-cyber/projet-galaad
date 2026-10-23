@@ -3,63 +3,56 @@ import { SpringMarker } from "./spring-marker";
 
 const MIN_CM = 80;
 const MAX_CM = 140;
-const SPAN = MAX_CM - MIN_CM;
-const pos = (cm: number) => (Math.min(Math.max(cm, MIN_CM), MAX_CM) - MIN_CM) / SPAN * 100;
+const pos = (cm: number) => ((Math.min(Math.max(cm, MIN_CM), MAX_CM) - MIN_CM) / (MAX_CM - MIN_CM)) * 100;
 const DECADES = [90, 100, 110, 120, 130];
-const HALVES = [85, 95, 105, 115, 125, 135];
-
-// Graduations du mètre : 1 cm, 5 cm, et les dizaines en rouge comme sur un vrai ruban.
-const TICKS = {
-  backgroundImage: [
-    "linear-gradient(to right, var(--color-tape-red) 2px, transparent 2px)",
-    "linear-gradient(to right, var(--color-ink) 1px, transparent 1px)",
-    "linear-gradient(to right, var(--color-ink) 1px, transparent 1px)",
-  ].join(","),
-  backgroundSize: `calc(100% / ${SPAN / 10}) 55%, calc(100% / ${SPAN / 5}) 38%, calc(100% / ${SPAN}) 22%`,
-  backgroundRepeat: "repeat-x",
-};
 
 type Band = { title: string; rows: SizeRow[]; result: SizeRecommendation | null };
 
+// Jauge en curseur iOS : piste grise, partie remplie en bleu jusqu'au tour de poitrine, pouce blanc.
 export function SizeTape({ chestCm, estimated, bands }: { chestCm: number | null; estimated: boolean; bands: Band[] }) {
   const [top, bottom] = bands;
-  // Hors du mètre, le repère collé au bord mentirait : on affiche la valeur au bord, côté dépassement.
+  // Hors de la jauge, un pouce collé au bord mentirait : on affiche la valeur au bord, côté dépassement.
   let overflow: "left" | "right" | null = null;
   if (chestCm !== null && chestCm < MIN_CM) overflow = "left";
   else if (chestCm !== null && chestCm > MAX_CM) overflow = "right";
+  const showThumb = chestCm !== null && !overflow;
+
   return (
-    <figure aria-label="Votre tour de poitrine placé sur le mètre, avec les tailles de chemise et de costume" className="relative overflow-x-clip select-none">
+    <figure aria-label="Votre tour de poitrine placé sur la jauge, avec les tailles de chemise et de costume" className="relative overflow-x-clip px-3 select-none">
       <BandRow band={top} />
-      <div className="relative my-1.5 h-12 rounded-[2px] bg-tape shadow-[0_1px_2px_rgb(26_29_33/0.18)]" style={TICKS}>
-        {DECADES.map((cm) => (
-          <span key={cm} className="figures absolute bottom-1 -translate-x-1/2 text-[15px] leading-none text-tape-red" style={{ left: `${pos(cm)}%` }}>
-            {cm}
-          </span>
-        ))}
-        {HALVES.map((cm) => (
-          <span key={cm} className="figures absolute bottom-1 hidden -translate-x-1/2 text-[11px] leading-none text-ink sm:block" style={{ left: `${pos(cm)}%` }}>
-            {cm}
-          </span>
-        ))}
+      <div className="relative my-2 h-7">
+        <div className="absolute inset-x-0 top-1/2 h-1.5 -translate-y-1/2 overflow-hidden rounded-full bg-fill">
+          {showThumb && (
+            <SpringMarker to={pos(chestCm)} className="absolute inset-0">
+              <div className={`absolute inset-y-0 right-full w-full ${estimated ? "bg-accent/45" : "bg-accent"}`} />
+            </SpringMarker>
+          )}
+        </div>
+        {showThumb && (
+          <SpringMarker to={pos(chestCm)} className="pointer-events-none absolute inset-0">
+            <div className="absolute top-1/2 left-0 size-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0.5px_4px_rgb(0_0_0/0.12),0_6px_13px_rgb(0_0_0/0.12)]" />
+          </SpringMarker>
+        )}
         {overflow && chestCm !== null && (
           <span
-            className={`figures absolute top-1 flex items-center gap-1 rounded-[2px] bg-navy px-1.5 py-0.5 text-sm leading-none whitespace-nowrap text-chalk ${overflow === "left" ? "left-1 flex-row-reverse" : "right-1"}`}
+            className={`figures absolute top-1/2 flex -translate-y-1/2 items-center gap-1 rounded-full bg-accent px-2.5 py-1 text-xs whitespace-nowrap text-white ${overflow === "left" ? "left-0 flex-row-reverse" : "right-0"}`}
           >
             {chestCm.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} cm
             <svg aria-hidden viewBox="0 0 10 10" className={`size-2.5 ${overflow === "left" ? "rotate-180" : ""}`}>
-              <path d="M2 1l5 4-5 4" fill="none" stroke="currentColor" strokeWidth="1.6" />
+              <path d="M3 1.5 6.5 5 3 8.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="sr-only">{overflow === "left" ? ", en deçà du mètre" : ", au-delà du mètre"}</span>
+            <span className="sr-only">{overflow === "left" ? ", en deçà de la jauge" : ", au-delà de la jauge"}</span>
           </span>
         )}
       </div>
+      <div aria-hidden className="relative mb-2 h-4">
+        {DECADES.map((cm) => (
+          <span key={cm} className="figures absolute -translate-x-1/2 text-[11px] leading-4 text-label-2" style={{ left: `${pos(cm)}%` }}>
+            {cm}
+          </span>
+        ))}
+      </div>
       <BandRow band={bottom} />
-
-      {chestCm !== null && !overflow && (
-        <SpringMarker to={pos(chestCm)} className="pointer-events-none absolute inset-y-0 left-0 w-full">
-          <div className={`absolute -top-1 -bottom-1 left-0 -translate-x-1/2 border-l-2 border-navy ${estimated ? "border-dashed" : ""}`} />
-        </SpringMarker>
-      )}
     </figure>
   );
 }
@@ -70,7 +63,7 @@ function BandRow({ band }: { band: Band }) {
   return (
     <div className="relative h-8" role="list" aria-label={band.title}>
       {band.rows.length === 0 && (
-        <p className="flex h-full items-center text-xs text-ink-2">Tableau des {band.title.toLowerCase()} indisponible.</p>
+        <p className="flex h-full items-center text-xs text-label-2">Tableau des {band.title.toLowerCase()} indisponible.</p>
       )}
       {band.rows.map((row) => {
         let state = "idle";
@@ -80,11 +73,15 @@ function BandRow({ band }: { band: Band }) {
           <div
             key={row.label}
             role="listitem"
-            className="absolute inset-y-0 flex items-center justify-center border-x border-paper text-xs font-semibold transition-colors duration-150 ease-[ease] data-[state=alternative]:bg-chalk data-[state=alternative]:text-navy data-[state=chosen]:bg-navy data-[state=chosen]:text-chalk data-[state=idle]:bg-paper-2 data-[state=idle]:text-ink-2"
-            data-state={state}
+            className="absolute inset-y-0 px-[1.5px]"
             style={{ left: `${pos(row.chestMin)}%`, width: `${pos(row.chestMax) - pos(row.chestMin)}%` }}
           >
-            {row.label}
+            <span
+              data-state={state}
+              className="flex h-full items-center justify-center rounded-full text-[11px] font-semibold transition-[background-color,color,box-shadow] duration-150 ease-[ease] data-[state=alternative]:bg-white data-[state=alternative]:text-accent data-[state=alternative]:shadow-[inset_0_0_0_1px_var(--color-accent)] data-[state=chosen]:bg-accent data-[state=chosen]:text-white data-[state=idle]:bg-white data-[state=idle]:text-label-2"
+            >
+              {row.label}
+            </span>
           </div>
         );
       })}

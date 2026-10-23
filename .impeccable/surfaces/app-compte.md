@@ -2,7 +2,7 @@
 version: 1
 slug: "app-compte"
 primary_target: "app/compte"
-related_targets: ["app/connexion"]
+related_targets: ["app/(auth)","components"]
 ---
 
 # Espace compte (connexion, inscription, mensurations)
@@ -11,16 +11,18 @@ Mode : Operate. Public : client Galaad, sur téléphone ou ordinateur, souvent m
 
 Contraintes : vouvoiement sobre, unités toujours affichées, valeurs estimées toujours signalées comme telles, rien d'inventé.
 
+Historique : le monde « atelier de coupe » (marine, mètre jaune, angles carrés) a été rejeté par l'utilisateur le 23/10/2026 ; il réclame le look Apple Store. Direction épinglée par l'utilisateur, sans tirage.
+
 ## Direction contract
 
-THESIS: L'atelier de coupe. Le compte est la fiche de mesures du client, et le mètre ruban montre où il tombe entre deux tailles. Refuse le formulaire gris centré dans une carte.
+THESIS: Le compte comme une page de l'Apple Store : blanc, calme, une seule couleur d'action, et la taille lue sur un curseur iOS. Refuse le formulaire d'administration gris et toute matière « atelier ».
 
-OWN-WORLD: Fond papier patron blanc froid ; coquille et actions primaires en bleu drap marine ; jaune du mètre ruban réservé aux seules mesures et tailles du client ; rouge des dizaines du mètre pour les repères et les erreurs. Archivo : largeur normale pour l'interface, étroite et grasse pour les chiffres. Valeur estimée soulignée en pointillé de fil à bâtir, valeur mesurée en trait plein.
+OWN-WORLD: Fond blanc, tuiles #f5f5f7 très arrondies (28 px), texte #1d1d1f et #6e6e73, filets #d2d2d7, un seul bleu d'action #0071e3 (liens #0066cc), rouge #e30000 pour les erreurs. SF Pro sur les appareils Apple, Inter ailleurs. Boutons pilule, champs à libellé flottant arrondis à 12 px, choix en tuiles à bordure bleue comme le choix de capacité d'un iPhone, onglets en contrôle segmenté iOS.
 
-STORY: Le client comprend que ses chiffres servent à calculer une taille, voit le calcul réagir à chaque saisie, enregistre, et sait si c'est mesuré ou estimé.
+STORY: Le client saisit ses chiffres, voit le curseur glisser vers sa taille et la pastille de taille s'allumer, enregistre, et lit si la valeur est mesurée ou estimée.
 
-FIRST VIEWPORT: Barre Galaad marine en haut. Mensurations : formulaire à gauche (champs avec unités, coupe préférée en choix segmenté, bouton Enregistrer marine). À droite, sous le formulaire en mobile : le mètre jaune horizontal avec repères en cm, bandes de tailles chemise et costume, curseur du client. Connexion : un seul panneau, onglets Se connecter / Créer un compte.
+FIRST VIEWPORT: Barre de navigation claire translucide de 48 px, mot Galaad à gauche. Mensurations : grand titre de 48 px, intro grise de 21 px ; formulaire à gauche ; à droite une tuile #f5f5f7 collante avec la jauge (piste iOS, partie remplie bleue, pouce blanc ombré, pastilles de tailles chemise au-dessus et costume au-dessous) et les lectures en grands chiffres. Connexion : colonne centrée de 460 px, contrôle segmenté, titre centré, champs flottants, bouton pilule bleu ; tuile grise « Votre taille, article par article » en dessous.
 
-FORM: Atelier de coupe, IMPECCABLE'S PICK, rang 1 de ma liste. Emprunts : jaune réservé aux données du client (carte d'orientation) ; hiérarchie par contraste d'échelle des chiffres (spécimen typo) ; suppression isolée (console) ; états physiques bâti/couture (manuel à intercalaires). seed:c3e4010b112e3f75
+FORM: Canon de la catégorie, Apple Store (apple.com/fr/shop), choisi explicitement par l'utilisateur. Geste signature : le curseur iOS dont le pouce suit un ressort critique. seed: none (direction épinglée par l'utilisateur)
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
