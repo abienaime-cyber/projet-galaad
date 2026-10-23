@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Outils tiers vendus avec le dépôt, hors code du projet.
+    ".claude/**",
+    "graphify-out/**",
   ]),
 ]);
 
