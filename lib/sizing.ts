@@ -43,7 +43,7 @@ const BOUNDARY_MARGIN_CM = 1.5;
 // Coupe du vêtement + coupe préférée : un vêtement ajusté demande plus de tour,
 // un client qui aime l'ample aussi.
 const PRODUCT_FIT_EASE: Record<Fit, number> = { slim: 2, regular: 0, loose: -2 };
-const PREFERENCE_EASE: Record<Fit, number> = { slim: -2, regular: 0, loose: 2 };
+export const PREFERENCE_EASE: Record<Fit, number> = { slim: -2, regular: 0, loose: 2 };
 
 const round1 = (n: number) => Math.round(n * 10) / 10;
 
