@@ -48,7 +48,7 @@ export function SizeTape({ chestCm, estimated, bands }: { chestCm: number | null
       </div>
       <div aria-hidden className="relative mb-2 h-4">
         {DECADES.map((cm) => (
-          <span key={cm} className="absolute -translate-x-1/2 text-[11px] leading-4 whitespace-nowrap text-control tabular-nums" style={{ left: `${pos(cm)}%` }}>
+          <span key={cm} className="absolute -translate-x-1/2 text-[11px] leading-4 whitespace-nowrap text-label-2 tabular-nums" style={{ left: `${pos(cm)}%` }}>
             {cm === DECADES.at(-1) ? `${cm} cm` : cm}
           </span>
         ))}
