@@ -1,4 +1,5 @@
 import type { SizeRecommendation, SizeRow } from "@/lib/sizing";
+import { SpringMarker } from "./spring-marker";
 
 const MIN_CM = 80;
 const MAX_CM = 140;
@@ -55,13 +56,9 @@ export function SizeTape({ chestCm, estimated, bands }: { chestCm: number | null
       <BandRow band={bottom} />
 
       {chestCm !== null && !overflow && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-y-0 left-0 w-full transition-transform duration-200 ease-in-out motion-reduce:transition-none"
-          style={{ transform: `translateX(${pos(chestCm)}%)` }}
-        >
+        <SpringMarker to={pos(chestCm)} className="pointer-events-none absolute inset-y-0 left-0 w-full">
           <div className={`absolute -top-1 -bottom-1 left-0 -translate-x-1/2 border-l-2 border-navy ${estimated ? "border-dashed" : ""}`} />
-        </div>
+        </SpringMarker>
       )}
     </figure>
   );
