@@ -6,7 +6,8 @@ const navLink = "inline-flex h-11 items-center rounded-sm px-2 text-sm text-chal
 
 export function SiteHeader() {
   return (
-    <header className="bg-navy text-chalk">
+    // Matière translucide : le contenu défile sous l'en-tête au lieu de s'arrêter net contre un bandeau.
+    <header className="sticky top-0 z-30 bg-navy/92 text-chalk backdrop-blur-xl backdrop-saturate-150 reduced-transparency:bg-navy reduced-transparency:backdrop-blur-none contrast-more:bg-navy">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="inline-flex h-11 items-center text-lg font-bold tracking-[0.18em] [font-stretch:115%] focus-visible:outline-chalk">
           GALAAD

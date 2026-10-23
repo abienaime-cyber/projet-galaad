@@ -18,7 +18,20 @@
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --animate-spinner: spinner-fade 1s linear infinite;
+
+  @keyframes spinner-fade {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.15;
+    }
+  }
 }
+
+@custom-variant reduced-transparency (@media (prefers-reduced-transparency: reduce));
 
 @layer base {
   html {
@@ -49,6 +62,18 @@
 
   a {
     text-underline-offset: 0.2em;
+  }
+
+  /* Approche typographique d'Apple : l'interlettrage se resserre quand le corps grandit. */
+  h1 {
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  h2 {
+    letter-spacing: -0.01em;
+    text-wrap: balance;
   }
 }
 

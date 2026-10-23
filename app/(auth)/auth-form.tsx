@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { Field, primaryButton } from "@/components/field";
+import { Spinner } from "@/components/spinner";
 import { signIn, signUp, type AuthState } from "./actions";
 
 export function AuthForm({ mode }: { mode: "signin" | "signup" }) {
@@ -42,6 +43,7 @@ export function AuthForm({ mode }: { mode: "signin" | "signup" }) {
         hint={mode === "signup" ? "8 caractères au minimum." : undefined}
       />
       <button type="submit" disabled={pending} className={`${primaryButton} mt-1 w-full`}>
+        {pending && <Spinner className="mr-2" />}
         {pending ? "Un instant…" : submitLabel}
       </button>
     </form>

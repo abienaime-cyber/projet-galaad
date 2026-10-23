@@ -3,6 +3,7 @@
 import { startTransition, useActionState, useState } from "react";
 import { Field, primaryButton } from "@/components/field";
 import { SizeTape } from "@/components/size-tape";
+import { Spinner } from "@/components/spinner";
 import { FITS, MEASUREMENT_FIELDS, parseMeasurements } from "@/lib/measurements";
 import { estimateChest, estimateWaist, PREFERENCE_EASE, recommendSize, type Confidence, type SizeRow } from "@/lib/sizing";
 import { deleteMeasurements, saveMeasurements, type MeasurementsState } from "./actions";
@@ -98,7 +99,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
                   onChange={set("preferred_fit")}
                   className="peer sr-only"
                 />
-                <span className="flex min-h-11 cursor-pointer items-center justify-center bg-white px-4 py-2 text-center text-sm sm:whitespace-nowrap peer-checked:bg-navy peer-checked:font-semibold peer-checked:text-chalk peer-focus-visible:outline-2 peer-focus-visible:-outline-offset-4 peer-focus-visible:outline-navy hover:bg-paper-2 peer-checked:hover:bg-navy">
+                <span className="flex min-h-11 cursor-pointer items-center justify-center bg-white px-4 py-2 text-center text-sm sm:whitespace-nowrap peer-checked:bg-navy peer-checked:font-semibold peer-checked:text-chalk peer-focus-visible:outline-2 peer-focus-visible:-outline-offset-4 peer-focus-visible:outline-navy hover:bg-paper-2 peer-checked:hover:bg-navy active:bg-rule/60 peer-checked:active:bg-navy-2">
                   {fit.label}
                 </span>
               </label>
@@ -109,6 +110,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
 
         <div className="flex flex-wrap items-center gap-4">
           <button type="submit" disabled={pending} className={primaryButton}>
+            {pending && <Spinner className="mr-2" />}
             {pending ? "Enregistrement…" : "Enregistrer mes mensurations"}
           </button>
           <p role="status" className="text-sm text-ok">
@@ -122,7 +124,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
         </div>
       </form>
 
-      <section aria-labelledby="reading-title" className="lg:sticky lg:top-8 lg:self-start">
+      <section aria-labelledby="reading-title" className="lg:sticky lg:top-22 lg:self-start">
         <h2 id="reading-title" className="text-lg font-semibold">
           Lecture du mètre
         </h2>
