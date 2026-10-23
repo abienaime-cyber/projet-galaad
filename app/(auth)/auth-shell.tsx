@@ -23,7 +23,7 @@ const POINTS = [
 
 export function AuthShell({ active, title, children }: { active: (typeof TABS)[number]["key"]; title: string; children: ReactNode }) {
   return (
-    <div className="px-4 pt-10 pb-16 sm:px-[22px] md:pt-16">
+    <div className="mx-auto max-w-[980px] px-4 pt-10 pb-16 sm:px-[22px] md:pt-16">
       <section aria-labelledby="auth-title" className="mx-auto max-w-[460px]">
         {/* Contrôle segmenté iOS : deux pages sœurs, un seul geste pour passer de l'une à l'autre. */}
         <nav aria-label="Accès au compte" className="mx-auto grid w-fit grid-cols-2 rounded-[10px] bg-fill p-[3px]">
@@ -44,7 +44,7 @@ export function AuthShell({ active, title, children }: { active: (typeof TABS)[n
         {children}
       </section>
 
-      <aside aria-labelledby="why-title" className="mx-auto mt-16 max-w-[980px] rounded-[28px] bg-tile px-6 py-10 sm:px-12 sm:py-12">
+      <aside aria-labelledby="why-title" className="mt-16 rounded-[28px] bg-tile px-6 py-10 sm:px-12 sm:py-12">
         <h2 id="why-title" className="text-center text-[28px] font-semibold">
           Votre taille, article par article
         </h2>

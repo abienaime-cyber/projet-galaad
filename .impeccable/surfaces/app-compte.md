@@ -23,6 +23,6 @@ STORY: Le client saisit ses chiffres, voit le curseur glisser vers sa taille et 
 
 FIRST VIEWPORT: Barre de navigation claire translucide de 48 px, mot Galaad à gauche. Mensurations : grand titre de 48 px, intro grise de 21 px ; formulaire à gauche ; à droite une tuile #f5f5f7 collante avec la jauge (piste iOS, partie remplie bleue, pouce blanc ombré, pastilles de tailles chemise au-dessus et costume au-dessous) et les lectures en grands chiffres. Connexion : colonne centrée de 460 px, contrôle segmenté, titre centré, champs flottants, bouton pilule bleu ; tuile grise « Votre taille, article par article » en dessous.
 
-FORM: Canon de la catégorie, Apple Store (apple.com/fr/shop), choisi explicitement par l'utilisateur. Geste signature : le curseur iOS dont le pouce suit un ressort critique. seed: none (direction épinglée par l'utilisateur)
+FORM: Canon de la catégorie, Apple Store (apple.com/fr/shop), choisi explicitement par l'utilisateur. Geste signature : le curseur iOS dont le pouce suit un ressort critique. seed: seed:a1519ec5236d8983 (tirage fait ; direction épinglée par l'utilisateur, structure conservée)
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

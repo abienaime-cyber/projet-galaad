@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: "Vos mensurations" };
 
 export default function MeasurementsPage() {
   return (
-    <div className="mx-auto max-w-[1080px] px-4 pt-10 pb-20 sm:px-[22px] md:pt-16">
+    <div className="mx-auto max-w-[980px] px-4 pt-10 pb-20 sm:px-[22px] md:pt-16">
       <h1 className="text-[40px] font-semibold md:text-5xl">Vos mensurations</h1>
       <p className="mt-3 max-w-[40rem] text-[19px] leading-snug text-label-2 md:text-[21px]">
         Elles servent uniquement à calculer votre taille pour chaque chemise et chaque costume. Le calcul reste une

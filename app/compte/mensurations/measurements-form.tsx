@@ -89,7 +89,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
         <fieldset>
           <legend className="text-[21px] font-semibold tracking-[-0.02em]">Coupe préférée</legend>
           {/* Tuiles de choix, comme le choix de capacité d'un iPhone : bordure bleue sur l'option retenue. */}
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="mt-4 grid grid-cols-2 gap-3">
             {[{ value: "", label: "Sans préférence" }, ...FITS].map((fit) => (
               <label key={fit.value} className="relative">
                 <input
@@ -125,7 +125,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
         </div>
       </form>
 
-      <section aria-labelledby="reading-title" className="rounded-[28px] bg-tile p-6 sm:p-10 lg:sticky lg:top-[68px] lg:self-start">
+      <section aria-labelledby="reading-title" className="rounded-[28px] bg-tile px-4 py-6 sm:p-10 lg:sticky lg:top-[68px] lg:self-start">
         <h2 id="reading-title" className="text-[28px] font-semibold">
           Lecture du mètre
         </h2>
@@ -144,10 +144,6 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
               { title: "Costumes", rows: charts.suit, result: preview?.suit ?? null },
             ]}
           />
-          <div className="mt-2 flex justify-between text-xs text-label-2">
-            <span>En haut : chemises</span>
-            <span>En bas : costumes</span>
-          </div>
           {fitShift !== 0 && (
             <p className="mt-4 text-sm text-label-2">
               Votre préférence pour une coupe {fitLabel} décale le repère de {Math.abs(fitShift)} cm{" "}

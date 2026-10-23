@@ -19,6 +19,7 @@ export function SizeTape({ chestCm, estimated, bands }: { chestCm: number | null
 
   return (
     <figure aria-label="Votre tour de poitrine placé sur la jauge, avec les tailles de chemise et de costume" className="relative overflow-x-clip px-3 select-none">
+      <p aria-hidden className="mb-1 text-[11px] font-medium text-label-2">{top.title}</p>
       <BandRow band={top} />
       <div className="relative my-2 h-7">
         <div className="absolute inset-x-0 top-1/2 h-1.5 -translate-y-1/2 overflow-hidden rounded-full bg-fill">
@@ -47,12 +48,13 @@ export function SizeTape({ chestCm, estimated, bands }: { chestCm: number | null
       </div>
       <div aria-hidden className="relative mb-2 h-4">
         {DECADES.map((cm) => (
-          <span key={cm} className="figures absolute -translate-x-1/2 text-[11px] leading-4 text-label-2" style={{ left: `${pos(cm)}%` }}>
-            {cm}
+          <span key={cm} className="absolute -translate-x-1/2 text-[11px] leading-4 whitespace-nowrap text-control tabular-nums" style={{ left: `${pos(cm)}%` }}>
+            {cm === DECADES.at(-1) ? `${cm} cm` : cm}
           </span>
         ))}
       </div>
       <BandRow band={bottom} />
+      <p aria-hidden className="mt-1 text-[11px] font-medium text-label-2">{bottom.title}</p>
     </figure>
   );
 }
@@ -73,12 +75,12 @@ function BandRow({ band }: { band: Band }) {
           <div
             key={row.label}
             role="listitem"
-            className="absolute inset-y-0 px-[1.5px]"
+            className="absolute inset-y-0 flex justify-center"
             style={{ left: `${pos(row.chestMin)}%`, width: `${pos(row.chestMax) - pos(row.chestMin)}%` }}
           >
             <span
               data-state={state}
-              className="flex h-full items-center justify-center rounded-full text-[11px] font-semibold transition-[background-color,color,box-shadow] duration-150 ease-[ease] data-[state=alternative]:bg-white data-[state=alternative]:text-accent data-[state=alternative]:shadow-[inset_0_0_0_1px_var(--color-accent)] data-[state=chosen]:bg-accent data-[state=chosen]:text-white data-[state=idle]:bg-white data-[state=idle]:text-label-2"
+              className="flex h-full min-w-full shrink-0 items-center justify-center rounded-full px-1.5 text-[11px] font-semibold tabular-nums transition-[background-color,color,box-shadow] duration-150 ease-[ease] data-[state=alternative]:text-accent sm:data-[state=alternative]:bg-white sm:data-[state=alternative]:shadow-[inset_0_0_0_1px_var(--color-accent)] data-[state=chosen]:bg-accent data-[state=chosen]:text-white data-[state=idle]:text-label-2"
             >
               {row.label}
             </span>
