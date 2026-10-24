@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Commande" };
 export default function CheckoutPage() {
   return (
     <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-16">
-      <h1 className="text-[44px] md:text-[60px]">Livraison et paiement</h1>
+      <h1 className="text-[36px] md:text-[48px]">Livraison et paiement</h1>
       <Suspense fallback={<div aria-busy className="mt-10 h-96 bg-tile" />}>
         <Checkout />
       </Suspense>

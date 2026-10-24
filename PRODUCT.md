@@ -47,13 +47,13 @@ La taille est calculée par un algorithme déterministe et affichée comme une e
 - Nom : Carrure.
 - Voix : vouvoiement, sobre, le ton d'un tailleur. Poli, précis, sans familiarité ni superlatifs.
 - Interface en français.
-- Look : maison de costumes italienne, version sombre, choisie par l'utilisateur le 24/10/2026 après rejet du look Apple Store (« ça fait cheap »). Fond noir chaud, texte ivoire, un seul accent laiton, titres en Bodoni, petites capitales espacées, boutons rectangulaires. Photos portées, cadrées sous le menton, sur fond sombre.
+- Look : grand magasin de luxe en ligne, mise en page inspirée de Mr Porter, choisie par l'utilisateur le 24/10/2026 après le rejet du look Apple Store puis de la maison italienne sombre. Page blanche, texte noir, photos portées détourées sur un même gris de studio, titres en Bodoni, capitales espacées pour la navigation et les boutons, bouton noir plein, un seul accent laiton foncé réservé à la taille du client. On reprend la mise en page, jamais le nom, le logo, les textes ni les photos de Mr Porter.
 - Discours : « taille calculée », jamais « sur mesure » ni « demi-mesure » : le site vend des tailles standard.
 
 ## Evidence on Hand
 
 - 30 produits fictifs avec descriptions (`supabase/seed.sql`).
-- Photos produit : photos Pexels (licence Pexels, attribution non requise) choisies pour la démo, sans lien avec la marque. Aucun avis réel, aucun client réel, aucun chiffre de vente réel. Ne rien inventer de tel dans l'interface.
+- Photos produit : photos Pexels (licence Pexels, attribution non requise) choisies pour la démo, sans lien avec la marque, détourées et posées sur un gris de studio. Aucun avis réel, aucun client réel, aucun chiffre de vente réel. Ne rien inventer de tel dans l'interface.
 
 ## Product Principles
 

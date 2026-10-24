@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
-/* Une maison italienne, le soir : fond noir chaud, texte ivoire, un seul accent laiton. */
+/* Un grand magasin de luxe en ligne : page blanche, texte noir, photos sur un gris de studio, un seul accent laiton. */
 @theme {
-  --color-canvas: #0c0b0a;
-  --color-tile: #151412;
-  --color-fill: #201e1b;
-  --color-field: #11100e;
-  --color-separator: #2e2b27;
-  --color-control: #6e6961;
-  --color-label: #eeeae3;
-  --color-label-2: #a8a197;
-  --color-accent: #eeeae3;
-  --color-accent-hover: #ffffff;
-  --color-on-accent: #0c0b0a;
-  --color-brass: #cdb184;
-  --color-link: #cdb184;
-  --color-danger: #f0776c;
-  --color-danger-tint: #2a1513;
-  --color-ok: #8fc8a0;
+  --color-canvas: #ffffff;
+  --color-tile: #f1f0ed;
+  --color-fill: #e9e8e4;
+  --color-field: #ffffff;
+  --color-separator: #e3e2de;
+  --color-control: #8c8b86;
+  --color-label: #121212;
+  --color-label-2: #5c5b57;
+  --color-accent: #121212;
+  --color-accent-hover: #3a3a38;
+  --color-on-accent: #ffffff;
+  --color-brass: #85642c;
+  --color-link: #121212;
+  --color-danger: #b42318;
+  --color-danger-tint: #fdeeec;
+  --color-ok: #1d6b3a;
 
-  /* Jost, cousine libre de Futura : la Didone et la Futura, le duo des maisons de mode. */
+  /* Jost, cousine libre de Futura, fait le travail ; Bodoni ne signe que la marque et les titres. */
   --font-sans: var(--font-jost), Futura, "Century Gothic", sans-serif;
   /* Bodoni : le didone de Parme, gravé par Giambattista Bodoni à la fin du XVIIIe siècle. */
   --font-display: var(--font-bodoni), "Bodoni 72", Didot, Georgia, serif;
@@ -64,7 +64,7 @@
 
 @layer base {
   html {
-    color-scheme: dark;
+    color-scheme: light;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -72,17 +72,17 @@
     background: var(--color-canvas);
     color: var(--color-label);
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.6;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.005em;
   }
 
   ::selection {
-    background: rgb(205 177 132 / 0.35);
+    background: rgb(133 100 44 / 0.22);
   }
 
   :focus-visible {
-    outline: 1px solid var(--color-brass);
+    outline: 1px solid var(--color-label);
     outline-offset: 3px;
   }
 
@@ -125,18 +125,18 @@ h1:not(.eyebrow) {
   line-height: 1.15;
 }
 
-/* Petites capitales espacées : rubriques, boutons, navigation. */
+/* Petites capitales espacées : boutons, navigation, libellés. */
 @utility eyebrow {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   line-height: 1.4;
   text-transform: uppercase;
 }
 
 @utility figures {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-variant-numeric: lining-nums tabular-nums;
 }
 

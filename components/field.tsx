@@ -8,7 +8,7 @@ type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
 };
 
-// Champ souligné à libellé flottant : le libellé monte quand on saisit, la ligne passe au laiton au focus.
+// Champ souligné à libellé flottant : le libellé monte quand on saisit, la ligne s'épaissit au focus.
 export function Field({ name, label, unit, hint, error, className, ...input }: FieldProps) {
   const describedBy = [hint && `${name}-hint`, error && `${name}-error`].filter(Boolean).join(" ") || undefined;
   return (
@@ -20,7 +20,7 @@ export function Field({ name, label, unit, hint, error, className, ...input }: F
           placeholder=" "
           aria-invalid={error ? true : undefined}
           aria-describedby={describedBy}
-          className={`peer h-14 w-full border-b pt-[18px] text-[17px] text-label transition-[border-color] duration-150 ease-[ease] focus:border-brass focus:shadow-[0_1px_0_var(--color-brass)] focus:outline-none ${
+          className={`peer h-14 w-full border-b pt-[18px] text-[17px] text-label transition-[border-color] duration-150 ease-[ease] focus:border-label focus:shadow-[0_1px_0_var(--color-label)] focus:outline-none ${
             error ? "border-danger" : "border-control"
           } ${unit ? "pr-10" : ""}`}
           {...input}
@@ -55,13 +55,13 @@ export function Field({ name, label, unit, hint, error, className, ...input }: F
   );
 }
 
-// Boutons rectangulaires en capitales espacées : un seul bouton plein (ivoire) par écran.
+// Boutons rectangulaires en capitales espacées : noir plein pour l'action principale, filet noir pour la secondaire.
 export const primaryButton =
-  "eyebrow inline-flex h-12 cursor-pointer items-center justify-center gap-2 bg-accent px-8 text-on-accent transition-[background-color,transform] duration-150 ease-out hover:bg-accent-hover active:scale-[0.98] disabled:cursor-default disabled:opacity-60 disabled:active:scale-100";
+  "eyebrow inline-flex h-12 cursor-pointer items-center justify-center gap-2 bg-accent px-8 text-on-accent transition-[background-color,transform] duration-150 ease-out hover:bg-accent-hover active:scale-[0.98] disabled:cursor-default disabled:opacity-50 disabled:active:scale-100";
 
 export const secondaryButton =
-  "eyebrow inline-flex h-12 cursor-pointer items-center justify-center gap-2 px-7 text-label shadow-[inset_0_0_0_1px_rgb(238_234_227/0.45)] transition-[box-shadow,transform] duration-150 ease-out hover:shadow-[inset_0_0_0_1px_var(--color-label)] active:scale-[0.98] disabled:cursor-default";
+  "eyebrow inline-flex h-12 cursor-pointer items-center justify-center gap-2 px-7 text-label shadow-[inset_0_0_0_1px_var(--color-label)] transition-[background-color,color,transform] duration-150 ease-out hover:bg-accent hover:text-on-accent active:scale-[0.98] disabled:cursor-default";
 
-// Lien de texte en capitales, souligné d'un filet : « Découvrir », « Modifier ».
+// Lien de texte en capitales, souligné : « Tout voir », « Modifier ».
 export const textLink =
-  "eyebrow inline-flex min-h-11 items-center gap-2 text-label underline decoration-brass/60 underline-offset-[6px] transition-colors duration-150 hover:decoration-brass";
+  "eyebrow inline-flex min-h-11 items-center gap-2 text-label underline decoration-label/40 underline-offset-[6px] transition-colors duration-150 hover:decoration-label";

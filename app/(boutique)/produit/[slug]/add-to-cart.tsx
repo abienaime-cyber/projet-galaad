@@ -33,7 +33,7 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
                 className="peer sr-only"
               />
               <span
-                className={`inline-flex h-12 min-w-14 cursor-pointer items-center justify-center px-3 text-sm tabular-nums shadow-[inset_0_0_0_1px_var(--color-separator)] transition-[background-color,box-shadow,color] duration-150 ease-[ease] hover:shadow-[inset_0_0_0_1px_var(--color-control)] peer-checked:bg-label peer-checked:text-on-accent peer-checked:shadow-none peer-focus-visible:outline-1 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-brass peer-disabled:cursor-default peer-disabled:text-label-2/80 peer-disabled:line-through peer-disabled:shadow-none group-data-[state=chosen]:ring-1 group-data-[state=chosen]:ring-brass group-data-[state=chosen]:ring-offset-3 group-data-[state=chosen]:ring-offset-canvas`}
+                className={`inline-flex h-12 min-w-14 cursor-pointer items-center justify-center px-3 text-sm tabular-nums shadow-[inset_0_0_0_1px_var(--color-separator)] transition-[background-color,box-shadow,color] duration-150 ease-[ease] hover:shadow-[inset_0_0_0_1px_var(--color-control)] peer-checked:bg-label peer-checked:text-on-accent peer-checked:shadow-none peer-focus-visible:outline-1 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-label peer-disabled:cursor-default peer-disabled:text-label-2 peer-disabled:line-through peer-disabled:shadow-none group-data-[state=chosen]:ring-1 group-data-[state=chosen]:ring-brass group-data-[state=chosen]:ring-offset-3 group-data-[state=chosen]:ring-offset-canvas`}
               >
                 {size.label}
               </span>
@@ -63,7 +63,7 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
           {state.added && (
             <>
               <span className="text-ok">Ajouté au panier en {state.added}.</span>{" "}
-              <Link href="/panier" className="inline-flex min-h-11 items-center underline decoration-brass/60 hover:decoration-brass">
+              <Link href="/panier" className="inline-flex min-h-11 items-center underline decoration-label/40 hover:decoration-label">
                 Voir le panier
               </Link>
             </>

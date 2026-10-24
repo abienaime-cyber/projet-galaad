@@ -9,7 +9,7 @@ export function SegmentedNav({ label, items, className = "" }: { label: string; 
           key={item.href}
           href={item.href}
           aria-current={item.current ? "page" : undefined}
-          className="eyebrow inline-flex min-h-11 items-center border-b border-transparent whitespace-nowrap text-label-2 transition-[color,border-color] duration-150 ease-[ease] hover:text-label aria-[current=page]:border-brass aria-[current=page]:text-label"
+          className="eyebrow inline-flex min-h-11 items-center border-b border-transparent whitespace-nowrap text-label-2 transition-[color,border-color] duration-150 ease-[ease] hover:text-label aria-[current=page]:border-label aria-[current=page]:text-label"
         >
           {item.label}
         </Link>

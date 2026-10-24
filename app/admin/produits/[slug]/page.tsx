@@ -34,7 +34,7 @@ async function Editor({ slug }: { slug: string }) {
     <div className="mt-4 grid gap-10 md:grid-cols-[14rem_minmax(0,1fr)]">
       {p.image_url && <Image src={p.image_url} alt="" width={448} height={560} className="aspect-[4/5] w-full object-cover" />}
       <div className="min-w-0">
-        <h1 className="text-[32px] md:text-[40px]">{p.name}</h1>
+        <h1 className="text-[32px]">{p.name}</h1>
         <p className="mt-2 text-sm text-label-2">
           {FIT_LABEL[p.fit as keyof typeof FIT_LABEL]} · {p.color} · {p.material}
         </p>

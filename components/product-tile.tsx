@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { price, type Fitted } from "@/lib/shop";
 
-export function ProductTile({ item, priority }: { item: Fitted; priority?: boolean }) {
+export function ProductTile({ item, priority, heading: Heading = "h2" }: { item: Fitted; priority?: boolean; heading?: "h2" | "h3" }) {
   const { product, rec, inStock } = item;
   return (
     <li>
@@ -15,32 +15,32 @@ export function ProductTile({ item, priority }: { item: Fitted; priority?: boole
               width={500}
               height={625}
               priority={priority}
-              sizes="(min-width: 1024px) 460px, 50vw"
-              className="aspect-[4/5] w-full object-cover transition-transform duration-[900ms] ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
+              sizes="(min-width: 1280px) 340px, (min-width: 768px) 33vw, 50vw"
+              className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
             />
           ) : (
             <div className="aspect-[4/5] bg-fill" />
           )}
           {rec && <SizeBadge size={rec.size} inStock={inStock} estimated={rec.estimated} />}
         </div>
-        <h2 className="mt-4 text-[17px] sm:mt-5 sm:text-[21px]">{product.name}</h2>
-        <p className="mt-1 text-xs text-label-2 sm:text-sm">
+        <Heading className="eyebrow mt-4">{product.name}</Heading>
+        <p className="mt-1 text-[13px] text-label-2">
           {product.color} · {product.material}
         </p>
-        <p className="mt-2 text-sm tabular-nums sm:text-[15px]">{price(product.priceCents)}</p>
+        <p className="figures mt-2 text-[14px]">{price(product.priceCents)}</p>
       </Link>
     </li>
   );
 }
 
-// Posée sur la photo, en bas à gauche : la taille se lit avant le nom.
+// Étiquette blanche posée sur la photo, en haut à gauche : la taille se lit avant le nom.
 function SizeBadge({ size, inStock, estimated }: { size: string | null; inStock: boolean; estimated: boolean }) {
-  const base = "absolute bottom-0 left-0 inline-flex items-center gap-2 bg-canvas/80 px-3 py-2 backdrop-blur-md reduced-transparency:bg-canvas";
+  const base = "absolute top-3 left-3 inline-flex items-center gap-2 bg-canvas px-2.5 py-1.5";
   if (!size) return <span className={`${base} text-[11px] text-label-2`}>Hors de notre tableau de tailles</span>;
   return (
     <span className={base} title={estimated ? "Taille estimée" : undefined}>
-      <span className="eyebrow text-[10px] text-label-2 max-sm:sr-only">{inStock ? "Votre taille" : "Épuisé en"}</span>
-      <span className={`figures text-[17px] leading-none ${inStock ? "text-brass" : "text-label-2 line-through"}`}>{size}</span>
+      <span className="text-[11px] text-label-2 max-sm:sr-only">{inStock ? "Votre taille" : "Épuisé en"}</span>
+      <span className={`figures text-[14px] leading-none font-semibold ${inStock ? "text-brass" : "text-label-2 line-through"}`}>{size}</span>
     </span>
   );
 }

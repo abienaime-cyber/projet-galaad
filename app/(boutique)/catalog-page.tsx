@@ -16,12 +16,17 @@ type Props = { category: Category; title: string; tagline: string; searchParams:
 
 export function CatalogPage({ category, title, tagline, searchParams }: Props) {
   return (
-    <div className="mx-auto max-w-[1440px] px-4 pt-14 pb-28 sm:px-8 md:pt-20">
-      <header className="text-center">
-        <h1 className="text-[56px] md:text-[88px]">{title}</h1>
-        <p className="mt-3 text-[17px] text-label-2">{tagline}.</p>
+    <div className="mx-auto max-w-[1440px] px-4 pt-6 pb-28 sm:px-8">
+      <nav aria-label="Fil d’Ariane" className="text-[13px] text-label-2">
+        <Link href="/" className="inline-flex min-h-11 items-center hover:text-label hover:underline">Accueil</Link>
+        <span aria-hidden className="mx-2">/</span>
+        <span aria-current="page" className="text-label">{title}</span>
+      </nav>
+      <header className="pt-4 text-center md:pt-6">
+        <h1 className="text-[40px] md:text-[56px]">{title}</h1>
+        <p className="mt-2 text-label-2">{tagline}</p>
       </header>
-      <Suspense fallback={<div aria-busy className="mt-12 h-[32rem] bg-tile" />}>
+      <Suspense fallback={<div aria-busy className="mt-10 h-[32rem] bg-tile" />}>
         <Catalog category={category} searchParams={searchParams} />
       </Suspense>
     </div>
@@ -43,18 +48,18 @@ async function Catalog({ category, searchParams }: Pick<Props, "category" | "sea
   return (
     <>
       {m ? (
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-y border-separator py-3">
-          <p className="text-sm text-label-2">
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-y border-separator py-2">
+          <p className="text-[13px] text-label-2">
             {reference?.size ? (
               <>
                 Votre taille estimée :{" "}
-                <span className={`figures text-[22px] text-brass ${reference.estimated ? "estimated" : ""}`}>{reference.size}</span>
+                <span className={`figures text-[15px] font-semibold text-brass ${reference.estimated ? "estimated" : ""}`}>{reference.size}</span>
                 {reference.alternative && <> ou {reference.alternative}</>}, {CONFIDENCE_LABEL[reference.confidence]}.{" "}
               </>
             ) : (
               <>Vos mensurations sortent de notre tableau de tailles. </>
             )}
-            <Link href="/compte/mensurations" className="inline-flex min-h-11 items-center text-label underline decoration-brass/60 hover:decoration-brass">
+            <Link href="/compte/mensurations" className="inline-flex min-h-11 items-center text-label underline decoration-label/40 hover:decoration-label">
               Modifier mes mensurations
             </Link>
           </p>
@@ -71,20 +76,20 @@ async function Catalog({ category, searchParams }: Pick<Props, "category" | "sea
       )}
 
       {items.length > 0 ? (
-        <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-12 sm:gap-x-6 sm:gap-y-16 lg:grid-cols-3">
+        <ul className="mt-8 grid grid-cols-2 gap-x-3 gap-y-10 sm:gap-x-5 sm:gap-y-14 md:grid-cols-3 xl:grid-cols-4">
           {items.map((item, i) => (
             <ProductTile key={item.product.slug} item={item} priority={i < 6} />
           ))}
         </ul>
       ) : (
         <div className="mt-10 border border-separator px-6 py-16 text-center sm:px-12">
-          <h2 className="text-[32px]">
+          <h2 className="text-[28px]">
             {products.length === 0 ? `Aucun ${noun.one} en ligne pour le moment.` : `Aucun ${noun.one} disponible dans votre taille en ce moment.`}
           </h2>
           {products.length > 0 && (
             <p className="mt-3 text-label-2">
               Les tailles épuisées reviennent au fil des réassorts.{" "}
-              <Link href={`${path}?vue=tout`} className="text-label underline decoration-brass/60 hover:decoration-brass">
+              <Link href={`${path}?vue=tout`} className="text-label underline decoration-label/40 hover:decoration-label">
                 Voir tous les {noun.many}
               </Link>
             </p>
@@ -97,8 +102,8 @@ async function Catalog({ category, searchParams }: Pick<Props, "category" | "sea
 
 function SizePrompt({ signedIn, noun }: { signedIn: boolean; noun: (typeof NOUN)[Category] }) {
   return (
-    <section aria-labelledby="size-prompt" className="mx-auto mt-12 flex max-w-[52rem] flex-col items-center border-y border-separator px-6 py-12 text-center sm:py-14">
-      <h2 id="size-prompt" className="max-w-[24ch] text-[32px] md:text-[40px]">
+    <section aria-labelledby="size-prompt" className="mt-10 flex flex-col items-center bg-tile px-6 py-12 text-center sm:py-14">
+      <h2 id="size-prompt" className="max-w-[24ch] text-[30px] md:text-[36px]">
         Votre taille sur chaque {noun.one}.
       </h2>
       <p className="mt-4 max-w-[40rem] text-label-2">

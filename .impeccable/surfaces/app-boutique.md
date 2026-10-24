@@ -9,20 +9,15 @@ related_targets: ["app/page.tsx","components"]
 
 Mode : Persuade pour l'accueil, Operate pour les pages de catégorie et la fiche. Public : client Carrure qui vient d'enregistrer ses mensurations, ou visiteur qui découvre. Tâche : voir les costumes (et chemises) qui existent dans sa taille. Succès : en un clic après les mensurations, le client voit les costumes à sa taille, la taille affichée sur chaque photo.
 
-Contraintes : photos Pexels portées, recadrées sous le menton, fond sombre, un seul étalonnage ; aucun avis, aucun chiffre de vente inventé ; taille toujours « estimée » avec son niveau de confiance ; jamais « sur mesure » : on parle de « taille calculée ».
+Contraintes : photos Pexels portées, détourées et posées sur un même gris de studio (#f1f0ed) ; aucun avis, aucun chiffre de vente inventé ; taille toujours « estimée » avec son niveau de confiance ; jamais « sur mesure » : on parle de « taille calculée ».
 
-Historique : Apple Store (23/10/2026), rejeté le 24/10/2026 (« ça fait cheap »). Direction choisie par l'utilisateur : « Maison italienne sombre ».
+Historique : Apple Store (23/10/2026), rejeté (« ça fait cheap ») ; maison italienne sombre (24/10/2026), rejetée (« j'aime pas le design ») ; l'utilisateur demande de reprendre un site très connu et choisit Mr Porter (24/10/2026). Le site Mr Porter a refusé l'accès (403) : la mise en page suit la connaissance générale du site, sans copie de son nom, logo, textes ni photos.
 
 ## Direction contract
 
-THESIS: Une maison de costumes italienne, le soir : le vêtement photographié comme une campagne, la taille calculée posée en laiton comme une étiquette. Refuse la grille de tuiles claires de l'Apple Store.
-
-OWN-WORLD: Fond noir chaud #0c0b0a, texte ivoire #eeeae3, un seul accent laiton #cdb184. Titres Bodoni Moda à graisse de texte, texte courant Jost, petites capitales espacées pour navigation, boutons et libellés. Filets fins, angles droits, bouton plein ivoire unique.
-
-STORY: Le visiteur voit le triptyque et « Le costume à votre taille. », donne ses mesures, arrive sur la catégorie qui n'affiche que les costumes à sa taille, la taille en laiton sur chaque photo, ouvre une fiche et lit « Votre taille ».
-
-FIRST VIEWPORT: Accueil : triptyque photo pleine hauteur (une seule photo sur mobile), voile sombre en bas, h1 Bodoni centré, surtitre en capitales dessous. Catégorie : titre Bodoni centré, ligne de taille et onglets soulignés entre deux filets, grille photo 3 colonnes.
-
-FORM: Maison italienne sombre, choisie par l'utilisateur au questionnaire du 24/10/2026 (choix 2 de 3). seed: none (unavailable)
-
+THESIS: Le grand magasin de luxe en ligne, façon Mr Porter : page blanche, la marchandise sur gris de studio, la taille du client posée sur chaque photo. Refuse la vitrine sombre et la grille de tuiles Apple.
+OWN-WORLD: Fond blanc, texte noir #121212, gris de studio #f1f0ed sous chaque photo, un seul accent laiton foncé #85642c pour la taille. Marque CARRURE en Bodoni espacé, titres Bodoni à graisse de texte, tout le reste en Jost : noms d'articles et navigation en capitales espacées 12 px. Bandeau noir en tête, pied de page noir, bouton noir plein, angles droits, filets 1 px.
+STORY: Le visiteur voit trois tenues côte à côte sur le même gris et « Le costume à votre taille », donne ses mesures, retrouve sur l'accueil puis dans la catégorie les costumes en stock dans sa taille, sa taille en laiton sur chaque photo, ouvre une fiche et lit « Votre taille ».
+FIRST VIEWPORT: Accueil : bandeau noir, en-tête centré (marque puis rubriques), trois photos détourées sur gris (une sur mobile), titre Bodoni centré dessous. Catégorie : fil d'Ariane, titre centré, ligne de taille et onglets entre deux filets, grille 2 / 3 / 4 colonnes.
+FORM: Reprise d'un site connu demandée par l'utilisateur (sortie « canon ») : Mr Porter. seed: none (unavailable)
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

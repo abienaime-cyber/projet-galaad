@@ -30,14 +30,14 @@ export function AuthShell({ active, title, children }: { active: (typeof TABS)[n
           className="mx-auto"
           items={TABS.map((tab) => ({ href: tab.href, label: tab.label, current: tab.key === active }))}
         />
-        <h1 id="auth-title" className="mt-10 text-center text-[44px] md:text-[56px]">
+        <h1 id="auth-title" className="mt-10 text-center text-[36px] md:text-[44px]">
           {title}
         </h1>
         {children}
       </section>
 
       <aside aria-labelledby="why-title" className="mt-24 border-t border-separator pt-14">
-        <h2 id="why-title" className="text-center text-[32px] md:text-[40px]">
+        <h2 id="why-title" className="text-center text-[32px]">
           Votre taille, article par article
         </h2>
         <p className="mx-auto mt-3 max-w-[38rem] text-center text-label-2">

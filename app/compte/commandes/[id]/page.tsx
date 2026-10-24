@@ -58,7 +58,7 @@ async function Order({ id, thanks }: { id: string; thanks: boolean }) {
           pour vous.
         </p>
       )}
-      <h1 className="mt-6 text-[44px] md:text-[60px]">Commande n° {order.number}</h1>
+      <h1 className="mt-6 text-[36px] md:text-[48px]">Commande n° {order.number}</h1>
       <p className="mt-3 text-label-2">
         {dateFr.format(new Date(order.created_at))} · {ORDER_STATUS[order.status as OrderStatus]}
       </p>
@@ -69,7 +69,7 @@ async function Order({ id, thanks }: { id: string; thanks: boolean }) {
           return (
             <li key={item.id} className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-6 py-5">
               <div className="min-w-0">
-                <Link href={`/produit/${item.product_variants.products.slug}`} className="font-semibold hover:underline">
+                <Link href={`/produit/${item.product_variants.products.slug}`} className="inline-block py-0.5 font-semibold hover:underline">
                   {item.product_name}
                 </Link>
                 <p className="text-sm text-label-2">

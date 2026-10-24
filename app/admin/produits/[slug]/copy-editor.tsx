@@ -6,7 +6,7 @@ import { Spinner } from "@/components/spinner";
 import { generateCopy, publishCopy, type CopyState } from "../../actions";
 
 const fieldClass =
-  "w-full border border-control bg-field p-3 text-[17px] focus:border-brass focus:shadow-[0_0_0_1px_var(--color-brass)] focus:outline-none";
+  "w-full border border-control bg-field p-3 text-[17px] focus:border-label focus:shadow-[0_0_0_1px_var(--color-label)] focus:outline-none";
 
 export function CopyEditor({ productId, current }: { productId: string; current: string }) {
   const [text, setText] = useState(current);

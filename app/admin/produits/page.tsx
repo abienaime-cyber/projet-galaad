@@ -14,7 +14,7 @@ export default function AdminProductsPage() {
       <Link href="/admin" className="eyebrow inline-flex min-h-11 items-center gap-2 text-label-2 hover:text-label">
         <Chevron back /> Tableau de bord
       </Link>
-      <h1 className="mt-4 text-[44px] md:text-[60px]">Fiches produit</h1>
+      <h1 className="mt-4 text-[36px] md:text-[48px]">Fiches produit</h1>
       <p className="mt-3 max-w-[40rem] text-label-2">
         L’IA propose une description à partir des caractéristiques du produit. Vous la relisez, la corrigez, puis la
         publiez.

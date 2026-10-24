@@ -80,7 +80,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
 
         <fieldset>
           <legend className="font-display text-[26px]">Coupe préférée</legend>
-          {/* Tuiles de choix : filet laiton sur l'option retenue. */}
+          {/* Tuiles de choix : filet noir sur l’option retenue. */}
           <div className="mt-4 grid grid-cols-2 gap-3">
             {[{ value: "", label: "Sans préférence" }, ...FITS].map((fit) => (
               <label key={fit.value} className="relative">
@@ -92,7 +92,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
                   onChange={set("preferred_fit")}
                   className="peer sr-only"
                 />
-                <span className="flex min-h-14 cursor-pointer items-center justify-center border border-control bg-field px-3 py-2 text-center text-[15px] leading-tight font-medium transition-[border-color,box-shadow] duration-150 ease-[ease] hover:border-label-2 active:bg-tile peer-checked:border-brass peer-checked:shadow-[0_0_0_1px_var(--color-brass)] peer-focus-visible:outline-1 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-brass">
+                <span className="flex min-h-14 cursor-pointer items-center justify-center border border-control bg-field px-3 py-2 text-center text-[15px] leading-tight font-medium transition-[border-color,box-shadow] duration-150 ease-[ease] hover:border-label-2 active:bg-tile peer-checked:border-label peer-checked:shadow-[0_0_0_1px_var(--color-label)] peer-focus-visible:outline-1 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-label">
                   {fit.label}
                 </span>
               </label>

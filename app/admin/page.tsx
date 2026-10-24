@@ -12,7 +12,7 @@ export default function AdminPage() {
   return (
     <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-16">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <h1 className="text-[44px] md:text-[60px]">Tableau de bord</h1>
+        <h1 className="text-[36px] md:text-[48px]">Tableau de bord</h1>
         <Link href="/admin/produits" className="inline-flex min-h-11 items-center gap-2 text-link hover:underline">
           Fiches produit <Chevron />
         </Link>
@@ -67,7 +67,7 @@ async function Dashboard() {
           title="Meilleures ventes"
           head={["Article", "Vendus", "CA"]}
           rows={(top ?? []).map((p) => [
-            <Link key={p.slug} href={`/produit/${p.slug}`} className="hover:underline">
+            <Link key={p.slug} href={`/produit/${p.slug}`} className="inline-block py-0.5 hover:underline">
               {p.name}
             </Link>,
             p.units,

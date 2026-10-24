@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: "Panier" };
 export default function CartPage() {
   return (
     <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-16">
-      <h1 className="text-[44px] md:text-[60px]">Votre panier</h1>
+      <h1 className="text-[36px] md:text-[48px]">Votre panier</h1>
       <Suspense fallback={<div aria-busy className="mt-10 h-80 bg-tile" />}>
         <Cart />
       </Suspense>

@@ -2,45 +2,38 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { primaryButton, textLink } from "@/components/field";
+import { ProductTile } from "@/components/product-tile";
 import { getProducts, getShopper } from "@/lib/catalog";
-import { CATEGORY_PATH, price, type CatalogProduct } from "@/lib/shop";
-import type { Category } from "@/lib/sizing";
+import { CATEGORY_PATH, fitAll, forMe, price, type CatalogProduct } from "@/lib/shop";
+import type { Category, Measurements } from "@/lib/sizing";
 
 const STEPS = [
-  { title: "Créez votre compte.", text: "Une adresse e-mail et un mot de passe." },
+  { title: "Créez votre compte", text: "Une adresse e-mail et un mot de passe." },
   {
-    title: "Donnez vos mesures.",
+    title: "Donnez vos mesures",
     text: "Taille, poids et âge suffisent. Votre tour de poitrine et votre tour de taille rendent le calcul plus sûr.",
   },
   {
-    title: "Choisissez dans votre taille.",
+    title: "Choisissez dans votre taille",
     text: "La boutique n’affiche que les articles en stock dans votre taille, avec le niveau de confiance du calcul.",
   },
 ];
 
-const NUMERALS = ["I", "II", "III"];
-
-// Triptyque d'ouverture : brun, noir, marine. Le costume noir, au centre sous le titre, est le seul visuel sur mobile :
-// lui seul est préchargé et il n'attend pas d'animation.
-const SHOWCASE = ["costume-tweed-marron", "costume-ajuste-noir", "costume-croise-gris-bleu"];
+// Trois tenues côte à côte sur le même gris de studio : brun, noir, marine. Sur mobile, seul le costume noir reste ;
+// lui seul est préchargé.
+const LINEUP = ["costume-tweed-marron", "costume-ajuste-noir", "costume-croise-gris-bleu"];
 
 export default async function Home() {
   const products = await getProducts();
 
   return (
     <>
-      <section aria-labelledby="hero-title" className="relative">
-        <div className="grid h-[min(calc(100svh-4rem),56rem)] min-h-[34rem] grid-cols-1 md:grid-cols-3">
-          {SHOWCASE.map((slug, i) => {
+      <section aria-labelledby="hero-title">
+        <div className="grid bg-tile md:grid-cols-3">
+          {LINEUP.map((slug, i) => {
             const product = products.find((p) => p.slug === slug);
             return product?.image ? (
-              <Link
-                key={slug}
-                href={`/produit/${slug}`}
-                aria-label={product.name}
-                className={`group relative block overflow-hidden ${i === 1 ? "" : "animate-rise [animation-delay:calc(var(--i)*120ms)] max-md:hidden"}`}
-                style={{ "--i": i } as React.CSSProperties}
-              >
+              <Link key={slug} href={`/produit/${slug}`} aria-label={product.name} className={`relative block aspect-[4/5] md:aspect-auto md:h-[clamp(24rem,calc(100svh-24rem),37.5rem)] ${i === 1 ? "" : "max-md:hidden"}`}>
                 <Image
                   src={product.image}
                   alt=""
@@ -49,55 +42,57 @@ export default async function Home() {
                   preload={i === 1}
                   fetchPriority={i === 1 ? "high" : undefined}
                   sizes="(min-width: 768px) 34vw, 100vw"
-                  className="object-cover transition-transform duration-[1200ms] ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
+                  className="object-cover object-top"
                 />
               </Link>
             ) : null;
           })}
         </div>
-        {/* Voile sombre en bas : le titre ivoire reste lisible sur n'importe quelle photo. */}
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,var(--color-canvas)_0%,rgb(12_11_10/0.6)_24%,rgb(12_11_10/0)_48%)]" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 px-4 pb-12 text-center sm:px-8 md:pb-16">
-          <h1 id="hero-title" className="mx-auto max-w-[14ch] text-[52px] md:text-[96px]">
-            Le costume à votre taille.
+        <div className="mx-auto max-w-[46rem] px-4 pt-10 text-center sm:px-8 md:pt-12">
+          <h1 id="hero-title" className="text-[44px] md:text-[64px]">
+            Le costume à votre taille
           </h1>
-          <p className="eyebrow mt-6 text-label-2">Costumes et chemises pour homme</p>
+          <p className="mx-auto mt-5 max-w-[36rem] text-[17px] text-label-2">
+            Votre taille, votre poids, votre âge. Carrure calcule la taille à prendre pour chaque costume et chaque chemise.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            <Suspense fallback={<Actions measured={false} />}>
+              <ShopperActions />
+            </Suspense>
+          </div>
         </div>
       </section>
 
-      <section aria-label="Votre taille" className="mx-auto max-w-[44rem] px-4 pt-14 text-center sm:px-8 md:pt-20">
-        <p className="text-[19px] leading-relaxed text-label-2 md:text-[21px]">
-          Votre taille, votre poids, votre âge. Carrure calcule la taille à prendre pour chaque costume et chaque chemise.
-        </p>
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          <Suspense fallback={<Actions measured={false} />}>
-            <ShopperActions />
-          </Suspense>
+      <Suspense fallback={<Rows products={products} measurements={null} />}>
+        <ShopperRows products={products} />
+      </Suspense>
+
+      <section aria-label="Les collections" className="mx-auto mt-24 grid max-w-[1440px] gap-x-5 gap-y-12 px-4 sm:px-8 md:mt-32 md:grid-cols-2">
+        <CollectionTile category="suit" title="Tous les costumes" range="Du 44 au 58" products={products} cover="costume-trois-pieces-bleu-nuit" />
+        <CollectionTile category="shirt" title="Toutes les chemises" range="Du S au 3XL" products={products} cover="chemise-oxford-bleu-ciel" />
+      </section>
+
+      <section aria-labelledby="how-title" className="mt-24 bg-tile md:mt-32">
+        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-8 md:py-28">
+          <h2 id="how-title" className="text-center text-[34px] md:text-[48px]">
+            Votre taille, sans cabine d’essayage
+          </h2>
+          <ol className="mt-12 grid gap-10 md:mt-16 md:grid-cols-3 md:gap-12">
+            {STEPS.map((step, i) => (
+              <li key={step.title} className="border-t border-label pt-6">
+                <h3 className="eyebrow">
+                  <span className="figures mr-3">{i + 1}</span>
+                  {step.title}
+                </h3>
+                <p className="mt-3 text-label-2">{step.text}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mx-auto mt-14 max-w-[40rem] text-center text-[13px] text-label-2">
+            La taille affichée reste une estimation : notre calcul indique toujours à quel point il est sûr de lui, et la
+            taille voisine quand vous êtes entre deux.
+          </p>
         </div>
-      </section>
-
-      <section aria-label="Les collections" className="mx-auto mt-24 grid max-w-[1440px] gap-px px-4 sm:px-8 md:mt-32 md:grid-cols-2">
-        <CollectionTile category="suit" title="Costumes" range="Du 44 au 58" products={products} cover="costume-rayure-tennis" />
-        <CollectionTile category="shirt" title="Chemises" range="Du S au 3XL" products={products} cover="chemise-lin-blanche" />
-      </section>
-
-      <section aria-labelledby="how-title" className="mx-auto max-w-[1180px] px-4 pt-28 pb-32 sm:px-8 md:pt-40">
-        <h2 id="how-title" className="mx-auto max-w-[18ch] text-center text-[40px] md:text-[64px]">
-          Votre taille, sans cabine d’essayage.
-        </h2>
-        <ol className="mt-16 grid gap-12 md:mt-20 md:grid-cols-3 md:gap-14">
-          {STEPS.map((step, i) => (
-            <li key={step.title} className="border-t border-separator pt-8 text-center md:text-left">
-              <span aria-hidden className="font-display text-[44px] leading-none text-brass">{NUMERALS[i]}</span>
-              <h3 className="mt-6 text-[24px]">{step.title}</h3>
-              <p className="mt-3 text-label-2">{step.text}</p>
-            </li>
-          ))}
-        </ol>
-        <p className="mx-auto mt-16 max-w-[40rem] text-center text-sm text-label-2">
-          La taille affichée reste une estimation : notre calcul indique toujours à quel point il est sûr de lui, et la taille
-          voisine quand vous êtes entre deux.
-        </p>
       </section>
     </>
   );
@@ -130,33 +125,76 @@ function Actions({ measured }: { measured: boolean }) {
   );
 }
 
+async function ShopperRows({ products }: { products: CatalogProduct[] }) {
+  const { measurements } = await getShopper();
+  return <Rows products={products} measurements={measurements} />;
+}
+
+function Rows({ products, measurements }: Pick<RowProps, "products" | "measurements">) {
+  return (
+    <>
+      <Row category="suit" title="Costumes" products={products} measurements={measurements} />
+      <Row category="shirt" title="Chemises" products={products} measurements={measurements} />
+    </>
+  );
+}
+
+type RowProps = { category: Category; title: string; products: CatalogProduct[]; measurements: Measurements | null };
+
+// Une rangée de quatre articles. Mensurations connues : les quatre premiers en stock dans la taille du client.
+function Row({ category, title, products, measurements }: RowProps) {
+  const fitted = fitAll(
+    products.filter((p) => p.category === category),
+    measurements,
+  );
+  const mine = measurements ? forMe(fitted, measurements.preferredFit) : [];
+  const items = (mine.length > 0 ? mine : fitted).slice(0, 4);
+  const id = `row-${category}`;
+  return (
+    <section aria-labelledby={id} className="mx-auto mt-24 max-w-[1440px] px-4 sm:px-8 md:mt-32">
+      <div className="flex items-baseline justify-between gap-6 border-b border-separator pb-3">
+        <h2 id={id} className="text-[28px] md:text-[36px]">
+          {mine.length > 0 ? `${title} à votre taille` : title}
+        </h2>
+        <Link href={CATEGORY_PATH[category]} className={textLink}>
+          Tout voir
+        </Link>
+      </div>
+      <ul className="mt-6 grid grid-cols-2 gap-x-3 gap-y-10 sm:gap-x-5 md:grid-cols-4">
+        {items.map((item) => (
+          <ProductTile key={item.product.slug} item={item} heading="h3" />
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 type TileProps = { category: Category; title: string; range: string; products: CatalogProduct[]; cover: string };
 
 function CollectionTile({ category, title, range, products, cover }: TileProps) {
   const prices = products.filter((p) => p.category === category).map((p) => p.priceCents);
   const image = products.find((p) => p.slug === cover)?.image;
   return (
-    <Link href={CATEGORY_PATH[category]} className="group relative block aspect-[4/5] overflow-hidden bg-tile">
-      {image && (
-        <Image
-          src={image}
-          alt=""
-          fill
-          sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover transition-transform duration-[1200ms] ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
-        />
-      )}
-      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgb(12_11_10/0.88)_0%,rgb(12_11_10/0)_55%)]" />
-      <div className="absolute inset-x-0 bottom-0 p-8 text-center md:p-12">
-        <h2 className="text-[48px] md:text-[64px]">{title}</h2>
-        <p className="mt-3 text-label-2">
-          {range}
-          {prices.length > 0 && <> · À partir de {price(Math.min(...prices))}</>}
-        </p>
-        <span className="eyebrow mt-5 inline-flex min-h-11 items-center underline decoration-brass/60 underline-offset-[6px] transition-colors duration-150 group-hover:decoration-brass">
-          Découvrir
-        </span>
+    <Link href={CATEGORY_PATH[category]} className="group block">
+      <div className="relative aspect-[4/5] overflow-hidden bg-tile md:aspect-square">
+        {image && (
+          <Image
+            src={image}
+            alt=""
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover transition-transform duration-700 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
+          />
+        )}
       </div>
+      <h2 className="mt-5 text-[28px] md:text-[34px]">{title}</h2>
+      <p className="mt-1 text-label-2">
+        {range}
+        {prices.length > 0 && <> · À partir de {price(Math.min(...prices))}</>}
+      </p>
+      <span className="eyebrow mt-3 inline-flex min-h-11 items-center underline decoration-label/40 underline-offset-[6px] transition-colors duration-150 group-hover:decoration-label">
+        Découvrir
+      </span>
     </Link>
   );
 }

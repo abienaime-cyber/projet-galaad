@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Vos commandes" };
 export default function OrdersPage() {
   return (
     <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-12">
-      <h1 className="text-[44px] md:text-[60px]">Vos commandes</h1>
+      <h1 className="text-[36px] md:text-[48px]">Vos commandes</h1>
       <Suspense fallback={<div aria-busy className="mt-10 h-64 bg-tile" />}>
         <Orders />
       </Suspense>

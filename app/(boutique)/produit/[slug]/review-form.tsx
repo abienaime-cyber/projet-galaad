@@ -6,7 +6,7 @@ import { FIT_FEEDBACK } from "@/lib/validation";
 import { addReview, type ReviewState } from "./actions";
 
 const selectClass =
-  "h-11 w-full border border-control bg-field px-3 text-[17px] focus:border-brass focus:shadow-[0_0_0_1px_var(--color-brass)] focus:outline-none";
+  "h-11 w-full border border-control bg-field px-3 text-[17px] focus:border-label focus:shadow-[0_0_0_1px_var(--color-label)] focus:outline-none";
 
 export function ReviewForm({ productId, slug }: { productId: string; slug: string }) {
   const [state, action, pending] = useActionState<ReviewState, FormData>(addReview, {});
@@ -46,7 +46,7 @@ export function ReviewForm({ productId, slug }: { productId: string; slug: strin
           name="comment"
           rows={3}
           maxLength={1000}
-          className="border border-control bg-field p-3 text-[17px] focus:border-brass focus:shadow-[0_0_0_1px_var(--color-brass)] focus:outline-none"
+          className="border border-control bg-field p-3 text-[17px] focus:border-label focus:shadow-[0_0_0_1px_var(--color-label)] focus:outline-none"
         />
       </label>
       {(state.error || state.errors) && (
