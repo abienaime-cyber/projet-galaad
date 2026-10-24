@@ -10,14 +10,14 @@ export const metadata: Metadata = { title: "Tableau de bord", robots: { index: f
 
 export default function AdminPage() {
   return (
-    <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-16">
+    <div className="mx-auto max-w-[1180px] px-4 pt-10 sm:px-8 md:pt-16">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <h1 className="text-[36px] md:text-[48px]">Tableau de bord</h1>
-        <Link href="/admin/produits" className="inline-flex min-h-11 items-center gap-2 text-link hover:underline">
+        <h1 className="text-[40px] md:text-[54px]">Tableau de bord</h1>
+        <Link href="/admin/produits" className="inline-flex min-h-11 items-center gap-2 font-semibold text-foreground hover:underline">
           Fiches produit <Chevron />
         </Link>
       </div>
-      <Suspense fallback={<div aria-busy className="mt-10 h-[32rem] bg-tile" />}>
+      <Suspense fallback={<div aria-busy className="mt-10 h-[32rem] rounded-xl bg-muted" />}>
         <Dashboard />
       </Suspense>
     </div>
@@ -36,7 +36,7 @@ async function Dashboard() {
     supabase.from("admin_sizes_sold").select("*").limit(8),
     supabase.from("admin_returns_by_reason").select("*"),
   ]);
-  if (!kpis) return <p className="mt-10 text-danger">Les indicateurs n’ont pas pu être lus.</p>;
+  if (!kpis) return <p className="mt-10 text-destructive">Les indicateurs n’ont pas pu être lus.</p>;
 
   const figures = [
     { label: "Chiffre d’affaires", value: price(kpis.revenue_cents), note: `${kpis.orders_count} commandes` },
@@ -51,18 +51,18 @@ async function Dashboard() {
 
   return (
     <>
-      <p className="mt-3 text-sm text-label-2">Commandes annulées exclues. Les données du seed sont fictives.</p>
-      <dl className="mt-8 grid gap-px overflow-hidden bg-separator sm:grid-cols-2 lg:grid-cols-4">
+      <p className="mt-3 text-sm text-muted-foreground">Commandes annulées exclues. Les données du seed sont fictives.</p>
+      <dl className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {figures.map((f) => (
-          <div key={f.label} className="bg-tile p-6">
-            <dt className="text-sm text-label-2">{f.label}</dt>
-            <dd className="figures mt-2 text-[32px] leading-none">{f.value}</dd>
-            <dd className="mt-2 text-xs text-label-2">{f.note}</dd>
+          <div key={f.label} className="card p-6">
+            <dt className="text-sm text-muted-foreground">{f.label}</dt>
+            <dd className="figures mt-3 text-[30px] leading-none font-semibold">{f.value}</dd>
+            <dd className="mt-2 text-xs text-muted-foreground">{f.note}</dd>
           </div>
         ))}
       </dl>
 
-      <div className="mt-12 grid gap-12 lg:grid-cols-2">
+      <div className="mt-10 grid gap-5 lg:grid-cols-2">
         <Table
           title="Meilleures ventes"
           head={["Article", "Vendus", "CA"]}
@@ -91,16 +91,16 @@ async function Dashboard() {
 
 function Table({ title, head, rows }: { title: string; head: string[]; rows: React.ReactNode[][] }) {
   return (
-    <section>
-      <h2 className="text-[21px]">{title}</h2>
+    <section className="card p-5 sm:p-6">
+      <h2 className="text-[26px]">{title}</h2>
       {rows.length === 0 ? (
-        <p className="mt-3 text-sm text-label-2">Aucune donnée pour le moment.</p>
+        <p className="mt-3 text-sm text-muted-foreground">Aucune donnée pour le moment.</p>
       ) : (
         <table className="mt-4 w-full text-sm">
           <thead>
-            <tr className="border-b border-separator text-left text-label-2">
+            <tr className="border-b border-border text-left text-muted-foreground">
               {head.map((h, i) => (
-                <th key={h} scope="col" className={`py-2 font-normal ${i > 0 ? "pl-4 text-right whitespace-nowrap" : ""}`}>
+                <th key={h} scope="col" className={`py-2 font-medium ${i > 0 ? "pl-4 text-right whitespace-nowrap" : ""}`}>
                   {h}
                 </th>
               ))}
@@ -108,7 +108,7 @@ function Table({ title, head, rows }: { title: string; head: string[]; rows: Rea
           </thead>
           <tbody>
             {rows.map((row, r) => (
-              <tr key={r} className="border-b border-separator">
+              <tr key={r} className="border-b border-border last:border-b-0">
                 {row.map((cell, i) => (
                   <td key={i} className={`py-2.5 ${i > 0 ? "pl-4 text-right whitespace-nowrap tabular-nums" : "min-w-0 [overflow-wrap:anywhere]"}`}>
                     {cell}

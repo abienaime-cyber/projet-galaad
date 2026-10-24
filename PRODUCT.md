@@ -47,13 +47,13 @@ La taille est calculée par un algorithme déterministe et affichée comme une e
 - Nom : Carrure.
 - Voix : vouvoiement, sobre, le ton d'un tailleur. Poli, précis, sans familiarité ni superlatifs.
 - Interface en français.
-- Look : grand magasin de luxe en ligne, mise en page inspirée de Mr Porter, choisie par l'utilisateur le 24/10/2026 après le rejet du look Apple Store puis de la maison italienne sombre. Page blanche, texte noir, photos portées détourées sur un même gris de studio, titres en Bodoni, capitales espacées pour la navigation et les boutons, bouton noir plein, un seul accent laiton foncé réservé à la taille du client. On reprend la mise en page, jamais le nom, le logo, les textes ni les photos de Mr Porter.
+- Look : refonte du 24/10/2026 faite uniquement avec le skill UI UX Pro Max, à la demande de l'utilisateur (après le rejet du look Apple Store, de la maison italienne sombre puis du grand magasin façon Mr Porter). Style Minimalism & Swiss : fond pierre clair, cartes blanches arrondies, titres en Cormorant, texte en Montserrat, un seul accent or foncé pour l'action et la taille du client. Système complet : `design-system/carrure/MASTER.md`, résumé dans `DESIGN.md`.
 - Discours : « taille calculée », jamais « sur mesure » ni « demi-mesure » : le site vend des tailles standard.
 
 ## Evidence on Hand
 
 - 30 produits fictifs avec descriptions (`supabase/seed.sql`).
-- Photos produit : photos Pexels (licence Pexels, attribution non requise) choisies pour la démo, sans lien avec la marque, détourées et posées sur un gris de studio. Aucun avis réel, aucun client réel, aucun chiffre de vente réel. Ne rien inventer de tel dans l'interface.
+- Photos produit : aucune personne (les photos portées ont été jugées peu désirables). Trois photos Pexels de vêtements sur cintre (licence Pexels, attribution non requise), détourées puis déclinées en couleur et en motif pour les 30 articles. Ce sont des visuels d'illustration, pas des photos des articles. Aucun avis réel, aucun client réel, aucun chiffre de vente réel. Ne rien inventer de tel dans l'interface.
 
 ## Product Principles
 

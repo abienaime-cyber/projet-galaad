@@ -1,299 +1,87 @@
 ---
 name: Carrure
 description: Chemises et costumes pour homme, avec une taille calculée pour chaque article.
+source: design-system/carrure/MASTER.md (UI UX Pro Max 2.15.0, requête « luxury fashion ecommerce », variance 3, densité 3)
 colors:
-  canvas: "#ffffff"
-  tile: "#f1f0ed"
-  fill: "#e9e8e4"
-  field: "#ffffff"
-  separator: "#e3e2de"
-  control: "#8c8b86"
-  label: "#121212"
-  label-2: "#5c5b57"
-  accent: "#121212"
-  accent-hover: "#3a3a38"
+  primary: "#1c1917"
+  on-primary: "#ffffff"
+  accent: "#a16207"
+  accent-hover: "#854d0e"
   on-accent: "#ffffff"
-  link: "#121212"
-  brass: "#85642c"
-  danger: "#b42318"
-  danger-tint: "#fdeeec"
-  ok: "#1d6b3a"
+  background: "#fafaf9"
+  foreground: "#0c0a09"
+  card: "#ffffff"
+  muted: "#e8ecf0"
+  muted-foreground: "#475569"
+  border: "#d6d3d1"
+  input: "#78716c"
+  ring: "#1c1917"
+  destructive: "#b91c1c"
+  destructive-tint: "#fef2f2"
+  success: "#15803d"
 typography:
-  display:
-    fontFamily: "Bodoni Moda, Bodoni 72, Didot, Georgia, serif"
-    fontSize: "clamp(40px, 5vw, 64px)"
-    fontWeight: 400
-    lineHeight: 1.04
-    letterSpacing: "-0.005em"
-  headline:
-    fontFamily: "Bodoni Moda, Bodoni 72, Didot, Georgia, serif"
-    fontSize: "clamp(28px, 3vw, 48px)"
-    fontWeight: 400
-    lineHeight: 1.15
-    letterSpacing: "-0.005em"
-  title:
-    fontFamily: "Bodoni Moda, Bodoni 72, Didot, Georgia, serif"
-    fontSize: "21px"
-    fontWeight: 400
-    lineHeight: 1.15
-    letterSpacing: "-0.005em"
-  body:
-    fontFamily: "Jost, Futura, Century Gothic, sans-serif"
-    fontSize: "15px"
-    fontWeight: 400
-    lineHeight: 1.6
-    letterSpacing: "0.005em"
-  meta:
-    fontFamily: "Jost, Futura, Century Gothic, sans-serif"
-    fontSize: "13px"
-    fontWeight: 400
-    lineHeight: 1.6
-  label:
-    fontFamily: "Jost, Futura, Century Gothic, sans-serif"
-    fontSize: "12px"
-    fontWeight: 500
-    lineHeight: 1.4
-    letterSpacing: "0.12em"
-  wordmark:
-    fontFamily: "Bodoni Moda, Bodoni 72, Didot, Georgia, serif"
-    fontSize: "30px"
-    fontWeight: 400
-    letterSpacing: "0.24em"
-  figures:
-    fontFamily: "Jost, Futura, Century Gothic, sans-serif"
-    fontSize: "14px"
-    fontWeight: 400
-    lineHeight: 1
-    fontFeature: "lnum, tnum"
-rounded:
-  none: "0px"
-  full: "9999px"
-spacing:
-  gutter-sm: "16px"
-  gutter: "32px"
-  grid-gap-sm: "12px"
-  grid-gap: "20px"
-  stack-sm: "12px"
-  stack-md: "32px"
-  stack-lg: "40px"
-  section-sm: "96px"
-  section: "128px"
-components:
-  button-primary:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.on-accent}"
-    typography: "{typography.label}"
-    rounded: "{rounded.none}"
-    padding: "0 32px"
-    height: "48px"
-  button-primary-hover:
-    backgroundColor: "{colors.accent-hover}"
-  button-secondary:
-    textColor: "{colors.label}"
-    typography: "{typography.label}"
-    rounded: "{rounded.none}"
-    padding: "0 28px"
-    height: "48px"
-  button-secondary-hover:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.on-accent}"
-  text-link:
-    textColor: "{colors.label}"
-    typography: "{typography.label}"
-    height: "44px"
-  field-underlined:
-    textColor: "{colors.label}"
-    rounded: "{rounded.none}"
-    height: "56px"
-  field-boxed:
-    backgroundColor: "{colors.field}"
-    textColor: "{colors.label}"
-    rounded: "{rounded.none}"
-    padding: "12px"
-  size-chip:
-    textColor: "{colors.label}"
-    rounded: "{rounded.none}"
-    padding: "0 12px"
-    height: "48px"
-  size-chip-checked:
-    backgroundColor: "{colors.label}"
-    textColor: "{colors.on-accent}"
-  size-badge:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.brass}"
-    typography: "{typography.figures}"
-    rounded: "{rounded.none}"
-    padding: "6px 10px"
-  size-panel:
-    backgroundColor: "{colors.tile}"
-    rounded: "{rounded.none}"
-    padding: "24px"
-  announcement-strip:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.on-accent}"
-    padding: "8px 16px"
-  nav-tab:
-    textColor: "{colors.label-2}"
-    typography: "{typography.label}"
-    height: "44px"
-  nav-tab-current:
-    textColor: "{colors.label}"
-  footer:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.on-accent}"
+  heading: "Cormorant 600, interligne 1,1, approche -0,01em"
+  body: "Montserrat 400, 16 px, interligne 1,5"
+  eyebrow: "Montserrat 600, 12 px, capitales, approche 0,08em"
+radius:
+  button: 8px
+  card: 12px
+  panel: 16px
 ---
 
-# Design System: Carrure
+# Carrure : système de design
 
-## Overview
+Refonte du 24 octobre 2026, faite uniquement avec le skill **UI UX Pro Max** (dépôt `nextlevelbuilder/ui-ux-pro-max-skill`, version 2.15.0, installé dans `.claude/skills/ui-ux-pro-max`). La source de vérité est `design-system/carrure/MASTER.md`, généré par :
 
-**Creative North Star: "The Department Store Floor"**
+```bash
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "luxury fashion ecommerce" \
+  --design-system --persist -p "Carrure" --variance 3 --density 3 --output-dir .
+```
 
-Carrure reads like the menswear floor of a large online luxury department store: a white page, black type, and the merchandise laid out on one studio grey, the way a store shoots everything against the same backdrop. The layout follows the general grammar of Mr Porter (black announcement strip, centered spaced wordmark over a row of departments, centered titles, dense product grids with tracked-caps names), taken as layout only: never its name, logo, copy or photographs. What is Carrure's own is the visitor's size, set in dark brass on every photo and on every product page.
+Ce fichier résume ce qui est réellement en ligne dans le code (`app/globals.css`, `components/field.tsx`).
 
-The system is quiet, square and editorial. Bodoni Moda at text weight carries the wordmark and every title; Jost carries everything else, with 12px tracked capitals for navigation, buttons, product names and data labels. Structure comes from white space, 1px rules and the grey tile under photos and panels, never from shadows or rounded containers. Black frames the page top and bottom (announcement strip, footer) and fills the one primary button.
+## Direction
 
-Photography is Pexels imagery of worn garments, cut out and composited onto the studio grey with uniform framing, 4:5 throughout. The world replaced two rejected looks: a bright Apple Store tile system ("cheap") and a dark Italian tailoring house. Neither returns.
+- Catégorie retenue par le skill : *E-commerce Luxury*. Style : *Minimalism & Swiss Style* (clair, aéré, grille, contraste fort).
+- La première requête (« luxury menswear ecommerce tailoring ») proposait le style *Liquid Glass*, pensé pour les interfaces Apple. Hors sujet pour une boutique : requête resserrée une fois, comme le prévoit le skill.
+- Structure d'accueil du MASTER, *Feature-Rich Showcase* : promesse, grille d'arguments, cas d'usage, appel à l'action répété en haut, au milieu et en bas. La section « preuve sociale » est volontairement absente : le site n'a aucun avis ni client réel, et n'en invente pas.
 
-**Key Characteristics:**
-- White page, near-black text, studio grey under every photo and size panel.
-- One chromatic accent, dark brass, reserved for the visitor's size.
-- Bodoni Moda at weight 400 for wordmark and h1 to h3; Jost for everything else; 12px tracked caps for controls and product names.
-- Black announcement strip, black footer, black filled primary button.
-- Square corners, 1px rules, no elevation.
-- Cut-out garment photos on one grey, 4:5, same framing.
+## Couleurs
 
-## Colors
+Pierre chaude, texte quasi noir, un seul accent or foncé (`#A16207`) pour l'action principale et la taille du client.
 
-A neutral warm-white palette with black ink and a single dark brass.
+Trois écarts au MASTER, tous pour l'accessibilité (priorité 1 du skill) :
 
-### Primary
-- **Dark Brass** (brass): the visitor's size and nothing else. The size on the badge of every product photo, the size on the product page and the category size line, the ring around the computed size chip, the filled band and knob of the size tape, the input caret, the selection tint (22%).
+| Jeton | MASTER | En ligne | Pourquoi |
+| --- | --- | --- | --- |
+| `input` | `#E2E8F0` | `#78716C` | Le contour d'un champ doit atteindre 3:1 ; `#E2E8F0` fait 1,2:1 sur blanc. |
+| `destructive` | `#DC2626` | `#B91C1C` | 4,4:1 seulement sur le fond d'erreur rosé ; il faut 4,5:1. |
+| `success` | absent | `#15803D` | Message « En stock » et confirmations, 4,8:1 sur le fond. |
 
-### Neutral
-- **Gallery White** (canvas, field): page ground, the size badge ground, the ground of boxed inputs, the ring around the tape knob.
-- **Studio Grey** (tile): the backdrop composited under every product photo, the hero band, the "how it works" band, size panels, loading placeholders.
-- **Deep Studio Grey** (fill): empty image fallback.
-- **Rule Grey** (separator): every 1px rule (header base, section heads, disclosures, size line), resting size-chip outline, tape track.
-- **Thread Grey** (control): resting underline of fields, borders of boxed inputs and choice tiles, chip hover outline, dotted underline of estimated values.
-- **Ink** (label, accent, link): body text, titles, the announcement strip, the footer, the primary button, the checked size chip, the focus outline.
-- **Graphite** (accent-hover): primary button hover only.
-- **Stone** (label-2): secondary text, meta lines, breadcrumbs, captions, inactive tabs, placeholders.
-- **White on Ink** (on-accent): text on the strip, footer (at 70% for running text), primary button and filled chips.
+Contrastes vérifiés : texte sur fond 19:1, texte secondaire `#475569` 7,3:1, bouton or texte blanc 4,9:1, or sur fond 4,7:1.
 
-### Status
-- **Signal Red** (danger, danger-tint): error text, error underline, destructive buttons; the tint as an error panel ground and destructive hover.
-- **Ledger Green** (ok): in-stock and added-to-cart confirmations only.
+`muted` (`#E8ECF0`) est aussi le fond des photos produit : vignette et image se fondent.
 
-### Named Rules
-**The Size-Only Brass Rule.** Brass marks the visitor's size and nothing else: no brass buttons, links, borders, icons or decoration. If brass appears on something that is not the size, remove it.
+## Typographie
 
-**The Black Frame Rule.** Black is a frame and an action: the announcement strip, the footer, the primary button, the checked chip. It never fills a content panel; panels sit on studio grey.
+Cormorant pour les titres (`h1` à `h3`), Montserrat pour tout le reste, chargées par `next/font` (consigne Next.js du skill). Les noms d'articles dans les cartes sont en Montserrat (`font-sans`), plus lisibles en petit.
 
-**The One Grey Rule.** Every product photo sits on the same studio grey. A photo on another ground, or a raw unprocessed photo, breaks the floor.
+## Composants (spécifications du MASTER)
 
-## Typography
+- **Bouton principal** : fond or, texte blanc, rayon 8 px, 600, hauteur 48 px, soulèvement de 1 px au survol.
+- **Bouton secondaire** : filet de 2 px quasi noir, se remplit au survol.
+- **Champ** : libellé toujours visible au-dessus, bordure 1 px, rayon 8 px, 16 px, anneau de 3 px au focus, erreur juste sous le champ.
+- **Carte** : blanc, rayon 12 px, ombre moyenne ; ombre large et soulèvement de 2 px au survol pour les cartes cliquables.
+- **Contrôle segmenté** : piste grise, segment actif en carte blanche.
+- **Icônes** : Phosphor (`@phosphor-icons/react` 2.1.10, import `/ssr`), recommandé par le domaine `icons` du skill. Aucun emoji.
 
-**Display Font:** Bodoni Moda (with Bodoni 72, Didot, Georgia)
-**Body Font:** Jost (with Futura, Century Gothic)
+## Photos
 
-**Character:** the Didone and the geometric sans of fashion retail. Bodoni signs the house and names the sections; Jost does all the work, including figures.
+Aucune personne : chaque article est montré seul, sur cintre, sur le fond `muted`. Méthode et crédits dans le README (« Crédits photos »).
 
-### Hierarchy
-- **Wordmark** (Bodoni 400, uppercase, 0.24em tracking; 24px mobile, 30px desktop header, 28px footer): CARRURE, centered in the header and set left in the footer.
-- **Display** (Bodoni 400, line-height 1.04): one h1 per page. 44 to 64px on home, 40 to 56px on category pages, 36 to 48px on account, cart and checkout, 36 to 44px on auth, 30 to 36px on the product page.
-- **Headline** (Bodoni 400, line-height 1.15): section titles. 28 to 36px for home rows and prompts, 28 to 34px under collection tiles, 34 to 48px for the grey "how it works" band.
-- **Title** (Bodoni 400, 21 to 26px): fieldset legends, outfit cards, review prompt, auth reassurance points.
-- **Body** (Jost 400, 15px, line-height 1.6, 0.005em tracking): running text, secondary text in Stone; intros at 17px; measure held to 36 to 40rem.
-- **Meta** (Jost 400, 13px): breadcrumbs, product color and material, footer text, the category size line.
-- **Label** (Jost 500, 12px, 0.12em tracking, uppercase): header navigation, buttons, text links, product names under photos, tabs, disclosure summaries, legends and the "Votre taille" panel label, footer links.
-- **Figures** (Jost, lining tabular numerals): prices (14px in grids, 18px on the product page), the size on photos (14px semibold brass), the size on the product page (44px medium brass), measurement readings (28 to 32px) and computed sizes (56px) in ink.
+## Vérifications faites (checklist pré-livraison du MASTER)
 
-### Named Rules
-**The Text-Weight Rule.** Every h1 to h3 in Bodoni is weight 400 with -0.005em tracking and balanced wrap. Hierarchy comes from size and space, never from bold.
-
-**The Caps-Label Rule.** Tracked caps name controls, products and data. They are never placed above a title as decoration.
-
-**The Estimated Underline Rule.** An estimated value carries a 1px dotted Thread Grey underline; a measured value does not. It is the honesty signal; never remove it to tidy a page.
-
-## Layout
-
-A centered container of max 1440px with 16px gutters on mobile and 32px from 640px; account and auth pages narrow to 1180px, forms to 460px. The header stack is a black announcement strip (12px centered line), then a sticky white header: a 64px (72px from 640px) three-column row with "Trouver ma taille" left, the wordmark centered, account and cart right, and a 44px centered row of departments below, closed by a 1px rule.
-
-Home opens on a studio-grey band of three cut-out photos side by side (one, the center look, on mobile), then a centered Bodoni title, intro and actions below the photos, never over them. Product rows follow: a headline and "Tout voir" link over a 1px rule, then four tiles (2 columns on mobile). Category pages open on a breadcrumb, a centered title and tagline, then the size line and underlined tabs held between two rules, then the grid: 2 columns, 3 from 768px, 4 from 1280px, with 12px / 20px column gaps and 40px / 56px row gaps. Product pages split about 1.35fr / 1fr from 1024px, the photo sticky under the header, details capped at 30rem.
-
-Sections are separated by vertical rhythm (96px mobile, 128px desktop) and full-width grey bands rather than containers. Every photo is 4:5 (collection tiles go square from 768px).
-
-## Elevation & Depth
-
-Flat. Depth comes only from the studio grey under photos and panels, 1px rules, and the black strip and footer that bracket the page. The sticky header is white at 95% with a medium backdrop blur, falling back to solid white under reduced transparency. Inset 1px box-shadows serve as borders (secondary button, size chips, focus on boxed inputs), never as lift.
-
-### Named Rules
-**The Rule-Not-Shadow Rule.** Separate with a 1px rule, a grey band or white space. If you reach for a drop shadow, use a rule instead.
-
-## Shapes
-
-Square corners (0px) on every surface, photo, button, field, chip, badge and panel. Full rounding is reserved for small markers: the cart count, the size-tape knob, the spinner bars. Lines are 1px everywhere: rules, field underlines, outlines, the focus outline (1px ink, 3px offset). Icons are outline SVG at a 1.2 to 1.3px stroke; chevrons and the disclosure plus are drawn, not typed.
-
-## Components
-
-### Buttons
-Rectangular, tracked caps, one decisive black.
-- **Shape:** square (0px), 48px tall.
-- **Primary:** ink fill, white label, 32px side padding; hover to Graphite; press scales to 0.98 over 150ms; disabled at 50% opacity. Full width in the add-to-cart form, with a spinner while pending. One per view.
-- **Secondary:** transparent with a 1px inset ink outline, 28px side padding; hover fills ink with white text.
-- **Text link:** tracked caps in ink, 44px minimum hit area, underlined with ink at 40% and a 6px offset, full ink on hover. Inline links in running text use the same underline at body size.
-- **Destructive:** a 1px red outline with red caps, hover to the red tint; the confirm step fills red.
-
-### Inputs / Fields
-- **Underlined field (primary):** 56px tall, no box, a 1px Thread Grey bottom rule, 17px text. The Stone label floats: it sits on the line at rest and rises and shrinks to 70% on focus or once filled. Units (cm, kg, ans) sit right on the baseline.
-- **Focus:** the rule turns ink and thickens to 2px; caret is brass.
-- **Error:** the rule turns red; a 12px red message with an outlined-circle icon below. Hints are 12px Stone.
-- **Boxed field and choice tile:** selects, textareas and fit choices use a 1px Thread Grey border on white, square; focus or selection turns the border ink with a 1px ink halo.
-
-### Size Chips
-Square 48px chips (min 56px wide) with a 1px Rule Grey inset outline and tabular numerals, Thread Grey on hover. Checked: ink fill, white text. The computed size carries a 1px brass ring offset 3px from the chip; sold-out sizes are Stone, struck through, outline removed. A 12px caption below explains the code.
-
-### Navigation
-- **Announcement strip:** full-width ink band, one centered 12px white line.
-- **Header:** described in Layout. Links are tracked caps in ink, lightening to Stone on hover, 44px targets; account collapses to its icon on mobile.
-- **Breadcrumb:** 13px Stone with "/" separators, current page in ink.
-- **Underlined tabs:** tracked caps in Stone; the current page turns ink with a 1px ink bottom rule.
-- **Footer:** ink band, the wordmark at 28px, 13px white text at 70%, tracked-caps legal links brightening to full white.
-
-### Product Tile (signature)
-A 4:5 cut-out photo on studio grey, then the product name in tracked caps, a 13px Stone color and material line, and the price in figures. Photos ease to 1.03 scale over 700ms on hover, only on hover-capable devices and never under reduced motion.
-
-### Size Badge (signature)
-A white rectangle pinned to the top-left corner of every product photo when the visitor's measurements are known: an 11px Stone "Votre taille" label (screen-reader only on mobile) and the size in 14px semibold brass figures. Out of stock: "Épuisé en" and the size in Stone, struck through. The size reads before the product name.
-
-### Size Panel
-A studio-grey block on the product page: a tracked-caps "Votre taille" label, the size in 44px brass figures with the estimated underline, the confidence line in Stone, and a text link to edit measurements. Without measurements it holds a short prompt and a secondary button.
-
-### Size Tape
-A tailor's tape gauge on studio grey: a 2px Rule Grey track filled in brass up to the chest measurement (brass at 45% when estimated), a 16px round brass knob ringed in white, shirt and suit size bands above and below. The chosen band is filled brass with white text; the neighbouring size is outlined in brass. The knob moves on a critically damped spring and jumps directly under reduced motion.
-
-### Disclosure
-Native details rows between 1px rules: a 56px tracked-caps summary with a drawn plus whose vertical stroke fades on open.
-
-## Do's and Don'ts
-
-### Do:
-- **Do** keep the page white (canvas), text ink (label), secondary text Stone (label-2), and every photo on studio grey (tile).
-- **Do** reserve brass for the visitor's size: badge, panel, size line, chip ring, size tape.
-- **Do** set the wordmark and every h1 to h3 in Bodoni Moda at weight 400; set prices and sizes in Jost lining tabular figures.
-- **Do** set navigation, buttons, product names and data labels in 12px Jost 500, 0.12em tracking, uppercase.
-- **Do** bracket the page with the black announcement strip and the black footer; fill only the primary action in black.
-- **Do** keep every corner square and every line 1px; round only the cart count, the tape knob and the spinner.
-- **Do** cut out photos and composite them on the studio grey with the same framing, 4:5.
-- **Do** mark estimated values with the dotted underline and keep 44px minimum hit areas on links.
-
-### Don't:
-- **Don't** return to the Apple Store look: no pill or rounded buttons, no rounded cards, no system blue.
-- **Don't** return to the dark house: no black page ground, no ivory text, no photo veils.
-- **Don't** fill a button, link or border in brass, or add a second accent color.
-- **Don't** use bold Bodoni or set body text in Bodoni.
-- **Don't** add drop shadows for elevation.
-- **Don't** use text glyphs as icons; draw icons as 1.2 to 1.3px-stroke outline SVG.
-- **Don't** place a tracked-caps label above a title as decoration.
-- **Don't** use Mr Porter's name, logo, copy or photographs.
+- Pas de défilement horizontal à 375, 768, 1024 et 1440 px, sur toutes les pages (client et admin).
+- Cibles tactiles de 44 px au minimum, `cursor: pointer` sur tout élément cliquable.
+- Transitions de 200 ms, `prefers-reduced-motion` respecté.
+- Focus clavier visible (contour de 2 px).

@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import { primaryButton } from "@/components/field";
+import { inputClass, primaryButton } from "@/components/field";
 import { RETURN_REASONS } from "@/lib/validation";
 import { requestReturn, type ReturnState } from "./actions";
 
@@ -11,18 +11,18 @@ export function ReturnForm({ orderItemId }: { orderItemId: string }) {
 
   if (!open) {
     return (
-      <button type="button" onClick={() => setOpen(true)} className="inline-flex min-h-11 cursor-pointer items-center text-sm text-link hover:underline">
+      <button type="button" onClick={() => setOpen(true)} className="inline-flex min-h-11 cursor-pointer items-center text-sm font-semibold text-accent hover:underline">
         Retourner cet article
       </button>
     );
   }
 
   return (
-    <form action={action} className="mt-3 grid max-w-[26rem] gap-3 bg-tile p-4 text-sm">
+    <form action={action} className="mt-3 grid max-w-[26rem] gap-4 rounded-xl bg-muted p-4 text-sm">
       <input type="hidden" name="order_item_id" value={orderItemId} />
-      <label className="grid gap-1.5">
+      <label className="grid gap-2 font-medium">
         Motif du retour
-        <select name="reason" required defaultValue="" className="h-11 border border-control pl-3 text-[17px]">
+        <select name="reason" required defaultValue="" className={`${inputClass} h-12`}>
           <option value="" disabled>
             Choisissez un motif
           </option>
@@ -33,12 +33,12 @@ export function ReturnForm({ orderItemId }: { orderItemId: string }) {
           ))}
         </select>
       </label>
-      <label className="grid gap-1.5">
+      <label className="grid gap-2 font-medium">
         Précision (facultatif)
-        <textarea name="comment" rows={2} maxLength={500} className="border border-control bg-field p-3 text-[17px]" />
+        <textarea name="comment" rows={2} maxLength={500} className={inputClass} />
       </label>
       {state.error && (
-        <p role="alert" className="text-danger">
+        <p role="alert" className="text-destructive">
           {state.error}
         </p>
       )}
@@ -46,7 +46,7 @@ export function ReturnForm({ orderItemId }: { orderItemId: string }) {
         <button type="submit" disabled={pending} className={primaryButton}>
           {pending ? "Envoi…" : "Demander le retour"}
         </button>
-        <button type="button" onClick={() => setOpen(false)} className="eyebrow inline-flex min-h-11 cursor-pointer items-center text-label-2 hover:text-label">
+        <button type="button" onClick={() => setOpen(false)} className="inline-flex min-h-11 cursor-pointer items-center font-semibold text-muted-foreground hover:text-foreground">
           Annuler
         </button>
       </div>

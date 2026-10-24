@@ -9,9 +9,9 @@ export const metadata: Metadata = { title: "Commande" };
 
 export default function CheckoutPage() {
   return (
-    <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-16">
-      <h1 className="text-[36px] md:text-[48px]">Livraison et paiement</h1>
-      <Suspense fallback={<div aria-busy className="mt-10 h-96 bg-tile" />}>
+    <div className="mx-auto max-w-[1180px] px-4 pt-10 sm:px-8 md:pt-16">
+      <h1 className="text-[40px] md:text-[54px]">Livraison et paiement</h1>
+      <Suspense fallback={<div aria-busy className="mt-10 h-96 rounded-xl bg-muted" />}>
         <Checkout />
       </Suspense>
     </div>
@@ -30,7 +30,7 @@ async function Checkout() {
     return (
       <p className="mt-10 text-[17px]">
         {empty ? "Votre panier est vide." : "Certaines lignes de votre panier ne sont plus disponibles."}{" "}
-        <Link href={empty ? "/costumes" : "/panier"} className="text-link hover:underline">
+        <Link href={empty ? "/costumes" : "/panier"} className="text-foreground hover:underline">
           {empty ? "Voir les costumes" : "Revoir le panier"}
         </Link>
       </p>
@@ -55,7 +55,7 @@ async function Checkout() {
           }}
         />
       </section>
-      <aside aria-labelledby="summary-title" className="self-start bg-tile p-6 lg:sticky lg:top-[88px]">
+      <aside aria-labelledby="summary-title" className="card self-start p-6 lg:sticky lg:top-24">
         <h2 id="summary-title" className="text-[17px]">
           Récapitulatif
         </h2>
@@ -63,16 +63,16 @@ async function Checkout() {
           {lines.map((l) => (
             <li key={l.variantId} className="flex justify-between gap-4">
               <span className="min-w-0">
-                {l.product.name} <span className="text-label-2">· {l.size} · ×{l.quantity}</span>
+                {l.product.name} <span className="text-muted-foreground">· {l.size} · ×{l.quantity}</span>
               </span>
               <span className="shrink-0 tabular-nums">{price(l.product.priceCents * l.quantity)}</span>
             </li>
           ))}
         </ul>
-        <p className="mt-4 flex justify-between border-t border-separator pt-4 font-semibold">
+        <p className="mt-4 flex justify-between border-t border-border pt-4 font-semibold">
           Total <span className="tabular-nums">{total}</span>
         </p>
-        <Link href="/panier" className="mt-2 inline-flex min-h-11 items-center text-sm text-link hover:underline">
+        <Link href="/panier" className="mt-2 inline-flex min-h-11 items-center text-sm text-foreground hover:underline">
           Modifier le panier
         </Link>
       </aside>

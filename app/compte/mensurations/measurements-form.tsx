@@ -61,17 +61,17 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
 
   return (
     <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-14">
-      <form onSubmit={submit} noValidate className="grid content-start gap-10">
-        <fieldset className="grid gap-3 sm:grid-cols-3">
-          <legend className="mb-4 font-display text-[26px]">L’essentiel</legend>
+      <form onSubmit={submit} noValidate className="card grid content-start gap-10 p-5 sm:p-8">
+        <fieldset className="grid gap-4 sm:grid-cols-3">
+          <legend className="mb-4 font-display text-[28px] font-semibold">L’essentiel</legend>
           {numeric("heightCm")}
           {numeric("weightKg")}
           {numeric("age")}
         </fieldset>
 
-        <fieldset className="grid gap-3 sm:grid-cols-2 sm:items-start">
-          <legend className="font-display text-[26px]">Si vous les connaissez</legend>
-          <p className="mt-1 mb-2 text-sm text-pretty text-label-2 sm:col-span-2">
+        <fieldset className="grid gap-4 sm:grid-cols-2 sm:items-start">
+          <legend className="font-display text-[28px] font-semibold">Si vous les connaissez</legend>
+          <p className="mt-1 mb-1 text-[14px] text-pretty text-muted-foreground sm:col-span-2">
             Mesurés au mètre ruban, ils remplacent l’estimation et rendent le calcul plus sûr.
           </p>
           {numeric("chestCm", "À l’horizontale, sous les bras, à l’endroit le plus large.")}
@@ -79,8 +79,8 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
         </fieldset>
 
         <fieldset>
-          <legend className="font-display text-[26px]">Coupe préférée</legend>
-          {/* Tuiles de choix : filet noir sur l’option retenue. */}
+          <legend className="font-display text-[28px] font-semibold">Coupe préférée</legend>
+          {/* Tuiles de choix : filet or sur l’option retenue. */}
           <div className="mt-4 grid grid-cols-2 gap-3">
             {[{ value: "", label: "Sans préférence" }, ...FITS].map((fit) => (
               <label key={fit.value} className="relative">
@@ -92,13 +92,13 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
                   onChange={set("preferred_fit")}
                   className="peer sr-only"
                 />
-                <span className="flex min-h-14 cursor-pointer items-center justify-center border border-control bg-field px-3 py-2 text-center text-[15px] leading-tight font-medium transition-[border-color,box-shadow] duration-150 ease-[ease] hover:border-label-2 active:bg-tile peer-checked:border-label peer-checked:shadow-[0_0_0_1px_var(--color-label)] peer-focus-visible:outline-1 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-label">
+                <span className="flex min-h-14 cursor-pointer items-center justify-center rounded-lg border border-input bg-card px-3 py-2 text-center text-[15px] leading-tight font-semibold transition-[border-color,box-shadow,background-color] duration-200 hover:border-foreground active:bg-muted peer-checked:border-accent peer-checked:bg-accent/5 peer-checked:shadow-[0_0_0_1px_var(--color-accent)] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring">
                   {fit.label}
                 </span>
               </label>
             ))}
           </div>
-          {errors.preferredFit && <p className="mt-2 text-xs text-danger">{errors.preferredFit}</p>}
+          {errors.preferredFit && <p className="mt-2 text-[13px] text-destructive">{errors.preferredFit}</p>}
         </fieldset>
 
         <div className="flex flex-wrap items-center gap-4">
@@ -107,18 +107,18 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
             {pending ? "Enregistrement…" : "Enregistrer et voir les costumes"}
           </button>
           {state.error && (
-            <p role="alert" className="text-sm text-danger">
+            <p role="alert" className="text-[14px] text-destructive">
               {state.error}
             </p>
           )}
         </div>
       </form>
 
-      <section aria-labelledby="reading-title" className="bg-tile px-4 py-6 sm:p-10 lg:sticky lg:top-[88px] lg:self-start">
-        <h2 id="reading-title" className="text-[28px]">
+      <section aria-labelledby="reading-title" className="rounded-2xl bg-muted px-4 py-6 sm:p-10 lg:sticky lg:top-24 lg:self-start">
+        <h2 id="reading-title" className="text-[32px]">
           Lecture du mètre
         </h2>
-        <p className="mt-2 text-sm text-label-2">
+        <p className="mt-2 text-[14px] text-muted-foreground">
           {preview
             ? "Calcul sur un modèle de coupe classique. Chaque article applique ensuite son propre tableau de tailles."
             : "Indiquez votre taille, votre poids et votre âge : votre repère se place sur le mètre."}
@@ -134,7 +134,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
             ]}
           />
           {fitShift !== 0 && (
-            <p className="mt-4 text-sm text-label-2">
+            <p className="mt-4 text-[14px] text-muted-foreground">
               Votre préférence pour une coupe {fitLabel} décale le repère de {Math.abs(fitShift)} cm{" "}
               {fitShift < 0 ? "vers les petites tailles" : "vers les grandes tailles"}.
             </p>
@@ -142,7 +142,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
         </div>
 
         {preview && m && (
-          <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-separator pt-8">
+          <dl className="card mt-8 grid grid-cols-2 gap-x-6 gap-y-8 p-5 sm:p-6">
             <Reading label="Tour de poitrine" value={cm(preview.chest)} estimated={m.chestCm === null} />
             <Reading label="Tour de taille" value={cm(preview.waist)} estimated={m.waistCm === null} />
             <SizeReading label="Chemise" result={preview.shirt} hasChart={charts.shirt.length > 0} />
@@ -166,10 +166,10 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
 function Reading({ label, value, estimated }: { label: string; value: string; estimated: boolean }) {
   return (
     <div>
-      <dt className="text-sm text-label-2">{label}</dt>
+      <dt className="text-[14px] text-muted-foreground">{label}</dt>
       <dd className="mt-1.5">
-        <span className={`figures text-[28px] leading-none whitespace-nowrap sm:text-[32px] ${estimated ? "estimated" : ""}`}>{value}</span>
-        <span className="mt-1.5 block text-xs text-label-2">{estimated ? "estimé" : "mesuré"}</span>
+        <span className={`figures text-[26px] font-semibold leading-none whitespace-nowrap sm:text-[32px] ${estimated ? "estimated" : ""}`}>{value}</span>
+        <span className="mt-1.5 block text-[12px] text-muted-foreground">{estimated ? "estimé" : "mesuré"}</span>
       </dd>
     </div>
   );
@@ -182,9 +182,9 @@ function SizeReading({ label, result, hasChart }: { label: string; result: Retur
   } else if (result.size) {
     reading = (
       <>
-        <span className="figures text-[56px] leading-none">{result.size}</span>
-        {result.alternative && <span className="ml-2 text-[17px] text-label-2">ou {result.alternative}</span>}
-        <span className="mt-2 block text-xs text-label-2">Taille estimée, {CONFIDENCE_LABEL[result.confidence]}</span>
+        <span className="figures text-[52px] leading-none font-bold text-accent">{result.size}</span>
+        {result.alternative && <span className="ml-2 text-[17px] text-muted-foreground">ou {result.alternative}</span>}
+        <span className="mt-2 block text-[12px] text-muted-foreground">Taille estimée, {CONFIDENCE_LABEL[result.confidence]}</span>
       </>
     );
   } else {
@@ -192,7 +192,7 @@ function SizeReading({ label, result, hasChart }: { label: string; result: Retur
   }
   return (
     <div>
-      <dt className="text-sm text-label-2">{label}</dt>
+      <dt className="text-[14px] text-muted-foreground">{label}</dt>
       <dd className="mt-1.5">{reading}</dd>
     </div>
   );
@@ -201,27 +201,27 @@ function SizeReading({ label, result, hasChart }: { label: string; result: Retur
 function DeleteZone({ onDelete }: { onDelete: () => Promise<void> }) {
   const [confirming, setConfirming] = useState(false);
   return (
-    <section aria-labelledby="delete-title" className="mt-4 border-t border-separator pt-10 lg:col-span-2">
-      <h2 id="delete-title" className="text-[21px]">
+    <section aria-labelledby="delete-title" className="card p-5 sm:p-8 lg:col-span-2">
+      <h2 id="delete-title" className="text-[26px]">
         Effacer mes mensurations
       </h2>
-      <p className="mt-2 max-w-prose text-sm text-label-2">
+      <p className="mt-2 max-w-prose text-[14px] text-muted-foreground">
         Vos chiffres sont supprimés de nos serveurs. Les tailles ne seront plus calculées tant que vous ne les aurez pas
         saisis à nouveau.
       </p>
       <form action={onDelete} className="mt-4 flex flex-wrap gap-3">
         {confirming ? (
           <>
-            <button key="confirm" type="submit" className="eyebrow h-11 cursor-pointer bg-danger px-6 text-on-accent transition-transform duration-150 ease-out active:scale-[0.98]">
+            <button key="confirm" type="submit" className="h-11 cursor-pointer rounded-lg bg-destructive px-6 text-[14px] font-semibold text-on-primary transition-[background-color,transform] duration-200 hover:bg-destructive/90 active:scale-[0.98]">
               Oui, tout effacer
             </button>
-            <button type="button" onClick={() => setConfirming(false)} className="eyebrow h-11 cursor-pointer px-4 text-label-2 hover:text-label">
+            <button type="button" onClick={() => setConfirming(false)} className="h-11 cursor-pointer rounded-lg px-4 text-[14px] font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
               Annuler
             </button>
           </>
         ) : (
           // Clés distinctes : sinon React transforme ce bouton en bouton d'envoi pendant le clic, qui soumet le formulaire.
-          <button key="ask" type="button" onClick={() => setConfirming(true)} className="eyebrow h-11 cursor-pointer border border-danger/70 px-6 text-danger transition-colors duration-150 ease-[ease] hover:bg-danger-tint">
+          <button key="ask" type="button" onClick={() => setConfirming(true)} className="h-11 cursor-pointer rounded-lg border-2 border-destructive px-6 text-[14px] font-semibold text-destructive transition-colors duration-200 hover:bg-destructive-tint">
             Effacer mes mensurations
           </button>
         )}

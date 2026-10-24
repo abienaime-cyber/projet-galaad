@@ -12,11 +12,11 @@ export const metadata: Metadata = { title: "Rédiger une fiche", robots: { index
 
 export default function AdminProductPage({ params }: PageProps<"/admin/produits/[slug]">) {
   return (
-    <div className="mx-auto max-w-[1180px] px-4 pt-6 pb-24 sm:px-8 md:pt-10">
-      <Link href="/admin/produits" className="eyebrow inline-flex min-h-11 items-center gap-2 text-label-2 hover:text-label">
+    <div className="mx-auto max-w-[1180px] px-4 pt-6 sm:px-8 md:pt-10">
+      <Link href="/admin/produits" className="inline-flex min-h-11 items-center gap-2 text-[14px] font-semibold text-muted-foreground hover:text-foreground">
         <Chevron back /> Fiches produit
       </Link>
-      <Suspense fallback={<div aria-busy className="mt-6 h-96 bg-tile" />}>
+      <Suspense fallback={<div aria-busy className="mt-6 h-96 rounded-xl bg-muted" />}>
         {params.then(({ slug }) => (
           <Editor slug={slug} />
         ))}
@@ -32,10 +32,10 @@ async function Editor({ slug }: { slug: string }) {
 
   return (
     <div className="mt-4 grid gap-10 md:grid-cols-[14rem_minmax(0,1fr)]">
-      {p.image_url && <Image src={p.image_url} alt="" width={448} height={560} className="aspect-[4/5] w-full object-cover" />}
+      {p.image_url && <Image src={p.image_url} alt="" width={448} height={560} className="card aspect-[4/5] w-full bg-muted object-cover" />}
       <div className="min-w-0">
-        <h1 className="text-[32px]">{p.name}</h1>
-        <p className="mt-2 text-sm text-label-2">
+        <h1 className="text-[36px] md:text-[44px]">{p.name}</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
           {FIT_LABEL[p.fit as keyof typeof FIT_LABEL]} · {p.color} · {p.material}
         </p>
         <CopyEditor productId={p.id} current={p.description} />

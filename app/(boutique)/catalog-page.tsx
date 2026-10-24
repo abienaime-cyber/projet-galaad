@@ -16,17 +16,17 @@ type Props = { category: Category; title: string; tagline: string; searchParams:
 
 export function CatalogPage({ category, title, tagline, searchParams }: Props) {
   return (
-    <div className="mx-auto max-w-[1440px] px-4 pt-6 pb-28 sm:px-8">
-      <nav aria-label="Fil d’Ariane" className="text-[13px] text-label-2">
-        <Link href="/" className="inline-flex min-h-11 items-center hover:text-label hover:underline">Accueil</Link>
+    <div className="mx-auto max-w-[1280px] px-4 pt-6 sm:px-8">
+      <nav aria-label="Fil d’Ariane" className="text-[13px] text-muted-foreground">
+        <Link href="/" className="inline-flex min-h-11 items-center hover:text-foreground hover:underline">Accueil</Link>
         <span aria-hidden className="mx-2">/</span>
-        <span aria-current="page" className="text-label">{title}</span>
+        <span aria-current="page" className="text-foreground">{title}</span>
       </nav>
-      <header className="pt-4 text-center md:pt-6">
-        <h1 className="text-[40px] md:text-[56px]">{title}</h1>
-        <p className="mt-2 text-label-2">{tagline}</p>
+      <header className="pt-4 md:pt-8">
+        <h1 className="text-[44px] md:text-[60px]">{title}</h1>
+        <p className="mt-3 max-w-[40rem] text-[17px] text-muted-foreground">{tagline}</p>
       </header>
-      <Suspense fallback={<div aria-busy className="mt-10 h-[32rem] bg-tile" />}>
+      <Suspense fallback={<div aria-busy className="mt-10 h-[32rem] rounded-xl bg-muted" />}>
         <Catalog category={category} searchParams={searchParams} />
       </Suspense>
     </div>
@@ -48,18 +48,18 @@ async function Catalog({ category, searchParams }: Pick<Props, "category" | "sea
   return (
     <>
       {m ? (
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-y border-separator py-2">
-          <p className="text-[13px] text-label-2">
+        <div className="card mt-10 flex flex-wrap items-center justify-between gap-x-8 gap-y-3 px-5 py-3 sm:px-6">
+          <p className="text-[14px] text-muted-foreground">
             {reference?.size ? (
               <>
                 Votre taille estimée :{" "}
-                <span className={`figures text-[15px] font-semibold text-brass ${reference.estimated ? "estimated" : ""}`}>{reference.size}</span>
+                <span className={`figures text-[16px] font-bold text-accent ${reference.estimated ? "estimated" : ""}`}>{reference.size}</span>
                 {reference.alternative && <> ou {reference.alternative}</>}, {CONFIDENCE_LABEL[reference.confidence]}.{" "}
               </>
             ) : (
               <>Vos mensurations sortent de notre tableau de tailles. </>
             )}
-            <Link href="/compte/mensurations" className="inline-flex min-h-11 items-center text-label underline decoration-label/40 hover:decoration-label">
+            <Link href="/compte/mensurations" className="inline-flex min-h-11 items-center font-semibold text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground">
               Modifier mes mensurations
             </Link>
           </p>
@@ -76,20 +76,20 @@ async function Catalog({ category, searchParams }: Pick<Props, "category" | "sea
       )}
 
       {items.length > 0 ? (
-        <ul className="mt-8 grid grid-cols-2 gap-x-3 gap-y-10 sm:gap-x-5 sm:gap-y-14 md:grid-cols-3 xl:grid-cols-4">
+        <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
           {items.map((item, i) => (
             <ProductTile key={item.product.slug} item={item} priority={i < 6} />
           ))}
         </ul>
       ) : (
-        <div className="mt-10 border border-separator px-6 py-16 text-center sm:px-12">
+        <div className="card mt-10 px-6 py-16 text-center sm:px-12">
           <h2 className="text-[28px]">
             {products.length === 0 ? `Aucun ${noun.one} en ligne pour le moment.` : `Aucun ${noun.one} disponible dans votre taille en ce moment.`}
           </h2>
           {products.length > 0 && (
-            <p className="mt-3 text-label-2">
+            <p className="mt-3 text-muted-foreground">
               Les tailles épuisées reviennent au fil des réassorts.{" "}
-              <Link href={`${path}?vue=tout`} className="text-label underline decoration-label/40 hover:decoration-label">
+              <Link href={`${path}?vue=tout`} className="font-semibold text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground">
                 Voir tous les {noun.many}
               </Link>
             </p>
@@ -102,20 +102,20 @@ async function Catalog({ category, searchParams }: Pick<Props, "category" | "sea
 
 function SizePrompt({ signedIn, noun }: { signedIn: boolean; noun: (typeof NOUN)[Category] }) {
   return (
-    <section aria-labelledby="size-prompt" className="mt-10 flex flex-col items-center bg-tile px-6 py-12 text-center sm:py-14">
+    <section aria-labelledby="size-prompt" className="mt-10 flex flex-col items-center rounded-2xl bg-primary px-6 py-12 text-center text-on-primary sm:py-14">
       <h2 id="size-prompt" className="max-w-[24ch] text-[30px] md:text-[36px]">
         Votre taille sur chaque {noun.one}.
       </h2>
-      <p className="mt-4 max-w-[40rem] text-label-2">
+      <p className="mt-4 max-w-[40rem] text-on-primary/75">
         Donnez votre taille, votre poids et votre âge. Nous calculons votre taille pour chaque article et n’affichons que
         les {noun.many} disponibles pour vous.
       </p>
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
         <Link href={signedIn ? "/compte/mensurations" : "/inscription"} className={primaryButton}>
           {signedIn ? "Saisir mes mensurations" : "Créer un compte"}
         </Link>
         {!signedIn && (
-          <Link href="/connexion" className={textLink}>
+          <Link href="/connexion" className={`${textLink} text-on-primary decoration-on-primary/40 hover:decoration-on-primary`}>
             J’ai déjà un compte
           </Link>
         )}

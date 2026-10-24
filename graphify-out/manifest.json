@@ -1,14 +1,14 @@
 {
   "app/layout.tsx": {
-    "mtime": 1792843953.5822856,
-    "seen": 1792844145.5460632,
-    "ast_hash": "db17e9461f429e4ff00b3a5c968a860d",
+    "mtime": 1792883061.6613908,
+    "seen": 1792883915.7579327,
+    "ast_hash": "c5453f6d4eb869f9480eb346b65d3621",
     "semantic_hash": ""
   },
   "app/page.tsx": {
-    "mtime": 1792879456.2792375,
-    "seen": 1792879753.9680552,
-    "ast_hash": "41f123962f7eff40d8bd19c2e69c4bc5",
+    "mtime": 1792883845.8339345,
+    "seen": 1792883915.7579365,
+    "ast_hash": "f1ee7103e781d8678b0291bcfc168e80",
     "semantic_hash": ""
   },
   "eslint.config.mjs": {
@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1792767199.074637,
-    "seen": 1792768122.7162404,
-    "ast_hash": "af6cc7b8cef756392e95f86916a26ac1",
+    "mtime": 1792883093.541635,
+    "seen": 1792883915.7579908,
+    "ast_hash": "83a428d369f00ef580eae8ce2c968f7c",
     "semantic_hash": ""
   },
   "tsconfig.json": {
@@ -42,9 +42,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1792879456.2799733,
-    "seen": 1792879753.968122,
-    "ast_hash": "6813b3fc93099367c33a70e5e40ad866",
+    "mtime": 1792882973.129628,
+    "seen": 1792883915.7580168,
+    "ast_hash": "d2956f99cc92fe027587e522fe566b26",
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
@@ -84,15 +84,15 @@
     "semantic_hash": ""
   },
   "app/(auth)/auth-form.tsx": {
-    "mtime": 1792842428.8900487,
-    "seen": 1792844145.5459995,
-    "ast_hash": "1b5ab9e3289500ec8f302b0fb8bf6cce",
+    "mtime": 1792883417.7923405,
+    "seen": 1792883915.7578843,
+    "ast_hash": "d6855650f74f1f0283240d1282a691b4",
     "semantic_hash": ""
   },
   "app/(auth)/auth-shell.tsx": {
-    "mtime": 1792877906.159141,
-    "seen": 1792879753.967994,
-    "ast_hash": "5d0bfc855dfbef93c30a75171bc043c0",
+    "mtime": 1792883599.728114,
+    "seen": 1792883915.7578871,
+    "ast_hash": "a1dc15b773fd4fc6e67243bf5ca10496",
     "semantic_hash": ""
   },
   "app/(auth)/connexion/page.tsx": {
@@ -120,15 +120,15 @@
     "semantic_hash": ""
   },
   "app/compte/mensurations/measurements-form.tsx": {
-    "mtime": 1792876337.0391843,
-    "seen": 1792879753.968044,
-    "ast_hash": "29283f46307d1a735d73a80c9f2cb467",
+    "mtime": 1792883446.9406161,
+    "seen": 1792883915.7579257,
+    "ast_hash": "782968f4e7d63376cceab75225273861",
     "semantic_hash": ""
   },
   "app/compte/mensurations/page.tsx": {
-    "mtime": 1792876750.1287503,
-    "seen": 1792879753.9680452,
-    "ast_hash": "2b29e42edac890459f42ed172f9e66d7",
+    "mtime": 1792883426.660783,
+    "seen": 1792883915.7579272,
+    "ast_hash": "0886b19abff3816f68f982757172059a",
     "semantic_hash": ""
   },
   "app/compte/page.tsx": {
@@ -138,21 +138,21 @@
     "semantic_hash": ""
   },
   "components/field.tsx": {
-    "mtime": 1792876322.0730352,
-    "seen": 1792879753.9680676,
-    "ast_hash": "abc83ce89bdec9a5dadb65be6364f45b",
+    "mtime": 1792883148.3416383,
+    "seen": 1792883915.7579548,
+    "ast_hash": "5126a6feba339157543d5edfa5a21a07",
     "semantic_hash": ""
   },
   "components/site-header.tsx": {
-    "mtime": 1792877906.1605737,
-    "seen": 1792879753.9680731,
-    "ast_hash": "267728d504e92cc07a4cfb275af53447",
+    "mtime": 1792883123.9776368,
+    "seen": 1792883915.7579615,
+    "ast_hash": "ff7ca853109174a7e1723c734612dfbb",
     "semantic_hash": ""
   },
   "components/size-tape.tsx": {
-    "mtime": 1792842410.3497558,
-    "seen": 1792844145.5461428,
-    "ast_hash": "63e55c518817b177fb89669cff146b5d",
+    "mtime": 1792883464.1321557,
+    "seen": 1792883915.7579627,
+    "ast_hash": "c946de83a9d17b278d338344e965e1c1",
     "semantic_hash": ""
   },
   "lib/auth.ts": {
@@ -198,9 +198,9 @@
     "semantic_hash": ""
   },
   "PRODUCT.md": {
-    "mtime": 1792876760.2890024,
-    "seen": 1792879753.9681208,
-    "ast_hash": "8907eb761ac7a7712cee732400b2e777",
+    "mtime": 1792883910.9755645,
+    "seen": 1792883915.7580154,
+    "ast_hash": "13455ae3419ea801b640a6b559a1ac41",
     "semantic_hash": ""
   },
   "components/spinner.tsx": {
@@ -222,9 +222,9 @@
     "semantic_hash": ""
   },
   "app/(boutique)/catalog-page.tsx": {
-    "mtime": 1792876364.6450572,
-    "seen": 1792879753.968002,
-    "ast_hash": "720261ea2132816782566470c1185d8c",
+    "mtime": 1792883343.2633035,
+    "seen": 1792883915.7578924,
+    "ast_hash": "4156c07e9f7a3c607951e1bf46397b16",
     "semantic_hash": ""
   },
   "app/(boutique)/chemises/page.tsx": {
@@ -240,27 +240,27 @@
     "semantic_hash": ""
   },
   "app/(boutique)/produit/[slug]/page.tsx": {
-    "mtime": 1792878478.4660132,
-    "seen": 1792879753.9680154,
-    "ast_hash": "2c94ab265173e8043d4ac62094feaaf0",
+    "mtime": 1792883845.8343825,
+    "seen": 1792883915.757902,
+    "ast_hash": "cc8c8be2a787e2a67184a4d139393517",
     "semantic_hash": ""
   },
   "app/not-found.tsx": {
-    "mtime": 1792876750.118082,
-    "seen": 1792879753.9680536,
-    "ast_hash": "9165190c20b09bb2134e7be1b48de558",
+    "mtime": 1792883520.1652186,
+    "seen": 1792883915.7579346,
+    "ast_hash": "f4460ca9547765f5336a249975f7c711",
     "semantic_hash": ""
   },
   "components/product-tile.tsx": {
-    "mtime": 1792877906.160787,
-    "seen": 1792879753.96807,
-    "ast_hash": "361724999e76d626d76d954ec2b19d30",
+    "mtime": 1792883328.0768027,
+    "seen": 1792883915.757958,
+    "ast_hash": "040c8346ad236fbdc26d2b89e197d920",
     "semantic_hash": ""
   },
   "components/segmented-nav.tsx": {
-    "mtime": 1792876329.0179403,
-    "seen": 1792879753.9680712,
-    "ast_hash": "270dda4676b5a1753ee03e50e4d7702b",
+    "mtime": 1792883726.0651221,
+    "seen": 1792883915.7579591,
+    "ast_hash": "1ef556cbe9af728a91aec925264bb0c9",
     "semantic_hash": ""
   },
   "lib/catalog.ts": {
@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1792878327.8741872,
-    "seen": 1792879753.9681196,
-    "ast_hash": "8169f01ee6f9c3ed1b46cd7a88433b34",
+    "mtime": 1792883903.5976832,
+    "seen": 1792883915.7580142,
+    "ast_hash": "9684146dafab4b63f460a8fdb8d1d6df",
     "semantic_hash": ""
   },
   "app/(boutique)/produit/[slug]/actions.ts": {
@@ -300,21 +300,21 @@
     "semantic_hash": ""
   },
   "app/(boutique)/produit/[slug]/add-to-cart.tsx": {
-    "mtime": 1792878501.4740438,
-    "seen": 1792879753.9680114,
-    "ast_hash": "32006649bafa516a55363fcb62251859",
+    "mtime": 1792883396.9331336,
+    "seen": 1792883915.7578993,
+    "ast_hash": "fdebea26464899c18d2292c364470e5a",
     "semantic_hash": ""
   },
   "app/(boutique)/produit/[slug]/advisor.tsx": {
-    "mtime": 1792842369.0380383,
-    "seen": 1792844145.5460196,
-    "ast_hash": "5881578abb556bea4c95b25718aaa753",
+    "mtime": 1792883396.9338706,
+    "seen": 1792883915.7579005,
+    "ast_hash": "fbfbcfc0bd11673f8ba50c2cd2d16250",
     "semantic_hash": ""
   },
   "app/(boutique)/produit/[slug]/review-form.tsx": {
-    "mtime": 1792879722.510264,
-    "seen": 1792879753.9680169,
-    "ast_hash": "b9723d7d7bdfe0ad38aa99a44a0177f9",
+    "mtime": 1792883396.9346766,
+    "seen": 1792883915.7579029,
+    "ast_hash": "dfc97a85ab7dfcc545a1e289605a0e8c",
     "semantic_hash": ""
   },
   "app/admin/actions.ts": {
@@ -324,27 +324,27 @@
     "semantic_hash": ""
   },
   "app/admin/page.tsx": {
-    "mtime": 1792877729.5508618,
-    "seen": 1792879753.968021,
-    "ast_hash": "065656abe6ac54181a3f19056287db8f",
+    "mtime": 1792883511.4375942,
+    "seen": 1792883915.7579057,
+    "ast_hash": "1f3579ed46e169ac7fa1b845ad2389c1",
     "semantic_hash": ""
   },
   "app/admin/produits/[slug]/copy-editor.tsx": {
-    "mtime": 1792876328.979184,
-    "seen": 1792879753.9680228,
-    "ast_hash": "1e2ca6dc252678ca5c12e9aba797c532",
+    "mtime": 1792883511.437034,
+    "seen": 1792883915.757907,
+    "ast_hash": "263c3a10968020de56f683ca61be9122",
     "semantic_hash": ""
   },
   "app/admin/produits/[slug]/page.tsx": {
-    "mtime": 1792877906.1597373,
-    "seen": 1792879753.9680245,
-    "ast_hash": "38dab8d703aa445b064131cc3da60065",
+    "mtime": 1792883511.4373667,
+    "seen": 1792883915.7579086,
+    "ast_hash": "7b74be04d0f25e3021e08b6ff794f810",
     "semantic_hash": ""
   },
   "app/admin/produits/page.tsx": {
-    "mtime": 1792876750.1163561,
-    "seen": 1792879753.9680264,
-    "ast_hash": "2e761b8b0647cb675de982571f6b101c",
+    "mtime": 1792883503.7744122,
+    "seen": 1792883915.7579098,
+    "ast_hash": "ee2361e964e028a16fa782c16b26c65b",
     "semantic_hash": ""
   },
   "app/commande/actions.ts": {
@@ -354,15 +354,15 @@
     "semantic_hash": ""
   },
   "app/commande/checkout-form.tsx": {
-    "mtime": 1792842362.2401764,
-    "seen": 1792844145.54604,
-    "ast_hash": "5c54d05423d78cc1a55fc9ecc09ffb13",
+    "mtime": 1792883484.8575692,
+    "seen": 1792883915.757915,
+    "ast_hash": "39a1b9f98604e01f84ec24b126c53bcf",
     "semantic_hash": ""
   },
   "app/commande/page.tsx": {
-    "mtime": 1792876750.1185338,
-    "seen": 1792879753.9680345,
-    "ast_hash": "3e964ae4147703747012c577438175b8",
+    "mtime": 1792883484.858122,
+    "seen": 1792883915.7579165,
+    "ast_hash": "1a98d75cbebe30c358fc89fa09318a64",
     "semantic_hash": ""
   },
   "app/compte/commandes/[id]/actions.ts": {
@@ -372,39 +372,39 @@
     "semantic_hash": ""
   },
   "app/compte/commandes/[id]/page.tsx": {
-    "mtime": 1792877729.5536075,
-    "seen": 1792879753.9680371,
-    "ast_hash": "d3b8bb7cf4d053cc62b553256feb3ad1",
+    "mtime": 1792883493.9229777,
+    "seen": 1792883915.757919,
+    "ast_hash": "5157e0044058d4bae8f27661be6d29e6",
     "semantic_hash": ""
   },
   "app/compte/commandes/[id]/return-form.tsx": {
-    "mtime": 1792879722.5110297,
-    "seen": 1792879753.9680383,
-    "ast_hash": "ccfb658b50ee786fb9277e89ee89e10b",
+    "mtime": 1792883493.9226747,
+    "seen": 1792883915.7579203,
+    "ast_hash": "ff4f97d32dfaa82107b9d02a036c0458",
     "semantic_hash": ""
   },
   "app/compte/commandes/page.tsx": {
-    "mtime": 1792876750.1197963,
-    "seen": 1792879753.9680398,
-    "ast_hash": "779794b194b2c98ab8f3d4ad12cbe2f3",
+    "mtime": 1792883484.85846,
+    "seen": 1792883915.7579215,
+    "ast_hash": "f0b01414d3ab07dd7da95e46f75ad867",
     "semantic_hash": ""
   },
   "app/compte/layout.tsx": {
-    "mtime": 1792843856.7694695,
-    "seen": 1792844145.5460503,
-    "ast_hash": "a1ab531380674d8d297de4b53db880e1",
+    "mtime": 1792883426.6601245,
+    "seen": 1792883915.757923,
+    "ast_hash": "f535269d550e6b52ef5d33b03baf3103",
     "semantic_hash": ""
   },
   "app/error.tsx": {
-    "mtime": 1792876750.1177437,
-    "seen": 1792879753.968049,
-    "ast_hash": "dfc96744795fcbbedf5581d23ca70b75",
+    "mtime": 1792883520.164638,
+    "seen": 1792883915.757931,
+    "ast_hash": "388742614aa86095c7d70e91f0670ad4",
     "semantic_hash": ""
   },
   "app/loading.tsx": {
-    "mtime": 1792842397.070919,
-    "seen": 1792844145.5460646,
-    "ast_hash": "5482dec8b7cf89216225336af8f4aec2",
+    "mtime": 1792883520.1637354,
+    "seen": 1792883915.7579336,
+    "ast_hash": "b230573f0e14cfd71f8b13d58a14d95f",
     "semantic_hash": ""
   },
   "app/panier/actions.ts": {
@@ -414,9 +414,9 @@
     "semantic_hash": ""
   },
   "app/panier/page.tsx": {
-    "mtime": 1792878488.6158297,
-    "seen": 1792879753.968058,
-    "ast_hash": "0aab708a783318f79c56375bea5652ac",
+    "mtime": 1792883493.9222643,
+    "seen": 1792883915.7579386,
+    "ast_hash": "9d32b188ee5d2d2c5a4155b56c6adcc0",
     "semantic_hash": ""
   },
   "components/account-nav.tsx": {
@@ -468,183 +468,183 @@
     "semantic_hash": ""
   },
   "public/products/chemise-carreaux-noir-blanc.jpg": {
-    "mtime": 1792879456.2426834,
-    "seen": 1792879753.96813,
-    "ast_hash": "2659cfe65cff64df51b1944e1d53ad92",
+    "mtime": 1792882961.0282915,
+    "seen": 1792883915.7580266,
+    "ast_hash": "03aaf61d5a744256e385867defe0b014",
     "semantic_hash": ""
   },
   "public/products/chemise-chambray.jpg": {
-    "mtime": 1792879456.2435288,
-    "seen": 1792879753.9681313,
-    "ast_hash": "be0ebc4861536f571ed7f99f0ed489d8",
+    "mtime": 1792882961.0291555,
+    "seen": 1792883915.7580278,
+    "ast_hash": "b969d4ac06e0bb2faa823dcf8b8469fa",
     "semantic_hash": ""
   },
   "public/products/chemise-denim-indigo.jpg": {
-    "mtime": 1792879456.2442358,
-    "seen": 1792879753.9681325,
-    "ast_hash": "66ca42c146caaed51588c8b3428dbf76",
+    "mtime": 1792882961.0299664,
+    "seen": 1792883915.758029,
+    "ast_hash": "79bceebb34ecf6049768f93e2e3c2302",
     "semantic_hash": ""
   },
   "public/products/chemise-fil-a-fil-bleue.jpg": {
-    "mtime": 1792879456.2447772,
-    "seen": 1792879753.9681337,
-    "ast_hash": "c55d7eacd3960d02c10be54f4cd7f9fe",
+    "mtime": 1792882961.030408,
+    "seen": 1792883915.7580304,
+    "ast_hash": "6a3b914c8abc3e30f7aab6c9806edda8",
     "semantic_hash": ""
   },
   "public/products/chemise-flanelle-carreaux.jpg": {
-    "mtime": 1792879456.245187,
-    "seen": 1792879753.9681349,
-    "ast_hash": "8e75501a01b376c2ed3581a39c1281f5",
+    "mtime": 1792882961.031176,
+    "seen": 1792883915.7580316,
+    "ast_hash": "153bc3e768e7b6617acfde3ab623787e",
     "semantic_hash": ""
   },
   "public/products/chemise-lin-blanche.jpg": {
-    "mtime": 1792879456.2457845,
-    "seen": 1792879753.9681363,
-    "ast_hash": "6c2ac6363320451954ef87a78ff9d623",
+    "mtime": 1792882961.0318182,
+    "seen": 1792883915.7580328,
+    "ast_hash": "5d9ed547f1cdcd6d600fbd450d2b7c60",
     "semantic_hash": ""
   },
   "public/products/chemise-lin-bleu-ciel.jpg": {
-    "mtime": 1792879456.2464051,
-    "seen": 1792879753.9681373,
-    "ast_hash": "98748a2d8cb933afdc497d838e64f8f1",
+    "mtime": 1792882961.0321593,
+    "seen": 1792883915.758034,
+    "ast_hash": "7076dcca39ec63497f7745b2297e1240",
     "semantic_hash": ""
   },
   "public/products/chemise-maille-marine.jpg": {
-    "mtime": 1792879456.2468421,
-    "seen": 1792879753.9681382,
-    "ast_hash": "f4c4ba486253d6c4544bd4f0c473dfa8",
+    "mtime": 1792882961.0325403,
+    "seen": 1792883915.7580352,
+    "ast_hash": "678618e8e85c183a90d082aa4ce7a83a",
     "semantic_hash": ""
   },
   "public/products/chemise-noire-stretch.jpg": {
-    "mtime": 1792879456.2474227,
-    "seen": 1792879753.9681392,
-    "ast_hash": "6462b5a1fa59e36c8f3b5de9c62e96ce",
+    "mtime": 1792882961.032889,
+    "seen": 1792883915.7580361,
+    "ast_hash": "a12d348151c46a3371c215769579848b",
     "semantic_hash": ""
   },
   "public/products/chemise-oxford-blanche.jpg": {
-    "mtime": 1792879456.2479131,
-    "seen": 1792879753.9681404,
-    "ast_hash": "aad82109ec3630c555634bb6e53d9bc2",
+    "mtime": 1792882961.0333824,
+    "seen": 1792883915.7580376,
+    "ast_hash": "aae734a794d790a11d108b12b180c94f",
     "semantic_hash": ""
   },
   "public/products/chemise-oxford-bleu-ciel.jpg": {
-    "mtime": 1792879456.2484643,
-    "seen": 1792879753.9681413,
-    "ast_hash": "40fc7ed2371500b7e938accc5ecb7717",
+    "mtime": 1792882961.033692,
+    "seen": 1792883915.758039,
+    "ast_hash": "7613b2e7c552e08856fc9d63122d6323",
     "semantic_hash": ""
   },
   "public/products/chemise-petits-carreaux.jpg": {
-    "mtime": 1792879456.248971,
-    "seen": 1792879753.9681423,
-    "ast_hash": "d838552bb97537fcdfdf5339406b1286",
+    "mtime": 1792882961.034021,
+    "seen": 1792883915.7580404,
+    "ast_hash": "72354dabde5e51b088ae49b55f84afbc",
     "semantic_hash": ""
   },
   "public/products/chemise-popeline-blanche-ajustee.jpg": {
-    "mtime": 1792879456.2498074,
-    "seen": 1792879753.9681437,
-    "ast_hash": "bee7fc22ef7e60789d77683e3c242cc5",
+    "mtime": 1792882961.034358,
+    "seen": 1792883915.7580419,
+    "ast_hash": "e12deea40ca80ce2505a88e8a72d9882",
     "semantic_hash": ""
   },
   "public/products/chemise-popeline-rayee-bleue.jpg": {
-    "mtime": 1792879456.2503598,
-    "seen": 1792879753.968145,
-    "ast_hash": "d4e8072d3ece2a211b2cbd752ebf1a67",
+    "mtime": 1792882961.0347083,
+    "seen": 1792883915.758043,
+    "ast_hash": "a241542a3fd6fdf3054ec652d19bb911",
     "semantic_hash": ""
   },
   "public/products/chemise-smoking-blanche.jpg": {
-    "mtime": 1792879456.2510884,
-    "seen": 1792879753.968146,
-    "ast_hash": "ab58c1f0aba47b74311db8f2d4011602",
+    "mtime": 1792882961.035016,
+    "seen": 1792883915.7580447,
+    "ast_hash": "7d5f27dc66fe5c8ff3dbdd1ca3b11dea",
     "semantic_hash": ""
   },
   "public/products/chemise-twill-rose-pale.jpg": {
-    "mtime": 1792879456.2516637,
-    "seen": 1792879753.9681475,
-    "ast_hash": "f7cf045cee043eba90b162f9fa0f2311",
+    "mtime": 1792882961.0352879,
+    "seen": 1792883915.7580457,
+    "ast_hash": "64561423deeab5fbb1eb13f5b9a92e3f",
     "semantic_hash": ""
   },
   "public/products/chemise-vichy-bleue.jpg": {
-    "mtime": 1792879456.2521498,
-    "seen": 1792879753.9681487,
-    "ast_hash": "d94256b0084238a44300775a1488f1cf",
+    "mtime": 1792882961.0355399,
+    "seen": 1792883915.7580473,
+    "ast_hash": "68f2e046995c4b8834c8ec2d0c7df6e0",
     "semantic_hash": ""
   },
   "public/products/costume-ajuste-noir.jpg": {
-    "mtime": 1792879456.25328,
-    "seen": 1792879753.9681497,
-    "ast_hash": "78a57c00e4a7f063fe2b21f2c2951447",
+    "mtime": 1792882961.0357978,
+    "seen": 1792883915.7580485,
+    "ast_hash": "9b85fb9e5c0555ae5b09419542e4cdc8",
     "semantic_hash": ""
   },
   "public/products/costume-croise-gris-bleu.jpg": {
-    "mtime": 1792879456.2537947,
-    "seen": 1792879753.9681509,
-    "ast_hash": "9d673cbaabebd1cf82a773b724b16eb5",
+    "mtime": 1792882961.036046,
+    "seen": 1792883915.7580497,
+    "ast_hash": "2862b49850bb9f20d04b77e0180669ac",
     "semantic_hash": ""
   },
   "public/products/costume-flanelle-gris-chine.jpg": {
-    "mtime": 1792879456.2543359,
-    "seen": 1792879753.9681518,
-    "ast_hash": "768ab633f5756a947fdaaa970fd7974d",
+    "mtime": 1792882961.0362828,
+    "seen": 1792883915.7580514,
+    "ast_hash": "1b349ea334ef16020c2e7e36892ed07b",
     "semantic_hash": ""
   },
   "public/products/costume-gris-anthracite.jpg": {
-    "mtime": 1792879456.2548368,
-    "seen": 1792879753.9681528,
-    "ast_hash": "1c232055bb86120394f326a393552ba5",
+    "mtime": 1792882961.036632,
+    "seen": 1792883915.7580528,
+    "ast_hash": "ae65387bb5fe588dc02a8a012b308a17",
     "semantic_hash": ""
   },
   "public/products/costume-laine-marine.jpg": {
-    "mtime": 1792879456.255259,
-    "seen": 1792879753.9681542,
-    "ast_hash": "88691d886277a0e05e35965bda7fa22c",
+    "mtime": 1792882961.0368989,
+    "seen": 1792883915.7580543,
+    "ast_hash": "ba4680d8695e1b2dcd9b1009df13f70b",
     "semantic_hash": ""
   },
   "public/products/costume-lin-beige.jpg": {
-    "mtime": 1792879456.2556822,
-    "seen": 1792879753.9681551,
-    "ast_hash": "e768f30678f1f4078db678523ffe168b",
+    "mtime": 1792882961.0371459,
+    "seen": 1792883915.7580552,
+    "ast_hash": "e648065db3fe300250c7a05d0d7bd055",
     "semantic_hash": ""
   },
   "public/products/costume-prince-de-galles.jpg": {
-    "mtime": 1792879456.2562563,
-    "seen": 1792879753.9681563,
-    "ast_hash": "49df9906d69c5ae8f0e755485436c742",
+    "mtime": 1792882961.0373108,
+    "seen": 1792883915.7580564,
+    "ast_hash": "26a01c477b191c2dbdd5a56c446d93a0",
     "semantic_hash": ""
   },
   "public/products/costume-rayure-tennis.jpg": {
-    "mtime": 1792879456.257098,
-    "seen": 1792879753.9681578,
-    "ast_hash": "43c6e1ddf67932d52cc50244c457d280",
+    "mtime": 1792882961.038151,
+    "seen": 1792883915.7580578,
+    "ast_hash": "5872a90ae67896902552bbcbf9800a52",
     "semantic_hash": ""
   },
   "public/products/costume-trois-pieces-bleu-nuit.jpg": {
-    "mtime": 1792879456.257797,
-    "seen": 1792879753.968159,
-    "ast_hash": "a496117f5cd919653a6e40d80040a2a5",
+    "mtime": 1792882961.0384896,
+    "seen": 1792883915.758059,
+    "ast_hash": "055bc4855b6414fa778c0e0ff2daeeea",
     "semantic_hash": ""
   },
   "public/products/costume-tweed-marron.jpg": {
-    "mtime": 1792879456.2583244,
-    "seen": 1792879753.96816,
-    "ast_hash": "eb5d787ec01ae8f99a48d3e959d1d89c",
+    "mtime": 1792882961.0388908,
+    "seen": 1792883915.7580602,
+    "ast_hash": "51cc315bb203f2641479f89155dc31b5",
     "semantic_hash": ""
   },
   "public/products/costume-vert-sapin.jpg": {
-    "mtime": 1792879456.2587526,
-    "seen": 1792879753.9681613,
-    "ast_hash": "9203146932ad1f632dba8023d10204b0",
+    "mtime": 1792882961.0391333,
+    "seen": 1792883915.758062,
+    "ast_hash": "8178162ee6244d8b585c5c0be45c8700",
     "semantic_hash": ""
   },
   "public/products/smoking-noir-revers-satin.jpg": {
-    "mtime": 1792879456.2593296,
-    "seen": 1792879753.9681623,
-    "ast_hash": "1fb73d6a284b062be6540a9466913ad9",
+    "mtime": 1792882961.0395126,
+    "seen": 1792883915.758063,
+    "ast_hash": "d7bbe75c5789d85b85e84a5cc11a3e62",
     "semantic_hash": ""
   },
   "public/products/surchemise-carreaux-ecrus.jpg": {
-    "mtime": 1792879456.2599661,
-    "seen": 1792879753.9681635,
-    "ast_hash": "d560bffcff583504edc342a336676236",
+    "mtime": 1792882961.0397096,
+    "seen": 1792883915.7580643,
+    "ast_hash": "b4d81782f5034bac1db5d7846d3abe7b",
     "semantic_hash": ""
   },
   "app/cgu/page.tsx": {
@@ -678,21 +678,21 @@
     "semantic_hash": ""
   },
   "components/cookie-notice.tsx": {
-    "mtime": 1792878395.0666308,
-    "seen": 1792879753.9680662,
-    "ast_hash": "9ba1511ccb6acb594719a4d0c1ed801e",
+    "mtime": 1792883520.173199,
+    "seen": 1792883915.7579494,
+    "ast_hash": "b322da68d26179389906aa25722578e7",
     "semantic_hash": ""
   },
   "components/legal-page.tsx": {
-    "mtime": 1792876750.1203,
-    "seen": 1792879753.9680688,
-    "ast_hash": "e5a56381c424a9f2b32d3d09694b0a2d",
+    "mtime": 1792883484.8615038,
+    "seen": 1792883915.7579563,
+    "ast_hash": "35bcd23c187262b11fa1075b9c54ef5b",
     "semantic_hash": ""
   },
   "components/site-footer.tsx": {
-    "mtime": 1792877906.1600413,
-    "seen": 1792879753.9680722,
-    "ast_hash": "94133bf52a9c31a125352be4ff8e0436",
+    "mtime": 1792883128.7056372,
+    "seen": 1792883915.7579606,
+    "ast_hash": "d189adc939d2e8da054892f5e4a16eb1",
     "semantic_hash": ""
   },
   "lib/site.ts": {
@@ -741,6 +741,24 @@
     "mtime": 1792843856.7372196,
     "seen": 1792844145.5460813,
     "ast_hash": "16db72cfdef14d8e07182624d20fea89",
+    "semantic_hash": ""
+  },
+  "scripts/photos/generate.py": {
+    "mtime": 1792882980.6910768,
+    "seen": 1792883915.7579944,
+    "ast_hash": "10b0d2276ac00aeeaf7699d166117b37",
+    "semantic_hash": ""
+  },
+  "scripts/photos/shirt-cutout.py": {
+    "mtime": 1792882980.6913059,
+    "seen": 1792883915.7579963,
+    "ast_hash": "eee32b30fdb94631b2c7092d1704f80f",
+    "semantic_hash": ""
+  },
+  "design-system/carrure/MASTER.md": {
+    "mtime": 1792882139.156383,
+    "seen": 1792883915.7580197,
+    "ast_hash": "f110cb94b72e6d10b64e47977c766e8e",
     "semantic_hash": ""
   }
 }

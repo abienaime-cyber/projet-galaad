@@ -1,3 +1,4 @@
+import { Gauge, Ruler, ShieldCheck } from "@phosphor-icons/react/ssr";
 import type { ReactNode } from "react";
 import { SegmentedNav } from "@/components/segmented-nav";
 
@@ -8,14 +9,17 @@ const TABS = [
 
 const POINTS = [
   {
+    Icon: Ruler,
     title: "Trois chiffres suffisent",
     text: "Taille, poids et âge. Votre tour de poitrine et votre tour de taille affinent le calcul si vous les connaissez.",
   },
   {
+    Icon: Gauge,
     title: "Une estimation, dite comme telle",
     text: "Chaque taille conseillée indique son niveau de confiance, et la taille voisine quand vous êtes entre deux.",
   },
   {
+    Icon: ShieldCheck,
     title: "Vos données restent les vôtres",
     text: "Elles ne servent qu’au calcul de taille. Vous pouvez les effacer à tout moment.",
   },
@@ -23,32 +27,37 @@ const POINTS = [
 
 export function AuthShell({ active, title, children }: { active: (typeof TABS)[number]["key"]; title: string; children: ReactNode }) {
   return (
-    <div className="mx-auto max-w-[1180px] px-4 pt-12 pb-20 sm:px-8 md:pt-20">
-      <section aria-labelledby="auth-title" className="mx-auto max-w-[460px]">
+    <div className="mx-auto grid max-w-[1120px] gap-8 px-4 pt-10 sm:px-8 md:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
+      <section aria-labelledby="auth-title" className="card p-6 sm:p-10">
         <SegmentedNav
           label="Accès au compte"
-          className="mx-auto"
           items={TABS.map((tab) => ({ href: tab.href, label: tab.label, current: tab.key === active }))}
         />
-        <h1 id="auth-title" className="mt-10 text-center text-[36px] md:text-[44px]">
+        <h1 id="auth-title" className="mt-8 text-[36px] md:text-[44px]">
           {title}
         </h1>
         {children}
       </section>
 
-      <aside aria-labelledby="why-title" className="mt-24 border-t border-separator pt-14">
-        <h2 id="why-title" className="text-center text-[32px]">
+      <aside aria-labelledby="why-title" className="rounded-2xl bg-primary p-6 text-on-primary sm:p-10">
+        <p className="eyebrow text-accent">Pourquoi un compte</p>
+        <h2 id="why-title" className="mt-4 text-[32px] md:text-[38px]">
           Votre taille, article par article
         </h2>
-        <p className="mx-auto mt-3 max-w-[38rem] text-center text-label-2">
+        <p className="mt-4 text-on-primary/75">
           Votre compte garde vos mensurations. Carrure les compare au tableau de tailles de chaque chemise et de chaque
           costume, et vous indique la taille à commander.
         </p>
-        <dl className="mt-12 grid gap-10 text-sm sm:grid-cols-3 sm:gap-12">
-          {POINTS.map((point) => (
-            <div key={point.title}>
-              <dt className="font-display text-[21px]">{point.title}</dt>
-              <dd className="mt-2 text-label-2">{point.text}</dd>
+        <dl className="mt-10 grid gap-8">
+          {POINTS.map(({ Icon, title, text }) => (
+            <div key={title} className="flex gap-4">
+              <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-on-primary/10 text-accent">
+                <Icon aria-hidden size={22} />
+              </span>
+              <div>
+                <dt className="font-display text-[22px] font-semibold">{title}</dt>
+                <dd className="mt-1 text-[15px] text-on-primary/75">{text}</dd>
+              </div>
             </div>
           ))}
         </dl>

@@ -19,7 +19,7 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
     <form action={action} className="mt-8">
       <input type="hidden" name="slug" value={slug} />
       <fieldset>
-        <legend className="eyebrow text-label-2">Taille</legend>
+        <legend className="text-[15px] font-semibold">Choisissez votre taille</legend>
         <div className="mt-4 grid grid-cols-4 gap-2">
           {sizes.map((size) => (
             <label key={size.label} data-state={size.state} className="group relative">
@@ -33,7 +33,7 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
                 className="peer sr-only"
               />
               <span
-                className={`flex h-12 w-full cursor-pointer items-center justify-center px-3 text-sm tabular-nums shadow-[inset_0_0_0_1px_var(--color-separator)] transition-[background-color,box-shadow,color] duration-150 ease-[ease] hover:shadow-[inset_0_0_0_1px_var(--color-control)] peer-checked:bg-label peer-checked:text-on-accent peer-checked:shadow-none peer-focus-visible:outline-1 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-label peer-disabled:cursor-default peer-disabled:text-label-2 peer-disabled:line-through group-data-[state=chosen]:ring-1 group-data-[state=chosen]:ring-brass group-data-[state=chosen]:ring-offset-3 group-data-[state=chosen]:ring-offset-canvas`}
+                className={`flex h-12 w-full cursor-pointer items-center justify-center rounded-lg bg-card px-3 text-[15px] font-semibold tabular-nums shadow-[inset_0_0_0_1px_var(--color-border)] transition-[background-color,box-shadow,color] duration-200 hover:shadow-[inset_0_0_0_1px_var(--color-input)] peer-checked:bg-primary peer-checked:text-on-primary peer-checked:shadow-none peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring peer-disabled:cursor-default peer-disabled:bg-transparent peer-disabled:font-normal peer-disabled:text-muted-foreground peer-disabled:line-through group-data-[state=chosen]:ring-2 group-data-[state=chosen]:ring-accent group-data-[state=chosen]:ring-offset-2 group-data-[state=chosen]:ring-offset-background`}
               >
                 {size.label}
               </span>
@@ -43,7 +43,7 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
             </label>
           ))}
         </div>
-        <p className="mt-3 text-xs text-label-2">Cerclée de laiton : votre taille estimée. Barrée : épuisée.</p>
+        <p className="mt-3 text-[13px] text-muted-foreground">Cerclée d’or : votre taille estimée. Barrée : épuisée.</p>
       </fieldset>
 
       <div className="mt-8 grid gap-3">
@@ -59,16 +59,16 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
             "Épuisé"
           )}
         </button>
-        <p aria-live="polite" className="text-sm">
+        <p aria-live="polite" className="text-[14px]">
           {state.added && (
             <>
-              <span className="text-ok">Ajouté au panier en {state.added}.</span>{" "}
-              <Link href="/panier" className="inline-flex min-h-11 items-center underline decoration-label/40 hover:decoration-label">
+              <span className="font-semibold text-success">Ajouté au panier en {state.added}.</span>{" "}
+              <Link href="/panier" className="inline-flex min-h-11 items-center font-semibold underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground">
                 Voir le panier
               </Link>
             </>
           )}
-          {state.error && <span className="text-danger">{state.error}</span>}
+          {state.error && <span className="text-destructive">{state.error}</span>}
         </p>
       </div>
     </form>

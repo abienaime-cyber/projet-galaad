@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Jost } from "next/font/google";
+import { Cormorant, Montserrat } from "next/font/google";
 import { Analytics } from "@/components/analytics";
 import { CookieNotice } from "@/components/cookie-notice";
 import { SiteFooter } from "@/components/site-footer";
@@ -7,8 +7,8 @@ import { SiteHeader } from "@/components/site-header";
 import { OPEN_GRAPH, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const jost = Jost({ variable: "--font-jost", subsets: ["latin"] });
-const bodoni = Bodoni_Moda({ variable: "--font-bodoni", subsets: ["latin"], axes: ["opsz"] });
+const montserrat = Montserrat({ variable: "--font-montserrat", subsets: ["latin"] });
+const cormorant = Cormorant({ variable: "--font-cormorant", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${jost.variable} ${bodoni.variable} h-full antialiased`}>
+    <html lang="fr" className={`${montserrat.variable} ${cormorant.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <SiteHeader />
         {/* Le pied de page démarre sous la ligne de flottaison : il ne saute pas quand le contenu arrive en streaming. */}

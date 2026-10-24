@@ -9,9 +9,9 @@ export const metadata: Metadata = { title: "Vos commandes" };
 
 export default function OrdersPage() {
   return (
-    <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-12">
-      <h1 className="text-[36px] md:text-[48px]">Vos commandes</h1>
-      <Suspense fallback={<div aria-busy className="mt-10 h-64 bg-tile" />}>
+    <div className="mx-auto max-w-[1180px] px-4 pt-10 sm:px-8 md:pt-12">
+      <h1 className="text-[40px] md:text-[54px]">Vos commandes</h1>
+      <Suspense fallback={<div aria-busy className="mt-10 h-64 rounded-xl bg-muted" />}>
         <Orders />
       </Suspense>
     </div>
@@ -27,9 +27,9 @@ async function Orders() {
 
   if (!orders || orders.length === 0) {
     return (
-      <div className="mt-10 bg-tile px-6 py-12 text-center sm:px-12">
+      <div className="card mt-10 px-6 py-14 text-center sm:px-12">
         <h2 className="text-[28px]">Aucune commande pour le moment.</h2>
-        <p className="mt-3 text-label-2">Vos commandes et leurs retours apparaîtront ici.</p>
+        <p className="mt-3 text-muted-foreground">Vos commandes et leurs retours apparaîtront ici.</p>
         <Link href="/costumes" className={`${primaryButton} mt-6`}>
           Voir les costumes
         </Link>
@@ -38,7 +38,7 @@ async function Orders() {
   }
 
   return (
-    <ul className="mt-10 divide-y divide-separator border-y border-separator">
+    <ul className="card mt-10 divide-y divide-border px-5 sm:px-6">
       {orders.map((o) => {
         const units = o.order_items.reduce((s, i) => s + i.quantity, 0);
         return (
@@ -46,10 +46,10 @@ async function Orders() {
             <Link href={`/compte/commandes/${o.id}`} className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-6 gap-y-1 py-5">
               <span className="font-semibold group-hover:underline">Commande n° {o.number}</span>
               <span className="text-right font-semibold tabular-nums">{price(o.total_cents)}</span>
-              <span className="text-sm text-label-2">
+              <span className="text-sm text-muted-foreground">
                 {dateFr.format(new Date(o.created_at))} · {units} article{units > 1 ? "s" : ""}
               </span>
-              <span className="text-right text-sm text-label-2">{ORDER_STATUS[o.status as OrderStatus]}</span>
+              <span className="text-right text-sm text-muted-foreground">{ORDER_STATUS[o.status as OrderStatus]}</span>
             </Link>
           </li>
         );

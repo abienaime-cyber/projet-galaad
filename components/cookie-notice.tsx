@@ -30,10 +30,10 @@ export function CookieNotice() {
   }
 
   return (
-    <div role="region" aria-label="Cookies" className="fixed inset-x-4 bottom-4 z-40 mx-auto max-w-[640px] border border-label bg-canvas p-5 sm:flex sm:items-center sm:gap-6">
-      <p className="text-sm text-label-2">
+    <div role="region" aria-label="Cookies" className="fixed inset-x-4 bottom-4 z-40 mx-auto max-w-[640px] rounded-xl bg-card p-5 shadow-xl sm:flex sm:items-center sm:gap-6">
+      <p className="text-sm text-muted-foreground">
         Carrure ne dépose que les cookies nécessaires à votre connexion. La mesure d’audience se fait sans cookie.{" "}
-        <Link href="/confidentialite#cookies" className="text-link underline">
+        <Link href="/confidentialite#cookies" className="font-semibold text-foreground underline underline-offset-4">
           En savoir plus
         </Link>
       </p>

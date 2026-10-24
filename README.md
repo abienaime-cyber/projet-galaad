@@ -172,37 +172,12 @@ supabase/            migrations, seed, tests pgTAP et test de survente
 
 ## Crédits photos
 
-Photos de [Pexels](https://www.pexels.com/license/), libres d'utilisation, attribution non requise. Détourées automatiquement (modèle BiRefNet via la bibliothèque rembg, contours nettoyés avec pymatting), posées sur un même gris de studio et recadrées à l’identique pour former une série homogène. Elles illustrent la démo ; les personnes photographiées n'ont aucun lien avec la marque fictive Carrure. À remplacer par de vraies photos produit avant toute utilisation commerciale.
+Aucune personne sur les photos : chaque article est montré seul, sur cintre, sur le même fond. Les 30 visuels partent de trois photos [Pexels](https://www.pexels.com/license/), libres d'utilisation, attribution non requise :
 
-| Produit | Photo |
-| --- | --- |
-| `costume-laine-marine` | [pexels.com/photo/18320058](https://www.pexels.com/photo/18320058/) |
-| `costume-gris-anthracite` | [pexels.com/photo/7441750](https://www.pexels.com/photo/7441750/) |
-| `costume-ajuste-noir` | [pexels.com/photo/33290971](https://www.pexels.com/photo/33290971/) |
-| `costume-flanelle-gris-chine` | [pexels.com/photo/10657877](https://www.pexels.com/photo/10657877/) |
-| `costume-lin-beige` | [pexels.com/photo/14348501](https://www.pexels.com/photo/14348501/) |
-| `costume-prince-de-galles` | [pexels.com/photo/15352659](https://www.pexels.com/photo/15352659/) |
-| `costume-croise-gris-bleu` | [pexels.com/photo/35466541](https://www.pexels.com/photo/35466541/) |
-| `smoking-noir-revers-satin` | [pexels.com/photo/10531636](https://www.pexels.com/photo/10531636/) |
-| `costume-tweed-marron` | [pexels.com/photo/37148299](https://www.pexels.com/photo/37148299/) |
-| `costume-trois-pieces-bleu-nuit` | [pexels.com/photo/18348433](https://www.pexels.com/photo/18348433/) |
-| `costume-vert-sapin` | [pexels.com/photo/3600142](https://www.pexels.com/photo/3600142/) |
-| `costume-rayure-tennis` | [pexels.com/photo/35462552](https://www.pexels.com/photo/35462552/) |
-| `chemise-oxford-blanche` | [pexels.com/photo/37218483](https://www.pexels.com/photo/37218483/) |
-| `chemise-oxford-bleu-ciel` | [pexels.com/photo/37862665](https://www.pexels.com/photo/37862665/) |
-| `chemise-popeline-blanche-ajustee` | [pexels.com/photo/37825457](https://www.pexels.com/photo/37825457/) |
-| `chemise-popeline-rayee-bleue` | [pexels.com/photo/31589336](https://www.pexels.com/photo/31589336/) |
-| `chemise-lin-bleu-ciel` | [pexels.com/photo/7312469](https://www.pexels.com/photo/7312469/) |
-| `chemise-lin-blanche` | [pexels.com/photo/38907642](https://www.pexels.com/photo/38907642/) |
-| `chemise-flanelle-carreaux` | [pexels.com/photo/16886377](https://www.pexels.com/photo/16886377/) |
-| `chemise-denim-indigo` | [pexels.com/photo/38044264](https://www.pexels.com/photo/38044264/) |
-| `chemise-twill-rose-pale` | [pexels.com/photo/8540339](https://www.pexels.com/photo/8540339/) |
-| `chemise-noire-stretch` | [pexels.com/photo/17899456](https://www.pexels.com/photo/17899456/) |
-| `chemise-vichy-bleue` | [pexels.com/photo/18362367](https://www.pexels.com/photo/18362367/) |
-| `chemise-petits-carreaux` | [pexels.com/photo/36388574](https://www.pexels.com/photo/36388574/) |
-| `chemise-smoking-blanche` | [pexels.com/photo/10798810](https://www.pexels.com/photo/10798810/) |
-| `chemise-chambray` | [pexels.com/photo/5670175](https://www.pexels.com/photo/5670175/) |
-| `surchemise-carreaux-ecrus` | [pexels.com/photo/31585407](https://www.pexels.com/photo/31585407/) |
-| `chemise-fil-a-fil-bleue` | [pexels.com/photo/7447366](https://www.pexels.com/photo/7447366/) |
-| `chemise-maille-marine` | [pexels.com/photo/35495782](https://www.pexels.com/photo/35495782/) |
-| `chemise-carreaux-noir-blanc` | [pexels.com/photo/16881984](https://www.pexels.com/photo/16881984/) |
+| Base | Photo | Sert à |
+| --- | --- | --- |
+| Veste droite beige sur cintre | [pexels.com/photo/32427323](https://www.pexels.com/photo/32427323/) | les 10 costumes droits (le costume en lin beige est la photo d'origine) |
+| Veste croisée blanche sur cintre | [pexels.com/photo/37987847](https://www.pexels.com/photo/37987847/) | le costume croisé et le smoking |
+| Chemise bleu ciel sur cintre | [pexels.com/photo/9558723](https://www.pexels.com/photo/9558723/) | les 18 chemises |
+
+Chaque base est détourée (modèle isnet-general-use via rembg), puis teinte dans la couleur du produit et, pour les tissus à motif (rayures, vichy, carreaux, prince-de-galles, tweed, chiné), recouverte d'un motif dessiné par programme. Les plis de la photo d'origine sont conservés ; la teinte moyenne de chaque vêtement est calée sur celle annoncée dans la fiche. Ce sont donc des visuels d'illustration, pas des photos des articles. Scripts : `scripts/photos/shirt-cutout.py` et `scripts/photos/generate.py`. À remplacer par de vraies photos produit avant toute utilisation commerciale.

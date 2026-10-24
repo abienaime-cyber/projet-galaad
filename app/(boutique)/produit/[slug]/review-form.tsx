@@ -1,24 +1,23 @@
 "use client";
 
 import { useActionState } from "react";
-import { secondaryButton } from "@/components/field";
+import { inputClass, secondaryButton } from "@/components/field";
 import { FIT_FEEDBACK } from "@/lib/validation";
 import { addReview, type ReviewState } from "./actions";
 
-const selectClass =
-  "h-11 w-full border border-control pl-3 text-[17px] focus:border-label focus:shadow-[0_0_0_1px_var(--color-label)] focus:outline-none";
+const selectClass = `${inputClass} h-12`;
 
 export function ReviewForm({ productId, slug }: { productId: string; slug: string }) {
   const [state, action, pending] = useActionState<ReviewState, FormData>(addReview, {});
-  if (state.done) return <p className="mt-4 text-sm text-ok">Merci, votre avis est publié.</p>;
+  if (state.done) return <p className="mt-4 text-[14px] font-semibold text-success">Merci, votre avis est publié.</p>;
 
   return (
-    <form action={action} className="mt-6 grid max-w-[30rem] gap-5 border border-separator p-5 sm:p-6">
-      <p className="font-display text-[21px]">Vous avez acheté cet article. Votre avis ?</p>
+    <form action={action} className="card mt-6 grid max-w-[32rem] gap-5 p-5 sm:p-6">
+      <p className="font-display text-[24px] font-semibold">Vous avez acheté cet article. Votre avis ?</p>
       <input type="hidden" name="product_id" value={productId} />
       <input type="hidden" name="slug" value={slug} />
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-1.5 text-sm">
+        <label className="grid gap-2 text-[14px] font-medium">
           Note
           <select name="rating" defaultValue="5" className={selectClass} aria-invalid={state.errors?.rating ? true : undefined}>
             {[5, 4, 3, 2, 1].map((n) => (
@@ -28,7 +27,7 @@ export function ReviewForm({ productId, slug }: { productId: string; slug: strin
             ))}
           </select>
         </label>
-        <label className="grid gap-1.5 text-sm">
+        <label className="grid gap-2 text-[14px] font-medium">
           La taille
           <select name="fit_feedback" defaultValue="" className={selectClass}>
             <option value="">Je ne sais pas</option>
@@ -40,17 +39,17 @@ export function ReviewForm({ productId, slug }: { productId: string; slug: strin
           </select>
         </label>
       </div>
-      <label className="grid gap-1.5 text-sm">
+      <label className="grid gap-2 text-[14px] font-medium">
         Commentaire (facultatif)
         <textarea
           name="comment"
           rows={3}
           maxLength={1000}
-          className="resize-none border border-control bg-field p-3 text-[17px] focus:border-label focus:shadow-[0_0_0_1px_var(--color-label)] focus:outline-none"
+          className={`${inputClass} resize-none`}
         />
       </label>
       {(state.error || state.errors) && (
-        <p role="alert" className="text-sm text-danger">
+        <p role="alert" className="text-[14px] text-destructive">
           {state.error ?? Object.values(state.errors ?? {})[0]}
         </p>
       )}

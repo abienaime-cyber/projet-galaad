@@ -63,3 +63,6 @@ graphify-out/.graphify_labels.pending.json
 
 # exemple de configuration, sans secret
 !.env.example
+
+# Python
+__pycache__/

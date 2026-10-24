@@ -1,41 +1,41 @@
 @import "tailwindcss";
 
-/* Un grand magasin de luxe en ligne : page blanche, texte noir, photos sur un gris de studio, un seul accent laiton. */
+/* Système de design généré par UI UX Pro Max (design-system/carrure/MASTER.md) :
+   « E-commerce Luxury », style Minimalism & Swiss, variance 3/10, densité 3/10.
+   Pierre chaude, texte quasi noir, un seul accent or foncé pour l'action et la taille du client. */
 @theme {
-  --color-canvas: #ffffff;
-  --color-tile: #f1f0ed;
-  --color-fill: #e9e8e4;
-  --color-field: #ffffff;
-  --color-separator: #e3e2de;
-  --color-control: #8c8b86;
-  --color-label: #121212;
-  --color-label-2: #5c5b57;
-  --color-accent: #121212;
-  --color-accent-hover: #3a3a38;
+  --color-primary: #1c1917;
+  --color-on-primary: #ffffff;
+  --color-primary-hover: #44403c;
+  --color-secondary: #44403c;
+  --color-accent: #a16207;
+  --color-accent-hover: #854d0e;
   --color-on-accent: #ffffff;
-  --color-brass: #85642c;
-  --color-link: #121212;
-  --color-danger: #b42318;
-  --color-danger-tint: #fdeeec;
-  --color-ok: #1d6b3a;
+  --color-background: #fafaf9;
+  --color-foreground: #0c0a09;
+  --color-card: #ffffff;
+  --color-muted: #e8ecf0;
+  --color-muted-foreground: #475569;
+  --color-border: #d6d3d1;
+  /* Bord des champs : #E2E8F0 du MASTER ne fait que 1,2:1 sur blanc ; il faut 3:1 pour un contour de champ. */
+  --color-input: #78716c;
+  --color-ring: #1c1917;
+  /* #DC2626 du MASTER tombe à 4,4:1 sur le fond d'erreur rosé : un cran plus sombre. */
+  --color-destructive: #b91c1c;
+  --color-destructive-tint: #fef2f2;
+  --color-success: #15803d;
 
-  /* Jost, cousine libre de Futura, fait le travail ; Bodoni ne signe que la marque et les titres. */
-  --font-sans: var(--font-jost), Futura, "Century Gothic", sans-serif;
-  /* Bodoni : le didone de Parme, gravé par Giambattista Bodoni à la fin du XVIIIe siècle. */
-  --font-display: var(--font-bodoni), "Bodoni 72", Didot, Georgia, serif;
+  --font-sans: var(--font-montserrat), "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-cormorant), Garamond, Georgia, serif;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px rgb(0 0 0 / 0.15);
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   --animate-spinner: spinner-fade 1s linear infinite;
-  --animate-rise: rise 0.9s var(--ease-out) both;
-
-  @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translateY(12px);
-    }
-  }
 
   @keyframes spinner-fade {
     from {
@@ -47,16 +47,12 @@
   }
 }
 
-/* Mouvement réduit : la vitrine apparaît en fondu, sans se déplacer. */
+/* Mouvement réduit : transitions coupées, rien ne se soulève au survol. */
 @media (prefers-reduced-motion: reduce) {
-  .animate-rise {
-    animation-name: fade-in;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -69,39 +65,46 @@
   }
 
   body {
-    background: var(--color-canvas);
-    color: var(--color-label);
+    background: var(--color-background);
+    color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-size: 15px;
-    line-height: 1.6;
-    letter-spacing: 0.005em;
+    font-size: 16px;
+    line-height: 1.5;
   }
 
   ::selection {
-    background: rgb(133 100 44 / 0.22);
+    background: rgb(161 98 7 / 0.2);
   }
 
   :focus-visible {
-    outline: 1px solid var(--color-label);
-    outline-offset: 3px;
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  a,
+  button,
+  summary,
+  select,
+  label[for],
+  [role="button"] {
+    cursor: pointer;
   }
 
   input,
   textarea {
-    caret-color: var(--color-brass);
+    caret-color: var(--color-accent);
   }
 
-  /* Menus déroulants : chevron dessiné au trait de 1 px, à la place de celui du navigateur. */
   select {
     appearance: none;
-    background: var(--color-field)
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 3.5 5 7l3.5-3.5' fill='none' stroke='%23121212' stroke-width='1.2'/%3E%3C/svg%3E")
-      no-repeat right 12px center / 10px;
-    padding-right: 36px;
+    background: var(--color-card)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 3.5 5 7l3.5-3.5' fill='none' stroke='%231c1917' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")
+      no-repeat right 14px center / 10px;
+    padding-right: 38px;
   }
 
   ::placeholder {
-    color: var(--color-label-2);
+    color: var(--color-muted-foreground);
     opacity: 1;
   }
 
@@ -112,34 +115,26 @@
   }
 
   a {
-    text-underline-offset: 0.25em;
+    text-underline-offset: 0.2em;
     text-decoration-thickness: 1px;
   }
 }
 
-/* Hors couche, pour primer sur les utilitaires : tous les titres parlent Bodoni, à graisse de texte,
-   sauf ceux composés en petites capitales. */
-:is(h1, h2, h3):not(.eyebrow) {
+/* Titres en Cormorant, sauf les petites capitales et les noms d'articles (font-sans). Hors couche, pour primer sur les utilitaires. */
+:is(h1, h2, h3):not(.eyebrow):not(.font-sans) {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.005em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
   text-wrap: balance;
 }
 
-h1:not(.eyebrow) {
-  line-height: 1.04;
-}
-
-:is(h2, h3):not(.eyebrow) {
-  line-height: 1.15;
-}
-
-/* Petites capitales espacées : boutons, navigation, libellés. */
+/* Petites capitales espacées : navigation, libellés de section, boutons. */
 @utility eyebrow {
   font-family: var(--font-sans);
   font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   line-height: 1.4;
   text-transform: uppercase;
 }
@@ -151,7 +146,14 @@ h1:not(.eyebrow) {
 
 /* Valeur estimée : soulignée en pointillé, une mesure réelle ne l'est pas. */
 @utility estimated {
-  text-decoration: underline dotted var(--color-control);
+  text-decoration: underline dotted var(--color-input);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
+}
+
+/* Carte du MASTER : fond blanc, rayon 12 px, ombre moyenne. */
+@utility card {
+  background: var(--color-card);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
 }
