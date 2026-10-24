@@ -22,7 +22,7 @@ export function ReturnForm({ orderItemId }: { orderItemId: string }) {
       <input type="hidden" name="order_item_id" value={orderItemId} />
       <label className="grid gap-1.5">
         Motif du retour
-        <select name="reason" required defaultValue="" className="h-11 border border-control bg-field px-3 text-[17px]">
+        <select name="reason" required defaultValue="" className="h-11 border border-control pl-3 text-[17px]">
           <option value="" disabled>
             Choisissez un motif
           </option>

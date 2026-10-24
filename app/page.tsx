@@ -19,9 +19,9 @@ const STEPS = [
   },
 ];
 
-// Trois tenues côte à côte sur le même gris de studio : brun, noir, marine. Sur mobile, seul le costume noir reste ;
+// Trois tenues côte à côte sur le même gris de studio, cadrées à la même échelle : beige, noir, marine. Sur mobile, seul le costume noir reste ;
 // lui seul est préchargé.
-const LINEUP = ["costume-tweed-marron", "costume-ajuste-noir", "costume-croise-gris-bleu"];
+const LINEUP = ["costume-lin-beige", "costume-ajuste-noir", "costume-croise-gris-bleu"];
 
 export default async function Home() {
   const products = await getProducts();

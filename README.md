@@ -172,7 +172,7 @@ supabase/            migrations, seed, tests pgTAP et test de survente
 
 ## Crédits photos
 
-Photos de [Pexels](https://www.pexels.com/license/), libres d'utilisation, attribution non requise. Détourées automatiquement (modèle BiRefNet via la bibliothèque rembg), posées sur un même gris de studio et recadrées à l’identique pour former une série homogène. Elles illustrent la démo ; les personnes photographiées n'ont aucun lien avec la marque fictive Carrure. À remplacer par de vraies photos produit avant toute utilisation commerciale.
+Photos de [Pexels](https://www.pexels.com/license/), libres d'utilisation, attribution non requise. Détourées automatiquement (modèle BiRefNet via la bibliothèque rembg, contours nettoyés avec pymatting), posées sur un même gris de studio et recadrées à l’identique pour former une série homogène. Elles illustrent la démo ; les personnes photographiées n'ont aucun lien avec la marque fictive Carrure. À remplacer par de vraies photos produit avant toute utilisation commerciale.
 
 | Produit | Photo |
 | --- | --- |

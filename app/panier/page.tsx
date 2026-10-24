@@ -51,8 +51,8 @@ async function Cart() {
                 )}
               </Link>
               <div className="min-w-0">
-                <h2 className="text-[19px]">
-                  <Link href={`/produit/${line.product.slug}`} className="hover:underline">
+                <h2 className="eyebrow">
+                  <Link href={`/produit/${line.product.slug}`} className="inline-block py-1 hover:underline">
                     {line.product.name}
                   </Link>
                 </h2>
@@ -70,7 +70,7 @@ async function Cart() {
                       id={`q-${line.variantId}`}
                       name="quantity"
                       defaultValue={line.quantity}
-                      className="h-11 border border-control bg-field px-3 tabular-nums"
+                      className="h-11 border border-control pl-3 tabular-nums"
                     >
                       {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
                         <option key={n} value={n}>

@@ -20,7 +20,7 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
       <input type="hidden" name="slug" value={slug} />
       <fieldset>
         <legend className="eyebrow text-label-2">Taille</legend>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 grid grid-cols-4 gap-2">
           {sizes.map((size) => (
             <label key={size.label} data-state={size.state} className="group relative">
               <input
@@ -33,7 +33,7 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
                 className="peer sr-only"
               />
               <span
-                className={`inline-flex h-12 min-w-14 cursor-pointer items-center justify-center px-3 text-sm tabular-nums shadow-[inset_0_0_0_1px_var(--color-separator)] transition-[background-color,box-shadow,color] duration-150 ease-[ease] hover:shadow-[inset_0_0_0_1px_var(--color-control)] peer-checked:bg-label peer-checked:text-on-accent peer-checked:shadow-none peer-focus-visible:outline-1 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-label peer-disabled:cursor-default peer-disabled:text-label-2 peer-disabled:line-through peer-disabled:shadow-none group-data-[state=chosen]:ring-1 group-data-[state=chosen]:ring-brass group-data-[state=chosen]:ring-offset-3 group-data-[state=chosen]:ring-offset-canvas`}
+                className={`flex h-12 w-full cursor-pointer items-center justify-center px-3 text-sm tabular-nums shadow-[inset_0_0_0_1px_var(--color-separator)] transition-[background-color,box-shadow,color] duration-150 ease-[ease] hover:shadow-[inset_0_0_0_1px_var(--color-control)] peer-checked:bg-label peer-checked:text-on-accent peer-checked:shadow-none peer-focus-visible:outline-1 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-label peer-disabled:cursor-default peer-disabled:text-label-2 peer-disabled:line-through group-data-[state=chosen]:ring-1 group-data-[state=chosen]:ring-brass group-data-[state=chosen]:ring-offset-3 group-data-[state=chosen]:ring-offset-canvas`}
               >
                 {size.label}
               </span>

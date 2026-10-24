@@ -66,7 +66,9 @@ export const cartTotal = (lines: CartLine[]) => lines.reduce((sum, l) => sum + l
 export function lineProblem(line: CartLine): string | null {
   if (!line.product.isActive) return "Article retiré de la vente.";
   if (line.stock >= line.quantity) return null;
-  return line.stock === 0 ? "Épuisé dans cette taille." : `Plus que ${line.stock} en stock.`;
+  if (line.stock === 0) return "Épuisé dans cette taille.";
+  if (line.stock === 1) return "Il n’en reste qu’un : réduisez la quantité.";
+  return `Il n’en reste que ${line.stock} : réduisez la quantité.`;
 }
 
 export async function getCartCount() {

@@ -153,7 +153,7 @@ async function YourSize({ product }: { product: CatalogProduct }) {
             </p>
             <p className="mt-3 text-sm text-label-2">
               Taille estimée, {CONFIDENCE_LABEL[rec.confidence]}.{" "}
-              {inStock ? <span className="text-ok">En stock dans votre taille.</span> : "Épuisée dans votre taille pour le moment."}
+              {inStock ? <span className="text-label">En stock dans votre taille.</span> : "Épuisée dans votre taille pour le moment."}
             </p>
             <Link href="/compte/mensurations" className={`${textLink} mt-2`}>
               Modifier mes mensurations
