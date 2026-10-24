@@ -1,323 +1,321 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-24T12:09:07+00:00",
+  "generatedAt": "2026-10-24T00:00:00+00:00",
   "title": "Design System: Carrure",
   "extensions": {
     "colorMeta": {
       "canvas": {
         "role": "neutral",
-        "displayName": "Evening Black",
-        "canonical": "oklch(15.0% 0.003 68)",
+        "displayName": "Gallery White",
+        "canonical": "oklch(100.0% 0.000 90)",
         "tonalRamp": [
-          "#0c0b0a",
-          "#252423",
-          "#413f3e",
-          "#5f5d5c",
-          "#7e7d7b",
-          "#9f9e9d",
-          "#c5c4c2",
-          "#f0eeec"
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
         ]
       },
       "tile": {
         "role": "neutral",
-        "displayName": "Tile Black",
-        "canonical": "oklch(19.2% 0.004 85)",
+        "displayName": "Studio Grey",
+        "canonical": "oklch(95.5% 0.004 91)",
         "tonalRamp": [
           "#0c0b09",
-          "#252422",
-          "#41403d",
-          "#5f5d5b",
-          "#7e7d7a",
-          "#a09e9b",
-          "#c5c4c1",
-          "#f0eeeb"
+          "#262523",
+          "#43423f",
+          "#62615f",
+          "#83827f",
+          "#a6a5a2",
+          "#cac9c6",
+          "#efeeeb"
         ]
       },
       "fill": {
         "role": "neutral",
-        "displayName": "Raised Black",
-        "canonical": "oklch(23.6% 0.006 78)",
+        "displayName": "Deep Studio Grey",
+        "canonical": "oklch(93.1% 0.005 95)",
         "tonalRamp": [
-          "#0d0b08",
-          "#262421",
-          "#423f3c",
-          "#605d5a",
-          "#7f7d79",
-          "#a19e9a",
-          "#c6c4c0",
-          "#f1eeea"
+          "#0c0b09",
+          "#262522",
+          "#43423f",
+          "#62615e",
+          "#83827f",
+          "#a6a5a1",
+          "#cac9c5",
+          "#efeeea"
         ]
       },
       "field": {
         "role": "neutral",
-        "displayName": "Well Black",
-        "canonical": "oklch(17.3% 0.004 85)",
+        "displayName": "Gallery White (field)",
+        "canonical": "oklch(100.0% 0.000 90)",
         "tonalRamp": [
-          "#0c0b09",
-          "#252422",
-          "#41403d",
-          "#5f5d5b",
-          "#7e7d7a",
-          "#a09e9b",
-          "#c5c4c1",
-          "#f0eeeb"
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
         ]
       },
       "separator": {
         "role": "neutral",
-        "displayName": "Hairline",
-        "canonical": "oklch(29.1% 0.008 75)",
+        "displayName": "Rule Grey",
+        "canonical": "oklch(91.2% 0.005 95)",
         "tonalRamp": [
-          "#0d0b07",
-          "#262320",
-          "#423f3b",
-          "#605d58",
-          "#807d78",
-          "#a19e99",
-          "#c7c3be",
-          "#f2eee8"
+          "#0c0b09",
+          "#262522",
+          "#43423f",
+          "#62615e",
+          "#83827f",
+          "#a6a5a1",
+          "#cac9c5",
+          "#efeeea"
         ]
       },
       "control": {
         "role": "neutral",
         "displayName": "Thread Grey",
-        "canonical": "oklch(52.3% 0.014 80)",
+        "canonical": "oklch(63.6% 0.007 97)",
         "tonalRamp": [
-          "#0e0b05",
-          "#28231d",
-          "#443f38",
-          "#625d55",
-          "#827c74",
-          "#a39e95",
-          "#c9c3ba",
-          "#f3eee4"
+          "#0c0b08",
+          "#262521",
+          "#43423e",
+          "#62615d",
+          "#83827d",
+          "#a6a5a0",
+          "#cac9c4",
+          "#f0efe9"
         ]
       },
       "label": {
         "role": "neutral",
-        "displayName": "Ivory",
-        "canonical": "oklch(93.8% 0.010 82)",
+        "displayName": "Ink",
+        "canonical": "oklch(18.2% 0.000 90)",
         "tonalRamp": [
-          "#0d0b07",
-          "#27241e",
-          "#423f3a",
-          "#615d57",
-          "#807d76",
-          "#a29e97",
-          "#c7c4bd",
-          "#f2eee7"
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
         ]
       },
       "label-2": {
         "role": "neutral",
-        "displayName": "Greige",
-        "canonical": "oklch(71.2% 0.016 77)",
+        "displayName": "Stone",
+        "canonical": "oklch(47.1% 0.006 95)",
         "tonalRamp": [
-          "#0f0a04",
-          "#29231b",
-          "#453f36",
-          "#635d53",
-          "#837c73",
-          "#a49d93",
-          "#cac3b9",
-          "#f5ede3"
+          "#0c0b08",
+          "#262522",
+          "#43423e",
+          "#62615d",
+          "#83827e",
+          "#a6a5a1",
+          "#cac9c4",
+          "#f0eeea"
         ]
       },
       "accent": {
         "role": "neutral",
-        "displayName": "Ivory (button fill)",
-        "canonical": "oklch(93.8% 0.010 82)",
+        "displayName": "Ink (action)",
+        "canonical": "oklch(18.2% 0.000 90)",
         "tonalRamp": [
-          "#0d0b07",
-          "#27241e",
-          "#423f3a",
-          "#615d57",
-          "#807d76",
-          "#a29e97",
-          "#c7c4bd",
-          "#f2eee7"
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
         ]
       },
       "accent-hover": {
         "role": "neutral",
-        "displayName": "Pure White (button hover)",
-        "canonical": "oklch(100.0% 0.000 90)",
+        "displayName": "Graphite",
+        "canonical": "oklch(34.8% 0.003 107)",
         "tonalRamp": [
-          "#0b0b0b",
-          "#242424",
-          "#404040",
-          "#5d5d5d",
-          "#7d7d7d",
-          "#9e9e9e",
-          "#c4c4c4",
-          "#eeeeee"
+          "#0b0b0a",
+          "#252523",
+          "#424240",
+          "#61615f",
+          "#828280",
+          "#a5a5a3",
+          "#c9c9c7",
+          "#efefec"
         ]
       },
       "on-accent": {
         "role": "neutral",
-        "displayName": "Evening Black (ink on fills)",
-        "canonical": "oklch(15.0% 0.003 68)",
+        "displayName": "White on Ink",
+        "canonical": "oklch(100.0% 0.000 90)",
         "tonalRamp": [
-          "#0c0b0a",
-          "#252423",
-          "#413f3e",
-          "#5f5d5c",
-          "#7e7d7b",
-          "#9f9e9d",
-          "#c5c4c2",
-          "#f0eeec"
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "link": {
+        "role": "neutral",
+        "displayName": "Ink (link)",
+        "canonical": "oklch(18.2% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
         ]
       },
       "brass": {
         "role": "primary",
-        "displayName": "Atelier Brass",
-        "canonical": "oklch(77.4% 0.068 79)",
+        "displayName": "Dark Brass",
+        "canonical": "oklch(52.5% 0.084 78)",
         "tonalRamp": [
-          "#120900",
-          "#322001",
-          "#533b0d",
-          "#72592e",
-          "#93794d",
-          "#b59a6e",
-          "#dcc092",
-          "#ffeccd"
+          "#150800",
+          "#332101",
+          "#553d13",
+          "#795b28",
+          "#9c7d4a",
+          "#bca076",
+          "#ddc6a2",
+          "#feecd0"
         ]
       },
       "danger": {
         "role": "status",
-        "displayName": "Coral",
-        "canonical": "oklch(70.7% 0.151 27)",
+        "displayName": "Signal Red",
+        "canonical": "oklch(50.0% 0.182 30)",
         "tonalRamp": [
-          "#1f0001",
-          "#490405",
-          "#790f10",
-          "#a22f2b",
-          "#c7524a",
-          "#ee756a",
-          "#feaba1",
-          "#ffe9e6"
+          "#1e0000",
+          "#43120d",
+          "#6b2b23",
+          "#96453a",
+          "#bc675a",
+          "#da8e82",
+          "#f7b7ac",
+          "#ffe0d7"
         ]
       },
       "danger-tint": {
         "role": "status",
-        "displayName": "Coral Shadow",
-        "canonical": "oklch(22.5% 0.035 26)",
+        "displayName": "Signal Red Tint",
+        "canonical": "oklch(96.0% 0.017 27)",
         "tonalRamp": [
-          "#170504",
-          "#331d1b",
-          "#513936",
-          "#705653",
-          "#917672",
-          "#b39793",
-          "#dabcb8",
-          "#fee9e6"
+          "#110908",
+          "#2d2221",
+          "#4a3f3d",
+          "#6a5e5c",
+          "#8c7f7d",
+          "#afa19f",
+          "#d4c5c3",
+          "#faebe9"
         ]
       },
       "ok": {
         "role": "status",
-        "displayName": "Sage",
-        "canonical": "oklch(78.2% 0.082 154)",
+        "displayName": "Ledger Green",
+        "canonical": "oklch(46.8% 0.108 152)",
         "tonalRamp": [
-          "#001004",
-          "#022d15",
-          "#124c2b",
-          "#346b48",
-          "#558c66",
-          "#76ae87",
-          "#9bd4ac",
-          "#c8fed7"
+          "#001102",
+          "#002e13",
+          "#164e2a",
+          "#2d7143",
+          "#509464",
+          "#7cb58a",
+          "#a8d7b3",
+          "#d5fadd"
         ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "One Bodoni h1 per page: 52-96px home, 56-88px category, 44-56px product."
+        "purpose": "One h1 per page, Bodoni at text weight; 30 to 64px depending on the page."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section and collection titles, balanced wrap."
+        "purpose": "Section titles: home rows, collection tiles, grey bands, prompts."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Product names in the grid (17/21px), step titles (24px), review heading (28px)."
+        "purpose": "Legends, outfit cards, review prompt, auth points."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Running text, greige for secondary copy."
+        "purpose": "Running text; secondary text in Stone; intros at 17px."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Breadcrumbs, color and material lines, footer text, size line."
       },
       "label": {
-        "displayName": "Tracked Small Caps",
-        "purpose": "Navigation, buttons, text links, field and spec labels, tabs."
+        "displayName": "Tracked Caps",
+        "purpose": "Navigation, buttons, text links, product names, tabs, legends, disclosure summaries."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "CARRURE in header (24 / 30px) and footer (28px)."
       },
       "figures": {
         "displayName": "Figures",
-        "purpose": "Prices and sizes in lining tabular Bodoni; 64px for the product page size."
+        "purpose": "Prices and sizes in Jost lining tabular numerals; the visitor's size in brass."
       }
     },
     "shadows": [
       {
-        "name": "hairline-inset",
-        "value": "inset 0 0 0 1px rgb(238 234 227 / 0.45)",
-        "purpose": "Secondary button outline (full ivory on hover); a border, not elevation."
-      },
-      {
-        "name": "chip-inset",
-        "value": "inset 0 0 0 1px var(--color-separator)",
-        "purpose": "Size chip outline at rest."
-      },
-      {
-        "name": "focus-underline",
-        "value": "0 1px 0 var(--color-brass)",
-        "purpose": "Thickens the underlined field rule to 2px on focus."
+        "name": "rule-inset",
+        "value": "inset 0 0 0 1px var(--color-label)",
+        "purpose": "Border of the secondary button; Rule Grey variant outlines size chips. Never lift."
       },
       {
         "name": "focus-halo",
-        "value": "0 0 0 1px var(--color-brass)",
-        "purpose": "Boxed field and choice tile focus or selection."
-      },
-      {
-        "name": "focus-outline",
-        "value": "outline: 1px solid var(--color-brass); outline-offset: 3px",
-        "purpose": "Global focus-visible ring."
-      },
-      {
-        "name": "header-glass",
-        "value": "background: rgb(12 11 10 / 0.85); backdrop-filter: blur(24px)",
-        "purpose": "Sticky header; solid canvas under reduced transparency."
+        "value": "0 0 0 1px var(--color-label)",
+        "purpose": "Second pixel of focus or selection on boxed inputs and choice tiles."
       }
     ],
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(0.23, 1, 0.32, 1)",
-        "purpose": "Default for state transitions (150ms) and photo zoom."
+        "purpose": "Button press, field label float, photo hover zoom (1.03 over 700ms)."
       },
       {
         "name": "ease-in-out",
         "value": "cubic-bezier(0.77, 0, 0.175, 1)",
-        "purpose": "Two-way movement."
+        "purpose": "Two-way transitions."
+      },
+      {
+        "name": "duration-state",
+        "value": "150ms",
+        "purpose": "Color, border and press feedback on controls."
+      },
+      {
+        "name": "spring-marker",
+        "value": "critically damped, 0.4s response",
+        "purpose": "Size-tape knob and fill; jumps under reduced motion."
       },
       {
         "name": "rise",
-        "value": "rise 0.9s ease-out both, 12px translate, 120ms stagger",
-        "purpose": "Hero triptych entrance; fade only under reduced motion."
-      },
-      {
-        "name": "photo-zoom",
-        "value": "scale(1.03) over 900-1200ms",
-        "purpose": "Photo hover on hover-capable devices; disabled under reduced motion."
-      },
-      {
-        "name": "press",
-        "value": "scale(0.98) over 150ms",
-        "purpose": "Button active state."
-      },
-      {
-        "name": "spinner",
-        "value": "spinner-fade 1s linear infinite",
-        "purpose": "12-bar pending indicator."
+        "value": "0.9s ease-out, 12px",
+        "purpose": "Entrance; fades without moving under reduced motion."
       }
     ],
     "breakpoints": [
@@ -334,8 +332,8 @@
         "value": "1024px"
       },
       {
-        "name": "container",
-        "value": "1440px"
+        "name": "xl",
+        "value": "1280px"
       }
     ]
   },
@@ -344,120 +342,142 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The one filled button per view: ivory rectangle, black tracked caps.",
+      "description": "The one black filled action per view.",
       "html": "<button class=\"ds-btn-primary\">Trouver ma taille</button>",
-      "css": ".ds-btn-primary{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 32px;background:var(--color-accent,#eeeae3);color:var(--color-on-accent,#0c0b0a);border:0;border-radius:0;cursor:pointer;transition:background-color 150ms cubic-bezier(0.23,1,0.32,1),transform 150ms cubic-bezier(0.23,1,0.32,1);}.ds-btn-primary:hover{background:var(--color-accent-hover,#fff);}.ds-btn-primary:active{transform:scale(0.98);}.ds-btn-primary:focus-visible{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}"
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 32px; background: #121212; color: #fff; border: 0; border-radius: 0; cursor: pointer; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase; transition: background-color 150ms cubic-bezier(0.23,1,0.32,1), transform 150ms cubic-bezier(0.23,1,0.32,1); } .ds-btn-primary:hover { background: #3a3a38; } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: 1px solid #121212; outline-offset: 3px; }"
     },
     {
       "name": "Secondary Button",
       "kind": "button",
       "refersTo": "button-secondary",
-      "description": "Hairline ivory outline for secondary actions.",
-      "html": "<button class=\"ds-btn-secondary\">Créer un compte</button>",
-      "css": ".ds-btn-secondary{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;background:transparent;color:var(--color-label,#eeeae3);border:0;border-radius:0;box-shadow:inset 0 0 0 1px rgb(238 234 227/0.45);cursor:pointer;transition:box-shadow 150ms cubic-bezier(0.23,1,0.32,1),transform 150ms cubic-bezier(0.23,1,0.32,1);}.ds-btn-secondary:hover{box-shadow:inset 0 0 0 1px var(--color-label,#eeeae3);}.ds-btn-secondary:active{transform:scale(0.98);}.ds-btn-secondary:focus-visible{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}"
+      "description": "1px ink outline; fills ink on hover.",
+      "html": "<button class=\"ds-btn-secondary\">Pourquoi cette taille ?</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 28px; background: transparent; color: #121212; border: 0; border-radius: 0; box-shadow: inset 0 0 0 1px #121212; cursor: pointer; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase; transition: background-color 150ms, color 150ms, transform 150ms; } .ds-btn-secondary:hover { background: #121212; color: #fff; } .ds-btn-secondary:active { transform: scale(0.98); } .ds-btn-secondary:focus-visible { outline: 1px solid #121212; outline-offset: 3px; }"
     },
     {
       "name": "Text Link",
       "kind": "button",
       "refersTo": "text-link",
-      "description": "Tracked caps link underlined in brass.",
-      "html": "<a class=\"ds-text-link\" href=\"#\">Voir les costumes</a>",
-      "css": ".ds-text-link{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;display:inline-flex;align-items:center;min-height:44px;color:var(--color-label,#eeeae3);text-decoration:underline;text-decoration-color:rgb(205 177 132/0.6);text-decoration-thickness:1px;text-underline-offset:6px;transition:text-decoration-color 150ms;}.ds-text-link:hover{text-decoration-color:var(--color-brass,#cdb184);}.ds-text-link:focus-visible{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}"
+      "description": "Tracked-caps link with a 40% ink underline.",
+      "html": "<a class=\"ds-text-link\" href=\"#\">Tout voir</a>",
+      "css": ".ds-text-link { display: inline-flex; align-items: center; min-height: 44px; color: #121212; text-decoration: underline; text-decoration-color: rgb(18 18 18 / 0.4); text-decoration-thickness: 1px; text-underline-offset: 6px; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase; transition: text-decoration-color 150ms; } .ds-text-link:hover { text-decoration-color: #121212; } .ds-text-link:focus-visible { outline: 1px solid #121212; outline-offset: 3px; }"
     },
     {
       "name": "Underlined Field",
       "kind": "input",
       "refersTo": "field-underlined",
-      "description": "Floating-label field on a single rule that turns brass on focus.",
-      "html": "<div class=\"ds-field\"><input id=\"ds-h\" placeholder=\" \" /><label for=\"ds-h\">Taille</label><span class=\"ds-field-unit\">cm</span></div>",
-      "css": ".ds-field{position:relative;width:260px;font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);}.ds-field input{width:100%;height:56px;padding:18px 40px 0 0;background:transparent;border:0;border-bottom:1px solid var(--color-control,#6e6961);border-radius:0;color:var(--color-label,#eeeae3);font:inherit;font-size:17px;caret-color:var(--color-brass,#cdb184);transition:border-color 150ms ease;}.ds-field input:focus{outline:none;border-bottom-color:var(--color-brass,#cdb184);box-shadow:0 1px 0 var(--color-brass,#cdb184);}.ds-field label{position:absolute;left:0;top:28px;transform:translateY(-50%);transform-origin:left;font-size:17px;line-height:1;color:var(--color-label-2,#a8a197);pointer-events:none;transition:transform 150ms cubic-bezier(0.23,1,0.32,1);}.ds-field input:focus+label,.ds-field input:not(:placeholder-shown)+label{transform:translateY(calc(-50% - 10px)) scale(0.7);}.ds-field-unit{position:absolute;right:0;bottom:9px;font-size:17px;color:var(--color-label-2,#a8a197);}"
+      "description": "Floating-label field on a single rule, unit on the baseline.",
+      "html": "<label class=\"ds-field\"><input placeholder=\" \" value=\"180\"><span class=\"ds-field-label\">Taille</span><span class=\"ds-field-unit\">cm</span></label>",
+      "css": ".ds-field { position: relative; display: block; width: 220px; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; } .ds-field input { width: 100%; height: 56px; padding: 18px 40px 0 0; border: 0; border-bottom: 1px solid #8c8b86; background: transparent; font: inherit; font-size: 17px; color: #121212; caret-color: #85642c; outline: none; transition: border-color 150ms; } .ds-field input:focus { border-bottom-color: #121212; box-shadow: 0 1px 0 #121212; } .ds-field-label { position: absolute; left: 0; top: 28px; transform-origin: left; transform: translateY(calc(-50% - 10px)) scale(0.7); font-size: 17px; line-height: 1; color: #5c5b57; pointer-events: none; } .ds-field-unit { position: absolute; right: 0; bottom: 9px; font-size: 17px; color: #5c5b57; }"
+    },
+    {
+      "name": "Size Chip",
+      "kind": "chip",
+      "refersTo": "size-chip",
+      "description": "Square size choice; checked fills ink, the computed size carries a brass ring, sold out is struck.",
+      "html": "<div class=\"ds-chips\"><span class=\"ds-chip\">46</span><span class=\"ds-chip ds-chip-out\">48</span><span class=\"ds-chip ds-chip-on ds-chip-mine\">50</span><span class=\"ds-chip\">52</span></div>",
+      "css": ".ds-chips { display: flex; gap: 8px; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; } .ds-chip { display: inline-flex; align-items: center; justify-content: center; height: 48px; min-width: 56px; padding: 0 12px; font-size: 14px; font-variant-numeric: tabular-nums; color: #121212; box-shadow: inset 0 0 0 1px #e3e2de; cursor: pointer; transition: background-color 150ms, box-shadow 150ms, color 150ms; } .ds-chip:hover { box-shadow: inset 0 0 0 1px #8c8b86; } .ds-chip-on { background: #121212; color: #fff; box-shadow: none; } .ds-chip-mine { outline: 1px solid #85642c; outline-offset: 3px; } .ds-chip-out { color: #5c5b57; text-decoration: line-through; box-shadow: none; cursor: default; }"
+    },
+    {
+      "name": "Product Tile",
+      "kind": "card",
+      "refersTo": "size-badge",
+      "description": "Cut-out photo on studio grey, brass size badge top-left, caps name, meta line, price.",
+      "html": "<a class=\"ds-tile\" href=\"#\"><span class=\"ds-tile-photo\"><span class=\"ds-badge\"><span class=\"ds-badge-label\">Votre taille</span><span class=\"ds-badge-size\">50</span></span></span><span class=\"ds-tile-name\">Costume laine marine</span><span class=\"ds-tile-meta\">Bleu marine · Laine vierge</span><span class=\"ds-tile-price\">399 €</span></a>",
+      "css": ".ds-tile { display: flex; flex-direction: column; width: 240px; color: #121212; text-decoration: none; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; } .ds-tile-photo { position: relative; display: block; aspect-ratio: 4 / 5; background: #f1f0ed; overflow: hidden; } .ds-badge { position: absolute; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; background: #fff; } .ds-badge-label { font-size: 11px; color: #5c5b57; } .ds-badge-size { font-size: 14px; font-weight: 600; line-height: 1; color: #85642c; font-variant-numeric: lining-nums tabular-nums; } .ds-tile-name { margin-top: 16px; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase; } .ds-tile-meta { margin-top: 4px; font-size: 13px; color: #5c5b57; } .ds-tile-price { margin-top: 8px; font-size: 14px; font-variant-numeric: lining-nums tabular-nums; } .ds-tile:focus-visible { outline: 1px solid #121212; outline-offset: 3px; }"
+    },
+    {
+      "name": "Size Panel",
+      "kind": "custom",
+      "refersTo": "size-panel",
+      "description": "Grey block on the product page with the size in large brass figures, dotted when estimated.",
+      "html": "<section class=\"ds-size-panel\"><h2 class=\"ds-size-panel-label\">Votre taille</h2><p class=\"ds-size-panel-size\">50</p><p class=\"ds-size-panel-note\">Taille estimée, confiance moyenne. <span class=\"ds-ok\">En stock dans votre taille.</span></p></section>",
+      "css": ".ds-size-panel { width: 360px; padding: 24px; background: #f1f0ed; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; color: #121212; } .ds-size-panel-label { margin: 0; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase; } .ds-size-panel-size { margin: 12px 0 0; font-size: 44px; font-weight: 500; line-height: 1; color: #85642c; font-variant-numeric: lining-nums tabular-nums; text-decoration: underline dotted #8c8b86; text-decoration-thickness: 1px; text-underline-offset: 0.18em; } .ds-size-panel-note { margin: 12px 0 0; font-size: 14px; color: #5c5b57; } .ds-ok { color: #1d6b3a; }"
+    },
+    {
+      "name": "Site Header",
+      "kind": "nav",
+      "refersTo": "announcement-strip",
+      "description": "Black strip, then centered spaced Bodoni wordmark over a centered row of departments, closed by a rule.",
+      "html": "<div class=\"ds-head\"><p class=\"ds-strip\">Votre taille calculée sur chaque costume et chaque chemise</p><div class=\"ds-bar\"><a class=\"ds-nav\" href=\"#\">Trouver ma taille</a><a class=\"ds-mark\" href=\"#\">Carrure</a><a class=\"ds-nav ds-right\" href=\"#\">Compte</a></div><nav class=\"ds-depts\"><a class=\"ds-nav\" href=\"#\">Costumes</a><a class=\"ds-nav\" href=\"#\">Chemises</a></nav></div>",
+      "css": ".ds-head { background: #fff; color: #121212; border-bottom: 1px solid #e3e2de; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; } .ds-strip { margin: 0; padding: 8px 16px; background: #121212; color: #fff; font-size: 12px; text-align: center; } .ds-bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; padding: 0 32px; } .ds-right { justify-self: end; } .ds-mark { font-family: var(--font-bodoni), 'Bodoni 72', Didot, Georgia, serif; font-weight: 400; font-size: 30px; letter-spacing: 0.24em; text-transform: uppercase; color: #121212; text-decoration: none; } .ds-depts { display: flex; justify-content: center; gap: 40px; height: 44px; align-items: center; } .ds-nav { display: inline-flex; align-items: center; min-height: 44px; color: #121212; text-decoration: none; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase; transition: color 150ms ease; } .ds-nav:hover { color: #5c5b57; } .ds-nav:focus-visible, .ds-mark:focus-visible { outline: 1px solid #121212; outline-offset: 3px; }"
     },
     {
       "name": "Underlined Tabs",
       "kind": "nav",
       "refersTo": "nav-tab",
-      "description": "Sibling-page tabs; current page ivory with a brass rule.",
-      "html": "<nav class=\"ds-tabs\"><a href=\"#\" aria-current=\"page\">Pour moi (8)</a><a href=\"#\">Tout voir (15)</a></nav>",
-      "css": ".ds-tabs{display:flex;gap:24px;}.ds-tabs a{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;display:inline-flex;align-items:center;min-height:44px;color:var(--color-label-2,#a8a197);text-decoration:none;border-bottom:1px solid transparent;transition:color 150ms ease,border-color 150ms ease;}.ds-tabs a:hover{color:var(--color-label,#eeeae3);}.ds-tabs a[aria-current=page]{color:var(--color-label,#eeeae3);border-bottom-color:var(--color-brass,#cdb184);}.ds-tabs a:focus-visible{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}"
-    },
-    {
-      "name": "Size Chips",
-      "kind": "chip",
-      "refersTo": "size-chip",
-      "description": "Square size selector; computed size ringed in brass, sold out struck through.",
-      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\">46</button><button class=\"ds-chip ds-chip-mine\">48</button><button class=\"ds-chip ds-chip-on\">50</button><button class=\"ds-chip\" disabled>52</button></div>",
-      "css": ".ds-chips{display:flex;gap:8px;}.ds-chip{display:inline-flex;align-items:center;justify-content:center;height:48px;min-width:56px;padding:0 12px;background:transparent;color:var(--color-label,#eeeae3);border:0;border-radius:0;font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:14px;font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 1px var(--color-separator,#2e2b27);cursor:pointer;transition:background-color 150ms ease,box-shadow 150ms ease,color 150ms ease;}.ds-chip:hover{box-shadow:inset 0 0 0 1px var(--color-control,#6e6961);}.ds-chip-mine{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}.ds-chip-on{background:var(--color-label,#eeeae3);color:var(--color-on-accent,#0c0b0a);box-shadow:none;}.ds-chip:disabled{color:rgb(168 161 151/0.8);text-decoration:line-through;box-shadow:none;cursor:default;}.ds-chip:focus-visible{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}"
-    },
-    {
-      "name": "Size Badge",
-      "kind": "custom",
-      "refersTo": "size-badge",
-      "description": "Brass size set on the bottom-left of each product photo.",
-      "html": "<div class=\"ds-photo\"><span class=\"ds-badge\"><span class=\"ds-badge-label\">Votre taille</span><span class=\"ds-badge-size\">48</span></span></div>",
-      "css": ".ds-photo{position:relative;width:200px;aspect-ratio:4/5;background:linear-gradient(160deg,#2a2622,#0c0b0a);}.ds-badge{position:absolute;left:0;bottom:0;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgb(12 11 10/0.8);backdrop-filter:blur(12px);}.ds-badge-label{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;font-size:10px;color:var(--color-label-2,#a8a197);}.ds-badge-size{font-family:var(--font-display, 'Bodoni Moda', 'Bodoni 72', Didot, Georgia, serif);font-variant-numeric:lining-nums tabular-nums;font-size:17px;line-height:1;color:var(--color-brass,#cdb184);}"
-    },
-    {
-      "name": "Your Size Panel",
-      "kind": "custom",
-      "refersTo": "size-badge",
-      "description": "Product page size statement between hairlines, 64px brass figures, dotted when estimated.",
-      "html": "<section class=\"ds-yoursize\"><h2>Votre taille</h2><p><span class=\"ds-big estimated\">48</span><span class=\"ds-alt\">ou 50</span></p><p class=\"ds-note\">Taille estimée, confiance élevée.</p></section>",
-      "css": ".ds-yoursize{width:340px;padding:32px 0;border-top:1px solid var(--color-separator,#2e2b27);border-bottom:1px solid var(--color-separator,#2e2b27);color:var(--color-label,#eeeae3);font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);}.ds-yoursize h2{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;margin:0;color:var(--color-label-2,#a8a197);}.ds-yoursize p{margin:12px 0 0;display:flex;align-items:baseline;gap:12px;}.ds-big{font-family:var(--font-display, 'Bodoni Moda', 'Bodoni 72', Didot, Georgia, serif);font-variant-numeric:lining-nums tabular-nums;font-size:64px;line-height:1;color:var(--color-brass,#cdb184);}.ds-big.estimated{text-decoration:underline dotted var(--color-control,#6e6961);text-decoration-thickness:1px;text-underline-offset:0.18em;}.ds-alt{font-size:17px;color:var(--color-label-2,#a8a197);}.ds-note{font-size:14px;color:var(--color-label-2,#a8a197);}"
+      "description": "Sibling-page tabs; current is ink with a 1px ink rule.",
+      "html": "<nav class=\"ds-tabs\"><a class=\"ds-tab\" aria-current=\"page\" href=\"#\">Pour moi (9)</a><a class=\"ds-tab\" href=\"#\">Tout voir (12)</a></nav>",
+      "css": ".ds-tabs { display: flex; gap: 24px; } .ds-tab { display: inline-flex; align-items: center; min-height: 44px; color: #5c5b57; text-decoration: none; border-bottom: 1px solid transparent; font-family: var(--font-jost), Futura, 'Century Gothic', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase; transition: color 150ms ease, border-color 150ms ease; } .ds-tab:hover { color: #121212; } .ds-tab[aria-current=page] { color: #121212; border-bottom-color: #121212; } .ds-tab:focus-visible { outline: 1px solid #121212; outline-offset: 3px; }"
     }
   ],
   "narrative": {
-    "northStar": "La Maison du soir",
-    "overview": "Carrure reads like an Italian tailoring house after closing time: a warm black room, ivory type, and one brass fitting that catches the light. The garment is photographed like a campaign, worn and cropped below the chin on a dark ground, and the computed size is set beside it the way a price tag is set in a shop window, in brass Bodoni numerals. Everything else steps back.\n\nThe system is quiet and rectangular. Didone titles at text weight carry the voice; Jost in tracked small capitals carries every instruction (navigation, buttons, field labels, spec terms). Structure comes from hairlines (#2e2b27) and tonal steps of the warm black, never from cards, shadows or rounded containers. Density is low: generous section breaks, centered titles, and photography given the full width of the grid.\n\nThe world replaced a bright Apple Store tile look, rejected by the user as cheap. That rejection is a confirmed anti-reference: no light grey tiles, no pill buttons, no rounded cards, no saturated system blue.",
+    "northStar": "The Department Store Floor",
+    "overview": "**Creative North Star: \"The Department Store Floor\"**\n\nCarrure reads like the menswear floor of a large online luxury department store: a white page, black type, and the merchandise laid out on one studio grey, the way a store shoots everything against the same backdrop. The layout follows the general grammar of Mr Porter (black announcement strip, centered spaced wordmark over a row of departments, centered titles, dense product grids with tracked-caps names), taken as layout only: never its name, logo, copy or photographs. What is Carrure's own is the visitor's size, set in dark brass on every photo and on every product page.\n\nThe system is quiet, square and editorial. Bodoni Moda at text weight carries the wordmark and every title; Jost carries everything else, with 12px tracked capitals for navigation, buttons, product names and data labels. Structure comes from white space, 1px rules and the grey tile under photos and panels, never from shadows or rounded containers. Black frames the page top and bottom (announcement strip, footer) and fills the one primary button.\n\nPhotography is Pexels imagery of worn garments, cut out and composited onto the studio grey with uniform framing, 4:5 throughout. The world replaced two rejected looks: a bright Apple Store tile system (\"cheap\") and a dark Italian tailoring house. Neither returns.",
     "keyCharacteristics": [
-      "Warm black ground, ivory text, a single brass accent reserved for the size and for focus.",
-      "Bodoni Moda titles at weight 400, never bold; Jost body; tracked small caps for every control.",
-      "Square corners on every surface and control; round only for small markers (badge count, gauge knob, spinner).",
-      "Hairline separators and tonal layering instead of elevation.",
-      "Worn-garment photography on dark backgrounds with one shared grade, 4:5 frames."
+      "White page, near-black text, studio grey under every photo and size panel.",
+      "One chromatic accent, dark brass, reserved for the visitor's size.",
+      "Bodoni Moda at weight 400 for wordmark and h1 to h3; Jost for everything else; 12px tracked caps for controls and product names.",
+      "Black announcement strip, black footer, black filled primary button.",
+      "Square corners, 1px rules, no elevation.",
+      "Cut-out garment photos on one grey, 4:5, same framing."
     ],
     "rules": [
       {
-        "name": "The One Brass Rule",
-        "body": "Brass marks the visitor's size, focus and links, nothing decorative. If a screen has brass on something that is not the size, a link underline, focus or a step numeral, remove it.",
+        "name": "The Size-Only Brass Rule",
+        "body": "Brass marks the visitor's size and nothing else: no brass buttons, links, borders, icons or decoration. If brass appears on something that is not the size, remove it.",
         "section": "colors"
       },
       {
-        "name": "The Ivory Button Rule",
-        "body": "The filled primary button is ivory on black, not brass. One filled button per view; everything else is an outline or a text link.",
+        "name": "The Black Frame Rule",
+        "body": "Black is a frame and an action: the announcement strip, the footer, the primary button, the checked chip. It never fills a content panel; panels sit on studio grey.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Grey Rule",
+        "body": "Every product photo sits on the same studio grey. A photo on another ground, or a raw unprocessed photo, breaks the floor.",
         "section": "colors"
       },
       {
         "name": "The Text-Weight Rule",
-        "body": "Every h1 to h3 is Bodoni at weight 400 with -0.005em tracking. Hierarchy comes from size and space, never from bold.",
+        "body": "Every h1 to h3 in Bodoni is weight 400 with -0.005em tracking and balanced wrap. Hierarchy comes from size and space, never from bold.",
+        "section": "typography"
+      },
+      {
+        "name": "The Caps-Label Rule",
+        "body": "Tracked caps name controls, products and data. They are never placed above a title as decoration.",
         "section": "typography"
       },
       {
         "name": "The Estimated Underline Rule",
-        "body": "An estimated value carries a 1px dotted Thread Grey underline; a measured value does not. Never remove it to tidy the page: it is the honesty signal.",
+        "body": "An estimated value carries a 1px dotted Thread Grey underline; a measured value does not. It is the honesty signal; never remove it to tidy a page.",
         "section": "typography"
       },
       {
-        "name": "The Hairline Rule",
-        "body": "Separate with a 1px Hairline rule or a tonal step. If you reach for a drop shadow, use a rule instead.",
+        "name": "The Rule-Not-Shadow Rule",
+        "body": "Separate with a 1px rule, a grey band or white space. If you reach for a drop shadow, use a rule instead.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Do keep the ground warm black (canvas) and text ivory (label); secondary text greige (label-2).",
-      "Do reserve brass for the visitor's size, focus, link underlines and step numerals.",
-      "Do set every h1 to h3 in Bodoni Moda at weight 400; set every price and size in lining tabular Bodoni figures.",
-      "Do set navigation, buttons, field and spec labels in 11px Jost 500, 0.2em tracking, uppercase.",
-      "Do keep every corner square; round only badge counts, the gauge knob and the spinner.",
-      "Do separate content with 1px hairlines and tonal steps; keep photos 4:5, worn, dark-ground, cropped below the chin, in the shared grade.",
+      "Do keep the page white (canvas), text ink (label), secondary text Stone (label-2), and every photo on studio grey (tile).",
+      "Do reserve brass for the visitor's size: badge, panel, size line, chip ring, size tape.",
+      "Do set the wordmark and every h1 to h3 in Bodoni Moda at weight 400; set prices and sizes in Jost lining tabular figures.",
+      "Do set navigation, buttons, product names and data labels in 12px Jost 500, 0.12em tracking, uppercase.",
+      "Do bracket the page with the black announcement strip and the black footer; fill only the primary action in black.",
+      "Do keep every corner square and every line 1px; round only the cart count, the tape knob and the spinner.",
+      "Do cut out photos and composite them on the studio grey with the same framing, 4:5.",
       "Do mark estimated values with the dotted underline and keep 44px minimum hit areas on links."
     ],
     "donts": [
-      "Don't return to the Apple Store look: no light grey tiles, no pill or rounded buttons, no rounded cards, no system blue.",
-      "Don't use bold Bodoni or a second accent color.",
+      "Don't return to the Apple Store look: no pill or rounded buttons, no rounded cards, no system blue.",
+      "Don't return to the dark house: no black page ground, no ivory text, no photo veils.",
+      "Don't fill a button, link or border in brass, or add a second accent color.",
+      "Don't use bold Bodoni or set body text in Bodoni.",
       "Don't add drop shadows for elevation.",
-      "Don't fill a button in brass or use more than one filled button per view.",
-      "Don't use text glyphs as icons; draw icons as 1.2px-stroke outline SVG.",
-      "Don't place a tracked-caps label above a title as decoration; tracked caps label controls and data."
+      "Don't use text glyphs as icons; draw icons as 1.2 to 1.3px-stroke outline SVG.",
+      "Don't place a tracked-caps label above a title as decoration.",
+      "Don't use Mr Porter's name, logo, copy or photographs."
     ]
   }
 }
