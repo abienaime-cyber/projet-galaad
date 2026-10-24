@@ -6,12 +6,8 @@ export function ProductTile({ item, priority }: { item: Fitted; priority?: boole
   const { product, rec, inStock } = item;
   return (
     <li>
-      <Link
-        href={`/produit/${product.slug}`}
-        prefetch={priority}
-        className="group flex h-full flex-col rounded-[20px] bg-tile p-2 pb-5 sm:rounded-[28px] sm:p-3 sm:pb-7 transition-transform duration-150 ease-out active:scale-[0.99]"
-      >
-        <div className="overflow-hidden rounded-[14px] sm:rounded-[18px]">
+      <Link href={`/produit/${product.slug}`} prefetch={priority} className="group flex h-full flex-col">
+        <div className="relative overflow-hidden bg-tile">
           {product.image ? (
             <Image
               src={product.image}
@@ -19,39 +15,32 @@ export function ProductTile({ item, priority }: { item: Fitted; priority?: boole
               width={500}
               height={625}
               priority={priority}
-              sizes="(min-width: 1024px) 300px, 50vw"
-              className="aspect-[4/5] w-full object-cover transition-transform duration-300 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
+              sizes="(min-width: 1024px) 460px, 50vw"
+              className="aspect-[4/5] w-full object-cover transition-transform duration-[900ms] ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
             />
           ) : (
             <div className="aspect-[4/5] bg-fill" />
           )}
-        </div>
-        <h3 className="mx-2 mt-4 text-[15px] sm:mx-5 sm:mt-5 sm:text-[19px] leading-tight font-semibold tracking-[-0.02em] text-balance">{product.name}</h3>
-        <p className="mx-2 mt-1 text-xs text-label-2 sm:mx-5 sm:text-sm">
-          {product.color} · {product.material}
-        </p>
-        <div className="mx-2 mt-auto flex flex-wrap items-end justify-between gap-x-3 gap-y-2 pt-4 sm:mx-5 sm:pt-5">
-          <span className="text-[15px] tabular-nums sm:text-[17px]">{price(product.priceCents)}</span>
           {rec && <SizeBadge size={rec.size} inStock={inStock} estimated={rec.estimated} />}
         </div>
+        <h2 className="mt-4 text-[17px] sm:mt-5 sm:text-[21px]">{product.name}</h2>
+        <p className="mt-1 text-xs text-label-2 sm:text-sm">
+          {product.color} · {product.material}
+        </p>
+        <p className="mt-2 text-sm tabular-nums sm:text-[15px]">{price(product.priceCents)}</p>
       </Link>
     </li>
   );
 }
 
+// Posée sur la photo, en bas à gauche : la taille se lit avant le nom.
 function SizeBadge({ size, inStock, estimated }: { size: string | null; inStock: boolean; estimated: boolean }) {
-  if (!size) return <span className="text-xs text-label-2">Hors de notre tableau de tailles</span>;
+  const base = "absolute bottom-0 left-0 inline-flex items-center gap-2 bg-canvas/80 px-3 py-2 backdrop-blur-md reduced-transparency:bg-canvas";
+  if (!size) return <span className={`${base} text-[11px] text-label-2`}>Hors de notre tableau de tailles</span>;
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs text-label-2">
-      <span className="max-sm:sr-only">{inStock ? "Votre taille" : "Épuisé en"}</span>
-      <span
-        className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2.5 text-[13px] font-semibold tabular-nums ${
-          inStock ? "bg-accent text-white" : "bg-fill text-label-2 line-through"
-        }`}
-        title={estimated ? "Taille estimée" : undefined}
-      >
-        {size}
-      </span>
+    <span className={base} title={estimated ? "Taille estimée" : undefined}>
+      <span className="eyebrow text-[10px] text-label-2 max-sm:sr-only">{inStock ? "Votre taille" : "Épuisé en"}</span>
+      <span className={`figures text-[17px] leading-none ${inStock ? "text-brass" : "text-label-2 line-through"}`}>{size}</span>
     </span>
   );
 }

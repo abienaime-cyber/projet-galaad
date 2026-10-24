@@ -12,13 +12,13 @@ export const metadata: Metadata = { title: "Vos mensurations" };
 
 export default function MeasurementsPage() {
   return (
-    <div className="mx-auto max-w-[980px] px-4 pt-10 pb-20 sm:px-[22px] md:pt-16">
-      <h1 className="text-[40px] font-semibold md:text-5xl">Vos mensurations</h1>
+    <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-20 sm:px-8 md:pt-16">
+      <h1 className="text-[44px] md:text-[60px]">Vos mensurations</h1>
       <p className="mt-3 max-w-[40rem] text-[19px] leading-snug text-label-2 md:text-[21px]">
         Elles servent uniquement à calculer votre taille pour chaque chemise et chaque costume. Le calcul reste une
         estimation : il vous dit à quel point il est sûr de lui.
       </p>
-      <Suspense fallback={<div aria-busy className="mt-10 h-[28rem] rounded-[28px] bg-tile" />}>
+      <Suspense fallback={<div aria-busy className="mt-10 h-[28rem] bg-tile" />}>
         <MeasurementsSection />
       </Suspense>
     </div>
@@ -31,7 +31,7 @@ const fr = (n: number | null | undefined) => (n == null ? "" : String(n).replace
 async function MeasurementsSection() {
   if (!isSupabaseConfigured) {
     return (
-      <p role="alert" className="mt-10 max-w-prose rounded-[18px] bg-danger-tint p-5 text-danger">
+      <p role="alert" className="mt-10 max-w-prose bg-danger-tint p-5 text-danger">
         La base de données n’est pas encore branchée. Renseignez <code>NEXT_PUBLIC_SUPABASE_URL</code> et{" "}
         <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> dans <code>.env.local</code>, puis relancez le serveur.
       </p>

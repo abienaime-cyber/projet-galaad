@@ -1,370 +1,247 @@
 ---
 name: Carrure
-description: Chemises et costumes pour homme, taille calculée pour chaque article, dans le look de l'Apple Store.
+description: Chemises et costumes pour homme, avec une taille calculée pour chaque article.
 colors:
-  canvas: "#ffffff"
-  tile: "#f5f5f7"
-  fill: "#e8e8ed"
-  separator: "#d2d2d7"
-  control: "#86868b"
-  label: "#1d1d1f"
-  label-2: "#6e6e73"
-  accent: "#0071e3"
-  accent-hover: "#0077ed"
-  link: "#0066cc"
-  danger: "#e30000"
-  danger-tint: "#fff2f4"
-  ok: "#1d7a35"
-  nav-glass: "rgb(250 250 252 / 0.8)"
+  canvas: "#0c0b0a"
+  tile: "#151412"
+  fill: "#201e1b"
+  field: "#11100e"
+  separator: "#2e2b27"
+  control: "#6e6961"
+  label: "#eeeae3"
+  label-2: "#a8a197"
+  accent: "#eeeae3"
+  accent-hover: "#ffffff"
+  on-accent: "#0c0b0a"
+  brass: "#cdb184"
+  danger: "#f0776c"
+  danger-tint: "#2a1513"
+  ok: "#8fc8a0"
 typography:
   display:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
-    fontSize: "56px"
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "-0.03em"
-    fontFeature: "tnum"
+    fontFamily: "Bodoni Moda, Bodoni 72, Didot, Georgia, serif"
+    fontSize: "clamp(52px, 8vw, 96px)"
+    fontWeight: 400
+    lineHeight: 1.04
+    letterSpacing: "-0.005em"
   headline:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
-    fontSize: "48px"
-    fontWeight: 600
-    lineHeight: 1.08
-    letterSpacing: "-0.03em"
-  headline-sm:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
-    fontSize: "40px"
-    fontWeight: 600
-    lineHeight: 1.08
-    letterSpacing: "-0.03em"
-  title:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
-    fontSize: "28px"
-    fontWeight: 600
+    fontFamily: "Bodoni Moda, Bodoni 72, Didot, Georgia, serif"
+    fontSize: "clamp(40px, 5vw, 64px)"
+    fontWeight: 400
     lineHeight: 1.15
-    letterSpacing: "-0.02em"
-  title-sm:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
-    fontSize: "21px"
-    fontWeight: 600
-    letterSpacing: "-0.02em"
-  figure:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
-    fontSize: "32px"
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "-0.03em"
-    fontFeature: "tnum"
-  intro:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
-    fontSize: "21px"
+    letterSpacing: "-0.005em"
+  title:
+    fontFamily: "Bodoni Moda, Bodoni 72, Didot, Georgia, serif"
+    fontSize: "24px"
     fontWeight: 400
-    lineHeight: 1.375
-    letterSpacing: "-0.022em"
+    lineHeight: 1.15
+    letterSpacing: "-0.005em"
   body:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
-    fontSize: "17px"
+    fontFamily: "Jost, Futura, Century Gothic, sans-serif"
+    fontSize: "16px"
     fontWeight: 400
-    lineHeight: 1.47
-    letterSpacing: "-0.022em"
+    lineHeight: 1.6
+    letterSpacing: "0.01em"
   label:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
-    fontSize: "14px"
-    fontWeight: 400
-    lineHeight: 1.43
-    letterSpacing: "-0.022em"
-  caption:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
-    fontSize: "12px"
-    fontWeight: 400
-    lineHeight: 1.33
-    letterSpacing: "-0.022em"
-  micro:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Jost, Futura, Century Gothic, sans-serif"
     fontSize: "11px"
-    fontWeight: 600
-    letterSpacing: "-0.022em"
-    fontFeature: "tnum"
+    fontWeight: 500
+    lineHeight: 1.4
+    letterSpacing: "0.2em"
+  figures:
+    fontFamily: "Bodoni Moda, Bodoni 72, Didot, Georgia, serif"
+    fontSize: "64px"
+    fontWeight: 400
+    lineHeight: 1
+    fontFeature: "lnum, tnum"
 rounded:
-  segment: "8px"
-  segmented: "10px"
-  field: "12px"
-  notice: "18px"
-  tile: "28px"
-  pill: "9999px"
+  none: "0px"
+  full: "9999px"
 spacing:
-  field-gap: "12px"
-  gutter: "16px"
-  gutter-sm: "22px"
-  tile-pad-mobile: "24px"
-  section: "40px"
-  tile-pad: "40px"
+  gutter-sm: "16px"
+  gutter: "32px"
+  stack-sm: "12px"
+  stack-md: "32px"
   stack-lg: "48px"
-  column-gap: "56px"
-  page-top: "64px"
+  section: "112px"
 components:
   button-primary:
     backgroundColor: "{colors.accent}"
-    textColor: "{colors.canvas}"
-    typography: "{typography.body}"
-    rounded: "{rounded.pill}"
-    padding: "0 22px"
-    height: "44px"
+    textColor: "{colors.on-accent}"
+    typography: "{typography.label}"
+    rounded: "{rounded.none}"
+    padding: "0 32px"
+    height: "48px"
   button-primary-hover:
     backgroundColor: "{colors.accent-hover}"
-  button-primary-form:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.canvas}"
-    rounded: "{rounded.pill}"
+  button-secondary:
+    textColor: "{colors.label}"
+    typography: "{typography.label}"
+    rounded: "{rounded.none}"
+    padding: "0 28px"
     height: "48px"
-    width: "100%"
-  button-danger:
-    backgroundColor: "{colors.danger}"
-    textColor: "{colors.canvas}"
-    typography: "{typography.label}"
-    rounded: "{rounded.pill}"
-    padding: "0 18px"
-    height: "40px"
-  button-danger-outline:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.danger}"
-    typography: "{typography.label}"
-    rounded: "{rounded.pill}"
-    padding: "0 18px"
-    height: "40px"
-  button-danger-outline-hover:
-    backgroundColor: "{colors.danger-tint}"
-  button-text:
-    textColor: "{colors.link}"
+  text-link:
+    textColor: "{colors.label}"
     typography: "{typography.label}"
     height: "44px"
-  field:
-    backgroundColor: "{colors.canvas}"
+  field-underlined:
     textColor: "{colors.label}"
-    typography: "{typography.body}"
-    rounded: "{rounded.field}"
-    padding: "18px 16px 0"
+    rounded: "{rounded.none}"
     height: "56px"
-  field-error:
-    backgroundColor: "{colors.danger-tint}"
+  field-boxed:
+    backgroundColor: "{colors.field}"
     textColor: "{colors.label}"
-    rounded: "{rounded.field}"
-  option-tile:
+    rounded: "{rounded.none}"
+    padding: "12px"
+  size-chip:
+    textColor: "{colors.label}"
+    rounded: "{rounded.none}"
+    padding: "0 12px"
+    height: "48px"
+  size-chip-checked:
+    backgroundColor: "{colors.label}"
+    textColor: "{colors.on-accent}"
+  size-badge:
     backgroundColor: "{colors.canvas}"
-    textColor: "{colors.label}"
-    rounded: "{rounded.field}"
+    textColor: "{colors.brass}"
+    typography: "{typography.figures}"
+    rounded: "{rounded.none}"
     padding: "8px 12px"
-    height: "56px"
-  segmented-control:
-    backgroundColor: "{colors.fill}"
-    rounded: "{rounded.segmented}"
-    padding: "3px"
-  segment-active:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.label}"
-    typography: "{typography.label}"
-    rounded: "{rounded.segment}"
-    padding: "0 20px"
-    height: "36px"
-  segment-idle:
+  nav-tab:
     textColor: "{colors.label-2}"
     typography: "{typography.label}"
-  tile:
-    backgroundColor: "{colors.tile}"
-    rounded: "{rounded.tile}"
-    padding: "{spacing.tile-pad}"
-  tile-notice:
-    backgroundColor: "{colors.tile}"
-    rounded: "{rounded.notice}"
-    padding: "24px"
-  alert-danger:
-    backgroundColor: "{colors.danger-tint}"
-    textColor: "{colors.danger}"
-    typography: "{typography.label}"
-    rounded: "{rounded.field}"
-    padding: "12px 16px"
-  nav-bar:
-    backgroundColor: "{colors.nav-glass}"
-    textColor: "{colors.label}"
-    height: "48px"
-  nav-link:
-    textColor: "{colors.label}"
-    typography: "{typography.caption}"
     height: "44px"
-    padding: "0 8px"
-  size-pill-chosen:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.canvas}"
-    typography: "{typography.micro}"
-    rounded: "{rounded.pill}"
-    height: "32px"
-  size-pill-idle:
-    textColor: "{colors.label-2}"
-    typography: "{typography.micro}"
+  nav-tab-current:
+    textColor: "{colors.label}"
 ---
 
 # Design System: Carrure
 
 ## Overview
 
-**Creative North Star: "La page de l'Apple Store"**
+**Creative North Star: "La Maison du soir"**
 
-Le compte Carrure se lit comme une page de l'Apple Store (apple.com/fr/shop) : fond blanc, grandes tuiles gris clair très arrondies, texte quasi noir et gris, un seul bleu pour tout ce qui agit. La page est calme et aérée ; la densité vient des chiffres, pas des cadres. Le look est épinglé par l'utilisateur.
+Carrure reads like an Italian tailoring house after closing time: a warm black room, ivory type, and one brass fitting that catches the light. The garment is photographed like a campaign, worn and cropped below the chin on a dark ground, and the computed size is set beside it the way a price tag is set in a shop window, in brass Bodoni numerals. Everything else steps back.
 
-Le geste signature est la jauge en curseur iOS : une piste grise, une partie remplie en bleu jusqu'au tour de poitrine, un pouce blanc ombré qui suit un ressort à amortissement critique, et les pastilles de tailles chemise et costume qui s'allument au passage. Les commandes empruntent le vocabulaire iOS : contrôle segmenté, champs à libellé flottant, tuiles de choix à bordure bleue comme le choix de capacité d'un iPhone, boutons pilule.
+The system is quiet and rectangular. Didone titles at text weight carry the voice; Jost in tracked small capitals carries every instruction (navigation, buttons, field labels, spec terms). Structure comes from hairlines (#2e2b27) and tonal steps of the warm black, never from cards, shadows or rounded containers. Density is low: generous section breaks, centered titles, and photography given the full width of the grid.
 
-Le monde « atelier de coupe » (marine, mètre jaune, angles carrés) a été rejeté par l'utilisateur le 23/10/2026. Rien n'en subsiste.
+The world replaced a bright Apple Store tile look, rejected by the user as cheap. That rejection is a confirmed anti-reference: no light grey tiles, no pill buttons, no rounded cards, no saturated system blue.
 
 **Key Characteristics:**
-- Blanc et tuiles #f5f5f7 à 28 px de rayon, sans ombre.
-- Un seul bleu d'action ; liens dans un bleu plus sombre.
-- SF Pro sur les appareils Apple, Inter ailleurs, interlettrage négatif.
-- Boutons pilule, champs et tuiles de choix à 12 px.
-- Grands chiffres tabulaires en graisse 600 ; valeur estimée soulignée en pointillé.
-- Mouvement court (150 ms) et ressort critique pour le repère de la jauge.
+- Warm black ground, ivory text, a single brass accent reserved for the size and for focus.
+- Bodoni Moda titles at weight 400, never bold; Jost body; tracked small caps for every control.
+- Square corners on every surface and control; round only for small markers (badge count, gauge knob, spinner).
+- Hairline separators and tonal layering instead of elevation.
+- Worn-garment photography on dark backgrounds with one shared grade, 4:5 frames.
 
 ## Colors
 
-Une palette de gris froids d'Apple, une seule couleur d'action, et un rouge réservé aux erreurs et à la suppression.
+A near-monochrome warm palette: blacks with a brown undertone, ivory and its muted greige, and one brass.
 
 ### Primary
-- **Bleu Apple** (accent) : bouton principal, anneau de focus, curseur de saisie, sélection de texte (à 22 %), bordure de la tuile de choix retenue, pastille de taille retenue, partie remplie de la jauge (à 45 % quand le tour de poitrine est estimé).
-- **Bleu Apple survolé** (accent-hover) : fond du bouton principal au survol, rien d'autre.
-- **Bleu lien** (link) : liens et boutons texte (« Se déconnecter », « Annuler »), soulignés au survol.
+- **Atelier Brass** (brass): the only chromatic accent. The computed size on product photos and on the product page, the size-chosen state in the size gauge and size chips, the focus outline, the caret, link underlines (at 60% then full on hover), the cart count badge, the Roman step numerals, the selection tint (35%).
 
 ### Neutral
-- **Blanc** (canvas) : fond de page, fond des champs et des tuiles de choix, segment actif, pouce de la jauge.
-- **Gris tuile** (tile) : grandes tuiles de contenu (lecture du mètre, encart d'explication, message de confirmation), état pressé d'une tuile de choix.
-- **Gris remplissage** (fill) : piste de la jauge, rail du contrôle segmenté.
-- **Filet** (separator) : filets horizontaux entre blocs (au-dessus des lectures, au-dessus de la zone de suppression), bordure de la barre en contraste renforcé.
-- **Gris commande** (control) : bordure des champs et des tuiles de choix au repos, pointillé des valeurs estimées. Couleur de trait, pas de texte.
-- **Encre** (label) : texte principal et titres.
-- **Gris secondaire** (label-2) : intro, aides, libellés de lecture, libellé flottant, unités, segment inactif.
-- **Verre de barre** (nav-glass) : fond translucide de la barre de navigation, opaque si la transparence est réduite.
+- **Evening Black** (canvas): page ground, header (at 85% under blur), photo veils, ink on ivory and brass fills.
+- **Tile Black** (tile): image placeholders, loading skeletons, collection tile ground.
+- **Raised Black** (fill): empty image fallback, the lightest tonal step.
+- **Well Black** (field): background of boxed inputs, a step below canvas tone.
+- **Hairline** (separator): every rule, table border, size-chip outline, gauge track.
+- **Thread Grey** (control): underline of resting fields, borders of boxed inputs, hover outline on chips, dotted underline of estimated values.
+- **Ivory** (label / accent): body text, titles, and the fill of the one primary button. Pure white (accent-hover) appears only as the primary button hover.
+- **Greige** (label-2): secondary text, captions, field labels, tracked labels, inactive tabs.
 
-### Statut
-- **Rouge erreur** (danger) : texte et bordure d'erreur, bouton de suppression confirmée.
-- **Rose erreur** (danger-tint) : fond d'un champ en erreur, des alertes et du survol du bouton de suppression.
-- **Vert stock** (ok) : mention « En stock dans votre taille. » sur la fiche produit, seulement.
+### Status
+- **Coral** (danger, danger-tint): error text and error underline; the tint as an error panel ground.
+- **Sage** (ok): in-stock and added-to-cart confirmations only.
 
 ### Named Rules
-**The Seul Bleu Rule.** Le bleu #0071e3 est la seule couleur d'action. Pas de deuxième accent, pas de bleu décoratif : s'il est bleu, il agit ou il marque la sélection.
+**The One Brass Rule.** Brass marks the visitor's size, focus and links, nothing decorative. If a screen has brass on something that is not the size, a link underline, focus or a step numeral, remove it.
 
-**The Estimation Visible Rule.** Une valeur estimée porte toujours un soulignement pointillé gris commande de 2 px et le mot « estimé » ; une valeur mesurée n'en porte pas. Sur la jauge, le remplissage passe à 45 % d'opacité quand le tour de poitrine est estimé.
+**The Ivory Button Rule.** The filled primary button is ivory on black, not brass. One filled button per view; everything else is an outline or a text link.
 
 ## Typography
 
-**Display Font:** SF Pro via -apple-system / BlinkMacSystemFont (avec Inter, chargé par next/font, puis Helvetica Neue, Arial)
-**Body Font:** la même pile
+**Display Font:** Bodoni Moda (with Bodoni 72, Didot, Georgia)
+**Body Font:** Jost (with Futura, Century Gothic)
 
-**Character:** une seule famille, celle d'Apple, en deux graisses (400 et 600, 500 pour les segments actifs, les tuiles de choix et les titres de la jauge). L'interlettrage est négatif partout et se resserre sur les grands corps.
+**Character:** the Didone and the geometric sans, the classic pairing of fashion houses. Bodoni speaks in titles and numerals; Jost does the work.
 
 ### Hierarchy
-- **Display** (600, 56 px, 1, chiffres tabulaires) : taille recommandée (« M », « 50 ») dans la lecture du mètre.
-- **Headline** (600, 48 px dès 768 px, 40 px en dessous, 1,08, -0,03em, équilibré) : titre de page. Le titre centré de connexion reste à 40 px.
-- **Title** (600, 28 px, 1,15, -0,02em) : titre d'une tuile (« Lecture du mètre », « Votre taille, article par article »).
-- **Title-sm** (600, 21 px, -0,02em) : titres de groupe de champs, de la zone de suppression, du message de confirmation.
-- **Figure** (600, 32 px dès 640 px, 28 px en dessous, 1, -0,03em, tabulaire) : mesures lues (« 99,5 cm »).
-- **Intro** (400, 21 px dès 768 px, 19 px en dessous, 1,375) : chapeau gris sous le titre de page, 40rem au plus.
-- **Body** (400, 17 px, 1,47, -0,022em) : texte courant, saisie, libellé de bouton principal.
-- **Label** (400, 14 px) : aides de groupe, libellés de lecture, alertes, segments, boutons secondaires.
-- **Caption** (400, 12 px) : liens de la barre, aides et erreurs sous un champ, mention « estimé » / « mesuré ».
-- **Micro** (600, 11 px, tabulaire) : pastilles de tailles de la jauge ; 400 pour les graduations, 500 pour les titres « Chemises » / « Costumes ».
+- **Display** (400, 52px mobile to 96px desktop on home, 56 to 88px on category, 44 to 56px on product, line-height 1.04): one h1 per page, centered on home and category.
+- **Headline** (400, 40 to 64px; 48 to 64px on collection tiles; 32 to 40px in prompts, line-height 1.15): section titles, balanced wrap.
+- **Title** (400, 17 to 28px): product names in the grid (17 / 21px), step titles (24px), review heading (28px).
+- **Body** (Jost 400, 16px, line-height 1.6, 0.01em tracking): running text in greige, intros at 17 to 21px; measure held to about 34 to 44rem.
+- **Label** (Jost 500, 11px, 0.2em tracking, uppercase): navigation, buttons, text links, field and spec labels, tabs. Tightens to 0.12em in the mobile header.
+- **Figures** (Bodoni Moda, lining tabular numerals): prices (24px), the size on photos (17px), the size on the product page (64px), the catalog reference size (22px).
 
 ### Named Rules
-**The Chiffres Tabulaires Rule.** Tout chiffre lu (mesure, taille, graduation) est en chiffres tabulaires ; les lectures sont en 600 à -0,03em.
+**The Text-Weight Rule.** Every h1 to h3 is Bodoni at weight 400 with -0.005em tracking. Hierarchy comes from size and space, never from bold.
 
-**The Unité Toujours Rule.** Une valeur s'affiche avec son unité (cm, kg, ans), dans le champ comme dans la lecture.
+**The Estimated Underline Rule.** An estimated value carries a 1px dotted Thread Grey underline; a measured value does not. Never remove it to tidy the page: it is the honesty signal.
 
 ## Layout
 
-Un seul conteneur de 980 px centré, avec une gouttière de 16 px puis 22 px dès 640 px, partagé par la barre, la connexion et les mensurations. Haut de page à 40 px, 64 px dès 768 px.
-
-- **Barre** : 48 px de haut, collante, mot Carrure à gauche, liens du compte à droite.
-- **Connexion / inscription** : colonne centrée de 460 px (contrôle segmenté, titre centré, champs empilés à 16 px, bouton pleine largeur), puis une tuile pleine largeur du conteneur 64 px plus bas, en trois colonnes dès 640 px.
-- **Mensurations** : formulaire à gauche, tuile de lecture à droite dès 1024 px (colonnes 1fr / 1,1fr, écart 56 px) ; empilés à 48 px en dessous. La tuile de lecture colle à 68 px du haut (barre + 20 px). Groupes de champs séparés de 40 px, champs à 12 px, trois champs par ligne pour l'essentiel dès 640 px, deux pour les mesures facultatives.
-- **Zone de suppression** : sous les deux colonnes, sur toute la largeur, après un filet.
-
-Tuiles : 40 px de padding dès 640 px (48 px pour l'encart de connexion) ; en dessous, 16 × 24 px pour la lecture du mètre, 24 × 40 px pour l'encart. Cibles tactiles de 44 px au moins (liens de barre, boutons texte, bouton principal).
+A centered column of max 1440px with 16px gutters on mobile and 32px from 640px. Home opens on a full-height triptych (`min(100svh - 4rem, 56rem)`, min 34rem): three 1/3 photos from 768px, only the center photo on mobile, with a bottom veil (canvas to transparent by 48%) and a centered display title. Category pages open on a centered title, then a size line and underlined tabs held between two hairlines, then the product grid: 2 columns (12px / 24px gaps) to 3 columns from 1024px, with 48 to 64px vertical gaps. Product pages split 1.3fr / 1fr from 1024px with the photo sticky under the header. Sections are separated by large vertical rhythm (56 to 160px) rather than containers. Images are 4:5 throughout.
 
 ## Elevation & Depth
 
-Le système est plat. La profondeur vient du contraste blanc / gris tuile et de la translucidité de la barre (flou de 24 px, saturation 1,8). Les ombres sont réservées aux objets qu'on touche et qui imitent une commande iOS physique.
-
-### Shadow Vocabulary
-- **Pouce de jauge** (`box-shadow: 0 0.5px 4px rgb(0 0 0 / 0.12), 0 6px 13px rgb(0 0 0 / 0.12)`) : le pouce blanc de 24 px du curseur.
-- **Segment actif** (`box-shadow: 0 3px 8px rgb(0 0 0 / 0.12), 0 1px 1px rgb(0 0 0 / 0.04)`) : le segment blanc du contrôle segmenté.
-- **Halo de focus** (`box-shadow: 0 0 0 4px rgb(0 113 227 / 0.25)`) : champ actif, avec bordure bleue.
-- **Bordure doublée** (`box-shadow: 0 0 0 1px #0071e3`) : tuile de choix retenue (2 px de bleu au total) ; en version intérieure, pastille de taille voisine.
+Flat. There is no elevation shadow anywhere. Depth comes from tonal steps of the warm black (field, canvas, tile, fill), from hairlines, and from photography under gradient veils. Two translucent layers exist: the sticky header (canvas 85% with strong blur) and the size badge on photos (canvas 80% with medium blur); both fall back to solid canvas under reduced transparency. Inset 1px box-shadows are used as borders (secondary button, size chips), never as lift.
 
 ### Named Rules
-**The Plat Sauf Commande Rule.** Tuiles, alertes et boutons n'ont pas d'ombre. Seuls le pouce et le segment actif en portent.
+**The Hairline Rule.** Separate with a 1px Hairline rule or a tonal step. If you reach for a drop shadow, use a rule instead.
 
 ## Shapes
 
-Des coins doux partout, jamais d'angle vif. Trois familles : la pilule pour tout bouton et toute pastille, 12 px pour ce qui se saisit ou se choisit (champs, tuiles de choix, alertes), 28 px pour les grandes tuiles de contenu (18 px pour un message de confirmation ou d'erreur de page). Le contrôle segmenté a un rail à 10 px et des segments à 8 px. Les bordures sont fines (1 px), en gris commande au repos, bleues au focus ou à la sélection, rouges en erreur.
-
-**The Pilule Rule.** Tout bouton est une pilule, du bouton principal au bouton de suppression.
+Square corners on every surface, image, button, field, chip and panel (0px). Full rounding is reserved for small markers: the cart count badge, the size-gauge knob and the spinner bars. Lines are 1px: field underlines, outlines, rules, focus outline (1px brass, 3px offset).
 
 ## Components
 
 ### Buttons
-- **Shape :** pilule (9999px).
-- **Principal :** bleu Apple, texte blanc en 17 px 400, 44 px de haut, 22 px de padding latéral ; 48 px pleine largeur en bas d'un formulaire de connexion.
-- **Survol / pression :** fond bleu survolé, 150 ms ; pression à 97 % d'échelle ; désactivé à 60 % d'opacité. Pendant l'envoi, un indicateur d'activité iOS à 12 branches précède le libellé (« Un instant… », « Enregistrement… »).
-- **Suppression :** 40 px, 14 px de texte ; d'abord en contour rouge (fond rose au survol), puis plein rouge pour confirmer, à côté d'un bouton texte « Annuler ».
-- **Texte :** bleu lien, souligné au survol, 44 px de cible.
+Rectangular, tracked small caps, confident and sparse.
+- **Shape:** square (0px), 48px tall.
+- **Primary:** ivory fill, black label, 32px side padding; hover to pure white; press scales to 0.98 over 150ms; disabled at 60% opacity. Full width in the add-to-cart form, with a spinner while pending.
+- **Secondary:** transparent with a 1px inset ivory outline at 45%, full ivory on hover; 28px side padding.
+- **Text link:** tracked caps in ivory, 44px minimum hit area, underlined in brass at 60% with a 6px offset, full brass on hover. Inline links in running text use the same brass underline at body size.
 
 ### Inputs / Fields
-- **Style :** 56 px de haut, bordure 1 px gris commande, fond blanc, 12 px de rayon, saisie en 17 px. Le libellé gris est au centre au repos et monte à 70 % quand le champ a le focus ou une valeur (150 ms). L'unité est posée à droite, en gris secondaire.
-- **Focus :** bordure bleue et halo bleu de 4 px à 25 %, curseur bleu.
-- **Erreur :** bordure rouge, fond rose, message rouge en 12 px sous le champ avec une icône cercle-point d'exclamation en SVG. Aide en 12 px gris sous le champ.
+- **Underlined field (primary):** 56px tall, no box, a 1px Thread Grey bottom rule, 17px text. The greige label floats: it sits on the line at rest and rises and shrinks to 70% on focus or once filled. Units (cm, kg) sit at the right on the baseline.
+- **Focus:** the rule turns brass and thickens to 2px; caret is brass.
+- **Error:** the rule turns coral; a coral 12px message with an inline outlined-circle icon sits below. Hints are 12px greige.
+- **Boxed field:** textareas, review and admin inputs, and measurement choice tiles use a 1px Thread Grey border on Well Black, square, turning brass with a 1px brass halo on focus or selection.
 
-### Tuiles de choix
-- **Style :** grille de deux, 56 px de haut au moins, bordure gris commande, fond blanc, 12 px de rayon, texte 15 px 500 centré.
-- **États :** survol, bordure gris secondaire ; pressé, fond gris tuile ; retenu, bordure bleue doublée ; focus clavier, contour bleu de 2 px décalé de 2 px.
-
-### Contrôle segmenté
-- **Style :** rail gris remplissage à 10 px de rayon, 3 px de padding ; segments de 36 px, 14 px de texte gris secondaire.
-- **Actif :** segment blanc à 8 px de rayon, texte encre 500, ombre de segment. Sert à basculer entre pages sœurs (connexion / inscription).
-
-### Cards / Containers
-- **Corner Style :** 28 px (tuiles de contenu), 18 px (message de confirmation, erreur de configuration).
-- **Background :** gris tuile ; rose erreur pour une alerte de page.
-- **Shadow Strategy :** aucune (voir Elevation & Depth).
-- **Border :** aucune ; les blocs internes sont séparés par un filet.
-- **Internal Padding :** voir Layout (40 px dès 640 px, 48 px pour l'encart de connexion).
+### Size Chips
+Square 48px chips (min 56px wide) with a 1px Hairline inset outline, tabular numerals. Checked: ivory fill, black text. The computed size carries a 1px brass ring offset 3px from the chip; sold-out sizes are greige and struck through. A caption below explains the code.
 
 ### Navigation
-- **Style :** barre de 48 px, verre clair translucide, collante, sans filet (filet et fond blanc en contraste renforcé). Mot Carrure en 20 px 600 à -0,03em ; liens en 12 px, encre à 80 %, encre pleine au survol, 44 px de cible.
+- **Header:** sticky, 64px, three columns: category links left, the spaced Bodoni wordmark CARRURE center (22px, 0.28em; a single "C" on mobile), account and cart right. Links are tracked caps at 75% ivory, full on hover, 44px targets. Icons are 1.2px-stroke outline SVG.
+- **Underlined tabs:** tracked caps in greige; the current page turns ivory with a 1px brass bottom rule.
+- **Footer:** a top hairline, the wordmark at 28px, greige 12px text and tracked-caps legal links.
 
-### Jauge du mètre (composant signature)
-Curseur iOS horizontal de 80 à 140 cm. Piste gris remplissage de 6 px, partie remplie bleue jusqu'au tour de poitrine, pouce blanc de 24 px ombré. Au-dessus, la rangée des tailles de chemise ; au-dessous, les graduations tous les 10 cm (90 à 130 cm) puis la rangée des tailles de costume. Chaque pastille occupe la plage de tour de poitrine de sa taille : retenue, pastille bleue pleine à texte blanc ; voisine, texte bleu et liseré bleu sur fond blanc dès 640 px ; sinon texte gris. Le pouce et le remplissage suivent un ressort à amortissement critique (réponse 0,4 s) qui repart de sa position et de sa vitesse à chaque saisie ; position immédiate si le mouvement est réduit. Hors de la plage, le pouce disparaît et une pastille bleue avec la valeur et une flèche se pose au bord dépassé.
+### Size Badge (signature)
+A rectangle pinned to the bottom-left corner of every product photo: translucent canvas with blur, a 10px tracked "Votre taille" label (hidden on mobile) and the size in 17px brass figures. Out of stock: greige and struck through. The size reads before the product name.
 
-### Lecture
-Liste en deux colonnes sous un filet : libellé en 14 px gris, valeur en chiffres de lecture, puis « estimé » ou « mesuré » en 12 px. La taille recommandée s'affiche en display, la taille voisine en 17 px gris (« ou L »), puis « Taille estimée, confiance … ».
+### Size Tape (signature)
+A tailor's tape gauge: a 2px Hairline track filled in brass up to the chest measurement (brass at 45% when estimated), a 16px round brass knob ringed in canvas, shirt and suit size bands above and below. The chosen band is brass with black text; the neighbouring size is outlined in brass.
 
-### Boutique
-- **Photos :** photos portées (Pexels) recadrées en 4:5, servies par `next/image`. Coins arrondis à 18–28 px, jamais de bordure ni d'ombre. Au survol (pointeur fin seulement) la photo grossit de 3 % en 300 ms dans son cadre.
-- **Tuile produit :** gris tuile, 28 px de rayon dès 640 px (20 px en dessous), photo en haut avec une marge fine, nom en 19 px 600 (15 px sur téléphone), couleur et matière en gris, prix en chiffres tabulaires ; pastille bleue pleine avec la taille calculée, barrée sur fond gris remplissage si elle est épuisée. Deux colonnes sur téléphone, trois dès 1024 px.
-- **Page de catégorie :** titre de 56 px « Costumes. » suivi d'une phrase grise ; ligne « Votre taille estimée » et contrôle segmenté Pour moi / Tout voir, sous un filet. Sans mensurations, une tuile invite à créer un compte.
-- **Fiche produit :** grande photo collante à gauche ; à droite nom, prix, description, encart « Votre taille » (18 px de rayon, taille en display), choix de la taille en pastilles radio (sélection noire, taille estimée cerclée de bleu, épuisée barrée), bouton « Ajouter au panier », conseiller IA en bouton contour, caractéristiques, avis.
-- **Panier, commande, historique :** listes sous filets, vignette 4:5 à gauche, prix tabulaires alignés à droite ; récapitulatif en tuile collante. Le paiement simulé est annoncé dans une tuile grise avant le bouton « Payer ».
-- **Admin :** quatre indicateurs dans une tuile divisée par des filets d'1 px, puis des tableaux simples (en-têtes gris, chiffres à droite). Pas de graphique décoratif.
-- **Accueil :** grand titre centré de 80 px, deux pilules d'action, vitrine de trois photos de costumes qui montent en fondu (600 ms, décalage de 80 ms, fondu seul si le mouvement est réduit), puis deux grandes tuiles Costumes / Chemises avec photo.
+### Collection Tile
+Full-bleed 4:5 photo with a bottom veil, centered headline and a tracked-caps "Découvrir" link with a brass underline. Photos ease to 1.03 scale over 900 to 1200ms on hover, only on hover-capable devices and never under reduced motion.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** garder un seul bleu d'action (#0071e3) et le bleu lien (#0066cc) pour les liens.
-- **Do** poser le contenu secondaire dans des tuiles gris tuile à 28 px de rayon, sans ombre ni bordure.
-- **Do** faire de chaque bouton une pilule et de chaque champ un champ à libellé flottant de 56 px.
-- **Do** marquer chaque valeur estimée d'un soulignement pointillé et du mot « estimé ».
-- **Do** afficher les chiffres lus en 600, tabulaires, avec leur unité.
-- **Do** garder les transitions à 150 ms et le ressort critique pour tout repère qui se déplace ; respecter la réduction du mouvement et de la transparence.
+- **Do** keep the ground warm black (canvas) and text ivory (label); secondary text greige (label-2).
+- **Do** reserve brass for the visitor's size, focus, link underlines and step numerals.
+- **Do** set every h1 to h3 in Bodoni Moda at weight 400; set every price and size in lining tabular Bodoni figures.
+- **Do** set navigation, buttons, field and spec labels in 11px Jost 500, 0.2em tracking, uppercase.
+- **Do** keep every corner square; round only badge counts, the gauge knob and the spinner.
+- **Do** separate content with 1px hairlines and tonal steps; keep photos 4:5, worn, dark-ground, cropped below the chin, in the shared grade.
+- **Do** mark estimated values with the dotted underline and keep 44px minimum hit areas on links.
 
 ### Don't:
-- **Don't** reprendre quoi que ce soit du monde « atelier » rejeté : pas de marine, pas de mètre jaune, pas d'angles carrés.
-- **Don't** ajouter un deuxième accent ou colorer une surface en bleu à titre décoratif.
-- **Don't** mettre d'ombre sur une tuile, une alerte ou un bouton.
-- **Don't** écrire du texte en gris commande (#86868b) : 3,3:1 sur gris tuile, trop faible pour du petit texte.
-- **Don't** présenter une taille comme certaine : elle reste « estimée », avec son niveau de confiance.
+- **Don't** return to the Apple Store look: no light grey tiles, no pill or rounded buttons, no rounded cards, no system blue.
+- **Don't** use bold Bodoni or a second accent color.
+- **Don't** add drop shadows for elevation.
+- **Don't** fill a button in brass or use more than one filled button per view.
+- **Don't** use text glyphs as icons; draw icons as 1.2px-stroke outline SVG.
+- **Don't** place a tracked-caps label above a title as decoration; tracked caps label controls and data.

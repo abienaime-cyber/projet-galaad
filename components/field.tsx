@@ -8,7 +8,7 @@ type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
 };
 
-// Champ à libellé flottant, comme les formulaires de l'Apple Store : le libellé monte quand on saisit.
+// Champ souligné à libellé flottant : le libellé monte quand on saisit, la ligne passe au laiton au focus.
 export function Field({ name, label, unit, hint, error, className, ...input }: FieldProps) {
   const describedBy = [hint && `${name}-hint`, error && `${name}-error`].filter(Boolean).join(" ") || undefined;
   return (
@@ -20,19 +20,19 @@ export function Field({ name, label, unit, hint, error, className, ...input }: F
           placeholder=" "
           aria-invalid={error ? true : undefined}
           aria-describedby={describedBy}
-          className={`peer h-14 w-full rounded-xl border px-4 pt-[18px] text-[17px] text-label transition-[border-color,box-shadow] duration-150 ease-[ease] focus:border-accent focus:shadow-[0_0_0_4px_rgb(0_113_227/0.25)] focus:outline-none ${
-            error ? "border-danger bg-danger-tint" : "border-control bg-white"
-          } ${unit ? "pr-12" : ""}`}
+          className={`peer h-14 w-full border-b pt-[18px] text-[17px] text-label transition-[border-color] duration-150 ease-[ease] focus:border-brass focus:shadow-[0_1px_0_var(--color-brass)] focus:outline-none ${
+            error ? "border-danger" : "border-control"
+          } ${unit ? "pr-10" : ""}`}
           {...input}
         />
         <label
           htmlFor={name}
-          className="pointer-events-none absolute top-7 left-4 origin-left -translate-y-1/2 text-[17px] leading-none text-label-2 transition-[translate,scale] duration-150 ease-out motion-reduce:transition-none peer-focus:-translate-y-[calc(50%+10px)] peer-focus:scale-[0.7] peer-[:not(:placeholder-shown)]:-translate-y-[calc(50%+10px)] peer-[:not(:placeholder-shown)]:scale-[0.7]"
+          className="pointer-events-none absolute top-7 left-0 origin-left -translate-y-1/2 text-[17px] leading-none text-label-2 transition-[translate,scale] duration-150 ease-out motion-reduce:transition-none peer-focus:-translate-y-[calc(50%+10px)] peer-focus:scale-[0.7] peer-[:not(:placeholder-shown)]:-translate-y-[calc(50%+10px)] peer-[:not(:placeholder-shown)]:scale-[0.7]"
         >
           {label}
         </label>
         {unit && (
-          <span aria-hidden className="pointer-events-none absolute right-4 bottom-[9px] text-[17px] text-label-2">
+          <span aria-hidden className="pointer-events-none absolute right-0 bottom-[9px] text-[17px] text-label-2">
             {unit}
           </span>
         )}
@@ -47,7 +47,7 @@ export function Field({ name, label, unit, hint, error, className, ...input }: F
         </p>
       )}
       {hint && (
-        <p id={`${name}-hint`} className="mt-2 px-1 text-xs text-label-2">
+        <p id={`${name}-hint`} className="mt-2 text-xs text-label-2">
           {hint}
         </p>
       )}
@@ -55,9 +55,13 @@ export function Field({ name, label, unit, hint, error, className, ...input }: F
   );
 }
 
+// Boutons rectangulaires en capitales espacées : un seul bouton plein (ivoire) par écran.
 export const primaryButton =
-  "inline-flex h-11 cursor-pointer items-center justify-center rounded-full bg-accent px-[22px] text-[17px] text-white transition-[background-color,transform] duration-150 ease-out hover:bg-accent-hover active:scale-[0.97] disabled:cursor-default disabled:opacity-60 disabled:active:scale-100";
+  "eyebrow inline-flex h-12 cursor-pointer items-center justify-center gap-2 bg-accent px-8 text-on-accent transition-[background-color,transform] duration-150 ease-out hover:bg-accent-hover active:scale-[0.98] disabled:cursor-default disabled:opacity-60 disabled:active:scale-100";
 
-// Bouton secondaire, contour bleu : une seule action principale (pleine) par écran.
 export const secondaryButton =
-  "inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-full px-5 text-[17px] text-link shadow-[inset_0_0_0_1px_var(--color-link)] transition-[background-color,transform] duration-150 ease-out hover:bg-[rgb(0_102_204/0.06)] active:scale-[0.97] disabled:cursor-default";
+  "eyebrow inline-flex h-12 cursor-pointer items-center justify-center gap-2 px-7 text-label shadow-[inset_0_0_0_1px_rgb(238_234_227/0.45)] transition-[box-shadow,transform] duration-150 ease-out hover:shadow-[inset_0_0_0_1px_var(--color-label)] active:scale-[0.98] disabled:cursor-default";
+
+// Lien de texte en capitales, souligné d'un filet : « Découvrir », « Modifier ».
+export const textLink =
+  "eyebrow inline-flex min-h-11 items-center gap-2 text-label underline decoration-brass/60 underline-offset-[6px] transition-colors duration-150 hover:decoration-brass";

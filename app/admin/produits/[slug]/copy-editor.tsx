@@ -6,7 +6,7 @@ import { Spinner } from "@/components/spinner";
 import { generateCopy, publishCopy, type CopyState } from "../../actions";
 
 const fieldClass =
-  "w-full rounded-xl border border-control bg-white p-3 text-[17px] focus:border-accent focus:shadow-[0_0_0_4px_rgb(0_113_227/0.25)] focus:outline-none";
+  "w-full border border-control bg-field p-3 text-[17px] focus:border-brass focus:shadow-[0_0_0_1px_var(--color-brass)] focus:outline-none";
 
 export function CopyEditor({ productId, current }: { productId: string; current: string }) {
   const [text, setText] = useState(current);
@@ -19,7 +19,7 @@ export function CopyEditor({ productId, current }: { productId: string; current:
 
   return (
     <div className="mt-8 grid gap-8">
-      <form action={draftAction} className="grid gap-3 rounded-[18px] bg-tile p-5">
+      <form action={draftAction} className="grid gap-3 bg-tile p-5">
         <input type="hidden" name="product_id" value={productId} />
         <label className="grid gap-1.5 text-sm">
           Notes pour l’IA (facultatif) : occasion, détail de coupe, ton

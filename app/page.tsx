@@ -1,12 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
-import { primaryButton } from "@/components/field";
+import { primaryButton, textLink } from "@/components/field";
 import { getProducts, getShopper } from "@/lib/catalog";
 import { CATEGORY_PATH, price, type CatalogProduct } from "@/lib/shop";
 import type { Category } from "@/lib/sizing";
-
-const textLink = "inline-flex min-h-11 items-center text-[17px] text-link hover:underline";
 
 const STEPS = [
   { title: "Créez votre compte.", text: "Une adresse e-mail et un mot de passe." },
@@ -20,71 +18,83 @@ const STEPS = [
   },
 ];
 
-// Trois costumes du catalogue en vitrine, le plus classique au centre.
-const SHOWCASE = ["costume-lin-beige", "costume-laine-marine", "costume-prince-de-galles"];
+const NUMERALS = ["I", "II", "III"];
+
+// Triptyque d'ouverture : brun, noir, marine. Le costume noir, au centre sous le titre, est le seul visuel sur mobile :
+// lui seul est préchargé et il n'attend pas d'animation.
+const SHOWCASE = ["costume-tweed-marron", "costume-ajuste-noir", "costume-croise-gris-bleu"];
 
 export default async function Home() {
   const products = await getProducts();
 
   return (
     <>
-      <section aria-labelledby="hero-title" className="mx-auto max-w-[980px] px-4 pt-14 text-center sm:px-[22px] md:pt-24">
-        <h1 id="hero-title" className="mx-auto max-w-[12ch] text-5xl font-semibold md:text-[80px] md:tracking-[-0.035em]">
-          Le costume à votre taille.
-        </h1>
-        <p className="mx-auto mt-5 max-w-[34rem] text-[19px] leading-snug text-label-2 md:text-[24px]">
-          Votre taille, votre poids, votre âge. Carrure calcule la taille à prendre pour chaque costume et chaque chemise.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-          <Suspense fallback={<Actions measured={false} />}>
-            <ShopperActions />
-          </Suspense>
-        </div>
-
-        <div className="mx-auto mt-14 flex max-w-[52rem] items-end justify-center gap-3 md:mt-20 md:gap-5">
+      <section aria-labelledby="hero-title" className="relative">
+        <div className="grid h-[min(calc(100svh-4rem),56rem)] min-h-[34rem] grid-cols-1 md:grid-cols-3">
           {SHOWCASE.map((slug, i) => {
             const product = products.find((p) => p.slug === slug);
             return product?.image ? (
               <Link
                 key={slug}
                 href={`/produit/${slug}`}
-                className={`animate-rise block overflow-hidden rounded-[20px] [animation-delay:calc(var(--i)*80ms)] md:rounded-[28px] ${i === 1 ? "w-[38%]" : "w-[29%]"}`}
+                aria-label={product.name}
+                className={`group relative block overflow-hidden ${i === 1 ? "" : "animate-rise [animation-delay:calc(var(--i)*120ms)] max-md:hidden"}`}
                 style={{ "--i": i } as React.CSSProperties}
               >
                 <Image
                   src={product.image}
-                  alt={product.name}
-                  width={600}
-                  height={750}
-                  priority
-                  sizes="(min-width: 768px) 320px, 38vw"
-                  className="aspect-[4/5] w-full object-cover"
+                  alt=""
+                  fill
+                  loading="eager"
+                  preload={i === 1}
+                  fetchPriority={i === 1 ? "high" : undefined}
+                  sizes="(min-width: 768px) 34vw, 100vw"
+                  className="object-cover transition-transform duration-[1200ms] ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
                 />
               </Link>
             ) : null;
           })}
         </div>
+        {/* Voile sombre en bas : le titre ivoire reste lisible sur n'importe quelle photo. */}
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,var(--color-canvas)_0%,rgb(12_11_10/0.6)_24%,rgb(12_11_10/0)_48%)]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 px-4 pb-12 text-center sm:px-8 md:pb-16">
+          <h1 id="hero-title" className="mx-auto max-w-[14ch] text-[52px] md:text-[96px]">
+            Le costume à votre taille.
+          </h1>
+          <p className="eyebrow mt-6 text-label-2">Costumes et chemises pour homme</p>
+        </div>
       </section>
 
-      <section aria-label="Les collections" className="mx-auto mt-16 grid max-w-[980px] gap-5 px-4 sm:px-[22px] md:mt-24 md:grid-cols-2">
-        <CollectionTile category="suit" title="Costumes" range="Du 44 au 58" products={products} cover="costume-gris-anthracite" />
-        <CollectionTile category="shirt" title="Chemises" range="Du S au 3XL" products={products} cover="chemise-oxford-bleu-ciel" />
+      <section aria-label="Votre taille" className="mx-auto max-w-[44rem] px-4 pt-14 text-center sm:px-8 md:pt-20">
+        <p className="text-[19px] leading-relaxed text-label-2 md:text-[21px]">
+          Votre taille, votre poids, votre âge. Carrure calcule la taille à prendre pour chaque costume et chaque chemise.
+        </p>
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+          <Suspense fallback={<Actions measured={false} />}>
+            <ShopperActions />
+          </Suspense>
+        </div>
       </section>
 
-      <section aria-labelledby="how-title" className="mx-auto max-w-[980px] px-4 pt-24 pb-28 sm:px-[22px] md:pt-32">
-        <h2 id="how-title" className="max-w-[18ch] text-[40px] font-semibold md:text-5xl">
+      <section aria-label="Les collections" className="mx-auto mt-24 grid max-w-[1440px] gap-px px-4 sm:px-8 md:mt-32 md:grid-cols-2">
+        <CollectionTile category="suit" title="Costumes" range="Du 44 au 58" products={products} cover="costume-rayure-tennis" />
+        <CollectionTile category="shirt" title="Chemises" range="Du S au 3XL" products={products} cover="chemise-lin-blanche" />
+      </section>
+
+      <section aria-labelledby="how-title" className="mx-auto max-w-[1180px] px-4 pt-28 pb-32 sm:px-8 md:pt-40">
+        <h2 id="how-title" className="mx-auto max-w-[18ch] text-center text-[40px] md:text-[64px]">
           Votre taille, sans cabine d’essayage.
         </h2>
-        <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-12">
+        <ol className="mt-16 grid gap-12 md:mt-20 md:grid-cols-3 md:gap-14">
           {STEPS.map((step, i) => (
-            <li key={step.title} className="border-t border-separator pt-6">
-              <span className="figures block text-[40px] leading-none text-label-2">{i + 1}</span>
-              <h3 className="mt-5 text-[21px] font-semibold tracking-[-0.02em]">{step.title}</h3>
-              <p className="mt-2 text-label-2">{step.text}</p>
+            <li key={step.title} className="border-t border-separator pt-8 text-center md:text-left">
+              <span aria-hidden className="font-display text-[44px] leading-none text-brass">{NUMERALS[i]}</span>
+              <h3 className="mt-6 text-[24px]">{step.title}</h3>
+              <p className="mt-3 text-label-2">{step.text}</p>
             </li>
           ))}
         </ol>
-        <p className="mt-12 max-w-[40rem] text-sm text-label-2">
+        <p className="mx-auto mt-16 max-w-[40rem] text-center text-sm text-label-2">
           La taille affichée reste une estimation : notre calcul indique toujours à quel point il est sûr de lui, et la taille
           voisine quand vous êtes entre deux.
         </p>
@@ -105,7 +115,7 @@ function Actions({ measured }: { measured: boolean }) {
         Voir les costumes à ma taille
       </Link>
       <Link href="/compte/mensurations" className={textLink}>
-        Modifier mes mensurations ›
+        Modifier mes mensurations
       </Link>
     </>
   ) : (
@@ -114,7 +124,7 @@ function Actions({ measured }: { measured: boolean }) {
         Trouver ma taille
       </Link>
       <Link href="/costumes" className={textLink}>
-        Voir les costumes ›
+        Voir les costumes
       </Link>
     </>
   );
@@ -126,24 +136,27 @@ function CollectionTile({ category, title, range, products, cover }: TileProps) 
   const prices = products.filter((p) => p.category === category).map((p) => p.priceCents);
   const image = products.find((p) => p.slug === cover)?.image;
   return (
-    <Link href={CATEGORY_PATH[category]} className="group flex flex-col items-center overflow-hidden rounded-[28px] bg-tile px-6 pt-12 text-center transition-transform duration-150 ease-out active:scale-[0.99]">
-      <h2 className="text-[40px] font-semibold">{title}</h2>
-      <p className="mt-2 text-[19px] text-label-2">
-        {range}.{prices.length > 0 && <> À partir de {price(Math.min(...prices))}.</>}
-      </p>
-      <span className="mt-3 inline-flex min-h-11 items-center text-[17px] text-link group-hover:underline">Découvrir ›</span>
+    <Link href={CATEGORY_PATH[category]} className="group relative block aspect-[4/5] overflow-hidden bg-tile">
       {image && (
-        <div className="mt-8 w-full max-w-80 overflow-hidden rounded-t-[20px]">
-          <Image
-            src={image}
-            alt=""
-            width={640}
-            height={800}
-            sizes="(min-width: 768px) 320px, 80vw"
-            className="aspect-[4/5] w-full object-cover transition-transform duration-300 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
-          />
-        </div>
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover transition-transform duration-[1200ms] ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
+        />
       )}
+      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgb(12_11_10/0.88)_0%,rgb(12_11_10/0)_55%)]" />
+      <div className="absolute inset-x-0 bottom-0 p-8 text-center md:p-12">
+        <h2 className="text-[48px] md:text-[64px]">{title}</h2>
+        <p className="mt-3 text-label-2">
+          {range}
+          {prices.length > 0 && <> · À partir de {price(Math.min(...prices))}</>}
+        </p>
+        <span className="eyebrow mt-5 inline-flex min-h-11 items-center underline decoration-brass/60 underline-offset-[6px] transition-colors duration-150 group-hover:decoration-brass">
+          Découvrir
+        </span>
+      </div>
     </Link>
   );
 }

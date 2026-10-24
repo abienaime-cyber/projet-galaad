@@ -12,17 +12,17 @@ export function Advisor({ slug }: { slug: string }) {
   const answered = Boolean(state.explanation);
 
   return (
-    <section aria-labelledby="advisor-title" className="mt-8 border-t border-separator pt-8">
-      <h2 id="advisor-title" className="text-[17px] font-semibold">
+    <section aria-labelledby="advisor-title" className="mt-12 border-t border-separator pt-10">
+      <h2 id="advisor-title" className="text-[28px]">
         Le conseiller
       </h2>
-      <p className="mt-1 max-w-[34rem] text-sm text-label-2">
+      <p className="mt-2 max-w-[34rem] text-sm text-label-2">
         Il explique le calcul de votre taille et compose des tenues avec les articles disponibles dans votre taille. Il
         ne change jamais la taille calculée.
       </p>
 
       {!answered && (
-        <form action={action} className="mt-4">
+        <form action={action} className="mt-6">
           <input type="hidden" name="slug" value={slug} />
           <button type="submit" disabled={pending} className={secondaryButton}>
             {pending && <Spinner />}
@@ -32,15 +32,15 @@ export function Advisor({ slug }: { slug: string }) {
       )}
 
       <div aria-live="polite">
-        {state.error && <p className="mt-4 rounded-[14px] bg-danger-tint p-4 text-sm text-danger">{state.error}</p>}
+        {state.error && <p className="mt-4 border-l border-danger bg-danger-tint p-4 text-sm text-danger">{state.error}</p>}
         {state.explanation && (
           <>
             <p className="mt-4 max-w-[36rem] text-pretty">{state.explanation}</p>
             {state.outfits && state.outfits.length > 0 && (
               <ul className="mt-6 grid gap-4">
                 {state.outfits.map((outfit) => (
-                  <li key={outfit.title} className="rounded-[18px] bg-tile p-5">
-                    <h3 className="font-semibold">{outfit.title}</h3>
+                  <li key={outfit.title} className="border border-separator p-5 sm:p-6">
+                    <h3 className="text-[21px]">{outfit.title}</h3>
                     <p className="mt-1 text-sm text-label-2">{outfit.why}</p>
                     <ul className="mt-4 flex flex-wrap gap-3">
                       {outfit.items.map((item) => (
@@ -52,7 +52,7 @@ export function Advisor({ slug }: { slug: string }) {
                                 alt=""
                                 width={112}
                                 height={140}
-                                className="aspect-[4/5] w-full rounded-[12px] object-cover"
+                                className="aspect-[4/5] w-full object-cover"
                               />
                             )}
                             <span className="mt-2 line-clamp-2 group-hover:underline">{item.name}</span>

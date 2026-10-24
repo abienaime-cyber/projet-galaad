@@ -1,34 +1,39 @@
 @import "tailwindcss";
 
-/* Le monde de l'Apple Store : blanc, tuiles gris clair, un seul bleu d'action. */
+/* Une maison italienne, le soir : fond noir chaud, texte ivoire, un seul accent laiton. */
 @theme {
-  --color-canvas: #ffffff;
-  --color-tile: #f5f5f7;
-  --color-fill: #e8e8ed;
-  --color-separator: #d2d2d7;
-  --color-control: #86868b;
-  --color-label: #1d1d1f;
-  --color-label-2: #6e6e73;
-  --color-accent: #0071e3;
-  --color-accent-hover: #0077ed;
-  --color-link: #0066cc;
-  --color-danger: #e30000;
-  --color-danger-tint: #fff2f4;
-  --color-ok: #1d7a35;
+  --color-canvas: #0c0b0a;
+  --color-tile: #151412;
+  --color-fill: #201e1b;
+  --color-field: #11100e;
+  --color-separator: #2e2b27;
+  --color-control: #6e6961;
+  --color-label: #eeeae3;
+  --color-label-2: #a8a197;
+  --color-accent: #eeeae3;
+  --color-accent-hover: #ffffff;
+  --color-on-accent: #0c0b0a;
+  --color-brass: #cdb184;
+  --color-link: #cdb184;
+  --color-danger: #f0776c;
+  --color-danger-tint: #2a1513;
+  --color-ok: #8fc8a0;
 
-  /* SF Pro sur les appareils Apple, Inter (son plus proche équivalent libre) ailleurs. */
-  --font-sans: -apple-system, BlinkMacSystemFont, var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+  /* Jost, cousine libre de Futura : la Didone et la Futura, le duo des maisons de mode. */
+  --font-sans: var(--font-jost), Futura, "Century Gothic", sans-serif;
+  /* Bodoni : le didone de Parme, gravé par Giambattista Bodoni à la fin du XVIIIe siècle. */
+  --font-display: var(--font-bodoni), "Bodoni 72", Didot, Georgia, serif;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   --animate-spinner: spinner-fade 1s linear infinite;
-  --animate-rise: rise 0.6s var(--ease-out) both;
+  --animate-rise: rise 0.9s var(--ease-out) both;
 
   @keyframes rise {
     from {
       opacity: 0;
-      transform: translateY(16px);
+      transform: translateY(12px);
     }
   }
 
@@ -59,7 +64,7 @@
 
 @layer base {
   html {
-    color-scheme: light;
+    color-scheme: dark;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -67,63 +72,77 @@
     background: var(--color-canvas);
     color: var(--color-label);
     font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.47;
-    letter-spacing: -0.022em;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
   }
 
   ::selection {
-    background: rgb(0 113 227 / 0.22);
+    background: rgb(205 177 132 / 0.35);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
+    outline: 1px solid var(--color-brass);
+    outline-offset: 3px;
   }
 
   input,
   textarea {
-    caret-color: var(--color-accent);
+    caret-color: var(--color-brass);
   }
 
-  /* Le gris par défaut du navigateur (#a9a9a9) tombe à 2,3:1 sur blanc. */
   ::placeholder {
     color: var(--color-label-2);
     opacity: 1;
   }
 
   p,
-  li {
+  li,
+  dd {
     text-wrap: pretty;
   }
 
   a {
-    text-underline-offset: 0.2em;
-  }
-
-  /* L'interlettrage se resserre quand le corps grandit, comme SF Pro Display. */
-  h1 {
-    letter-spacing: -0.03em;
-    line-height: 1.08;
-    text-wrap: balance;
-  }
-
-  h2 {
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    text-wrap: balance;
+    text-underline-offset: 0.25em;
+    text-decoration-thickness: 1px;
   }
 }
 
+/* Hors couche, pour primer sur les utilitaires : tous les titres parlent Bodoni, à graisse de texte,
+   sauf ceux composés en petites capitales. */
+:is(h1, h2, h3):not(.eyebrow) {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+h1:not(.eyebrow) {
+  line-height: 1.04;
+}
+
+:is(h2, h3):not(.eyebrow) {
+  line-height: 1.15;
+}
+
+/* Petites capitales espacées : rubriques, boutons, navigation. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
 @utility figures {
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 /* Valeur estimée : soulignée en pointillé, une mesure réelle ne l'est pas. */
 @utility estimated {
   text-decoration: underline dotted var(--color-control);
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
 }

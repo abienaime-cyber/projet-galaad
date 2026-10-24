@@ -9,9 +9,9 @@ export const metadata: Metadata = { title: "Vos commandes" };
 
 export default function OrdersPage() {
   return (
-    <div className="mx-auto max-w-[980px] px-4 pt-10 pb-24 sm:px-[22px] md:pt-12">
-      <h1 className="text-[40px] font-semibold md:text-5xl">Vos commandes</h1>
-      <Suspense fallback={<div aria-busy className="mt-10 h-64 rounded-[28px] bg-tile" />}>
+    <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-12">
+      <h1 className="text-[44px] md:text-[60px]">Vos commandes</h1>
+      <Suspense fallback={<div aria-busy className="mt-10 h-64 bg-tile" />}>
         <Orders />
       </Suspense>
     </div>
@@ -27,8 +27,8 @@ async function Orders() {
 
   if (!orders || orders.length === 0) {
     return (
-      <div className="mt-10 rounded-[28px] bg-tile px-6 py-12 text-center sm:px-12">
-        <h2 className="text-[28px] font-semibold">Aucune commande pour le moment.</h2>
+      <div className="mt-10 bg-tile px-6 py-12 text-center sm:px-12">
+        <h2 className="text-[28px]">Aucune commande pour le moment.</h2>
         <p className="mt-3 text-label-2">Vos commandes et leurs retours apparaîtront ici.</p>
         <Link href="/costumes" className={`${primaryButton} mt-6`}>
           Voir les costumes

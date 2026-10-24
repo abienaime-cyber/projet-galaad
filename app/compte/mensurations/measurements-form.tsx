@@ -63,14 +63,14 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
     <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-14">
       <form onSubmit={submit} noValidate className="grid content-start gap-10">
         <fieldset className="grid gap-3 sm:grid-cols-3">
-          <legend className="mb-4 text-[21px] font-semibold tracking-[-0.02em]">L’essentiel</legend>
+          <legend className="mb-4 font-display text-[26px]">L’essentiel</legend>
           {numeric("heightCm")}
           {numeric("weightKg")}
           {numeric("age")}
         </fieldset>
 
         <fieldset className="grid gap-3 sm:grid-cols-2 sm:items-start">
-          <legend className="text-[21px] font-semibold tracking-[-0.02em]">Si vous les connaissez</legend>
+          <legend className="font-display text-[26px]">Si vous les connaissez</legend>
           <p className="mt-1 mb-2 text-sm text-pretty text-label-2 sm:col-span-2">
             Mesurés au mètre ruban, ils remplacent l’estimation et rendent le calcul plus sûr.
           </p>
@@ -79,8 +79,8 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
         </fieldset>
 
         <fieldset>
-          <legend className="text-[21px] font-semibold tracking-[-0.02em]">Coupe préférée</legend>
-          {/* Tuiles de choix, comme le choix de capacité d'un iPhone : bordure bleue sur l'option retenue. */}
+          <legend className="font-display text-[26px]">Coupe préférée</legend>
+          {/* Tuiles de choix : filet laiton sur l'option retenue. */}
           <div className="mt-4 grid grid-cols-2 gap-3">
             {[{ value: "", label: "Sans préférence" }, ...FITS].map((fit) => (
               <label key={fit.value} className="relative">
@@ -92,7 +92,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
                   onChange={set("preferred_fit")}
                   className="peer sr-only"
                 />
-                <span className="flex min-h-14 cursor-pointer items-center justify-center rounded-xl border border-control bg-white px-3 py-2 text-center text-[15px] leading-tight font-medium transition-[border-color,box-shadow] duration-150 ease-[ease] hover:border-label-2 active:bg-tile peer-checked:border-accent peer-checked:shadow-[0_0_0_1px_var(--color-accent)] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent">
+                <span className="flex min-h-14 cursor-pointer items-center justify-center border border-control bg-field px-3 py-2 text-center text-[15px] leading-tight font-medium transition-[border-color,box-shadow] duration-150 ease-[ease] hover:border-label-2 active:bg-tile peer-checked:border-brass peer-checked:shadow-[0_0_0_1px_var(--color-brass)] peer-focus-visible:outline-1 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-brass">
                   {fit.label}
                 </span>
               </label>
@@ -114,8 +114,8 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
         </div>
       </form>
 
-      <section aria-labelledby="reading-title" className="rounded-[28px] bg-tile px-4 py-6 sm:p-10 lg:sticky lg:top-[68px] lg:self-start">
-        <h2 id="reading-title" className="text-[28px] font-semibold">
+      <section aria-labelledby="reading-title" className="bg-tile px-4 py-6 sm:p-10 lg:sticky lg:top-[88px] lg:self-start">
+        <h2 id="reading-title" className="text-[28px]">
           Lecture du mètre
         </h2>
         <p className="mt-2 text-sm text-label-2">
@@ -202,7 +202,7 @@ function DeleteZone({ onDelete }: { onDelete: () => Promise<void> }) {
   const [confirming, setConfirming] = useState(false);
   return (
     <section aria-labelledby="delete-title" className="mt-4 border-t border-separator pt-10 lg:col-span-2">
-      <h2 id="delete-title" className="text-[21px] font-semibold">
+      <h2 id="delete-title" className="text-[21px]">
         Effacer mes mensurations
       </h2>
       <p className="mt-2 max-w-prose text-sm text-label-2">
@@ -212,16 +212,16 @@ function DeleteZone({ onDelete }: { onDelete: () => Promise<void> }) {
       <form action={onDelete} className="mt-4 flex flex-wrap gap-3">
         {confirming ? (
           <>
-            <button key="confirm" type="submit" className="h-10 cursor-pointer rounded-full bg-danger px-[18px] text-sm text-white transition-transform duration-150 ease-out active:scale-[0.97]">
+            <button key="confirm" type="submit" className="eyebrow h-11 cursor-pointer bg-danger px-6 text-on-accent transition-transform duration-150 ease-out active:scale-[0.98]">
               Oui, tout effacer
             </button>
-            <button type="button" onClick={() => setConfirming(false)} className="h-10 cursor-pointer rounded-full px-4 text-sm text-link hover:underline">
+            <button type="button" onClick={() => setConfirming(false)} className="eyebrow h-11 cursor-pointer px-4 text-label-2 hover:text-label">
               Annuler
             </button>
           </>
         ) : (
           // Clés distinctes : sinon React transforme ce bouton en bouton d'envoi pendant le clic, qui soumet le formulaire.
-          <button key="ask" type="button" onClick={() => setConfirming(true)} className="h-10 cursor-pointer rounded-full border border-danger px-[18px] text-sm text-danger transition-colors duration-150 ease-[ease] hover:bg-danger-tint">
+          <button key="ask" type="button" onClick={() => setConfirming(true)} className="eyebrow h-11 cursor-pointer border border-danger/70 px-6 text-danger transition-colors duration-150 ease-[ease] hover:bg-danger-tint">
             Effacer mes mensurations
           </button>
         )}

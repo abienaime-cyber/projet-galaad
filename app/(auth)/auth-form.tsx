@@ -13,8 +13,8 @@ export function AuthForm({ mode }: { mode: "signin" | "signup" }) {
 
   if (state.notice) {
     return (
-      <div role="status" className="mt-8 rounded-[18px] bg-tile p-6 text-center">
-        <p className="text-[21px] font-semibold">Vérifiez votre boîte de réception</p>
+      <div role="status" className="mt-8 border border-separator p-6 text-center">
+        <p className="font-display text-[24px]">Vérifiez votre boîte de réception</p>
         <p className="mt-2 text-label-2 [overflow-wrap:anywhere]">{state.notice}</p>
       </div>
     );
@@ -26,7 +26,7 @@ export function AuthForm({ mode }: { mode: "signin" | "signup" }) {
   return (
     <form action={formAction} className="mt-8 grid gap-4" noValidate>
       {error && (
-        <p role="alert" className="rounded-xl bg-danger-tint px-4 py-3 text-sm text-danger">
+        <p role="alert" className="border-l border-danger bg-danger-tint px-4 py-3 text-sm text-danger">
           {error}
         </p>
       )}
@@ -46,7 +46,7 @@ export function AuthForm({ mode }: { mode: "signin" | "signup" }) {
         autoComplete={mode === "signin" ? "current-password" : "new-password"}
         hint={mode === "signup" ? "8 caractères au minimum." : undefined}
       />
-      <button type="submit" disabled={pending} className={`${primaryButton} mt-4 h-12 w-full`}>
+      <button type="submit" disabled={pending} className={`${primaryButton} mt-6 w-full`}>
         {pending && <Spinner className="mr-2" />}
         {pending ? "Un instant…" : submitLabel}
       </button>

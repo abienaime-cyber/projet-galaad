@@ -172,37 +172,37 @@ supabase/            migrations, seed, tests pgTAP et test de survente
 
 ## Crédits photos
 
-Photos de [Pexels](https://www.pexels.com/license/), libres d'utilisation, attribution non requise. Elles illustrent la démo ; les personnes photographiées n'ont aucun lien avec la marque fictive Carrure. À remplacer par de vraies photos produit avant toute utilisation commerciale.
+Photos de [Pexels](https://www.pexels.com/license/), libres d'utilisation, attribution non requise. Recadrées sous le menton et étalonnées pour former une série homogène. Elles illustrent la démo ; les personnes photographiées n'ont aucun lien avec la marque fictive Carrure. À remplacer par de vraies photos produit avant toute utilisation commerciale.
 
 | Produit | Photo |
 | --- | --- |
-| `costume-laine-marine` | [pexels.com/photo/18642682](https://www.pexels.com/photo/18642682/) |
-| `costume-gris-anthracite` | [pexels.com/photo/28446973](https://www.pexels.com/photo/28446973/) |
-| `costume-ajuste-noir` | [pexels.com/photo/19934396](https://www.pexels.com/photo/19934396/) |
-| `costume-flanelle-gris-chine` | [pexels.com/photo/8250214](https://www.pexels.com/photo/8250214/) |
-| `costume-lin-beige` | [pexels.com/photo/17739667](https://www.pexels.com/photo/17739667/) |
-| `costume-prince-de-galles` | [pexels.com/photo/6050427](https://www.pexels.com/photo/6050427/) |
-| `costume-croise-gris-bleu` | [pexels.com/photo/32670005](https://www.pexels.com/photo/32670005/) |
-| `smoking-noir-revers-satin` | [pexels.com/photo/37263477](https://www.pexels.com/photo/37263477/) |
-| `costume-tweed-marron` | [pexels.com/photo/5060805](https://www.pexels.com/photo/5060805/) |
-| `costume-trois-pieces-bleu-nuit` | [pexels.com/photo/2474308](https://www.pexels.com/photo/2474308/) |
+| `costume-laine-marine` | [pexels.com/photo/18320058](https://www.pexels.com/photo/18320058/) |
+| `costume-gris-anthracite` | [pexels.com/photo/7441750](https://www.pexels.com/photo/7441750/) |
+| `costume-ajuste-noir` | [pexels.com/photo/33290971](https://www.pexels.com/photo/33290971/) |
+| `costume-flanelle-gris-chine` | [pexels.com/photo/10657877](https://www.pexels.com/photo/10657877/) |
+| `costume-lin-beige` | [pexels.com/photo/14348501](https://www.pexels.com/photo/14348501/) |
+| `costume-prince-de-galles` | [pexels.com/photo/15352659](https://www.pexels.com/photo/15352659/) |
+| `costume-croise-gris-bleu` | [pexels.com/photo/35466541](https://www.pexels.com/photo/35466541/) |
+| `smoking-noir-revers-satin` | [pexels.com/photo/10531636](https://www.pexels.com/photo/10531636/) |
+| `costume-tweed-marron` | [pexels.com/photo/37148299](https://www.pexels.com/photo/37148299/) |
+| `costume-trois-pieces-bleu-nuit` | [pexels.com/photo/18348433](https://www.pexels.com/photo/18348433/) |
 | `costume-vert-sapin` | [pexels.com/photo/3600142](https://www.pexels.com/photo/3600142/) |
-| `costume-rayure-tennis` | [pexels.com/photo/7918095](https://www.pexels.com/photo/7918095/) |
-| `chemise-oxford-blanche` | [pexels.com/photo/3986129](https://www.pexels.com/photo/3986129/) |
-| `chemise-oxford-bleu-ciel` | [pexels.com/photo/7447362](https://www.pexels.com/photo/7447362/) |
-| `chemise-popeline-blanche-ajustee` | [pexels.com/photo/16825851](https://www.pexels.com/photo/16825851/) |
-| `chemise-popeline-rayee-bleue` | [pexels.com/photo/3799790](https://www.pexels.com/photo/3799790/) |
-| `chemise-lin-bleu-ciel` | [pexels.com/photo/1043474](https://www.pexels.com/photo/1043474/) |
-| `chemise-lin-blanche` | [pexels.com/photo/4736680](https://www.pexels.com/photo/4736680/) |
-| `chemise-flanelle-carreaux` | [pexels.com/photo/2834009](https://www.pexels.com/photo/2834009/) |
-| `chemise-denim-indigo` | [pexels.com/photo/10004175](https://www.pexels.com/photo/10004175/) |
-| `chemise-twill-rose-pale` | [pexels.com/photo/37070445](https://www.pexels.com/photo/37070445/) |
-| `chemise-noire-stretch` | [pexels.com/photo/18935840](https://www.pexels.com/photo/18935840/) |
-| `chemise-vichy-bleue` | [pexels.com/photo/18297281](https://www.pexels.com/photo/18297281/) |
-| `chemise-petits-carreaux` | [pexels.com/photo/18800071](https://www.pexels.com/photo/18800071/) |
-| `chemise-smoking-blanche` | [pexels.com/photo/3598433](https://www.pexels.com/photo/3598433/) |
-| `chemise-chambray` | [pexels.com/photo/4584191](https://www.pexels.com/photo/4584191/) |
-| `surchemise-carreaux-ecrus` | [pexels.com/photo/34947524](https://www.pexels.com/photo/34947524/) |
-| `chemise-fil-a-fil-bleue` | [pexels.com/photo/1043473](https://www.pexels.com/photo/1043473/) |
+| `costume-rayure-tennis` | [pexels.com/photo/35462552](https://www.pexels.com/photo/35462552/) |
+| `chemise-oxford-blanche` | [pexels.com/photo/37218483](https://www.pexels.com/photo/37218483/) |
+| `chemise-oxford-bleu-ciel` | [pexels.com/photo/37862665](https://www.pexels.com/photo/37862665/) |
+| `chemise-popeline-blanche-ajustee` | [pexels.com/photo/37825457](https://www.pexels.com/photo/37825457/) |
+| `chemise-popeline-rayee-bleue` | [pexels.com/photo/31589336](https://www.pexels.com/photo/31589336/) |
+| `chemise-lin-bleu-ciel` | [pexels.com/photo/7312469](https://www.pexels.com/photo/7312469/) |
+| `chemise-lin-blanche` | [pexels.com/photo/38907642](https://www.pexels.com/photo/38907642/) |
+| `chemise-flanelle-carreaux` | [pexels.com/photo/16886377](https://www.pexels.com/photo/16886377/) |
+| `chemise-denim-indigo` | [pexels.com/photo/38044264](https://www.pexels.com/photo/38044264/) |
+| `chemise-twill-rose-pale` | [pexels.com/photo/8540339](https://www.pexels.com/photo/8540339/) |
+| `chemise-noire-stretch` | [pexels.com/photo/17899456](https://www.pexels.com/photo/17899456/) |
+| `chemise-vichy-bleue` | [pexels.com/photo/18362367](https://www.pexels.com/photo/18362367/) |
+| `chemise-petits-carreaux` | [pexels.com/photo/36388574](https://www.pexels.com/photo/36388574/) |
+| `chemise-smoking-blanche` | [pexels.com/photo/10798810](https://www.pexels.com/photo/10798810/) |
+| `chemise-chambray` | [pexels.com/photo/5670175](https://www.pexels.com/photo/5670175/) |
+| `surchemise-carreaux-ecrus` | [pexels.com/photo/31585407](https://www.pexels.com/photo/31585407/) |
+| `chemise-fil-a-fil-bleue` | [pexels.com/photo/7447366](https://www.pexels.com/photo/7447366/) |
 | `chemise-maille-marine` | [pexels.com/photo/35495782](https://www.pexels.com/photo/35495782/) |
-| `chemise-carreaux-noir-blanc` | [pexels.com/photo/8498401](https://www.pexels.com/photo/8498401/) |
+| `chemise-carreaux-noir-blanc` | [pexels.com/photo/16881984](https://www.pexels.com/photo/16881984/) |

@@ -21,7 +21,7 @@ export function CheckoutForm({ address, total }: { address: Address; total: stri
         <Field name="city" label="Ville" autoComplete="address-level2" defaultValue={address.city} error={errors.city} maxLength={100} required />
       </div>
 
-      <div className="mt-4 rounded-[18px] bg-tile p-5 text-sm">
+      <div className="mt-4 bg-tile p-5 text-sm">
         <p className="font-semibold">Paiement simulé</p>
         <p className="mt-1 text-label-2">
           Site de démonstration : aucune carte n’est demandée et rien n’est débité. La commande est enregistrée et le stock
@@ -30,7 +30,7 @@ export function CheckoutForm({ address, total }: { address: Address; total: stri
       </div>
 
       {state.error && (
-        <p role="alert" className="rounded-[14px] bg-danger-tint p-4 text-sm text-danger">
+        <p role="alert" className="bg-danger-tint p-4 text-sm text-danger">
           {state.error}
         </p>
       )}

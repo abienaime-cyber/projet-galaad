@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { secondaryButton } from "@/components/field";
+import { secondaryButton, textLink } from "@/components/field";
 import { getProduct, getShopper } from "@/lib/catalog";
 import { OPEN_GRAPH } from "@/lib/site";
 import { createClient } from "@/lib/supabase/server";
@@ -12,6 +12,7 @@ import { FIT_FEEDBACK } from "@/lib/validation";
 import { AddToCart } from "./add-to-cart";
 import { Advisor } from "./advisor";
 import { ReviewForm } from "./review-form";
+import { Chevron } from "@/components/chevron";
 
 export async function generateMetadata({ params }: PageProps<"/produit/[slug]">): Promise<Metadata> {
   const product = await getProduct((await params).slug);
@@ -25,8 +26,8 @@ export async function generateMetadata({ params }: PageProps<"/produit/[slug]">)
 
 export default function ProductPage({ params }: PageProps<"/produit/[slug]">) {
   return (
-    <div className="mx-auto max-w-[980px] px-4 pt-6 pb-24 sm:px-[22px] md:pt-10">
-      <Suspense fallback={<div aria-busy className="mt-12 aspect-[4/5] max-h-[36rem] rounded-[28px] bg-tile lg:w-1/2" />}>
+    <div className="mx-auto max-w-[1440px] px-4 pt-6 pb-28 sm:px-8 md:pt-8">
+      <Suspense fallback={<div aria-busy className="mt-12 aspect-[4/5] max-h-[36rem] bg-tile lg:w-1/2" />}>
         {params.then(({ slug }) => (
           <ProductView slug={slug} />
         ))}
@@ -43,11 +44,11 @@ async function ProductView({ slug }: { slug: string }) {
 
   return (
     <>
-      <Link href={CATEGORY_PATH[product.category]} className="inline-flex min-h-11 items-center text-sm text-link hover:underline">
-        ‹ {isSuit ? "Costumes" : "Chemises"}
+      <Link href={CATEGORY_PATH[product.category]} className="eyebrow inline-flex min-h-11 items-center gap-2 text-label-2 hover:text-label">
+        <Chevron back /> {isSuit ? "Costumes" : "Chemises"}
       </Link>
-      <div className="mt-4 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14">
-        <div className="lg:sticky lg:top-[68px] lg:self-start">
+      <div className="mt-4 grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-20">
+        <div className="lg:sticky lg:top-[88px] lg:self-start">
           {product.image ? (
             <Image
               src={product.image}
@@ -56,32 +57,32 @@ async function ProductView({ slug }: { slug: string }) {
               height={1250}
               priority
               sizes="(min-width: 1024px) 500px, 100vw"
-              className="aspect-[4/5] w-full rounded-[28px] bg-tile object-cover"
+              className="aspect-[4/5] w-full bg-tile object-cover"
             />
           ) : (
-            <div className="aspect-[4/5] rounded-[28px] bg-tile" />
+            <div className="aspect-[4/5] bg-tile" />
           )}
         </div>
 
-        <div>
-          <h1 className="text-[40px] font-semibold md:text-5xl">{product.name}</h1>
-          <p className="mt-3 text-[21px] tabular-nums">{price(product.priceCents)}</p>
-          <p className="mt-6 max-w-[34rem] text-pretty">{product.description}</p>
+        <div className="lg:pt-10">
+          <h1 className="text-[44px] md:text-[56px]">{product.name}</h1>
+          <p className="figures mt-4 text-[24px]">{price(product.priceCents)}</p>
+          <p className="mt-6 max-w-[34rem] text-pretty text-label-2">{product.description}</p>
 
-          <Suspense fallback={<div aria-busy className="mt-8 h-72 rounded-[18px] bg-tile" />}>
+          <Suspense fallback={<div aria-busy className="mt-8 h-72 bg-tile" />}>
             <YourSize product={product} />
           </Suspense>
 
-          <dl className="mt-10 grid grid-cols-[auto_minmax(0,1fr)] gap-x-8 gap-y-3 border-t border-separator pt-8 text-sm">
-            <dt className="text-label-2">Coupe</dt>
+          <dl className="mt-12 grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-10 gap-y-4 border-t border-separator pt-8 text-sm">
+            <dt className="eyebrow text-label-2">Coupe</dt>
             <dd>{FIT_LABEL[product.fit]}</dd>
-            <dt className="text-label-2">Matière</dt>
+            <dt className="eyebrow text-label-2">Matière</dt>
             <dd>{product.material}</dd>
-            <dt className="text-label-2">Couleur</dt>
+            <dt className="eyebrow text-label-2">Couleur</dt>
             <dd>{product.color}</dd>
             {sizes.length > 0 && (
               <>
-                <dt className="text-label-2">Tailles</dt>
+                <dt className="eyebrow text-label-2">Tailles</dt>
                 <dd className="tabular-nums">
                   {sizes[0]} à {sizes.at(-1)}
                 </dd>
@@ -110,28 +111,28 @@ async function YourSize({ product }: { product: CatalogProduct }) {
 
   return (
     <>
-      <section aria-labelledby="your-size" className="mt-8 rounded-[18px] bg-tile p-6 sm:p-8">
-        <h2 id="your-size" className="text-sm text-label-2">
+      <section aria-labelledby="your-size" className="mt-10 border-y border-separator py-8">
+        <h2 id="your-size" className="eyebrow text-label-2">
           Votre taille
         </h2>
         {rec?.size ? (
           <>
-            <p className="mt-2 flex items-baseline gap-3">
-              <span className={`figures text-[56px] leading-none ${rec.estimated ? "estimated" : ""}`}>{rec.size}</span>
+            <p className="mt-3 flex items-baseline gap-3">
+              <span className={`figures text-[64px] leading-none text-brass ${rec.estimated ? "estimated" : ""}`}>{rec.size}</span>
               {rec.alternative && <span className="text-[17px] text-label-2">ou {rec.alternative}</span>}
             </p>
             <p className="mt-3 text-sm text-label-2">
               Taille estimée, {CONFIDENCE_LABEL[rec.confidence]}.{" "}
               {inStock ? <span className="text-ok">En stock dans votre taille.</span> : "Épuisée dans votre taille pour le moment."}
             </p>
-            <Link href="/compte/mensurations" className="mt-1 inline-flex min-h-11 items-center text-sm text-link hover:underline">
+            <Link href="/compte/mensurations" className={`${textLink} mt-2`}>
               Modifier mes mensurations
             </Link>
           </>
         ) : rec ? (
           <p className="mt-2 text-[17px]">
             Vos mensurations sortent du tableau de tailles de cet article.{" "}
-            <Link href="/compte/mensurations" className="text-link hover:underline">
+            <Link href="/compte/mensurations" className="underline decoration-brass/60 hover:decoration-brass">
               Vérifier mes mensurations
             </Link>
           </p>
@@ -167,8 +168,8 @@ async function Reviews({ product }: { product: CatalogProduct }) {
   const average = list.length ? list.reduce((s, r) => s + r.rating, 0) / list.length : 0;
 
   return (
-    <section aria-labelledby="reviews-title" className="mt-10 border-t border-separator pt-8">
-      <h2 id="reviews-title" className="text-[21px] font-semibold">
+    <section aria-labelledby="reviews-title" className="mt-12 border-t border-separator pt-10">
+      <h2 id="reviews-title" className="text-[28px]">
         Avis clients
       </h2>
       {list.length === 0 ? (
@@ -176,7 +177,7 @@ async function Reviews({ product }: { product: CatalogProduct }) {
       ) : (
         <>
           <p className="mt-2 text-sm text-label-2">
-            <span className="figures text-[17px] text-label">{average.toFixed(1).replace(".", ",")}</span> sur 5, {list.length} avis
+            <span className="figures text-[20px] text-brass">{average.toFixed(1).replace(".", ",")}</span> sur 5, {list.length} avis
           </p>
           <ul className="mt-5 grid gap-5">
             {list.map((r) => (

@@ -1,328 +1,323 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-23T10:44:35.933Z",
+  "generatedAt": "2026-10-24T12:09:07+00:00",
   "title": "Design System: Carrure",
   "extensions": {
     "colorMeta": {
       "canvas": {
         "role": "neutral",
-        "displayName": "Blanc",
-        "canonical": "oklch(100.0% 0.000 89.9)",
+        "displayName": "Evening Black",
+        "canonical": "oklch(15.0% 0.003 68)",
         "tonalRamp": [
-          "oklch(15% 0.000 89.9)",
-          "oklch(25% 0.000 89.9)",
-          "oklch(35% 0.000 89.9)",
-          "oklch(45% 0.000 89.9)",
-          "oklch(55% 0.000 89.9)",
-          "oklch(65% 0.000 89.9)",
-          "oklch(80% 0.000 89.9)",
-          "oklch(95% 0.000 89.9)"
+          "#0c0b0a",
+          "#252423",
+          "#413f3e",
+          "#5f5d5c",
+          "#7e7d7b",
+          "#9f9e9d",
+          "#c5c4c2",
+          "#f0eeec"
         ]
       },
       "tile": {
         "role": "neutral",
-        "displayName": "Gris tuile",
-        "canonical": "oklch(97.1% 0.003 286.4)",
+        "displayName": "Tile Black",
+        "canonical": "oklch(19.2% 0.004 85)",
         "tonalRamp": [
-          "oklch(15% 0.003 286.4)",
-          "oklch(25% 0.003 286.4)",
-          "oklch(35% 0.003 286.4)",
-          "oklch(45% 0.003 286.4)",
-          "oklch(55% 0.003 286.4)",
-          "oklch(65% 0.003 286.4)",
-          "oklch(80% 0.003 286.4)",
-          "oklch(95% 0.003 286.4)"
+          "#0c0b09",
+          "#252422",
+          "#41403d",
+          "#5f5d5b",
+          "#7e7d7a",
+          "#a09e9b",
+          "#c5c4c1",
+          "#f0eeeb"
         ]
       },
       "fill": {
         "role": "neutral",
-        "displayName": "Gris remplissage",
-        "canonical": "oklch(93.2% 0.007 286.3)",
+        "displayName": "Raised Black",
+        "canonical": "oklch(23.6% 0.006 78)",
         "tonalRamp": [
-          "oklch(15% 0.007 286.3)",
-          "oklch(25% 0.007 286.3)",
-          "oklch(35% 0.007 286.3)",
-          "oklch(45% 0.007 286.3)",
-          "oklch(55% 0.007 286.3)",
-          "oklch(65% 0.007 286.3)",
-          "oklch(80% 0.007 286.3)",
-          "oklch(95% 0.007 286.3)"
+          "#0d0b08",
+          "#262421",
+          "#423f3c",
+          "#605d5a",
+          "#7f7d79",
+          "#a19e9a",
+          "#c6c4c0",
+          "#f1eeea"
+        ]
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Well Black",
+        "canonical": "oklch(17.3% 0.004 85)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#252422",
+          "#41403d",
+          "#5f5d5b",
+          "#7e7d7a",
+          "#a09e9b",
+          "#c5c4c1",
+          "#f0eeeb"
         ]
       },
       "separator": {
         "role": "neutral",
-        "displayName": "Filet",
-        "canonical": "oklch(86.5% 0.007 286.3)",
+        "displayName": "Hairline",
+        "canonical": "oklch(29.1% 0.008 75)",
         "tonalRamp": [
-          "oklch(15% 0.007 286.3)",
-          "oklch(25% 0.007 286.3)",
-          "oklch(35% 0.007 286.3)",
-          "oklch(45% 0.007 286.3)",
-          "oklch(55% 0.007 286.3)",
-          "oklch(65% 0.007 286.3)",
-          "oklch(80% 0.007 286.3)",
-          "oklch(95% 0.007 286.3)"
+          "#0d0b07",
+          "#262320",
+          "#423f3b",
+          "#605d58",
+          "#807d78",
+          "#a19e99",
+          "#c7c3be",
+          "#f2eee8"
         ]
       },
       "control": {
         "role": "neutral",
-        "displayName": "Gris commande",
-        "canonical": "oklch(62.2% 0.007 286.2)",
+        "displayName": "Thread Grey",
+        "canonical": "oklch(52.3% 0.014 80)",
         "tonalRamp": [
-          "oklch(15% 0.007 286.2)",
-          "oklch(25% 0.007 286.2)",
-          "oklch(35% 0.007 286.2)",
-          "oklch(45% 0.007 286.2)",
-          "oklch(55% 0.007 286.2)",
-          "oklch(65% 0.007 286.2)",
-          "oklch(80% 0.007 286.2)",
-          "oklch(95% 0.007 286.2)"
+          "#0e0b05",
+          "#28231d",
+          "#443f38",
+          "#625d55",
+          "#827c74",
+          "#a39e95",
+          "#c9c3ba",
+          "#f3eee4"
         ]
       },
       "label": {
         "role": "neutral",
-        "displayName": "Encre",
-        "canonical": "oklch(23.2% 0.004 286.1)",
+        "displayName": "Ivory",
+        "canonical": "oklch(93.8% 0.010 82)",
         "tonalRamp": [
-          "oklch(15% 0.004 286.1)",
-          "oklch(25% 0.004 286.1)",
-          "oklch(35% 0.004 286.1)",
-          "oklch(45% 0.004 286.1)",
-          "oklch(55% 0.004 286.1)",
-          "oklch(65% 0.004 286.1)",
-          "oklch(80% 0.004 286.1)",
-          "oklch(95% 0.004 286.1)"
+          "#0d0b07",
+          "#27241e",
+          "#423f3a",
+          "#615d57",
+          "#807d76",
+          "#a29e97",
+          "#c7c4bd",
+          "#f2eee7"
         ]
       },
       "label-2": {
         "role": "neutral",
-        "displayName": "Gris secondaire",
-        "canonical": "oklch(54.0% 0.008 286.1)",
+        "displayName": "Greige",
+        "canonical": "oklch(71.2% 0.016 77)",
         "tonalRamp": [
-          "oklch(15% 0.008 286.1)",
-          "oklch(25% 0.008 286.1)",
-          "oklch(35% 0.008 286.1)",
-          "oklch(45% 0.008 286.1)",
-          "oklch(55% 0.008 286.1)",
-          "oklch(65% 0.008 286.1)",
-          "oklch(80% 0.008 286.1)",
-          "oklch(95% 0.008 286.1)"
+          "#0f0a04",
+          "#29231b",
+          "#453f36",
+          "#635d53",
+          "#837c73",
+          "#a49d93",
+          "#cac3b9",
+          "#f5ede3"
         ]
       },
       "accent": {
-        "role": "primary",
-        "displayName": "Bleu Apple",
-        "canonical": "oklch(56.3% 0.193 256.2)",
+        "role": "neutral",
+        "displayName": "Ivory (button fill)",
+        "canonical": "oklch(93.8% 0.010 82)",
         "tonalRamp": [
-          "oklch(15% 0.193 256.2)",
-          "oklch(25% 0.193 256.2)",
-          "oklch(35% 0.193 256.2)",
-          "oklch(45% 0.193 256.2)",
-          "oklch(55% 0.193 256.2)",
-          "oklch(65% 0.193 256.2)",
-          "oklch(80% 0.193 256.2)",
-          "oklch(95% 0.020 256.2)"
+          "#0d0b07",
+          "#27241e",
+          "#423f3a",
+          "#615d57",
+          "#807d76",
+          "#a29e97",
+          "#c7c4bd",
+          "#f2eee7"
         ]
       },
       "accent-hover": {
-        "role": "primary",
-        "displayName": "Bleu Apple survolé",
-        "canonical": "oklch(58.3% 0.199 256.0)",
+        "role": "neutral",
+        "displayName": "Pure White (button hover)",
+        "canonical": "oklch(100.0% 0.000 90)",
         "tonalRamp": [
-          "oklch(15% 0.199 256.0)",
-          "oklch(25% 0.199 256.0)",
-          "oklch(35% 0.199 256.0)",
-          "oklch(45% 0.199 256.0)",
-          "oklch(55% 0.199 256.0)",
-          "oklch(65% 0.199 256.0)",
-          "oklch(80% 0.199 256.0)",
-          "oklch(95% 0.020 256.0)"
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
         ]
       },
-      "link": {
-        "role": "primary",
-        "displayName": "Bleu lien",
-        "canonical": "oklch(52.2% 0.177 255.8)",
+      "on-accent": {
+        "role": "neutral",
+        "displayName": "Evening Black (ink on fills)",
+        "canonical": "oklch(15.0% 0.003 68)",
         "tonalRamp": [
-          "oklch(15% 0.177 255.8)",
-          "oklch(25% 0.177 255.8)",
-          "oklch(35% 0.177 255.8)",
-          "oklch(45% 0.177 255.8)",
-          "oklch(55% 0.177 255.8)",
-          "oklch(65% 0.177 255.8)",
-          "oklch(80% 0.177 255.8)",
-          "oklch(95% 0.020 255.8)"
+          "#0c0b0a",
+          "#252423",
+          "#413f3e",
+          "#5f5d5c",
+          "#7e7d7b",
+          "#9f9e9d",
+          "#c5c4c2",
+          "#f0eeec"
+        ]
+      },
+      "brass": {
+        "role": "primary",
+        "displayName": "Atelier Brass",
+        "canonical": "oklch(77.4% 0.068 79)",
+        "tonalRamp": [
+          "#120900",
+          "#322001",
+          "#533b0d",
+          "#72592e",
+          "#93794d",
+          "#b59a6e",
+          "#dcc092",
+          "#ffeccd"
         ]
       },
       "danger": {
         "role": "status",
-        "displayName": "Rouge erreur",
-        "canonical": "oklch(57.5% 0.236 29.2)",
+        "displayName": "Coral",
+        "canonical": "oklch(70.7% 0.151 27)",
         "tonalRamp": [
-          "oklch(15% 0.200 29.2)",
-          "oklch(25% 0.200 29.2)",
-          "oklch(35% 0.200 29.2)",
-          "oklch(45% 0.200 29.2)",
-          "oklch(55% 0.200 29.2)",
-          "oklch(65% 0.200 29.2)",
-          "oklch(80% 0.200 29.2)",
-          "oklch(95% 0.020 29.2)"
+          "#1f0001",
+          "#490405",
+          "#790f10",
+          "#a22f2b",
+          "#c7524a",
+          "#ee756a",
+          "#feaba1",
+          "#ffe9e6"
         ]
       },
       "danger-tint": {
         "role": "status",
-        "displayName": "Rose erreur",
-        "canonical": "oklch(97.2% 0.014 6.7)",
+        "displayName": "Coral Shadow",
+        "canonical": "oklch(22.5% 0.035 26)",
         "tonalRamp": [
-          "oklch(15% 0.014 6.7)",
-          "oklch(25% 0.014 6.7)",
-          "oklch(35% 0.014 6.7)",
-          "oklch(45% 0.014 6.7)",
-          "oklch(55% 0.014 6.7)",
-          "oklch(65% 0.014 6.7)",
-          "oklch(80% 0.014 6.7)",
-          "oklch(95% 0.014 6.7)"
+          "#170504",
+          "#331d1b",
+          "#513936",
+          "#705653",
+          "#917672",
+          "#b39793",
+          "#dabcb8",
+          "#fee9e6"
         ]
       },
       "ok": {
         "role": "status",
-        "displayName": "Vert enregistré",
-        "canonical": "oklch(51.0% 0.134 147.7)",
+        "displayName": "Sage",
+        "canonical": "oklch(78.2% 0.082 154)",
         "tonalRamp": [
-          "oklch(15% 0.134 147.7)",
-          "oklch(25% 0.134 147.7)",
-          "oklch(35% 0.134 147.7)",
-          "oklch(45% 0.134 147.7)",
-          "oklch(55% 0.134 147.7)",
-          "oklch(65% 0.134 147.7)",
-          "oklch(80% 0.134 147.7)",
-          "oklch(95% 0.020 147.7)"
-        ]
-      },
-      "nav-glass": {
-        "role": "neutral",
-        "displayName": "Verre de barre",
-        "canonical": "rgb(250 250 252 / 0.8)",
-        "tonalRamp": [
-          "oklch(15% 0.003 286.4)",
-          "oklch(25% 0.003 286.4)",
-          "oklch(35% 0.003 286.4)",
-          "oklch(45% 0.003 286.4)",
-          "oklch(55% 0.003 286.4)",
-          "oklch(65% 0.003 286.4)",
-          "oklch(80% 0.003 286.4)",
-          "oklch(95% 0.003 286.4)"
+          "#001004",
+          "#022d15",
+          "#124c2b",
+          "#346b48",
+          "#558c66",
+          "#76ae87",
+          "#9bd4ac",
+          "#c8fed7"
         ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Taille recommandée dans la lecture du mètre."
+        "purpose": "One Bodoni h1 per page: 52-96px home, 56-88px category, 44-56px product."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Titre de page dès 768 px."
-      },
-      "headline-sm": {
-        "displayName": "Headline (mobile, connexion)",
-        "purpose": "Titre de page sous 768 px et titre centré de connexion."
+        "purpose": "Section and collection titles, balanced wrap."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Titre d'une tuile."
-      },
-      "title-sm": {
-        "displayName": "Title petit",
-        "purpose": "Titres de groupe de champs et de zone."
-      },
-      "figure": {
-        "displayName": "Figure",
-        "purpose": "Mesures lues, 28 px sous 640 px."
-      },
-      "intro": {
-        "displayName": "Intro",
-        "purpose": "Chapeau gris sous le titre, 19 px sous 768 px."
+        "purpose": "Product names in the grid (17/21px), step titles (24px), review heading (28px)."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Texte courant, saisie, bouton principal."
+        "purpose": "Running text, greige for secondary copy."
       },
       "label": {
-        "displayName": "Label",
-        "purpose": "Aides, libellés de lecture, alertes, segments."
+        "displayName": "Tracked Small Caps",
+        "purpose": "Navigation, buttons, text links, field and spec labels, tabs."
       },
-      "caption": {
-        "displayName": "Caption",
-        "purpose": "Liens de barre, aides et erreurs de champ, estimé / mesuré."
-      },
-      "micro": {
-        "displayName": "Micro",
-        "purpose": "Pastilles et graduations de la jauge."
+      "figures": {
+        "displayName": "Figures",
+        "purpose": "Prices and sizes in lining tabular Bodoni; 64px for the product page size."
       }
     },
     "shadows": [
       {
-        "name": "thumb",
-        "value": "0 0.5px 4px rgb(0 0 0 / 0.12), 0 6px 13px rgb(0 0 0 / 0.12)",
-        "purpose": "Pouce blanc du curseur de la jauge."
+        "name": "hairline-inset",
+        "value": "inset 0 0 0 1px rgb(238 234 227 / 0.45)",
+        "purpose": "Secondary button outline (full ivory on hover); a border, not elevation."
       },
       {
-        "name": "segment-active",
-        "value": "0 3px 8px rgb(0 0 0 / 0.12), 0 1px 1px rgb(0 0 0 / 0.04)",
-        "purpose": "Segment actif du contrôle segmenté."
+        "name": "chip-inset",
+        "value": "inset 0 0 0 1px var(--color-separator)",
+        "purpose": "Size chip outline at rest."
+      },
+      {
+        "name": "focus-underline",
+        "value": "0 1px 0 var(--color-brass)",
+        "purpose": "Thickens the underlined field rule to 2px on focus."
       },
       {
         "name": "focus-halo",
-        "value": "0 0 0 4px rgb(0 113 227 / 0.25)",
-        "purpose": "Champ au focus, avec bordure bleue."
-      },
-      {
-        "name": "selected-ring",
-        "value": "0 0 0 1px #0071e3",
-        "purpose": "Tuile de choix retenue ; en inset, pastille de taille voisine."
+        "value": "0 0 0 1px var(--color-brass)",
+        "purpose": "Boxed field and choice tile focus or selection."
       },
       {
         "name": "focus-outline",
-        "value": "outline: 2px solid #0071e3; outline-offset: 2px",
-        "purpose": "Focus clavier global."
+        "value": "outline: 1px solid var(--color-brass); outline-offset: 3px",
+        "purpose": "Global focus-visible ring."
       },
       {
-        "name": "nav-glass",
-        "value": "backdrop-filter: blur(24px) saturate(1.8)",
-        "purpose": "Barre translucide ; fond opaque rgb(250 250 252) si la transparence est réduite."
+        "name": "header-glass",
+        "value": "background: rgb(12 11 10 / 0.85); backdrop-filter: blur(24px)",
+        "purpose": "Sticky header; solid canvas under reduced transparency."
       }
     ],
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(0.23, 1, 0.32, 1)",
-        "purpose": "Bouton (fond, pression) et libellé flottant."
+        "purpose": "Default for state transitions (150ms) and photo zoom."
       },
       {
-        "name": "ease",
-        "value": "ease",
-        "purpose": "Couleurs et bordures (liens, tuiles de choix, segments, pastilles)."
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "Two-way movement."
       },
       {
-        "name": "duration-standard",
-        "value": "150ms",
-        "purpose": "Toutes les transitions d’état."
+        "name": "rise",
+        "value": "rise 0.9s ease-out both, 12px translate, 120ms stagger",
+        "purpose": "Hero triptych entrance; fade only under reduced motion."
       },
       {
-        "name": "press-scale",
-        "value": "scale(0.97)",
-        "purpose": "Pression des boutons pleins."
+        "name": "photo-zoom",
+        "value": "scale(1.03) over 900-1200ms",
+        "purpose": "Photo hover on hover-capable devices; disabled under reduced motion."
       },
       {
-        "name": "spring-critical",
-        "value": "amortissement 1,0, réponse 0,4 s (omega = 2π / 0,4)",
-        "purpose": "Pouce et remplissage de la jauge, interruptible ; position immédiate si prefers-reduced-motion."
+        "name": "press",
+        "value": "scale(0.98) over 150ms",
+        "purpose": "Button active state."
       },
       {
         "name": "spinner",
-        "value": "spinner-fade 1s linear infinite, 12 branches",
-        "purpose": "Indicateur d’activité dans un bouton en cours d’envoi."
+        "value": "spinner-fade 1s linear infinite",
+        "purpose": "12-bar pending indicator."
       }
     ],
     "breakpoints": [
@@ -337,140 +332,132 @@
       {
         "name": "lg",
         "value": "1024px"
+      },
+      {
+        "name": "container",
+        "value": "1440px"
       }
     ]
   },
   "components": [
     {
-      "name": "Bouton principal",
+      "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Pilule bleue, la seule action principale d'un écran.",
-      "html": "<button class=\"ds-btn-primary\">Enregistrer mes mensurations</button>",
-      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 22px;border:0;border-radius:9999px;background:var(--color-accent,#0071e3);color:#fff;font-family:var(--font-sans, -apple-system, BlinkMacSystemFont, Inter, \"Helvetica Neue\", Arial, sans-serif);font-size:17px;letter-spacing:-0.022em;cursor:pointer;transition:background-color 150ms cubic-bezier(0.23,1,0.32,1),transform 150ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-primary:hover{background:var(--color-accent-hover,#0077ed)}.ds-btn-primary:active{transform:scale(0.97)}.ds-btn-primary:focus-visible{outline:2px solid #0071e3;outline-offset:2px}.ds-btn-primary:disabled{opacity:.6;cursor:default}"
+      "description": "The one filled button per view: ivory rectangle, black tracked caps.",
+      "html": "<button class=\"ds-btn-primary\">Trouver ma taille</button>",
+      "css": ".ds-btn-primary{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 32px;background:var(--color-accent,#eeeae3);color:var(--color-on-accent,#0c0b0a);border:0;border-radius:0;cursor:pointer;transition:background-color 150ms cubic-bezier(0.23,1,0.32,1),transform 150ms cubic-bezier(0.23,1,0.32,1);}.ds-btn-primary:hover{background:var(--color-accent-hover,#fff);}.ds-btn-primary:active{transform:scale(0.98);}.ds-btn-primary:focus-visible{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}"
     },
     {
-      "name": "Bouton de suppression",
+      "name": "Secondary Button",
       "kind": "button",
-      "refersTo": "button-danger-outline",
-      "description": "Contour rouge en pilule, puis rouge plein pour confirmer, avec « Annuler » en bouton texte.",
-      "html": "<div class=\"ds-del\"><button class=\"ds-btn-danger-outline\">Effacer mes mensurations</button><button class=\"ds-btn-danger\">Oui, tout effacer</button><button class=\"ds-btn-text\">Annuler</button></div>",
-      "css": ".ds-del{display:flex;flex-wrap:wrap;gap:12px;font-family:var(--font-sans, -apple-system, BlinkMacSystemFont, Inter, \"Helvetica Neue\", Arial, sans-serif)}.ds-btn-danger-outline,.ds-btn-danger,.ds-btn-text{height:40px;border-radius:9999px;font-family:inherit;font-size:14px;letter-spacing:-0.022em;cursor:pointer}.ds-btn-danger-outline{padding:0 18px;border:1px solid #e30000;background:#fff;color:#e30000;transition:background-color 150ms ease}.ds-btn-danger-outline:hover{background:#fff2f4}.ds-btn-danger{padding:0 18px;border:0;background:#e30000;color:#fff;transition:transform 150ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-danger:active{transform:scale(0.97)}.ds-btn-text{padding:0 16px;border:0;background:none;color:#0066cc}.ds-btn-text:hover{text-decoration:underline;text-underline-offset:.2em}.ds-del button:focus-visible{outline:2px solid #0071e3;outline-offset:2px}"
+      "refersTo": "button-secondary",
+      "description": "Hairline ivory outline for secondary actions.",
+      "html": "<button class=\"ds-btn-secondary\">Créer un compte</button>",
+      "css": ".ds-btn-secondary{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;background:transparent;color:var(--color-label,#eeeae3);border:0;border-radius:0;box-shadow:inset 0 0 0 1px rgb(238 234 227/0.45);cursor:pointer;transition:box-shadow 150ms cubic-bezier(0.23,1,0.32,1),transform 150ms cubic-bezier(0.23,1,0.32,1);}.ds-btn-secondary:hover{box-shadow:inset 0 0 0 1px var(--color-label,#eeeae3);}.ds-btn-secondary:active{transform:scale(0.98);}.ds-btn-secondary:focus-visible{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}"
     },
     {
-      "name": "Champ à libellé flottant",
+      "name": "Text Link",
+      "kind": "button",
+      "refersTo": "text-link",
+      "description": "Tracked caps link underlined in brass.",
+      "html": "<a class=\"ds-text-link\" href=\"#\">Voir les costumes</a>",
+      "css": ".ds-text-link{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;display:inline-flex;align-items:center;min-height:44px;color:var(--color-label,#eeeae3);text-decoration:underline;text-decoration-color:rgb(205 177 132/0.6);text-decoration-thickness:1px;text-underline-offset:6px;transition:text-decoration-color 150ms;}.ds-text-link:hover{text-decoration-color:var(--color-brass,#cdb184);}.ds-text-link:focus-visible{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}"
+    },
+    {
+      "name": "Underlined Field",
       "kind": "input",
-      "refersTo": "field",
-      "description": "Champ de 56 px, libellé qui monte à la saisie, unité à droite.",
-      "html": "<div class=\"ds-field\"><input id=\"ds-f\" placeholder=\" \" value=\"180\"><label for=\"ds-f\">Taille</label><span class=\"ds-unit\">cm</span></div>",
-      "css": ".ds-field{position:relative;width:200px;font-family:var(--font-sans, -apple-system, BlinkMacSystemFont, Inter, \"Helvetica Neue\", Arial, sans-serif)}.ds-field input{box-sizing:border-box;width:100%;height:56px;padding:18px 48px 0 16px;border:1px solid #86868b;border-radius:12px;background:#fff;color:#1d1d1f;font:inherit;font-size:17px;letter-spacing:-0.022em;caret-color:#0071e3;transition:border-color 150ms ease,box-shadow 150ms ease}.ds-field input:focus{outline:none;border-color:#0071e3;box-shadow:0 0 0 4px rgb(0 113 227/.25)}.ds-field label{position:absolute;top:28px;left:16px;transform-origin:left;translate:0 -50%;font-size:17px;line-height:1;color:#6e6e73;pointer-events:none;transition:translate 150ms cubic-bezier(0.23,1,0.32,1),scale 150ms cubic-bezier(0.23,1,0.32,1)}.ds-field input:focus+label,.ds-field input:not(:placeholder-shown)+label{translate:0 calc(-50% - 10px);scale:.7}.ds-unit{position:absolute;right:16px;bottom:9px;font-size:17px;color:#6e6e73}"
+      "refersTo": "field-underlined",
+      "description": "Floating-label field on a single rule that turns brass on focus.",
+      "html": "<div class=\"ds-field\"><input id=\"ds-h\" placeholder=\" \" /><label for=\"ds-h\">Taille</label><span class=\"ds-field-unit\">cm</span></div>",
+      "css": ".ds-field{position:relative;width:260px;font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);}.ds-field input{width:100%;height:56px;padding:18px 40px 0 0;background:transparent;border:0;border-bottom:1px solid var(--color-control,#6e6961);border-radius:0;color:var(--color-label,#eeeae3);font:inherit;font-size:17px;caret-color:var(--color-brass,#cdb184);transition:border-color 150ms ease;}.ds-field input:focus{outline:none;border-bottom-color:var(--color-brass,#cdb184);box-shadow:0 1px 0 var(--color-brass,#cdb184);}.ds-field label{position:absolute;left:0;top:28px;transform:translateY(-50%);transform-origin:left;font-size:17px;line-height:1;color:var(--color-label-2,#a8a197);pointer-events:none;transition:transform 150ms cubic-bezier(0.23,1,0.32,1);}.ds-field input:focus+label,.ds-field input:not(:placeholder-shown)+label{transform:translateY(calc(-50% - 10px)) scale(0.7);}.ds-field-unit{position:absolute;right:0;bottom:9px;font-size:17px;color:var(--color-label-2,#a8a197);}"
     },
     {
-      "name": "Champ en erreur",
-      "kind": "input",
-      "refersTo": "field-error",
-      "description": "Bordure rouge, fond rose, message rouge sous le champ.",
-      "html": "<div class=\"ds-ferr\"><input placeholder=\"Âge\" aria-invalid=\"true\"><p><svg viewBox=\"0 0 16 16\" width=\"14\" height=\"14\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\"/><path d=\"M8 4.5v4.5M8 11.2v.3\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg>Indiquez un âge entre 16 et 99 ans.</p></div>",
-      "css": ".ds-ferr{width:240px;font-family:var(--font-sans, -apple-system, BlinkMacSystemFont, Inter, \"Helvetica Neue\", Arial, sans-serif)}.ds-ferr input{box-sizing:border-box;width:100%;height:56px;padding:0 16px;border:1px solid #e30000;border-radius:12px;background:#fff2f4;font:inherit;font-size:17px}.ds-ferr input:focus{outline:none;border-color:#0071e3;box-shadow:0 0 0 4px rgb(0 113 227/.25)}.ds-ferr p{display:flex;gap:6px;align-items:flex-start;margin:8px 0 0;font-size:12px;color:#e30000}"
+      "name": "Underlined Tabs",
+      "kind": "nav",
+      "refersTo": "nav-tab",
+      "description": "Sibling-page tabs; current page ivory with a brass rule.",
+      "html": "<nav class=\"ds-tabs\"><a href=\"#\" aria-current=\"page\">Pour moi (8)</a><a href=\"#\">Tout voir (15)</a></nav>",
+      "css": ".ds-tabs{display:flex;gap:24px;}.ds-tabs a{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;display:inline-flex;align-items:center;min-height:44px;color:var(--color-label-2,#a8a197);text-decoration:none;border-bottom:1px solid transparent;transition:color 150ms ease,border-color 150ms ease;}.ds-tabs a:hover{color:var(--color-label,#eeeae3);}.ds-tabs a[aria-current=page]{color:var(--color-label,#eeeae3);border-bottom-color:var(--color-brass,#cdb184);}.ds-tabs a:focus-visible{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}"
     },
     {
-      "name": "Tuiles de choix",
+      "name": "Size Chips",
       "kind": "chip",
-      "refersTo": "option-tile",
-      "description": "Choix exclusif en tuiles, bordure bleue doublée sur l'option retenue.",
-      "html": "<div class=\"ds-opts\"><label><input type=\"radio\" name=\"ds-fit\" checked><span>Sans préférence</span></label><label><input type=\"radio\" name=\"ds-fit\"><span>Ajustée</span></label></div>",
-      "css": ".ds-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:360px;font-family:var(--font-sans, -apple-system, BlinkMacSystemFont, Inter, \"Helvetica Neue\", Arial, sans-serif)}.ds-opts label{position:relative}.ds-opts input{position:absolute;opacity:0;width:1px;height:1px}.ds-opts span{display:flex;min-height:56px;align-items:center;justify-content:center;padding:8px 12px;border:1px solid #86868b;border-radius:12px;background:#fff;font-size:15px;font-weight:500;color:#1d1d1f;cursor:pointer;transition:border-color 150ms ease,box-shadow 150ms ease}.ds-opts span:hover{border-color:#6e6e73}.ds-opts span:active{background:#f5f5f7}.ds-opts input:checked+span{border-color:#0071e3;box-shadow:0 0 0 1px #0071e3}.ds-opts input:focus-visible+span{outline:2px solid #0071e3;outline-offset:2px}"
+      "refersTo": "size-chip",
+      "description": "Square size selector; computed size ringed in brass, sold out struck through.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\">46</button><button class=\"ds-chip ds-chip-mine\">48</button><button class=\"ds-chip ds-chip-on\">50</button><button class=\"ds-chip\" disabled>52</button></div>",
+      "css": ".ds-chips{display:flex;gap:8px;}.ds-chip{display:inline-flex;align-items:center;justify-content:center;height:48px;min-width:56px;padding:0 12px;background:transparent;color:var(--color-label,#eeeae3);border:0;border-radius:0;font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:14px;font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 1px var(--color-separator,#2e2b27);cursor:pointer;transition:background-color 150ms ease,box-shadow 150ms ease,color 150ms ease;}.ds-chip:hover{box-shadow:inset 0 0 0 1px var(--color-control,#6e6961);}.ds-chip-mine{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}.ds-chip-on{background:var(--color-label,#eeeae3);color:var(--color-on-accent,#0c0b0a);box-shadow:none;}.ds-chip:disabled{color:rgb(168 161 151/0.8);text-decoration:line-through;box-shadow:none;cursor:default;}.ds-chip:focus-visible{outline:1px solid var(--color-brass,#cdb184);outline-offset:3px;}"
     },
     {
-      "name": "Contrôle segmenté",
-      "kind": "nav",
-      "refersTo": "segmented-control",
-      "description": "Bascule iOS entre deux pages sœurs.",
-      "html": "<nav class=\"ds-seg\"><a href=\"#\" aria-current=\"page\">Se connecter</a><a href=\"#\">Créer un compte</a></nav>",
-      "css": ".ds-seg{display:inline-grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:10px;background:#e8e8ed;font-family:var(--font-sans, -apple-system, BlinkMacSystemFont, Inter, \"Helvetica Neue\", Arial, sans-serif)}.ds-seg a{display:inline-flex;min-height:36px;align-items:center;justify-content:center;padding:0 20px;border-radius:8px;font-size:14px;color:#6e6e73;text-decoration:none;transition:color 150ms ease}.ds-seg a:hover{color:#1d1d1f}.ds-seg a[aria-current=page]{background:#fff;color:#1d1d1f;font-weight:500;box-shadow:0 3px 8px rgb(0 0 0/.12),0 1px 1px rgb(0 0 0/.04)}.ds-seg a:focus-visible{outline:2px solid #0071e3;outline-offset:2px}"
-    },
-    {
-      "name": "Barre de navigation",
-      "kind": "nav",
-      "refersTo": "nav-bar",
-      "description": "Barre claire translucide de 48 px, mot Carrure à gauche.",
-      "html": "<header class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">Carrure</a><a class=\"ds-navlink\" href=\"#\">Mon compte</a></header>",
-      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;height:48px;padding:0 22px;background:rgb(250 250 252/.8);backdrop-filter:blur(24px) saturate(1.8);font-family:var(--font-sans, -apple-system, BlinkMacSystemFont, Inter, \"Helvetica Neue\", Arial, sans-serif)}.ds-brand{font-size:20px;font-weight:600;letter-spacing:-0.03em;color:#1d1d1f;text-decoration:none}.ds-navlink{display:inline-flex;height:44px;align-items:center;padding:0 8px;font-size:12px;color:rgb(29 29 31/.8);text-decoration:none;transition:color 150ms ease}.ds-navlink:hover{color:#1d1d1f}"
-    },
-    {
-      "name": "Tuile de contenu",
-      "kind": "card",
-      "refersTo": "tile",
-      "description": "Grande tuile gris clair à 28 px, sans ombre ni bordure.",
-      "html": "<section class=\"ds-tile\"><h2>Votre taille, article par article</h2><p>Votre compte garde vos mensurations.</p></section>",
-      "css": ".ds-tile{max-width:520px;padding:40px;border-radius:28px;background:#f5f5f7;font-family:var(--font-sans, -apple-system, BlinkMacSystemFont, Inter, \"Helvetica Neue\", Arial, sans-serif);color:#1d1d1f}.ds-tile h2{margin:0;font-size:28px;font-weight:600;line-height:1.15;letter-spacing:-0.02em}.ds-tile p{margin:12px 0 0;font-size:17px;line-height:1.47;color:#6e6e73}"
-    },
-    {
-      "name": "Jauge du mètre",
+      "name": "Size Badge",
       "kind": "custom",
-      "refersTo": "size-pill-chosen",
-      "description": "Curseur iOS : piste, remplissage bleu, pouce ombré, pastilles de tailles.",
-      "html": "<figure class=\"ds-tape\"><div class=\"ds-row\"><span>S</span><span class=\"on\">M</span><span>L</span><span class=\"alt\">XL</span></div><div class=\"ds-track\"><div class=\"ds-fillbar\"></div></div><div class=\"ds-thumb\"></div></figure>",
-      "css": ".ds-tape{position:relative;width:360px;margin:0;padding:0 12px;font-family:var(--font-sans, -apple-system, BlinkMacSystemFont, Inter, \"Helvetica Neue\", Arial, sans-serif)}.ds-row{display:grid;grid-template-columns:repeat(4,1fr);height:32px}.ds-row span{display:flex;align-items:center;justify-content:center;border-radius:9999px;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums;color:#6e6e73}.ds-row .on{background:#0071e3;color:#fff}.ds-row .alt{background:#fff;color:#0071e3;box-shadow:inset 0 0 0 1px #0071e3}.ds-track{margin:11px 0;height:6px;border-radius:9999px;background:#e8e8ed;overflow:hidden}.ds-fillbar{width:40%;height:100%;background:#0071e3}.ds-thumb{position:absolute;left:calc(12px + 40% * 336 / 360);top:40px;width:24px;height:24px;margin-left:-12px;border-radius:9999px;background:#fff;box-shadow:0 0.5px 4px rgb(0 0 0/.12),0 6px 13px rgb(0 0 0/.12)}"
+      "refersTo": "size-badge",
+      "description": "Brass size set on the bottom-left of each product photo.",
+      "html": "<div class=\"ds-photo\"><span class=\"ds-badge\"><span class=\"ds-badge-label\">Votre taille</span><span class=\"ds-badge-size\">48</span></span></div>",
+      "css": ".ds-photo{position:relative;width:200px;aspect-ratio:4/5;background:linear-gradient(160deg,#2a2622,#0c0b0a);}.ds-badge{position:absolute;left:0;bottom:0;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgb(12 11 10/0.8);backdrop-filter:blur(12px);}.ds-badge-label{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;font-size:10px;color:var(--color-label-2,#a8a197);}.ds-badge-size{font-family:var(--font-display, 'Bodoni Moda', 'Bodoni 72', Didot, Georgia, serif);font-variant-numeric:lining-nums tabular-nums;font-size:17px;line-height:1;color:var(--color-brass,#cdb184);}"
+    },
+    {
+      "name": "Your Size Panel",
+      "kind": "custom",
+      "refersTo": "size-badge",
+      "description": "Product page size statement between hairlines, 64px brass figures, dotted when estimated.",
+      "html": "<section class=\"ds-yoursize\"><h2>Votre taille</h2><p><span class=\"ds-big estimated\">48</span><span class=\"ds-alt\">ou 50</span></p><p class=\"ds-note\">Taille estimée, confiance élevée.</p></section>",
+      "css": ".ds-yoursize{width:340px;padding:32px 0;border-top:1px solid var(--color-separator,#2e2b27);border-bottom:1px solid var(--color-separator,#2e2b27);color:var(--color-label,#eeeae3);font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);}.ds-yoursize h2{font-family:var(--font-sans, Jost, Futura, 'Century Gothic', sans-serif);font-size:11px;font-weight:500;letter-spacing:0.2em;line-height:1.4;text-transform:uppercase;margin:0;color:var(--color-label-2,#a8a197);}.ds-yoursize p{margin:12px 0 0;display:flex;align-items:baseline;gap:12px;}.ds-big{font-family:var(--font-display, 'Bodoni Moda', 'Bodoni 72', Didot, Georgia, serif);font-variant-numeric:lining-nums tabular-nums;font-size:64px;line-height:1;color:var(--color-brass,#cdb184);}.ds-big.estimated{text-decoration:underline dotted var(--color-control,#6e6961);text-decoration-thickness:1px;text-underline-offset:0.18em;}.ds-alt{font-size:17px;color:var(--color-label-2,#a8a197);}.ds-note{font-size:14px;color:var(--color-label-2,#a8a197);}"
     }
   ],
   "narrative": {
-    "northStar": "La page de l'Apple Store",
-    "overview": "Le compte Carrure se lit comme une page de l'Apple Store (apple.com/fr/shop) : fond blanc, grandes tuiles gris clair très arrondies, texte quasi noir et gris, un seul bleu pour tout ce qui agit. La page est calme et aérée ; la densité vient des chiffres, pas des cadres. Le look est épinglé par l'utilisateur.\n\nLe geste signature est la jauge en curseur iOS : une piste grise, une partie remplie en bleu jusqu'au tour de poitrine, un pouce blanc ombré qui suit un ressort à amortissement critique, et les pastilles de tailles chemise et costume qui s'allument au passage. Les commandes empruntent le vocabulaire iOS : contrôle segmenté, champs à libellé flottant, tuiles de choix à bordure bleue comme le choix de capacité d'un iPhone, boutons pilule.\n\nLe monde « atelier de coupe » (marine, mètre jaune, angles carrés) a été rejeté par l'utilisateur le 23/10/2026. Rien n'en subsiste.",
+    "northStar": "La Maison du soir",
+    "overview": "Carrure reads like an Italian tailoring house after closing time: a warm black room, ivory type, and one brass fitting that catches the light. The garment is photographed like a campaign, worn and cropped below the chin on a dark ground, and the computed size is set beside it the way a price tag is set in a shop window, in brass Bodoni numerals. Everything else steps back.\n\nThe system is quiet and rectangular. Didone titles at text weight carry the voice; Jost in tracked small capitals carries every instruction (navigation, buttons, field labels, spec terms). Structure comes from hairlines (#2e2b27) and tonal steps of the warm black, never from cards, shadows or rounded containers. Density is low: generous section breaks, centered titles, and photography given the full width of the grid.\n\nThe world replaced a bright Apple Store tile look, rejected by the user as cheap. That rejection is a confirmed anti-reference: no light grey tiles, no pill buttons, no rounded cards, no saturated system blue.",
     "keyCharacteristics": [
-      "Blanc et tuiles #f5f5f7 à 28 px de rayon, sans ombre.",
-      "Un seul bleu d'action ; liens dans un bleu plus sombre.",
-      "SF Pro sur les appareils Apple, Inter ailleurs, interlettrage négatif.",
-      "Boutons pilule, champs et tuiles de choix à 12 px.",
-      "Grands chiffres tabulaires en graisse 600 ; valeur estimée soulignée en pointillé.",
-      "Mouvement court (150 ms) et ressort critique pour le repère de la jauge."
+      "Warm black ground, ivory text, a single brass accent reserved for the size and for focus.",
+      "Bodoni Moda titles at weight 400, never bold; Jost body; tracked small caps for every control.",
+      "Square corners on every surface and control; round only for small markers (badge count, gauge knob, spinner).",
+      "Hairline separators and tonal layering instead of elevation.",
+      "Worn-garment photography on dark backgrounds with one shared grade, 4:5 frames."
     ],
     "rules": [
       {
-        "name": "The Seul Bleu Rule",
-        "body": "Le bleu #0071e3 est la seule couleur d'action. Pas de deuxième accent, pas de bleu décoratif : s'il est bleu, il agit ou il marque la sélection.",
+        "name": "The One Brass Rule",
+        "body": "Brass marks the visitor's size, focus and links, nothing decorative. If a screen has brass on something that is not the size, a link underline, focus or a step numeral, remove it.",
         "section": "colors"
       },
       {
-        "name": "The Estimation Visible Rule",
-        "body": "Une valeur estimée porte toujours un soulignement pointillé gris commande de 2 px et le mot « estimé » ; une valeur mesurée n'en porte pas. Sur la jauge, le remplissage passe à 45 % d'opacité quand le tour de poitrine est estimé.",
+        "name": "The Ivory Button Rule",
+        "body": "The filled primary button is ivory on black, not brass. One filled button per view; everything else is an outline or a text link.",
         "section": "colors"
       },
       {
-        "name": "The Chiffres Tabulaires Rule",
-        "body": "Tout chiffre lu (mesure, taille, graduation) est en chiffres tabulaires ; les lectures sont en 600 à -0,03em.",
+        "name": "The Text-Weight Rule",
+        "body": "Every h1 to h3 is Bodoni at weight 400 with -0.005em tracking. Hierarchy comes from size and space, never from bold.",
         "section": "typography"
       },
       {
-        "name": "The Unité Toujours Rule",
-        "body": "Une valeur s'affiche avec son unité (cm, kg, ans), dans le champ comme dans la lecture.",
+        "name": "The Estimated Underline Rule",
+        "body": "An estimated value carries a 1px dotted Thread Grey underline; a measured value does not. Never remove it to tidy the page: it is the honesty signal.",
         "section": "typography"
       },
       {
-        "name": "The Plat Sauf Commande Rule",
-        "body": "Tuiles, alertes et boutons n'ont pas d'ombre. Seuls le pouce et le segment actif en portent.",
+        "name": "The Hairline Rule",
+        "body": "Separate with a 1px Hairline rule or a tonal step. If you reach for a drop shadow, use a rule instead.",
         "section": "elevation"
-      },
-      {
-        "name": "The Pilule Rule",
-        "body": "Tout bouton est une pilule, du bouton principal au bouton de suppression.",
-        "section": "shapes"
       }
     ],
     "dos": [
-      "**Do** garder un seul bleu d'action (#0071e3) et le bleu lien (#0066cc) pour les liens.",
-      "**Do** poser le contenu secondaire dans des tuiles gris tuile à 28 px de rayon, sans ombre ni bordure.",
-      "**Do** faire de chaque bouton une pilule et de chaque champ un champ à libellé flottant de 56 px.",
-      "**Do** marquer chaque valeur estimée d'un soulignement pointillé et du mot « estimé ».",
-      "**Do** afficher les chiffres lus en 600, tabulaires, avec leur unité.",
-      "**Do** garder les transitions à 150 ms et le ressort critique pour tout repère qui se déplace ; respecter la réduction du mouvement et de la transparence."
+      "Do keep the ground warm black (canvas) and text ivory (label); secondary text greige (label-2).",
+      "Do reserve brass for the visitor's size, focus, link underlines and step numerals.",
+      "Do set every h1 to h3 in Bodoni Moda at weight 400; set every price and size in lining tabular Bodoni figures.",
+      "Do set navigation, buttons, field and spec labels in 11px Jost 500, 0.2em tracking, uppercase.",
+      "Do keep every corner square; round only badge counts, the gauge knob and the spinner.",
+      "Do separate content with 1px hairlines and tonal steps; keep photos 4:5, worn, dark-ground, cropped below the chin, in the shared grade.",
+      "Do mark estimated values with the dotted underline and keep 44px minimum hit areas on links."
     ],
     "donts": [
-      "**Don't** reprendre quoi que ce soit du monde « atelier » rejeté : pas de marine, pas de mètre jaune, pas d'angles carrés.",
-      "**Don't** ajouter un deuxième accent ou colorer une surface en bleu à titre décoratif.",
-      "**Don't** mettre d'ombre sur une tuile, une alerte ou un bouton.",
-      "**Don't** écrire du texte en gris commande (#86868b) : 3,3:1 sur gris tuile, trop faible pour du petit texte.",
-      "**Don't** présenter une taille comme certaine : elle reste « estimée », avec son niveau de confiance."
+      "Don't return to the Apple Store look: no light grey tiles, no pill or rounded buttons, no rounded cards, no system blue.",
+      "Don't use bold Bodoni or a second accent color.",
+      "Don't add drop shadows for elevation.",
+      "Don't fill a button in brass or use more than one filled button per view.",
+      "Don't use text glyphs as icons; draw icons as 1.2px-stroke outline SVG.",
+      "Don't place a tracked-caps label above a title as decoration; tracked caps label controls and data."
     ]
   }
 }

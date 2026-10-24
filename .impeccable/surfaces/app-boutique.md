@@ -7,22 +7,22 @@ related_targets: ["app/page.tsx","components"]
 
 # Boutique (accueil, costumes, chemises, fiche produit)
 
-Mode : Persuade pour l'accueil, Operate pour les pages de catégorie et la fiche. Public : client Carrure qui vient d'enregistrer ses mensurations, ou visiteur qui découvre. Tâche : voir les costumes (et chemises) qui existent dans sa taille, sans passer par le sur-mesure. Succès : en un clic après les mensurations, le client voit les meilleurs costumes à sa taille, la taille affichée sur chaque article.
+Mode : Persuade pour l'accueil, Operate pour les pages de catégorie et la fiche. Public : client Carrure qui vient d'enregistrer ses mensurations, ou visiteur qui découvre. Tâche : voir les costumes (et chemises) qui existent dans sa taille. Succès : en un clic après les mensurations, le client voit les costumes à sa taille, la taille affichée sur chaque photo.
 
-Contraintes : aucune photo produit, donc des illustrations SVG honnêtes teintes à la couleur du produit ; aucun avis, aucun chiffre de vente inventé ; taille toujours « estimée » avec son niveau de confiance ; pas de bouton panier tant que le panier (partie B) n'existe pas.
+Contraintes : photos Pexels portées, recadrées sous le menton, fond sombre, un seul étalonnage ; aucun avis, aucun chiffre de vente inventé ; taille toujours « estimée » avec son niveau de confiance ; jamais « sur mesure » : on parle de « taille calculée ».
 
-Historique : direction choisie par l'utilisateur le 23/10/2026 (« Apple Store, version boutique »), après rejet de l'atelier puis du compte trop formulaire.
+Historique : Apple Store (23/10/2026), rejeté le 24/10/2026 (« ça fait cheap »). Direction choisie par l'utilisateur : « Maison italienne sombre ».
 
 ## Direction contract
 
-THESIS: La boutique comme apple.com/fr/shop : de grandes tuiles produit, chaque vêtement en grand, et votre taille écrite sur chaque tuile. Refuse la grille e-commerce dense à filtres latéraux.
+THESIS: Une maison de costumes italienne, le soir : le vêtement photographié comme une campagne, la taille calculée posée en laiton comme une étiquette. Refuse la grille de tuiles claires de l'Apple Store.
 
-OWN-WORLD: Celui de DESIGN.md : blanc, tuiles #f5f5f7 à 28 px, encre #1d1d1f, gris #6e6e73, un seul bleu d'action #0071e3, boutons pilule, contrôle segmenté iOS. Vêtements dessinés en aplat de leur couleur, ombre portée douce au sol.
+OWN-WORLD: Fond noir chaud #0c0b0a, texte ivoire #eeeae3, un seul accent laiton #cdb184. Titres Bodoni Moda à graisse de texte, texte courant Jost, petites capitales espacées pour navigation, boutons et libellés. Filets fins, angles droits, bouton plein ivoire unique.
 
-STORY: Le client enregistre ses mensurations, arrive sur « Costumes. À votre taille. », voit sa taille estimée et les costumes disponibles dans cette taille, ouvre une fiche et lit le bandeau « Votre taille ».
+STORY: Le visiteur voit le triptyque et « Le costume à votre taille. », donne ses mesures, arrive sur la catégorie qui n'affiche que les costumes à sa taille, la taille en laiton sur chaque photo, ouvre une fiche et lit « Votre taille ».
 
-FIRST VIEWPORT: Catégorie : titre de 56 px « Costumes. » suivi en gris de « À votre taille. », à droite le contrôle segmenté Pour moi / Tout voir ; dessous une ligne « Votre taille estimée : 50 » ; puis grille de tuiles (3 colonnes dès 1024 px) avec vêtement centré, nom, prix, pastille de taille. Accueil : grand titre centré, deux pilules d'action, puis deux grandes tuiles Costumes / Chemises.
+FIRST VIEWPORT: Accueil : triptyque photo pleine hauteur (une seule photo sur mobile), voile sombre en bas, h1 Bodoni centré, surtitre en capitales dessous. Catégorie : titre Bodoni centré, ligne de taille et onglets soulignés entre deux filets, grille photo 3 colonnes.
 
-FORM: Grille de tuiles produit de l'Apple Store, structure verrouillée par l'utilisateur sur maquette (choix 1 de 3). seed: none (unavailable)
+FORM: Maison italienne sombre, choisie par l'utilisateur au questionnaire du 24/10/2026 (choix 2 de 3). seed: none (unavailable)
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

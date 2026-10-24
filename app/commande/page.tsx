@@ -9,9 +9,9 @@ export const metadata: Metadata = { title: "Commande" };
 
 export default function CheckoutPage() {
   return (
-    <div className="mx-auto max-w-[980px] px-4 pt-10 pb-24 sm:px-[22px] md:pt-16">
-      <h1 className="text-[40px] font-semibold md:text-5xl">Livraison et paiement</h1>
-      <Suspense fallback={<div aria-busy className="mt-10 h-96 rounded-[28px] bg-tile" />}>
+    <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-16">
+      <h1 className="text-[44px] md:text-[60px]">Livraison et paiement</h1>
+      <Suspense fallback={<div aria-busy className="mt-10 h-96 bg-tile" />}>
         <Checkout />
       </Suspense>
     </div>
@@ -41,7 +41,7 @@ async function Checkout() {
   return (
     <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_20rem]">
       <section aria-labelledby="ship-title">
-        <h2 id="ship-title" className="mb-5 text-[21px] font-semibold">
+        <h2 id="ship-title" className="mb-5 text-[21px]">
           Adresse de livraison
         </h2>
         <CheckoutForm
@@ -55,8 +55,8 @@ async function Checkout() {
           }}
         />
       </section>
-      <aside aria-labelledby="summary-title" className="self-start rounded-[18px] bg-tile p-6 lg:sticky lg:top-[68px]">
-        <h2 id="summary-title" className="text-[17px] font-semibold">
+      <aside aria-labelledby="summary-title" className="self-start bg-tile p-6 lg:sticky lg:top-[88px]">
+        <h2 id="summary-title" className="text-[17px]">
           Récapitulatif
         </h2>
         <ul className="mt-4 grid gap-3 text-sm">

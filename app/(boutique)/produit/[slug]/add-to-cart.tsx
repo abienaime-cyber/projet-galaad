@@ -19,8 +19,8 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
     <form action={action} className="mt-8">
       <input type="hidden" name="slug" value={slug} />
       <fieldset>
-        <legend className="text-[17px] font-semibold">Taille</legend>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <legend className="eyebrow text-label-2">Taille</legend>
+        <div className="mt-4 flex flex-wrap gap-2">
           {sizes.map((size) => (
             <label key={size.label} data-state={size.state} className="group relative">
               <input
@@ -33,7 +33,7 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
                 className="peer sr-only"
               />
               <span
-                className={`inline-flex h-11 min-w-12 cursor-pointer items-center justify-center rounded-full px-3 text-sm font-semibold tabular-nums shadow-[inset_0_0_0_1px_var(--color-separator)] transition-[background-color,box-shadow,color] duration-150 ease-[ease] peer-checked:bg-label peer-checked:text-white peer-checked:shadow-none peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent peer-disabled:cursor-default peer-disabled:text-label-2 peer-disabled:line-through peer-disabled:shadow-none peer-disabled:bg-tile group-data-[state=chosen]:ring-2 group-data-[state=chosen]:ring-accent group-data-[state=chosen]:ring-offset-2`}
+                className={`inline-flex h-12 min-w-14 cursor-pointer items-center justify-center px-3 text-sm tabular-nums shadow-[inset_0_0_0_1px_var(--color-separator)] transition-[background-color,box-shadow,color] duration-150 ease-[ease] hover:shadow-[inset_0_0_0_1px_var(--color-control)] peer-checked:bg-label peer-checked:text-on-accent peer-checked:shadow-none peer-focus-visible:outline-1 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-brass peer-disabled:cursor-default peer-disabled:text-label-2/80 peer-disabled:line-through peer-disabled:shadow-none group-data-[state=chosen]:ring-1 group-data-[state=chosen]:ring-brass group-data-[state=chosen]:ring-offset-3 group-data-[state=chosen]:ring-offset-canvas`}
               >
                 {size.label}
               </span>
@@ -43,11 +43,11 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
             </label>
           ))}
         </div>
-        <p className="mt-3 text-xs text-label-2">Cerclée de bleu : votre taille estimée. Barrée : épuisée.</p>
+        <p className="mt-3 text-xs text-label-2">Cerclée de laiton : votre taille estimée. Barrée : épuisée.</p>
       </fieldset>
 
-      <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
-        <button type="submit" disabled={pending || !anyInStock} className={`${primaryButton} min-w-56`}>
+      <div className="mt-8 grid gap-3">
+        <button type="submit" disabled={pending || !anyInStock} className={`${primaryButton} w-full`}>
           {pending ? (
             <>
               <Spinner />
@@ -63,8 +63,8 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
           {state.added && (
             <>
               <span className="text-ok">Ajouté au panier en {state.added}.</span>{" "}
-              <Link href="/panier" className="inline-flex min-h-11 items-center text-link hover:underline">
-                Voir le panier ›
+              <Link href="/panier" className="inline-flex min-h-11 items-center underline decoration-brass/60 hover:decoration-brass">
+                Voir le panier
               </Link>
             </>
           )}

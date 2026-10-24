@@ -11,9 +11,9 @@ export const metadata: Metadata = { title: "Panier" };
 
 export default function CartPage() {
   return (
-    <div className="mx-auto max-w-[980px] px-4 pt-10 pb-24 sm:px-[22px] md:pt-16">
-      <h1 className="text-[40px] font-semibold md:text-5xl">Votre panier</h1>
-      <Suspense fallback={<div aria-busy className="mt-10 h-80 rounded-[28px] bg-tile" />}>
+    <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-16">
+      <h1 className="text-[44px] md:text-[60px]">Votre panier</h1>
+      <Suspense fallback={<div aria-busy className="mt-10 h-80 bg-tile" />}>
         <Cart />
       </Suspense>
     </div>
@@ -26,8 +26,8 @@ async function Cart() {
 
   if (lines.length === 0) {
     return (
-      <div className="mt-10 rounded-[28px] bg-tile px-6 py-12 text-center sm:px-12">
-        <h2 className="text-[28px] font-semibold">Votre panier est vide.</h2>
+      <div className="mt-10 bg-tile px-6 py-12 text-center sm:px-12">
+        <h2 className="text-[28px]">Votre panier est vide.</h2>
         <p className="mt-3 text-label-2">Les articles que vous ajoutez restent ici, même si vous changez d’appareil.</p>
         <Link href="/costumes" className={`${primaryButton} mt-6`}>
           Voir les costumes
@@ -45,13 +45,13 @@ async function Cart() {
           const problem = lineProblem(line);
           return (
             <li key={line.variantId} className="grid grid-cols-[5.5rem_minmax(0,1fr)] gap-4 py-6 sm:grid-cols-[8rem_minmax(0,1fr)_auto] sm:gap-6">
-              <Link href={`/produit/${line.product.slug}`} tabIndex={-1} aria-hidden className="block self-start overflow-hidden rounded-[14px] bg-tile">
+              <Link href={`/produit/${line.product.slug}`} tabIndex={-1} aria-hidden className="block self-start overflow-hidden bg-tile">
                 {line.product.image && (
                   <Image src={line.product.image} alt="" width={256} height={320} sizes="128px" className="aspect-[4/5] w-full object-cover" />
                 )}
               </Link>
               <div className="min-w-0">
-                <h2 className="text-[19px] font-semibold">
+                <h2 className="text-[19px]">
                   <Link href={`/produit/${line.product.slug}`} className="hover:underline">
                     {line.product.name}
                   </Link>
@@ -70,7 +70,7 @@ async function Cart() {
                       id={`q-${line.variantId}`}
                       name="quantity"
                       defaultValue={line.quantity}
-                      className="h-11 rounded-xl border border-control bg-white px-3 tabular-nums"
+                      className="h-11 border border-control bg-field px-3 tabular-nums"
                     >
                       {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
                         <option key={n} value={n}>

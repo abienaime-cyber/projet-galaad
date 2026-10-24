@@ -23,32 +23,32 @@ const POINTS = [
 
 export function AuthShell({ active, title, children }: { active: (typeof TABS)[number]["key"]; title: string; children: ReactNode }) {
   return (
-    <div className="mx-auto max-w-[980px] px-4 pt-10 pb-16 sm:px-[22px] md:pt-16">
+    <div className="mx-auto max-w-[1180px] px-4 pt-12 pb-20 sm:px-8 md:pt-20">
       <section aria-labelledby="auth-title" className="mx-auto max-w-[460px]">
         <SegmentedNav
           label="Accès au compte"
           className="mx-auto"
           items={TABS.map((tab) => ({ href: tab.href, label: tab.label, current: tab.key === active }))}
         />
-        <h1 id="auth-title" className="mt-10 text-center text-[40px] font-semibold">
+        <h1 id="auth-title" className="mt-10 text-center text-[44px] md:text-[56px]">
           {title}
         </h1>
         {children}
       </section>
 
-      <aside aria-labelledby="why-title" className="mt-16 rounded-[28px] bg-tile px-6 py-10 sm:px-12 sm:py-12">
-        <h2 id="why-title" className="text-center text-[28px] font-semibold">
+      <aside aria-labelledby="why-title" className="mt-24 border-t border-separator pt-14">
+        <h2 id="why-title" className="text-center text-[32px] md:text-[40px]">
           Votre taille, article par article
         </h2>
         <p className="mx-auto mt-3 max-w-[38rem] text-center text-label-2">
           Votre compte garde vos mensurations. Carrure les compare au tableau de tailles de chaque chemise et de chaque
           costume, et vous indique la taille à commander.
         </p>
-        <dl className="mt-10 grid gap-8 text-sm sm:grid-cols-3 sm:gap-10">
+        <dl className="mt-12 grid gap-10 text-sm sm:grid-cols-3 sm:gap-12">
           {POINTS.map((point) => (
             <div key={point.title}>
-              <dt className="text-[17px] font-semibold">{point.title}</dt>
-              <dd className="mt-1.5 text-label-2">{point.text}</dd>
+              <dt className="font-display text-[21px]">{point.title}</dt>
+              <dd className="mt-2 text-label-2">{point.text}</dd>
             </div>
           ))}
         </dl>

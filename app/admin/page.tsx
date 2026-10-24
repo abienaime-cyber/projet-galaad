@@ -4,19 +4,20 @@ import { Suspense } from "react";
 import { requireAdmin } from "@/lib/commerce";
 import { price } from "@/lib/shop";
 import { RETURN_REASONS } from "@/lib/validation";
+import { Chevron } from "@/components/chevron";
 
 export const metadata: Metadata = { title: "Tableau de bord", robots: { index: false } };
 
 export default function AdminPage() {
   return (
-    <div className="mx-auto max-w-[980px] px-4 pt-10 pb-24 sm:px-[22px] md:pt-16">
+    <div className="mx-auto max-w-[1180px] px-4 pt-10 pb-24 sm:px-8 md:pt-16">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <h1 className="text-[40px] font-semibold md:text-5xl">Tableau de bord</h1>
-        <Link href="/admin/produits" className="inline-flex min-h-11 items-center text-link hover:underline">
-          Fiches produit ›
+        <h1 className="text-[44px] md:text-[60px]">Tableau de bord</h1>
+        <Link href="/admin/produits" className="inline-flex min-h-11 items-center gap-2 text-link hover:underline">
+          Fiches produit <Chevron />
         </Link>
       </div>
-      <Suspense fallback={<div aria-busy className="mt-10 h-[32rem] rounded-[28px] bg-tile" />}>
+      <Suspense fallback={<div aria-busy className="mt-10 h-[32rem] bg-tile" />}>
         <Dashboard />
       </Suspense>
     </div>
@@ -51,7 +52,7 @@ async function Dashboard() {
   return (
     <>
       <p className="mt-3 text-sm text-label-2">Commandes annulées exclues. Les données du seed sont fictives.</p>
-      <dl className="mt-8 grid gap-px overflow-hidden rounded-[18px] bg-separator sm:grid-cols-2 lg:grid-cols-4">
+      <dl className="mt-8 grid gap-px overflow-hidden bg-separator sm:grid-cols-2 lg:grid-cols-4">
         {figures.map((f) => (
           <div key={f.label} className="bg-tile p-6">
             <dt className="text-sm text-label-2">{f.label}</dt>
@@ -91,7 +92,7 @@ async function Dashboard() {
 function Table({ title, head, rows }: { title: string; head: string[]; rows: React.ReactNode[][] }) {
   return (
     <section>
-      <h2 className="text-[21px] font-semibold">{title}</h2>
+      <h2 className="text-[21px]">{title}</h2>
       {rows.length === 0 ? (
         <p className="mt-3 text-sm text-label-2">Aucune donnée pour le moment.</p>
       ) : (

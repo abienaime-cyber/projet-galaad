@@ -6,16 +6,17 @@ import { ORDER_STATUS, RETURN_STATUS, requireUser, type OrderStatus } from "@/li
 import { dateFr, price } from "@/lib/shop";
 import { RETURN_REASONS } from "@/lib/validation";
 import { ReturnForm } from "./return-form";
+import { Chevron } from "@/components/chevron";
 
 export const metadata: Metadata = { title: "Détail de la commande" };
 
 export default function OrderPage({ params, searchParams }: PageProps<"/compte/commandes/[id]">) {
   return (
-    <div className="mx-auto max-w-[980px] px-4 pt-6 pb-24 sm:px-[22px] md:pt-10">
-      <Link href="/compte/commandes" className="inline-flex min-h-11 items-center text-sm text-link hover:underline">
-        ‹ Vos commandes
+    <div className="mx-auto max-w-[1180px] px-4 pt-6 pb-24 sm:px-8 md:pt-10">
+      <Link href="/compte/commandes" className="eyebrow inline-flex min-h-11 items-center gap-2 text-label-2 hover:text-label">
+        <Chevron back /> Vos commandes
       </Link>
-      <Suspense fallback={<div aria-busy className="mt-6 h-96 rounded-[28px] bg-tile" />}>
+      <Suspense fallback={<div aria-busy className="mt-6 h-96 bg-tile" />}>
         {Promise.all([params, searchParams]).then(([{ id }, { merci }]) => (
           <Order id={id} thanks={merci === "1"} />
         ))}
@@ -52,12 +53,12 @@ async function Order({ id, thanks }: { id: string; thanks: boolean }) {
   return (
     <>
       {thanks && (
-        <p role="status" className="mt-6 rounded-[18px] bg-tile p-5 text-[17px]">
+        <p role="status" className="mt-6 bg-tile p-5 text-[17px]">
           <span className="font-semibold text-ok">Merci, votre commande est enregistrée.</span> Le stock a été réservé
           pour vous.
         </p>
       )}
-      <h1 className="mt-6 text-[40px] font-semibold md:text-5xl">Commande n° {order.number}</h1>
+      <h1 className="mt-6 text-[44px] md:text-[60px]">Commande n° {order.number}</h1>
       <p className="mt-3 text-label-2">
         {dateFr.format(new Date(order.created_at))} · {ORDER_STATUS[order.status as OrderStatus]}
       </p>
@@ -92,7 +93,7 @@ async function Order({ id, thanks }: { id: string; thanks: boolean }) {
       </p>
 
       <section aria-labelledby="ship-title" className="mt-10 text-sm">
-        <h2 id="ship-title" className="text-[17px] font-semibold">
+        <h2 id="ship-title" className="text-[17px]">
           Livrée à
         </h2>
         <address className="mt-2 not-italic text-label-2 [overflow-wrap:anywhere]">

@@ -6,15 +6,15 @@ import { FIT_FEEDBACK } from "@/lib/validation";
 import { addReview, type ReviewState } from "./actions";
 
 const selectClass =
-  "h-11 w-full rounded-xl border border-control bg-white px-3 text-[17px] focus:border-accent focus:shadow-[0_0_0_4px_rgb(0_113_227/0.25)] focus:outline-none";
+  "h-11 w-full border border-control bg-field px-3 text-[17px] focus:border-brass focus:shadow-[0_0_0_1px_var(--color-brass)] focus:outline-none";
 
 export function ReviewForm({ productId, slug }: { productId: string; slug: string }) {
   const [state, action, pending] = useActionState<ReviewState, FormData>(addReview, {});
   if (state.done) return <p className="mt-4 text-sm text-ok">Merci, votre avis est publié.</p>;
 
   return (
-    <form action={action} className="mt-5 grid max-w-[30rem] gap-4 rounded-[18px] bg-tile p-5">
-      <p className="font-semibold">Vous avez acheté cet article. Votre avis ?</p>
+    <form action={action} className="mt-6 grid max-w-[30rem] gap-5 border border-separator p-5 sm:p-6">
+      <p className="font-display text-[21px]">Vous avez acheté cet article. Votre avis ?</p>
       <input type="hidden" name="product_id" value={productId} />
       <input type="hidden" name="slug" value={slug} />
       <div className="grid gap-4 sm:grid-cols-2">
@@ -46,7 +46,7 @@ export function ReviewForm({ productId, slug }: { productId: string; slug: strin
           name="comment"
           rows={3}
           maxLength={1000}
-          className="rounded-xl border border-control bg-white p-3 text-[17px] focus:border-accent focus:shadow-[0_0_0_4px_rgb(0_113_227/0.25)] focus:outline-none"
+          className="border border-control bg-field p-3 text-[17px] focus:border-brass focus:shadow-[0_0_0_1px_var(--color-brass)] focus:outline-none"
         />
       </label>
       {(state.error || state.errors) && (

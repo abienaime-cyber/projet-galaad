@@ -47,7 +47,8 @@ La taille est calculée par un algorithme déterministe et affichée comme une e
 - Nom : Carrure.
 - Voix : vouvoiement, sobre, le ton d'un tailleur. Poli, précis, sans familiarité ni superlatifs.
 - Interface en français.
-- Look : celui de l'Apple Store (apple.com), demandé explicitement par l'utilisateur. Blanc, tuiles gris clair, un seul bleu d'action, boutons pilule.
+- Look : maison de costumes italienne, version sombre, choisie par l'utilisateur le 24/10/2026 après rejet du look Apple Store (« ça fait cheap »). Fond noir chaud, texte ivoire, un seul accent laiton, titres en Bodoni, petites capitales espacées, boutons rectangulaires. Photos portées, cadrées sous le menton, sur fond sombre.
+- Discours : « taille calculée », jamais « sur mesure » ni « demi-mesure » : le site vend des tailles standard.
 
 ## Evidence on Hand
 

@@ -8,7 +8,7 @@ const DECADES = [90, 100, 110, 120, 130];
 
 type Band = { title: string; rows: SizeRow[]; result: SizeRecommendation | null };
 
-// Jauge en curseur iOS : piste grise, partie remplie en bleu jusqu'au tour de poitrine, pouce blanc.
+// Jauge en ruban de tailleur : filet sombre, partie remplie en laiton jusqu'au tour de poitrine, repère rond.
 export function SizeTape({ chestCm, estimated, bands }: { chestCm: number | null; estimated: boolean; bands: Band[] }) {
   const [top, bottom] = bands;
   // Hors de la jauge, un pouce collé au bord mentirait : on affiche la valeur au bord, côté dépassement.
@@ -22,21 +22,21 @@ export function SizeTape({ chestCm, estimated, bands }: { chestCm: number | null
       <p aria-hidden className="mb-1 text-[11px] font-medium text-label-2">{top.title}</p>
       <BandRow band={top} />
       <div className="relative my-2 h-7">
-        <div className="absolute inset-x-0 top-1/2 h-1.5 -translate-y-1/2 overflow-hidden rounded-full bg-fill">
+        <div className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 overflow-hidden bg-separator">
           {showThumb && (
             <SpringMarker to={pos(chestCm)} className="absolute inset-0">
-              <div className={`absolute inset-y-0 right-full w-full ${estimated ? "bg-accent/45" : "bg-accent"}`} />
+              <div className={`absolute inset-y-0 right-full w-full ${estimated ? "bg-brass/45" : "bg-brass"}`} />
             </SpringMarker>
           )}
         </div>
         {showThumb && (
           <SpringMarker to={pos(chestCm)} className="pointer-events-none absolute inset-0">
-            <div className="absolute top-1/2 left-0 size-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0.5px_4px_rgb(0_0_0/0.12),0_6px_13px_rgb(0_0_0/0.12)]" />
+            <div className="absolute top-1/2 left-0 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brass ring-4 ring-canvas" />
           </SpringMarker>
         )}
         {overflow && chestCm !== null && (
           <span
-            className={`figures absolute top-1/2 flex -translate-y-1/2 items-center gap-1 rounded-full bg-accent px-2.5 py-1 text-xs whitespace-nowrap text-white ${overflow === "left" ? "left-0 flex-row-reverse" : "right-0"}`}
+            className={`figures absolute top-1/2 flex -translate-y-1/2 items-center gap-1 bg-brass px-2.5 py-1 text-xs whitespace-nowrap text-on-accent ${overflow === "left" ? "left-0 flex-row-reverse" : "right-0"}`}
           >
             {chestCm.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} cm
             <svg aria-hidden viewBox="0 0 10 10" className={`size-2.5 ${overflow === "left" ? "rotate-180" : ""}`}>
@@ -80,7 +80,7 @@ function BandRow({ band }: { band: Band }) {
           >
             <span
               data-state={state}
-              className="flex h-full min-w-full shrink-0 items-center justify-center rounded-full px-1.5 text-[11px] font-semibold tabular-nums transition-[background-color,color,box-shadow] duration-150 ease-[ease] data-[state=alternative]:text-accent sm:data-[state=alternative]:bg-white sm:data-[state=alternative]:shadow-[inset_0_0_0_1px_var(--color-accent)] data-[state=chosen]:bg-accent data-[state=chosen]:text-white data-[state=idle]:text-label-2"
+              className="flex h-full min-w-full shrink-0 items-center justify-center px-1.5 text-[11px] font-semibold tabular-nums transition-[background-color,color,box-shadow] duration-150 ease-[ease] data-[state=alternative]:text-brass sm:data-[state=alternative]:shadow-[inset_0_0_0_1px_var(--color-brass)] data-[state=chosen]:bg-brass data-[state=chosen]:text-on-accent data-[state=idle]:text-label-2"
             >
               {row.label}
             </span>
