@@ -51,11 +51,19 @@ export default function PrivacyPage() {
         bouton.
       </p>
 
+      <h2 id="camera">Essayage par caméra</h2>
+      <p>
+        L’essayage utilise votre caméra seulement après votre accord. L’image est traitée dans votre navigateur : elle n’est ni envoyée ni
+        enregistrée. À la première ouverture, le navigateur télécharge le modèle de détection depuis les serveurs de Google et de jsDelivr,
+        qui voient alors votre adresse IP, comme pour tout fichier téléchargé.
+      </p>
+
       <h2 id="sous-traitants">Hébergement et sous-traitants</h2>
       <ul>
         <li>Supabase : base de données et authentification.</li>
         <li>Vercel : hébergement du site et mesure d’audience.</li>
         <li>Anthropic : conseiller IA, uniquement à votre demande.</li>
+        <li>Google et jsDelivr : fichiers du modèle d’essayage, uniquement si vous ouvrez l’essayage.</li>
       </ul>
 
       <h2 id="duree">Durée de conservation</h2>

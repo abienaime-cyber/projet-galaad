@@ -1,6 +1,7 @@
 """Visuels produit Carrure (python3 generate.py <dossier de sortie> [slug...]) : vêtement seul sur cintre, décliné en couleur et motif.
 Bases Pexels : 32427323 (veste droite), 37987847 (veste croisée), 9558723 (chemise, nettoyée par shirt-cutout.py).
 Attend dans le dossier courant big/<id>.jpg (téléchargés sur images.pexels.com) et cut/<id>.png (détourés par rembg)."""
+import os
 import sys
 import numpy as np
 from PIL import Image, ImageFilter
@@ -138,7 +139,12 @@ def render(base, mode, pattern, keep_light=0.0):
     sh = np.roll(np.asarray(shadow).astype(np.float32) / 255, (18, 8), (0, 1)) * 0.14
     bg = BG[None, None, :] * (1 - sh[..., None])
     comp = out * al[..., None] + bg * (1 - al[..., None])
-    return Image.fromarray((comp * 255).astype(np.uint8))
+    return Image.fromarray((comp * 255).astype(np.uint8)), cutout(out, al)
+
+
+def cutout(rgb, al):
+    """Vêtement seul sur fond transparent, pour l'essayage caméra."""
+    return Image.fromarray((np.dstack([rgb, al]) * 255).astype(np.uint8), "RGBA")
 
 
 J, D, S = (jacket, "jacket"), (db, "jacket"), (shirt, "jacket")
@@ -177,6 +183,33 @@ PRODUCTS = {
     "chemise-carreaux-noir-blanc": (S, lambda: check("#f2f2f0", "#1b1b1b", 70, mix="#7a7a7a")),
 }
 
+# Points d'épaule (gauche, droite) de chaque base dans le cadre 1000×1250, relevés à l'œil.
+SHOULDERS = {"jacket": ((255, 372), (732, 372)), "db": ((290, 398), (690, 398)), "shirt": ((370, 190), (700, 215))}
+TW, TH, TS = 600, 900, 300  # cadre de sortie, écart entre les épaules en sortie
+
+
+def tryon(cut, kind):
+    """Recadre le vêtement pour l'essayage : épaules à l'horizontale, en (150, 150) et (450, 150), cintre retiré."""
+    (lx, ly), (rx, ry) = SHOULDERS[kind]
+    if kind != "shirt":  # le cintre et le dos du col : là où passera le cou
+        hole = Image.new("L", cut.size, 0)
+        cx = (lx + rx) // 2
+        hole.paste(255, (cx - 80, 0, cx + 80, min(ly, ry) - 60))
+        hole = np.asarray(hole.filter(ImageFilter.GaussianBlur(14))).astype(np.float32) / 255
+        a = np.asarray(cut).astype(np.float32)
+        a[..., 3] *= 1 - hole
+        cut = Image.fromarray(a.astype(np.uint8), "RGBA")
+    angle = np.arctan2(ry - ly, rx - lx)
+    scale = TS / np.hypot(rx - lx, ry - ly)
+    # Rotation autour de l'épaule gauche, mise à l'échelle, puis l'épaule gauche va en (150, 150).
+    cos, sin = np.cos(angle) / scale, np.sin(angle) / scale
+    a, b, c, d = cos, -sin, sin, cos
+    ox, oy = 150, 150
+    return cut.transform((TW, TH), Image.AFFINE, (a, b, lx - a * ox - b * oy, c, d, ly - c * ox - d * oy), Image.BICUBIC)
+
+
+KIND = {id(jacket): "jacket", id(db): "db", id(shirt): "shirt"}
+TRYON = os.environ.get("TRYON_OUT")  # dossier des vêtements détourés pour l'essayage caméra
 only = set(sys.argv[2:])
 for slug, ((base, mode), make) in PRODUCTS.items():
     if only and slug not in only:
@@ -185,7 +218,10 @@ for slug, ((base, mode), make) in PRODUCTS.items():
         rgb, al = fit(base, mode)
         bg = BG[None, None, :]
         img = Image.fromarray(((rgb * al[..., None] + bg * (1 - al[..., None])) * 255).astype(np.uint8))
+        cut = cutout(rgb, al)
     else:
-        img = render(base, mode, make())
+        img, cut = render(base, mode, make())
     img.save(f"{OUT}/{slug}.jpg", quality=84, progressive=True, optimize=True)
+    if TRYON:
+        tryon(cut, KIND[id(base)]).save(f"{TRYON}/{slug}.webp", quality=82, method=6)
     print(slug)

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { primaryButton, textLink } from "@/components/field";
+import { invertedButton, textLink } from "@/components/field";
+import { Stagger } from "@/components/motion";
 import { ProductTile } from "@/components/product-tile";
 import { SegmentedNav } from "@/components/segmented-nav";
 import { getProducts, getShopper } from "@/lib/catalog";
@@ -53,7 +54,7 @@ async function Catalog({ category, searchParams }: Pick<Props, "category" | "sea
             {reference?.size ? (
               <>
                 Votre taille estimée :{" "}
-                <span className={`figures text-[16px] font-bold text-accent ${reference.estimated ? "estimated" : ""}`}>{reference.size}</span>
+                <span className={`figures text-[16px] font-bold text-foreground ${reference.estimated ? "estimated" : ""}`}>{reference.size}</span>
                 {reference.alternative && <> ou {reference.alternative}</>}, {CONFIDENCE_LABEL[reference.confidence]}.{" "}
               </>
             ) : (
@@ -76,11 +77,11 @@ async function Catalog({ category, searchParams }: Pick<Props, "category" | "sea
       )}
 
       {items.length > 0 ? (
-        <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
+        <Stagger key={showAll ? "tout" : "moi"} onMount className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
           {items.map((item, i) => (
             <ProductTile key={item.product.slug} item={item} priority={i < 6} />
           ))}
-        </ul>
+        </Stagger>
       ) : (
         <div className="card mt-10 px-6 py-16 text-center sm:px-12">
           <h2 className="text-[28px]">
@@ -111,7 +112,7 @@ function SizePrompt({ signedIn, noun }: { signedIn: boolean; noun: (typeof NOUN)
         les {noun.many} disponibles pour vous.
       </p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-        <Link href={signedIn ? "/compte/mensurations" : "/inscription"} className={primaryButton}>
+        <Link href={signedIn ? "/compte/mensurations" : "/inscription"} className={invertedButton}>
           {signedIn ? "Saisir mes mensurations" : "Créer un compte"}
         </Link>
         {!signedIn && (

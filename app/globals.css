@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
-/* Système de design généré par UI UX Pro Max (design-system/carrure/MASTER.md) :
-   « E-commerce Luxury », style Minimalism & Swiss, variance 3/10, densité 3/10.
-   Pierre chaude, texte quasi noir, un seul accent or foncé pour l'action et la taille du client. */
+/* Système de design généré par UI UX Pro Max (design-system/carrure/MASTER.md).
+   Palette « Museum/Gallery » de la base du skill (n° 76) : noir galerie sur blanc, aucune couleur d'accent.
+   Les photos gardent leur fond gris clair (--color-muted) : seul le vêtement porte la couleur. */
 @theme {
-  --color-primary: #1c1917;
+  --color-primary: #18181b;
   --color-on-primary: #ffffff;
-  --color-primary-hover: #44403c;
-  --color-secondary: #44403c;
-  --color-accent: #a16207;
-  --color-accent-hover: #854d0e;
+  --color-primary-hover: #27272a;
+  --color-secondary: #27272a;
+  --color-accent: #18181b;
+  --color-accent-hover: #3f3f46;
   --color-on-accent: #ffffff;
-  --color-background: #fafaf9;
-  --color-foreground: #0c0a09;
+  --color-background: #fafafa;
+  --color-foreground: #09090b;
   --color-card: #ffffff;
   --color-muted: #e8ecf0;
   --color-muted-foreground: #475569;
-  --color-border: #d6d3d1;
-  /* Bord des champs : #E2E8F0 du MASTER ne fait que 1,2:1 sur blanc ; il faut 3:1 pour un contour de champ. */
-  --color-input: #78716c;
-  --color-ring: #1c1917;
-  /* #DC2626 du MASTER tombe à 4,4:1 sur le fond d'erreur rosé : un cran plus sombre. */
+  --color-border: #e4e4e7;
+  /* Bord des champs : #E4E4E7 ne fait que 1,2:1 sur blanc ; il faut 3:1 pour un contour de champ. */
+  --color-input: #71717a;
+  --color-ring: #18181b;
+  /* #DC2626 de la palette tombe à 4,4:1 sur le fond d'erreur rosé : un cran plus sombre. */
   --color-destructive: #b91c1c;
   --color-destructive-tint: #fef2f2;
   --color-success: #15803d;
@@ -73,7 +73,7 @@
   }
 
   ::selection {
-    background: rgb(161 98 7 / 0.2);
+    background: rgb(24 24 27 / 0.12);
   }
 
   :focus-visible {
@@ -98,7 +98,7 @@
   select {
     appearance: none;
     background: var(--color-card)
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 3.5 5 7l3.5-3.5' fill='none' stroke='%231c1917' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 3.5 5 7l3.5-3.5' fill='none' stroke='%2318181b' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")
       no-repeat right 14px center / 10px;
     padding-right: 38px;
   }
@@ -151,9 +151,10 @@
   text-underline-offset: 0.18em;
 }
 
-/* Carte du MASTER : fond blanc, rayon 12 px, ombre moyenne. */
+/* Carte : fond blanc, rayon 12 px, filet gris et ombre légère (le style galerie retient l'ombre). */
 @utility card {
   background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
 }

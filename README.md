@@ -2,7 +2,7 @@
 
 Boutique en ligne de chemises et de costumes pour homme. Le client crée un compte, donne sa taille, son poids et son âge, et la boutique lui montre les articles en stock dans **sa** taille. La taille vient d'un calcul déterministe et s'affiche comme une estimation, avec un niveau de confiance.
 
-Projet étudiant : Next.js 16, Supabase (Postgres, Auth, RLS), déploiement Vercel.
+Projet étudiant réalisé en binôme avec Ilian : Next.js 16, Supabase (Postgres, Auth, RLS), déploiement Vercel.
 
 - **Démo en ligne :** _à renseigner après le déploiement Vercel_ (voir [Déploiement](#déploiement-sur-vercel)).
 - **Comptes de test** (créés par le seed, mot de passe `carrure-demo`) :
@@ -155,6 +155,20 @@ Le bouton « Pourquoi cette taille ? » envoie à l'IA **le résultat du calcul*
 Sur `/admin/produits/<slug>`, l'admin demande une description. L'IA la rédige à partir des seules caractéristiques du produit (nom, coupe, couleur, matière, notes de l'admin), sans provenance ni label inventés. Le texte arrive dans un champ modifiable : **rien n'est publié avant que l'admin ait relu et cliqué sur « Publier »**.
 
 - **Valeur ajoutée** : 30 fiches homogènes, dans le ton de la marque, en quelques minutes, avec un humain qui garde la main.
+
+## L'essayage par caméra
+
+Sur chaque fiche produit, le bouton « Essayer avec ma caméra » ouvre la caméra frontale et pose le vêtement sur le client, en direct.
+
+- La détection du corps tourne dans le navigateur : MediaPipe Pose Landmarker de Google (`@mediapipe/tasks-vision`, licence Apache 2.0). Les fichiers wasm (jsDelivr) et le modèle « lite » (serveurs de Google) sont téléchargés à la première ouverture.
+- Le vêtement détouré (`public/tryon/<slug>.webp`, produit par `scripts/photos/generate.py` avec `TRYON_OUT`) est calé sur les deux points d'épaule, à la bonne largeur et au bon angle.
+- L'image de la caméra ne quitte pas l'appareil : rien n'est envoyé ni enregistré.
+- Limites : c'est un aperçu à plat, en 2D. Le vêtement ne suit ni les bras ni la profondeur, et il ne dit rien de la taille. Les articles ajoutés depuis l'admin n'ont pas de version détourée : le bouton n'apparaît pas sur leur fiche.
+- L'en-tête `Permissions-Policy` autorise la caméra pour le site lui-même (`camera=(self)`, dans `next.config.ts`).
+
+## Animations
+
+[Motion](https://motion.dev) (le nouveau nom de Framer Motion), réglé d'après le preset « Stagger List » de UI UX Pro Max : montée de 16 px en fondu, 60 ms entre deux cartes. Composants dans `components/motion.tsx` : `Reveal` (un bloc), `Stagger` et `StaggerItem` (une grille). Le réglage système « réduire les animations » coupe les déplacements ; sans JavaScript, tout reste visible.
 
 ## Structure
 

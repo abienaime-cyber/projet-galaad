@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { StaggerItem } from "@/components/motion";
 import { price, type Fitted } from "@/lib/shop";
 
-// Carte du MASTER : fond blanc, rayon 12 px, ombre qui monte au survol.
+// Carte du MASTER : fond blanc, rayon 12 px, ombre qui monte au survol. À poser dans une liste <Stagger>.
 export function ProductTile({ item, priority, heading: Heading = "h2" }: { item: Fitted; priority?: boolean; heading?: "h2" | "h3" }) {
   const { product, rec, inStock } = item;
   return (
-    <li>
+    <StaggerItem>
       <Link
         href={`/produit/${product.slug}`}
         prefetch={priority}
@@ -36,7 +37,7 @@ export function ProductTile({ item, priority, heading: Heading = "h2" }: { item:
           <p className="figures mt-auto pt-3 text-[15px] font-semibold">{price(product.priceCents)}</p>
         </div>
       </Link>
-    </li>
+    </StaggerItem>
   );
 }
 

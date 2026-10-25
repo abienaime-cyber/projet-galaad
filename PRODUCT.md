@@ -47,7 +47,7 @@ La taille est calculée par un algorithme déterministe et affichée comme une e
 - Nom : Carrure.
 - Voix : vouvoiement, sobre, le ton d'un tailleur. Poli, précis, sans familiarité ni superlatifs.
 - Interface en français.
-- Look : refonte du 24/10/2026 faite uniquement avec le skill UI UX Pro Max, à la demande de l'utilisateur (après le rejet du look Apple Store, de la maison italienne sombre puis du grand magasin façon Mr Porter). Style Minimalism & Swiss : fond pierre clair, cartes blanches arrondies, titres en Cormorant, texte en Montserrat, un seul accent or foncé pour l'action et la taille du client. Système complet : `design-system/carrure/MASTER.md`, résumé dans `DESIGN.md`.
+- Look : refonte du 24/10/2026 faite uniquement avec le skill UI UX Pro Max, à la demande de l'utilisateur (après le rejet du look Apple Store, de la maison italienne sombre puis du grand magasin façon Mr Porter). Style Minimalism & Swiss : cartes blanches arrondies, titres en Cormorant, texte en Montserrat. Le 25/10/2026, l'or a été refusé : palette noir et blanc « Museum/Gallery » du skill, animations Motion discrètes, essayage par caméra sur la fiche produit. Système complet : `design-system/carrure/MASTER.md`, résumé dans `DESIGN.md`.
 - Discours : « taille calculée », jamais « sur mesure » ni « demi-mesure » : le site vend des tailles standard.
 
 ## Evidence on Hand

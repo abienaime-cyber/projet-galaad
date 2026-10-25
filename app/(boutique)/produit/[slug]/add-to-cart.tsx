@@ -43,7 +43,7 @@ export function AddToCart({ slug, sizes, defaultSize }: { slug: string; sizes: S
             </label>
           ))}
         </div>
-        <p className="mt-3 text-[13px] text-muted-foreground">Cerclée d’or : votre taille estimée. Barrée : épuisée.</p>
+        <p className="mt-3 text-[13px] text-muted-foreground">Cerclée : votre taille estimée. Barrée : épuisée.</p>
       </fieldset>
 
       <div className="mt-8 grid gap-3">

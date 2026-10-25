@@ -80,7 +80,7 @@ export function MeasurementsForm({ initial, charts }: { initial: Record<string, 
 
         <fieldset>
           <legend className="font-display text-[28px] font-semibold">Coupe préférée</legend>
-          {/* Tuiles de choix : filet or sur l’option retenue. */}
+          {/* Tuiles de choix : filet noir sur l’option retenue. */}
           <div className="mt-4 grid grid-cols-2 gap-3">
             {[{ value: "", label: "Sans préférence" }, ...FITS].map((fit) => (
               <label key={fit.value} className="relative">

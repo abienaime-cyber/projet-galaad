@@ -3,19 +3,19 @@ name: Carrure
 description: Chemises et costumes pour homme, avec une taille calculée pour chaque article.
 source: design-system/carrure/MASTER.md (UI UX Pro Max 2.15.0, requête « luxury fashion ecommerce », variance 3, densité 3)
 colors:
-  primary: "#1c1917"
+  primary: "#18181b"
   on-primary: "#ffffff"
-  accent: "#a16207"
-  accent-hover: "#854d0e"
+  accent: "#18181b"
+  accent-hover: "#3f3f46"
   on-accent: "#ffffff"
-  background: "#fafaf9"
-  foreground: "#0c0a09"
+  background: "#fafafa"
+  foreground: "#09090b"
   card: "#ffffff"
   muted: "#e8ecf0"
   muted-foreground: "#475569"
-  border: "#d6d3d1"
-  input: "#78716c"
-  ring: "#1c1917"
+  border: "#e4e4e7"
+  input: "#71717a"
+  ring: "#18181b"
   destructive: "#b91c1c"
   destructive-tint: "#fef2f2"
   success: "#15803d"
@@ -48,19 +48,22 @@ Ce fichier résume ce qui est réellement en ligne dans le code (`app/globals.cs
 
 ## Couleurs
 
-Pierre chaude, texte quasi noir, un seul accent or foncé (`#A16207`) pour l'action principale et la taille du client.
+Révision du 25 octobre 2026 : la palette pierre + or a été refusée. Elle est remplacée par la palette n° 76 « Museum/Gallery » de la base du skill (`data/colors.csv`) : noir galerie sur blanc, aucun accent coloré. Seul le vêtement porte la couleur. Les actions principales sont noires ; sur un fond noir, le bouton passe en blanc (`invertedButton`).
 
-Trois écarts au MASTER, tous pour l'accessibilité (priorité 1 du skill) :
+Deux écarts à la palette, pour l'accessibilité (priorité 1 du skill) :
 
-| Jeton | MASTER | En ligne | Pourquoi |
+| Jeton | Palette | En ligne | Pourquoi |
 | --- | --- | --- | --- |
-| `input` | `#E2E8F0` | `#78716C` | Le contour d'un champ doit atteindre 3:1 ; `#E2E8F0` fait 1,2:1 sur blanc. |
+| `input` | `#E4E4E7` | `#71717A` | Le contour d'un champ doit atteindre 3:1 ; `#E4E4E7` fait 1,2:1 sur blanc. |
 | `destructive` | `#DC2626` | `#B91C1C` | 4,4:1 seulement sur le fond d'erreur rosé ; il faut 4,5:1. |
-| `success` | absent | `#15803D` | Message « En stock » et confirmations, 4,8:1 sur le fond. |
 
-Contrastes vérifiés : texte sur fond 19:1, texte secondaire `#475569` 7,3:1, bouton or texte blanc 4,9:1, or sur fond 4,7:1.
+`success` (`#15803D`) s'ajoute pour « En stock ».
 
 `muted` (`#E8ECF0`) est aussi le fond des photos produit : vignette et image se fondent.
+
+## Mouvement
+
+Motion (ex-Framer Motion), preset « Stagger List (Standard) » du skill : fondu et montée de 16 px, 400 à 450 ms, 60 ms entre deux éléments, courbe `cubic-bezier(0.23, 1, 0.32, 1)`, sans rebond. Une seule fois par bloc, à l'entrée dans l'écran. Mouvement réduit : fondu seul. Composants : `components/motion.tsx`.
 
 ## Typographie
 
@@ -68,10 +71,10 @@ Cormorant pour les titres (`h1` à `h3`), Montserrat pour tout le reste, chargé
 
 ## Composants (spécifications du MASTER)
 
-- **Bouton principal** : fond or, texte blanc, rayon 8 px, 600, hauteur 48 px, soulèvement de 1 px au survol.
+- **Bouton principal** : fond noir, texte blanc, rayon 8 px, 600, hauteur 48 px, soulèvement de 1 px au survol.
 - **Bouton secondaire** : filet de 2 px quasi noir, se remplit au survol.
 - **Champ** : libellé toujours visible au-dessus, bordure 1 px, rayon 8 px, 16 px, anneau de 3 px au focus, erreur juste sous le champ.
-- **Carte** : blanc, rayon 12 px, ombre moyenne ; ombre large et soulèvement de 2 px au survol pour les cartes cliquables.
+- **Carte** : blanc, filet gris, rayon 12 px, ombre légère ; ombre large et soulèvement de 2 px au survol pour les cartes cliquables.
 - **Contrôle segmenté** : piste grise, segment actif en carte blanche.
 - **Icônes** : Phosphor (`@phosphor-icons/react` 2.1.10, import `/ssr`), recommandé par le domaine `icons` du skill. Aucun emoji.
 

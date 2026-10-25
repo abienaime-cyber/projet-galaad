@@ -2,7 +2,8 @@ import { ArrowRight, Funnel, Gauge, Ruler, Scales } from "@phosphor-icons/react/
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
-import { primaryButton, secondaryButton, textLink } from "@/components/field";
+import { invertedButton, primaryButton, secondaryButton, textLink } from "@/components/field";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { ProductTile } from "@/components/product-tile";
 import { getProducts, getShopper } from "@/lib/catalog";
 import { CATEGORY_PATH, fitAll, forMe, price, type CatalogProduct } from "@/lib/shop";
@@ -35,8 +36,8 @@ export default async function Home() {
   return (
     <>
       <section aria-labelledby="hero-title" className="mx-auto grid max-w-[1280px] items-center gap-12 px-4 pt-12 sm:px-8 md:pt-20 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-        <div className="max-lg:text-center">
-          <p className="eyebrow text-accent">Costumes et chemises pour homme</p>
+        <Reveal className="max-lg:text-center">
+          <p className="eyebrow text-muted-foreground">Costumes et chemises pour homme</p>
           <h1 id="hero-title" className="mt-4 text-[48px] md:text-[68px]">
             Le costume à votre taille
           </h1>
@@ -48,47 +49,48 @@ export default async function Home() {
               <ShopperActions />
             </Suspense>
           </div>
-        </div>
-        <div className="grid grid-cols-3 gap-3 sm:gap-4">
+        </Reveal>
+        <Stagger onMount className="grid grid-cols-3 gap-3 sm:gap-4">
           {hero.map((product, i) => (
-            <Link
-              key={product.slug}
-              href={`/produit/${product.slug}`}
-              aria-label={product.name}
-              className={`card overflow-hidden bg-muted transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg ${i === 1 ? "translate-y-6 hover:translate-y-5.5" : ""}`}
-            >
-              <Image
-                src={product.image!}
-                alt=""
-                width={500}
-                height={625}
-                preload={i === 0}
-                fetchPriority={i === 0 ? "high" : undefined}
-                sizes="(min-width: 1024px) 220px, 33vw"
-                className="aspect-[4/5] w-full object-cover"
-              />
-            </Link>
+            <StaggerItem key={product.slug}>
+              <Link
+                href={`/produit/${product.slug}`}
+                aria-label={product.name}
+                className={`card block overflow-hidden bg-muted transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg ${i === 1 ? "translate-y-6 hover:translate-y-5.5" : ""}`}
+              >
+                <Image
+                  src={product.image!}
+                  alt=""
+                  width={500}
+                  height={625}
+                  preload={i === 0}
+                  fetchPriority={i === 0 ? "high" : undefined}
+                  sizes="(min-width: 1024px) 220px, 33vw"
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       <section aria-labelledby="features-title" className={section}>
         <h2 id="features-title" className="text-center text-[36px] md:text-[48px]">
           Votre taille, sans cabine d’essayage
         </h2>
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map(({ Icon, title, text }) => (
-            <li key={title} className="card flex gap-4 p-5 sm:flex-col sm:gap-5 sm:p-6">
-              <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+            <StaggerItem key={title} className="card flex gap-4 p-5 sm:flex-col sm:gap-5 sm:p-6">
+              <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-muted text-foreground">
                 <Icon aria-hidden size={24} />
               </span>
               <div>
                 <h3 className="text-[22px] sm:text-[24px]">{title}</h3>
                 <p className="mt-2 text-[15px] text-muted-foreground">{text}</p>
               </div>
-            </li>
+            </StaggerItem>
           ))}
-        </ul>
+        </Stagger>
       </section>
 
       <Suspense fallback={<Rows products={products} measurements={null} />}>
@@ -96,19 +98,23 @@ export default async function Home() {
       </Suspense>
 
       <section aria-label="Les collections" className={`${section} grid gap-5 md:grid-cols-2`}>
-        <CollectionTile category="suit" title="Tous les costumes" range="Du 44 au 58" products={products} cover="costume-trois-pieces-bleu-nuit" />
-        <CollectionTile category="shirt" title="Toutes les chemises" range="Du S au 3XL" products={products} cover="chemise-vichy-bleue" />
+        <Reveal>
+          <CollectionTile category="suit" title="Tous les costumes" range="Du 44 au 58" products={products} cover="costume-trois-pieces-bleu-nuit" />
+        </Reveal>
+        <Reveal delay={0.08}>
+          <CollectionTile category="shirt" title="Toutes les chemises" range="Du S au 3XL" products={products} cover="chemise-vichy-bleue" />
+        </Reveal>
       </section>
 
       <section aria-labelledby="how-title" className={section}>
-        <div className="rounded-2xl bg-primary px-6 py-16 text-on-primary sm:px-12 md:py-20">
+        <Reveal className="rounded-2xl bg-primary px-6 py-16 text-on-primary sm:px-12 md:py-20">
           <h2 id="how-title" className="text-center text-[36px] md:text-[48px]">
             Comment ça marche
           </h2>
           <ol className="mx-auto mt-12 grid max-w-[1040px] gap-10 md:grid-cols-3">
             {STEPS.map((step, i) => (
               <li key={step.title} className="text-center">
-                <span className="figures inline-flex size-12 items-center justify-center rounded-full border-2 border-accent text-[18px] font-semibold text-on-primary">
+                <span className="figures inline-flex size-12 items-center justify-center rounded-full border-2 border-on-primary/40 text-[18px] font-semibold text-on-primary">
                   {i + 1}
                 </span>
                 <h3 className="mt-5 text-[26px]">{step.title}</h3>
@@ -117,7 +123,7 @@ export default async function Home() {
             ))}
           </ol>
           <div className="mt-12 flex justify-center">
-            <Link href="/inscription" className={primaryButton}>
+            <Link href="/inscription" className={invertedButton}>
               Trouver ma taille
               <ArrowRight aria-hidden size={18} />
             </Link>
@@ -126,7 +132,7 @@ export default async function Home() {
             La taille affichée reste une estimation : notre calcul indique toujours à quel point il est sûr de lui, et la
             taille voisine quand vous êtes entre deux.
           </p>
-        </div>
+        </Reveal>
       </section>
     </>
   );
@@ -194,11 +200,11 @@ function Row({ category, title, products, measurements }: RowProps) {
           Tout voir
         </Link>
       </div>
-      <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-4">
+      <Stagger className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-4">
         {items.map((item) => (
           <ProductTile key={item.product.slug} item={item} heading="h3" />
         ))}
-      </ul>
+      </Stagger>
     </section>
   );
 }
@@ -211,7 +217,7 @@ function CollectionTile({ category, title, range, products, cover }: TileProps) 
   return (
     <Link
       href={CATEGORY_PATH[category]}
-      className="group card grid overflow-hidden transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg sm:grid-cols-2"
+      className="group card grid h-full overflow-hidden transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg sm:grid-cols-2"
     >
       <div className="relative aspect-[4/5] bg-muted">
         {image && <Image src={image} alt="" fill sizes="(min-width: 768px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />}
@@ -222,7 +228,7 @@ function CollectionTile({ category, title, range, products, cover }: TileProps) 
           {range}
           {prices.length > 0 && <> · À partir de {price(Math.min(...prices))}</>}
         </p>
-        <span className="mt-6 inline-flex items-center gap-2 text-[15px] font-semibold text-accent">
+        <span className="mt-6 inline-flex items-center gap-2 text-[15px] font-semibold text-foreground">
           Découvrir
           <ArrowRight aria-hidden size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
         </span>

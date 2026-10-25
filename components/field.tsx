@@ -11,7 +11,7 @@ type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
 
 // Champ du MASTER : bordure 1 px, rayon 8 px, texte 16 px, anneau de 3 px au focus.
 export const inputClass =
-  "w-full rounded-lg border border-input bg-card px-4 py-3 text-[16px] text-foreground transition-[border-color,box-shadow] duration-200 focus:border-ring focus:shadow-[0_0_0_3px_rgb(28_25_23/0.13)] focus:outline-none aria-[invalid=true]:border-destructive";
+  "w-full rounded-lg border border-input bg-card px-4 py-3 text-[16px] text-foreground transition-[border-color,box-shadow] duration-200 focus:border-ring focus:shadow-[0_0_0_3px_rgb(24_24_27/0.13)] focus:outline-none aria-[invalid=true]:border-destructive";
 
 // Libellé toujours visible au-dessus du champ, aide et erreur juste en dessous.
 export function Field({ name, label, unit, hint, error, className, ...input }: FieldProps) {
@@ -51,11 +51,14 @@ export function Field({ name, label, unit, hint, error, className, ...input }: F
   );
 }
 
-// Boutons du MASTER : action principale or (#A16207), secondaire au filet de 2 px, rayon 8 px, 600.
+// Boutons : action principale noire, secondaire au filet de 2 px, rayon 8 px, 600.
 const button =
   "inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-lg px-6 text-[15px] font-semibold transition-[background-color,color,box-shadow,transform] duration-200 ease-out hover:-translate-y-px active:translate-y-0 disabled:cursor-default disabled:opacity-50 disabled:hover:translate-y-0";
 
 export const primaryButton = `${button} bg-accent text-on-accent shadow-sm hover:bg-accent-hover hover:shadow-md`;
+
+// Action principale posée sur un fond noir : bouton blanc.
+export const invertedButton = `${button} bg-card text-foreground shadow-sm hover:bg-muted`;
 
 export const secondaryButton = `${button} text-primary shadow-[inset_0_0_0_2px_var(--color-primary)] hover:bg-primary hover:text-on-primary`;
 

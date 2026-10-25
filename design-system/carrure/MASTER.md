@@ -17,26 +17,29 @@
 
 ### Color Palette
 
+> Révision du 25 octobre 2026 : le client a refusé la palette pierre + or. Palette remplacée par
+> l'entrée n° 76 « Museum/Gallery » de `data/colors.csv` (recherche `--domain color`), base blanche, aucun accent coloré.
+
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#1C1917` | `--color-primary` |
+| Primary | `#18181B` | `--color-primary` |
 | On Primary | `#FFFFFF` | `--color-on-primary` |
-| Secondary | `#44403C` | `--color-secondary` |
+| Secondary | `#27272A` | `--color-secondary` |
 | On Secondary | `#FFFFFF` | `--color-on-secondary` |
-| Accent/CTA | `#A16207` | `--color-accent` |
+| Accent/CTA | `#18181B` | `--color-accent` |
 | On Accent/CTA | `#FFFFFF` | `--color-on-accent` |
-| Background | `#FAFAF9` | `--color-background` |
-| Foreground | `#0C0A09` | `--color-foreground` |
+| Background | `#FAFAFA` | `--color-background` |
+| Foreground | `#09090B` | `--color-foreground` |
 | Card | `#FFFFFF` | `--color-card` |
-| Card Foreground | `#0C0A09` | `--color-card-foreground` |
+| Card Foreground | `#09090B` | `--color-card-foreground` |
 | Muted | `#E8ECF0` | `--color-muted` |
 | Muted Foreground | `#475569` | `--color-muted-foreground` |
-| Border | `#D6D3D1` | `--color-border` |
+| Border | `#E4E4E7` | `--color-border` |
 | Destructive | `#DC2626` | `--color-destructive` |
 | On Destructive | `#FFFFFF` | `--color-on-destructive` |
-| Ring | `#1C1917` | `--color-ring` |
+| Ring | `#18181B` | `--color-ring` |
 
-**Color Notes:** Premium dark + gold accent [Accent adjusted from #CA8A04]
+**Color Notes:** Gallery black + white space [Accent adjusted from #F8FAFC]
 
 ### Typography
 
@@ -82,7 +85,7 @@
 ```css
 /* Primary Button */
 .btn-primary {
-  background: #A16207;
+  background: #18181B;
   color: #FFFFFF;
   padding: 12px 24px;
   border-radius: 8px;
@@ -99,8 +102,8 @@
 /* Secondary Button */
 .btn-secondary {
   background: transparent;
-  color: #1C1917;
-  border: 2px solid #1C1917;
+  color: #18181B;
+  border: 2px solid #18181B;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -113,7 +116,7 @@
 
 ```css
 .card {
-  background: #FAFAF9;
+  background: #FFFFFF;
   border-radius: 12px;
   padding: 24px;
   box-shadow: var(--shadow-md);
@@ -139,9 +142,9 @@
 }
 
 .input:focus {
-  border-color: #1C1917;
+  border-color: #18181B;
   outline: none;
-  box-shadow: 0 0 0 3px #1C191720;
+  box-shadow: 0 0 0 3px #18181B20;
 }
 ```
 

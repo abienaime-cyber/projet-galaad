@@ -13,6 +13,7 @@ import { FIT_FEEDBACK } from "@/lib/validation";
 import { AddToCart } from "./add-to-cart";
 import { Advisor } from "./advisor";
 import { ReviewForm } from "./review-form";
+import { TryOn } from "./try-on";
 
 export async function generateMetadata({ params }: PageProps<"/produit/[slug]">): Promise<Metadata> {
   const product = await getProduct((await params).slug);
@@ -54,7 +55,7 @@ async function ProductView({ slug }: { slug: string }) {
         <span aria-current="page" className="text-foreground">{product.name}</span>
       </nav>
       <div className="mt-2 grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-14">
-        <div className="card overflow-hidden bg-muted lg:sticky lg:top-24 lg:self-start">
+        <div className="card relative overflow-hidden bg-muted lg:sticky lg:top-24 lg:self-start">
           {product.image ? (
             <Image
               src={product.image}
@@ -68,6 +69,8 @@ async function ProductView({ slug }: { slug: string }) {
           ) : (
             <div className="aspect-[4/5]" />
           )}
+          {/* Seuls les visuels du catalogue d'origine ont leur version détourée pour l'essayage. */}
+          {product.image === `/products/${product.slug}.jpg` && <TryOn slug={product.slug} name={product.name} />}
         </div>
 
         <div className="lg:max-w-[32rem] lg:pt-2">

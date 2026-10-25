@@ -40,7 +40,7 @@ export function AuthShell({ active, title, children }: { active: (typeof TABS)[n
       </section>
 
       <aside aria-labelledby="why-title" className="rounded-2xl bg-primary p-6 text-on-primary sm:p-10">
-        <p className="eyebrow text-accent">Pourquoi un compte</p>
+        <p className="eyebrow text-on-primary/70">Pourquoi un compte</p>
         <h2 id="why-title" className="mt-4 text-[32px] md:text-[38px]">
           Votre taille, article par article
         </h2>
@@ -51,7 +51,7 @@ export function AuthShell({ active, title, children }: { active: (typeof TABS)[n
         <dl className="mt-10 grid gap-8">
           {POINTS.map(({ Icon, title, text }) => (
             <div key={title} className="flex gap-4">
-              <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-on-primary/10 text-accent">
+              <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-on-primary/10 text-on-primary">
                 <Icon aria-hidden size={22} />
               </span>
               <div>
