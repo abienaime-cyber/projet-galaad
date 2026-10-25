@@ -9,6 +9,6 @@ export async function getCurrentUser() {
 }
 
 // N'accepte qu'un chemin interne, pour qu'un lien piégé ne renvoie pas vers un autre site.
-export function safeNextPath(value: unknown, fallback = "/compte/mensurations") {
+export function safeNextPath(value: unknown, fallback = "/compte/profil") {
   return typeof value === "string" && value.startsWith("/") && !value.startsWith("//") ? value : fallback;
 }

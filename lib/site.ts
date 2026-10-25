@@ -7,4 +7,4 @@ export const SITE_URL =
 export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? null;
 
 // Champs Open Graph communs : une page qui définit ses propres images remplace tout le bloc du layout.
-export const OPEN_GRAPH = { siteName: "Carrure", locale: "fr_FR", type: "website" } as const;
+export const OPEN_GRAPH = { siteName: "Contrebande", locale: "fr_FR", type: "website" } as const;

@@ -39,12 +39,12 @@ describe("schémas", () => {
   });
 
   it("refuse un motif de retour inconnu", () => {
-    expect(returnSchema.safeParse({ orderItemId: UUID, reason: "too_small", comment: "" }).success).toBe(true);
+    expect(returnSchema.safeParse({ orderItemId: UUID, reason: "taste", comment: "" }).success).toBe(true);
     expect(returnSchema.safeParse({ orderItemId: UUID, reason: "autre", comment: "" }).success).toBe(false);
   });
 
-  it("accepte un avis sans retour sur la taille, refuse une note de 6", () => {
-    expect(reviewSchema.parse({ productId: UUID, rating: "4", fitFeedback: "", comment: "" }).fitFeedback).toBeNull();
-    expect(reviewSchema.safeParse({ productId: UUID, rating: "6", fitFeedback: "", comment: "" }).success).toBe(false);
+  it("accepte un avis sans commentaire, refuse une note de 6", () => {
+    expect(reviewSchema.parse({ productId: UUID, rating: "4", comment: "" }).comment).toBeNull();
+    expect(reviewSchema.safeParse({ productId: UUID, rating: "6", comment: "" }).success).toBe(false);
   });
 });

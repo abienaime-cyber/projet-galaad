@@ -1,60 +1,59 @@
 "use server";
 
 import { refresh } from "next/cache";
-import { AI_ERROR_MESSAGE, AI_QUOTA_MESSAGE, AiError, adviseSize } from "@/lib/ai";
+import { AI_ERROR_MESSAGE, AI_QUOTA_MESSAGE, AiError, adviseMatcha } from "@/lib/ai";
 import { getProduct, getProducts, getShopper } from "@/lib/catalog";
 import { requireUser } from "@/lib/commerce";
+import { GRADE_LABEL, match, TOOL_LABEL } from "@/lib/reco";
 import { createClient } from "@/lib/supabase/server";
-import { fitAll, FIT_LABEL, forMe, price } from "@/lib/shop";
+import { forMe, minPrice, price, rateAll, variantFigures } from "@/lib/shop";
 import { parseForm, reviewSchema, type FieldErrors } from "@/lib/validation";
 
-export type Outfit = { title: string; why: string; items: { slug: string; name: string; image: string | null; price: string }[] };
-export type AdviceState = { explanation?: string; outfits?: Outfit[]; error?: string };
+export type Ritual = { title: string; why: string; items: { slug: string; name: string; image: string | null; price: string }[] };
+export type AdviceState = { explanation?: string; rituals?: Ritual[]; error?: string };
 
 export async function askAdvisor(_prev: AdviceState, formData: FormData): Promise<AdviceState> {
   const slug = String(formData.get("slug") ?? "");
-  const [product, products, { measurements }] = await Promise.all([getProduct(slug), getProducts(), getShopper()]);
+  const [product, products, { profile }] = await Promise.all([getProduct(slug), getProducts(), getShopper()]);
   if (!product) return { error: "Article introuvable." };
-  if (!measurements) return { error: "Saisissez d’abord vos mensurations : le conseiller explique votre taille calculée." };
+  if (!profile) return { error: "Remplissez d’abord votre profil de goût : le conseiller explique le calcul fait à partir de lui." };
 
-  // La taille vient du calcul déterministe, jamais de l'IA.
-  const [{ rec }] = fitAll([product], measurements);
-  if (!rec?.size) return { error: "Vos mensurations sortent du tableau de tailles de cet article." };
-
-  // Le conseiller ne pioche que dans les articles en stock dans la taille du client.
-  const available = forMe(fitAll(products, measurements), measurements.preferredFit);
-  const bySlug = new Map(available.map((f) => [f.product.slug, f]));
-  bySlug.set(product.slug, { product, rec, inStock: true });
+  // Le score vient du calcul déterministe, jamais de l'IA.
+  const result = match(product, profile);
+  // Le conseiller ne pioche que dans ce qui convient au client et reste en stock.
+  const available = forMe(rateAll(products, profile));
+  const bySlug = new Map(available.map((r) => [r.product.slug, r.product]));
+  bySlug.set(product.slug, product);
 
   const { data: allowed } = await (await createClient()).rpc("consume_ai_quota");
   if (!allowed) return { error: AI_QUOTA_MESSAGE };
 
   try {
-    const advice = await adviseSize({
-      product: { slug, name: product.name, category: product.category, fit: FIT_LABEL[product.fit], color: product.color, material: product.material },
-      sizing: { ...rec, size: rec.size },
-      measurements,
-      candidates: [...bySlug.values()].slice(0, 30).map((f) => ({
-        slug: f.product.slug,
-        name: f.product.name,
-        category: f.product.category,
-        color: f.product.color,
-        size: f.rec!.size!,
-      })),
+    const advice = await adviseMatcha({
+      product: {
+        slug,
+        name: product.name,
+        category: product.category,
+        details: product.grade ? `grade ${GRADE_LABEL[product.grade]}, intensité ${product.intensity}/5` : product.toolKind ? TOOL_LABEL[product.toolKind] : product.contents.map((c) => c.name).join(", "),
+      },
+      match: result,
+      profile,
+      figures: product.variants.flatMap((v) => variantFigures(product, v, profile).map((f) => `${v.label} — ${f.label} : ${f.value}`)),
+      candidates: [...bySlug.values()].slice(0, 30).map((p) => ({ slug: p.slug, name: p.name, category: p.category })),
     });
     // Un slug inventé est écarté : seules les fiches réelles s'affichent.
-    const outfits = advice.outfits
-      .map((o) => ({
-        title: o.title,
-        why: o.why,
-        items: o.slugs.flatMap((s) => {
-          const f = bySlug.get(s);
-          return f ? [{ slug: s, name: f.product.name, image: f.product.image, price: price(f.product.priceCents) }] : [];
+    const rituals = advice.rituals
+      .map((r) => ({
+        title: r.title,
+        why: r.why,
+        items: r.slugs.flatMap((s) => {
+          const p = bySlug.get(s);
+          return p ? [{ slug: s, name: p.name, image: p.image, price: price(minPrice(p)) }] : [];
         }),
       }))
-      .filter((o) => o.items.length > 0)
-      .slice(0, 3);
-    return { explanation: advice.explanation, outfits };
+      .filter((r) => r.items.length > 0)
+      .slice(0, 2);
+    return { explanation: advice.explanation, rituals };
   } catch (error) {
     return { error: AI_ERROR_MESSAGE[error instanceof AiError ? error.kind : "failed"] };
   }
@@ -63,11 +62,11 @@ export async function askAdvisor(_prev: AdviceState, formData: FormData): Promis
 export type ReviewState = { errors?: FieldErrors; error?: string; done?: boolean };
 
 export async function addReview(_prev: ReviewState, formData: FormData): Promise<ReviewState> {
-  const parsed = parseForm(reviewSchema, formData, { productId: "product_id", rating: "rating", fitFeedback: "fit_feedback", comment: "comment" });
+  const parsed = parseForm(reviewSchema, formData, { productId: "product_id", rating: "rating", comment: "comment" });
   if (parsed.errors) return { errors: parsed.errors };
   const { supabase, user } = await requireUser(`/produit/${formData.get("slug")}`);
-  const { productId, rating, fitFeedback, comment } = parsed.data;
-  const { error } = await supabase.from("reviews").insert({ product_id: productId, user_id: user.id, rating, fit_feedback: fitFeedback, comment });
+  const { productId, rating, comment } = parsed.data;
+  const { error } = await supabase.from("reviews").insert({ product_id: productId, user_id: user.id, rating, comment });
   // 42501 : la RLS refuse l'avis d'un non-acheteur. 23505 : un avis existe déjà.
   if (error) return { error: error.code === "23505" ? "Vous avez déjà donné votre avis sur cet article." : "Seuls les clients qui ont acheté cet article peuvent le noter." };
   refresh();

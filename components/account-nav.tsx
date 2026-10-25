@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { SegmentedNav } from "./segmented-nav";
 
 const TABS = [
-  { href: "/compte/mensurations", label: "Mensurations" },
+  { href: "/compte/profil", label: "Profil de goût" },
   { href: "/compte/commandes", label: "Commandes" },
 ];
 

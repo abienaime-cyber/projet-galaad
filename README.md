@@ -1,23 +1,24 @@
-# Carrure
+# Contrebande
 
-Boutique en ligne de chemises et de costumes pour homme. Le client crée un compte, donne sa taille, son poids et son âge, et la boutique lui montre les articles en stock dans **sa** taille. La taille vient d'un calcul déterministe et s'affiche comme une estimation, avec un niveau de confiance.
+Boutique en ligne de kits pour préparer le matcha chez soi : fouet en bambou (chasen), cuillère (chashaku), tamis, bol, bouilloire, et le matcha lui-même en trois grades. Le client remplit un **profil de goût** ; un calcul déterministe classe la boutique pour lui, donne la durée d'une boîte à son rythme et le prix de revient de sa tasse.
 
-Projet étudiant réalisé en binôme avec Ilian : Next.js 16, Supabase (Postgres, Auth, RLS), déploiement Vercel.
+Projet étudiant réalisé en binôme avec Ilian : Next.js 16, Supabase (Postgres, Auth, RLS), Three.js, GSAP, déploiement Vercel.
 
 - **Démo en ligne :** _à renseigner après le déploiement Vercel_ (voir [Déploiement](#déploiement-sur-vercel)).
-- **Comptes de test** (créés par le seed, mot de passe `carrure-demo`) :
-  - client : `client@carrure.test` (mensurations saisies, une commande livrée) ;
-  - admin : `admin@carrure.test` (tableau de bord et fiches produit).
+- **Comptes de test** (créés par le seed, mot de passe `contrebande-demo`) :
+  - client : `client@contrebande.test` (profil de goût rempli, une commande livrée) ;
+  - admin : `admin@contrebande.test` (tableau de bord et fiches produit).
 
-Ce mot de passe est public. Changez-le avant toute mise en ligne réelle.
+Ce mot de passe est public. Changez-le avant toute mise en ligne réelle. Les produits et les prix sont fictifs.
 
 ## Démo en trois minutes
 
-1. **Inscription** sur `/inscription`, puis **profil** : taille, poids, âge (tour de poitrine et coupe préférée en option).
-2. On arrive sur **`/costumes`**, onglet **« Pour moi »** : seuls les costumes en stock dans la taille calculée, les plus sûrs d'abord.
-3. **Fiche produit** : bandeau « Votre taille », choix de la taille, **Ajouter au panier**. Le bouton « Pourquoi cette taille ? » appelle le conseiller IA.
-4. **Panier** (enregistré en base), **commande** avec paiement simulé, puis **historique** dans `/compte/commandes`, avec demande de retour.
-5. Connexion en **admin** : `/admin` affiche le CA, le panier moyen, les meilleures ventes, le taux de retour pour mauvaise taille, les tailles les plus vendues et les nouveaux clients. `/admin/produits` rédige une fiche avec l'IA.
+1. **Accueil** : la plaque d'acier gravée en 3D suit la souris ; « Kit Essentiel · 49 € » l'ajoute directement au panier. En défilant : les pièces saisies (étiquettes cliquables posées sur les objets 3D), le protocole de préparation épinglé (tamiser, verser, fouetter, servir), le calcul du prix de la tasse, la chaîne de production (la feuille devient poudre puis boîte), le coffre qui s'ouvre.
+2. **Inscription** sur `/inscription`, puis **profil de goût** : six réponses. Le relevé à droite se recalcule à chaque clic (kit et matcha conseillés, prix de la tasse, économie mensuelle).
+3. **Boutique** `/boutique`, vue **« Pour moi »** : les articles qui conviennent, le mieux noté d'abord, avec leur score sur 100.
+4. **Fiche produit** : modèle 3D à faire tourner, bloc « Pour vous » (score et raisons), relevé chiffré du format choisi, **Ajouter au panier**. Le bouton « Pourquoi ce score ? » appelle le conseiller IA.
+5. **Panier** (enregistré en base), **commande** avec paiement simulé, **historique** dans `/compte/commandes`, demande de retour.
+6. Connexion en **admin** : `/admin` affiche le CA, le panier moyen, les meilleures ventes, le taux de retour pour casse, la part des clients avec un profil de goût et les formats les plus vendus. `/admin/produits` rédige une fiche avec l'IA.
 
 ## Installation
 
@@ -35,9 +36,9 @@ Vérifications :
 
 ```bash
 pnpm lint && pnpm exec tsc --noEmit # ESLint et TypeScript strict
-pnpm test                           # tests unitaires (calcul de taille, filtre « Pour moi », validation)
-npx supabase test db                # tests pgTAP : RLS, contraintes, commande (24 tests)
-bash supabase/tests/oversell.sh     # deux achats simultanés du dernier article : un seul passe
+pnpm test                           # tests unitaires : recommandation, profil de goût, boutique, validation (31 tests)
+npx supabase test db                # tests pgTAP : RLS, contraintes, commande (30 tests)
+bash supabase/tests/oversell.sh     # deux achats simultanés du dernier coffre : un seul passe
 pnpm build
 ```
 
@@ -71,37 +72,37 @@ Aucune clé secrète n'est dans le dépôt : `.env*` est ignoré par git, seul `
 | HTTPS forcé | Vercel redirige HTTP vers HTTPS (308) ; en-têtes HSTS et de sécurité dans `next.config.ts` |
 | Bandeau cookies | `components/cookie-notice.tsx` : information seule, car seuls des cookies de connexion (exemptés par la CNIL) sont déposés |
 | Meta title et description | `metadata` du layout et de chaque page |
-| Image réseaux | `app/opengraph-image.jpg` ; la photo de l'article sur chaque fiche |
+| Image réseaux | `app/opengraph-image.jpg` (la plaque gravée) ; le rendu de l'article sur chaque fiche |
 | Favicon | `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png` |
 | Sitemap et robots.txt | `app/sitemap.ts`, `app/robots.ts` (pages privées exclues) |
-| Textes alternatifs | photos produit décrites ; images décoratives en `alt=""` |
-| Images compressées | `next/image` sert de l'AVIF ou du WebP (14 Ko au lieu de 118 Ko pour une photo en 640 px) |
-| Vitesse | Lighthouse mobile 93 à 99 en performance |
-| Contraste | Lighthouse accessibilité 100 |
-| Responsive | vérifié de 320 à 1440 px |
-| Page 404 | `app/not-found.tsx` |
-| Liens cassés | parcours automatique de 199 pages (visiteur, client, admin) : aucun |
-| Validation des formulaires | Zod côté serveur (`lib/validation.ts`) et contraintes SQL |
+| Textes alternatifs | rendus décrits comme « rendu 3D » ; scènes décoratives en `aria-hidden`, leur contenu existe en texte |
+| Images compressées | `next/image` sert de l'AVIF ou du WebP ; Three.js n'est chargé qu'à l'approche de chaque scène |
+| Vitesse | les scènes 3D ne tournent que visibles à l'écran et s'arrêtent quand rien ne bouge |
+| Contraste | jetons vérifiés dans `app/globals.css` (texte secondaire 5,5:1 sur l'acier, 8:1 sur le noir) |
+| Responsive | vérifié à 390 et 1440 px de large, sans défilement horizontal |
+| Page 404 | `app/not-found.tsx` (« Bol vide ») |
+| Liens cassés | parcours automatique des pages principales, connecté et déconnecté |
+| Validation des formulaires | Zod côté serveur (`lib/validation.ts`, `lib/taste.ts`) et contraintes SQL |
 | Anti-spam | pot de miel à l'inscription, limites de Supabase Auth, 20 appels IA par heure et par compte (`consume_ai_quota`) |
 | Analytics | Vercel Web Analytics, sans cookie, numéros de commande masqués |
-| Un seul CTA | un bouton principal par écran |
+| Un seul CTA | un bouton principal (vert) par écran |
 
-Données « pire cas » pour tester l'interface : `supabase/fixtures/worst-case.sql` (compte `pire@carrure.test`). `supabase db reset` remet les données de démo.
+Données « pire cas » pour tester l'interface : `supabase/fixtures/worst-case.sql` (compte `pire@contrebande.test`). `supabase db reset` remet les données de démo.
 
 ## Base de données
 
-Migrations versionnées dans `supabase/migrations/`, seed dans `supabase/seed.sql` (30 produits fictifs, 2 comptes de test, 12 clients fictifs, environ 60 commandes et leurs retours).
+Migrations versionnées dans `supabase/migrations/`, seed dans `supabase/seed.sql` (17 produits fictifs, 2 comptes de test, 12 clients fictifs, environ 60 commandes et leurs retours).
 
 ```mermaid
 erDiagram
-  profiles ||--o| measurements : "a"
+  profiles ||--o| taste_profiles : "a"
   profiles ||--o{ addresses : "a"
   profiles ||--o| carts : "a"
   carts ||--o{ cart_items : "contient"
   product_variants ||--o{ cart_items : ""
-  size_charts ||--o{ size_chart_rows : "définit"
-  size_charts ||--o{ products : "mesure"
-  products ||--o{ product_variants : "taille et stock"
+  products ||--o{ product_variants : "format, prix et stock"
+  products ||--o{ kit_items : "kit"
+  products ||--o{ kit_items : "pièce"
   profiles ||--o{ orders : "passe"
   orders ||--o{ order_items : "contient"
   product_variants ||--o{ order_items : ""
@@ -110,88 +111,92 @@ erDiagram
   profiles ||--o{ reviews : "écrit"
 ```
 
-- **Contraintes** : clés primaires et étrangères partout ; `NOT NULL`, `CHECK` (bornes des mensurations, stock ≥ 0, quantité 1 à 10, note 1 à 5, code postal) et `UNIQUE` (un panier par client, une taille par produit, un avis par client et par produit, un retour par ligne). Un trigger refuse une variante dont la taille n'existe pas dans le tableau du produit, un autre refuse un retour sur la commande d'un autre client.
-- **Index** sur les colonnes filtrées ou jointes : catégorie des produits actifs, commandes par client et par date, lignes par variante, retours par motif.
-- **Copies figées** : une commande garde l'adresse, le nom et le prix au moment de l'achat. Modifier une fiche ne réécrit pas l'historique.
-- **RLS activée sur toutes les tables.** Un client ne lit que son profil, ses mensurations, ses adresses, son panier, ses commandes et ses retours. Le catalogue et les avis sont publics en lecture. Un avis n'est accepté que d'un acheteur du produit. Un client ne peut pas se donner le rôle admin : seule la colonne `full_name` de `profiles` lui est ouverte.
-- **Rôle admin** : colonne `profiles.role`, lue par la fonction `is_admin()`. Les pages `/admin` vérifient le rôle côté serveur (`requireAdmin()` dans `lib/commerce.ts`) et répondent « introuvable » aux autres ; la RLS bloque de toute façon leurs requêtes.
-- **KPIs en SQL** : vues `admin_kpis`, `admin_top_products`, `admin_sizes_sold`, `admin_returns_by_reason`, en `security_invoker` pour que la RLS de l'appelant s'applique. La page admin ne fait qu'afficher.
+- **Catalogue** : un produit est un kit, un matcha ou un ustensile. Des `CHECK` imposent la cohérence (un ustensile a un type, un matcha a un grade et une intensité de 1 à 5). Le prix, le grammage et le stock sont portés par la **variante** (30 g, 100 g, coloris du bol).
+- **Kits** : la table `kit_items` relie un kit à ses pièces. Un trigger refuse un kit dans un kit. Le prix « pièce par pièce » affiché sur la fiche est calculé à partir de cette table.
+- **Profil de goût** (`taste_profiles`) : tasses par semaine (1 à 28), façon de boire, goût, expérience, ustensiles possédés (tableau d'enum), prix du coffee shop (facultatif, 1 à 20 €).
+- **Contraintes** : clés primaires et étrangères partout ; `NOT NULL`, `CHECK` (stock ≥ 0, quantité 1 à 10, note 1 à 5, code postal) et `UNIQUE` (un panier par client, un format par produit, un avis par client et par produit, un retour par ligne).
+- **Copies figées** : une commande garde l'adresse, le nom, le format et le prix au moment de l'achat.
+- **RLS activée sur toutes les tables.** Un client ne lit que son profil, son profil de goût, ses adresses, son panier, ses commandes et ses retours. Le catalogue et les avis sont publics en lecture. Un avis n'est accepté que d'un acheteur. Un client ne peut pas se donner le rôle admin.
+- **KPIs en SQL** : vues `admin_kpis`, `admin_top_products`, `admin_variants_sold`, `admin_returns_by_reason`, en `security_invoker`.
 
 ### La commande sans survente : `place_order()`
 
 Fonction SQL (`supabase/migrations/20261023140000_commerce.sql`) appelée par l'action serveur de paiement. Tout se passe dans **une seule transaction** :
 
-1. elle verrouille les variantes du panier avec `SELECT … FOR UPDATE`, dans l'ordre des identifiants pour éviter les interblocages : une autre commande sur la même taille attend ;
-2. elle vérifie le stock sous verrou et refuse toute la commande si une ligne manque (« Stock insuffisant : Costume gris anthracite (52) ») ;
-3. elle crée la commande et ses lignes, décrémente le stock et vide le panier.
+1. elle verrouille les variantes du panier avec `SELECT … FOR UPDATE`, dans l'ordre des identifiants pour éviter les interblocages ;
+2. elle vérifie le stock sous verrou et refuse toute la commande si une ligne manque (« Stock insuffisant : Le Coffre (Unique) ») ;
+3. elle crée la commande et ses lignes au prix de la variante, décrémente le stock et vide le panier.
 
-Si une étape échoue, rien n'est écrit. La contrainte `CHECK (stock >= 0)` reste le dernier filet. Le script `supabase/tests/oversell.sh` lance deux achats simultanés du dernier article : un seul aboutit, le stock finit à 0.
+Si une étape échoue, rien n'est écrit. La contrainte `CHECK (stock >= 0)` reste le dernier filet.
 
-## Le calcul de taille
+## Le calcul de recommandation
 
-Code : `lib/sizing.ts`, testé dans `lib/sizing.test.ts`. Il est **déterministe** : mêmes mensurations, même taille.
+Code : `lib/reco.ts`, testé dans `lib/reco.test.ts`. Il est **déterministe** : mêmes réponses, même résultat. Aucune IA.
 
-1. **Tours de corps.** Le tour de poitrine et le tour de taille saisis sont utilisés tels quels. S'ils manquent, ils sont estimés à partir de la taille, du poids (IMC) et de l'âge. Cette formule est une heuristique maison, non validée scientifiquement : la taille est alors marquée « estimée ».
-2. **Aisance.** Une coupe ajustée demande 2 cm de plus, une coupe ample 2 cm de moins ; la coupe préférée du client joue en sens inverse.
-3. **Choix de la taille.** Chaque ligne du tableau de tailles du produit reçoit un écart : distance au tour de poitrine, plus la moitié de la distance au tour de taille pour un costume. La ligne la plus proche gagne. Au-delà de 4 cm d'écart, aucune taille n'est proposée.
-4. **Confiance.** Élevée par défaut. Elle baisse d'un cran si les tours sont estimés, d'un cran si le client est à moins de 1,5 cm d'une limite (la taille voisine est alors indiquée).
+1. **Matcha** : score de 100, moins l'écart de grade (un grade Latte bu pur perd 40 points, un Cérémonie mis dans le lait en perd 30), moins 8 points par cran d'intensité d'écart avec le goût demandé.
+2. **Ustensile** : 20 si le client l'a déjà, 95 s'il est indispensable et absent (fouet, cuillère, tamis, et le bol pour qui boit pur), sinon selon son utilité pour sa façon de boire.
+3. **Kit** : 100, moins 15 par pièce déjà possédée, moins 12 par pièce indispensable qui manquerait encore, plus l'écart de son matcha, moins 10 si la bouilloire est superflue pour un débutant.
+4. **Confiance** : « choix net » si le premier devance le second de 15 points, « choix serré » sous 6 points ; le second est alors proposé.
+5. **Chiffres** : doses de la maison Ippodo (2 g pour un matcha pur, 3 g pour un latte), prix réels du catalogue. Durée d'une boîte, prix de la tasse (lait non compté), économie mensuelle et remboursement du kit si le client a donné le prix de son café. Format présélectionné : la grande boîte si la petite ne tient pas trois semaines.
 
-Le filtre **« Pour moi »** (`lib/shop.ts`) garde les articles en stock dans la taille calculée, les plus sûrs d'abord, puis la coupe préférée.
+Le filtre **« Pour moi »** (`lib/shop.ts`) garde les articles notés 70 ou plus, en stock, le mieux noté d'abord.
 
 ## Les skills IA
 
-Code : `lib/ai.ts`. Les appels partent **uniquement du serveur** (actions serveur Next.js), avec le SDK officiel `@anthropic-ai/sdk` et le modèle `claude-opus-5-5`. Délai de 25 s par tentative, une seule nouvelle tentative, sortie JSON validée par un schéma Zod. Chaque erreur (clé absente, délai dépassé, quota, refus, panne) donne un message clair au lieu d'une page cassée.
+Code : `lib/ai.ts`. Les appels partent **uniquement du serveur** (actions serveur Next.js), avec le SDK officiel `@anthropic-ai/sdk` et le modèle `claude-opus-5-5`. Délai de 25 s, une seule nouvelle tentative, sortie JSON validée par Zod, message clair pour chaque erreur.
 
-### 1. Conseiller taille et style (fiche produit)
+### 1. Conseiller matcha (fiche produit)
 
-Le bouton « Pourquoi cette taille ? » envoie à l'IA **le résultat du calcul** (taille, taille voisine, confiance, tours mesurés ou estimés) et la liste des articles en stock dans la taille du client. L'IA explique ce résultat en quelques phrases et compose jusqu'à trois tenues.
+« Pourquoi ce score ? » envoie à l'IA **le résultat du calcul** (score et raisons), le profil de goût, les chiffres calculés et la liste des articles qui conviennent au client. L'IA explique le score et compose un ou deux rituels (« Le latte du matin »).
 
-- **Elle ne calcule pas la taille** : la consigne le lui interdit, et l'interface affiche toujours la taille issue de `lib/sizing.ts`.
-- **Elle ne peut pas inventer d'article** : seuls les slugs présents dans la liste fournie sont gardés côté serveur.
-- **Valeur ajoutée** : le client comprend pourquoi on lui conseille un 50 plutôt qu'un 52 (et qu'il gagnerait à mesurer son tour de poitrine), ce qui doit faire baisser les retours pour mauvaise taille. Les tenues font monter le panier moyen avec des articles qui lui vont.
+- **Elle ne calcule rien** : la consigne le lui interdit et l'interface affiche toujours le score de `lib/reco.ts`.
+- **Elle ne peut pas inventer d'article** : seuls les slugs de la liste fournie sont gardés côté serveur.
+- **Elle n'a que des faits sourcés** pour la préparation (doses et température Ippodo), et l'interdiction de promettre un bienfait.
 
 ### 2. Rédaction des fiches produit (admin)
 
-Sur `/admin/produits/<slug>`, l'admin demande une description. L'IA la rédige à partir des seules caractéristiques du produit (nom, coupe, couleur, matière, notes de l'admin), sans provenance ni label inventés. Le texte arrive dans un champ modifiable : **rien n'est publié avant que l'admin ait relu et cliqué sur « Publier »**.
+Sur `/admin/produits/<slug>`, l'IA rédige une description à partir des seules caractéristiques du produit. Rien n'est publié avant que l'admin ait relu et cliqué sur « Publier ».
 
-- **Valeur ajoutée** : 30 fiches homogènes, dans le ton de la marque, en quelques minutes, avec un humain qui garde la main.
+## 3D et animations
 
-## L'essayage par caméra
+- **Objets 3D faits en code** (`lib/three/models.ts`) : profils tournés pour le bol à bec, la boîte, la bouilloire et le support ; 100 brins en tubes pour le fouet ; tamis à maille transparente ; valise en aluminium. Matières dessinées au canvas (grès moucheté, bambou, acier brossé). Aucun fichier 3D à télécharger.
+- **Scènes de l'accueil** (`lib/three/scenes/`) : chaque scène est une fonction de la progression du défilement, de 0 à 1. On peut remonter la page, la scène se défait image par image.
+- **Vignettes de la boutique** : rendus PNG des mêmes modèles, produits par `node scripts/renders/render.mjs` (Vite et le Chromium de Playwright). Ce sont des illustrations, pas des photos des articles.
+- **GSAP** (`gsap`, `@gsap/react`) : ScrollTrigger (sections épinglées, rideau vert, coffre qui s'ouvre), SplitText (titres ligne à ligne), `ScrollTrigger.batch` (vignettes). Guidé par les skills officiels de GreenSock, installés dans `.claude/skills/gsap-*` depuis [greensock/gsap-skills](https://github.com/greensock/gsap-skills) (licence MIT).
+- **Nuage de matcha** : shader WebGL (bruit fractal) dans `components/home/smoke.tsx`.
+- **Mouvement réduit** : pas d'épinglage ni de rotation ; le protocole s'affiche en quatre images fixes, la chaîne de production en liste.
 
-Sur chaque fiche produit, le bouton « Essayer avec ma caméra » ouvre la caméra frontale et pose le vêtement sur le client, en direct.
+## Design
 
-- La détection du corps tourne dans le navigateur : MediaPipe Pose Landmarker de Google (`@mediapipe/tasks-vision`, licence Apache 2.0). Les fichiers wasm (jsDelivr) et le modèle « lite » (serveurs de Google) sont téléchargés à la première ouverture.
-- Le vêtement détouré (`public/tryon/<slug>.webp`, produit par `scripts/photos/generate.py` avec `TRYON_OUT`) est calé sur les deux points d'épaule, à la bonne largeur et au bon angle.
-- L'image de la caméra ne quitte pas l'appareil : rien n'est envoyé ni enregistré.
-- Limites : c'est un aperçu à plat, en 2D. Le vêtement ne suit ni les bras ni la profondeur, et il ne dit rien de la taille. Les articles ajoutés depuis l'admin n'ont pas de version détourée : le bouton n'apparaît pas sur leur fiche.
-- L'en-tête `Permissions-Policy` autorise la caméra pour le site lui-même (`camera=(self)`, dans `next.config.ts`).
+Direction artistique donnée par l'utilisateur (captures et vidéos d'un site de matcha au thème « cartel »), reprise en esprit sans nom, logo ni texte de la référence. Construite avec les skills **impeccable** (brief et contrat de direction dans `.impeccable/surfaces/`) et **UI UX Pro Max** (polices Barlow Condensed et Barlow, presets GSAP de défilement). Système détaillé dans `DESIGN.md`.
 
-## Animations
+## Sources des faits affichés
 
-[Motion](https://motion.dev) (le nouveau nom de Framer Motion), réglé d'après le preset « Stagger List » de UI UX Pro Max : montée de 16 px en fondu, 60 ms entre deux cartes. Composants dans `components/motion.tsx` : `Reveal` (un bloc), `Stagger` et `StaggerItem` (une grille). Le réglage système « réduire les animations » coupe les déplacements ; sans JavaScript, tout reste visible.
+- Doses, température et geste : Ippodo, maison de thé de Kyoto, [recette du matcha latte](https://ippodotea.com/blogs/recipes-to-brew-japanese-tea/matcha-latte-recipe) et fiches produit (matcha pur : 2 g, 60 ml d'eau à 80 °C, 15 secondes de fouet ; latte : 3 g, 100 ml d'eau, 100 ml de lait).
+- Culture et fabrication : AFP, « Matcha: the Japanese tea taking over the world », 26 juin 2025, [repris par Geo News](https://www.geo.tv/latest/610989-matcha-the-japanese-tea-taking-over-the-world) (feuilles de tencha cultivées à l'ombre les dernières semaines, cuites à la vapeur, séchées, moulues entre deux meules ; jusqu'à une heure pour 40 g ; demande en forte hausse).
+- Prix d'un matcha en coffee shop : non vérifié de façon fiable. Le site ne l'affiche pas ; il demande au client le prix qu'il paie.
 
 ## Structure
 
 ```
 app/
-  (boutique)/        costumes, chemises, fiche produit, conseiller IA, avis
+  (boutique)/        boutique, fiche produit, conseiller IA, avis
   (auth)/            connexion, inscription
   panier/ commande/  panier persistant, paiement simulé
-  compte/            mensurations, commandes, retours
+  compte/            profil de goût, commandes, retours
   admin/             tableau de bord, fiches produit
-components/          composants d'interface partagés
-lib/                 calcul de taille, catalogue, commerce, IA, validation (Zod)
+components/
+  home/              sections de l'accueil (plaque, pièces, protocole, calcul, chaîne, coffre)
+  three/             montage des scènes, visionneuse 3D de la fiche
+lib/
+  reco.ts taste.ts   recommandation et profil de goût
+  three/             modèles, matières, scènes
+scripts/renders/     studio de rendu des vignettes
 supabase/            migrations, seed, tests pgTAP et test de survente
 ```
 
-## Crédits photos
+## Crédits
 
-Aucune personne sur les photos : chaque article est montré seul, sur cintre, sur le même fond. Les 30 visuels partent de trois photos [Pexels](https://www.pexels.com/license/), libres d'utilisation, attribution non requise :
-
-| Base | Photo | Sert à |
-| --- | --- | --- |
-| Veste droite beige sur cintre | [pexels.com/photo/32427323](https://www.pexels.com/photo/32427323/) | les 10 costumes droits (le costume en lin beige est la photo d'origine) |
-| Veste croisée blanche sur cintre | [pexels.com/photo/37987847](https://www.pexels.com/photo/37987847/) | le costume croisé et le smoking |
-| Chemise bleu ciel sur cintre | [pexels.com/photo/9558723](https://www.pexels.com/photo/9558723/) | les 18 chemises |
-
-Chaque base est détourée (modèle isnet-general-use via rembg), puis teinte dans la couleur du produit et, pour les tissus à motif (rayures, vichy, carreaux, prince-de-galles, tweed, chiné), recouverte d'un motif dessiné par programme. Les plis de la photo d'origine sont conservés ; la teinte moyenne de chaque vêtement est calée sur celle annoncée dans la fiche. Ce sont donc des visuels d'illustration, pas des photos des articles. Scripts : `scripts/photos/shirt-cutout.py` et `scripts/photos/generate.py`. À remplacer par de vraies photos produit avant toute utilisation commerciale.
+- Polices Barlow, Barlow Condensed et Fragment Mono : SIL Open Font License (Google Fonts). Deux fichiers sont copiés dans `scripts/renders/fonts` pour le studio de rendu.
+- Three.js : licence MIT. GSAP : licence standard de GreenSock, gratuite.
+- Icônes : Phosphor (licence MIT).

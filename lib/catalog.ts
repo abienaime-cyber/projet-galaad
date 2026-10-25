@@ -1,25 +1,18 @@
 import { createClient as createPublicClient } from "@supabase/supabase-js";
 import { cacheLife, cacheTag } from "next/cache";
+import type { Category, Drink, Experience, Grade, Taste, TasteProfile, ToolKind } from "./reco";
 import type { CatalogProduct } from "./shop";
-import type { Category, Measurements, SizeRow } from "./sizing";
 import { isSupabaseConfigured, supabaseKey, supabaseUrl } from "./supabase/config";
 import { createClient } from "./supabase/server";
 
-type ChartRow = { label: string; sort_order: number; chest_min: number; chest_max: number; waist_min: number | null; waist_max: number | null };
+// kit_items a deux clés vers products : le nom de la contrainte lève l'ambiguïté pour PostgREST.
+const PRODUCT_COLUMNS = `id, slug, name, description, category, tool_kind, grade, intensity, material, model, image_url,
+  product_variants(id, label, price_cents, matcha_grams, stock, sort_order),
+  kit_items!kit_items_kit_id_fkey(quantity, sort_order, item:products!kit_items_item_id_fkey(slug, name, tool_kind, grade, intensity, product_variants(price_cents, matcha_grams, sort_order)))`;
 
-export const toSizeRows = (rows: ChartRow[]): SizeRow[] =>
-  [...rows]
-    .sort((a, b) => a.sort_order - b.sort_order)
-    .map((r) => ({
-      label: r.label,
-      chestMin: Number(r.chest_min),
-      chestMax: Number(r.chest_max),
-      waistMin: r.waist_min === null ? null : Number(r.waist_min),
-      waistMax: r.waist_max === null ? null : Number(r.waist_max),
-    }));
+type ItemVariant = { price_cents: number; matcha_grams: number | null; sort_order: number };
 
-const PRODUCT_COLUMNS =
-  "id, slug, name, description, category, fit, color, material, price_cents, image_url, size_charts(size_chart_rows(label, sort_order, chest_min, chest_max, waist_min, waist_max)), product_variants(id, size_label, stock)";
+type VariantRow = { id: string; label: string; price_cents: number; matcha_grams: number | null; stock: number; sort_order: number };
 
 type ProductRow = {
   id: string;
@@ -27,44 +20,73 @@ type ProductRow = {
   name: string;
   description: string;
   category: Category;
-  fit: CatalogProduct["fit"];
-  color: string;
+  tool_kind: ToolKind | null;
+  grade: Grade | null;
+  intensity: number | null;
   material: string;
-  price_cents: number;
+  model: string;
   image_url: string | null;
-  size_charts: { size_chart_rows: ChartRow[] } | null;
-  product_variants: { id: string; size_label: string; stock: number }[];
+  product_variants: VariantRow[];
+  kit_items: {
+    quantity: number;
+    sort_order: number;
+    item: { slug: string; name: string; tool_kind: ToolKind | null; grade: Grade | null; intensity: number | null; product_variants: ItemVariant[] };
+  }[];
 };
 
-const toProduct = (row: ProductRow): CatalogProduct => ({
-  id: row.id,
-  slug: row.slug,
-  name: row.name,
-  description: row.description,
-  category: row.category,
-  fit: row.fit,
-  color: row.color,
-  material: row.material,
-  priceCents: row.price_cents,
-  image: row.image_url,
-  sizes: toSizeRows(row.size_charts?.size_chart_rows ?? []),
-  stock: Object.fromEntries(row.product_variants.map((v) => [v.size_label, v.stock])),
-  variantIds: Object.fromEntries(row.product_variants.map((v) => [v.size_label, v.id])),
-});
+const bySortOrder = (a: { sort_order: number }, b: { sort_order: number }) => a.sort_order - b.sort_order;
+
+// Une pièce achetée seule : son premier format.
+const firstVariant = (variants: ItemVariant[]) => [...variants].sort(bySortOrder)[0];
+
+const toProduct = (row: ProductRow): CatalogProduct => {
+  const items = [...row.kit_items].sort(bySortOrder);
+  return {
+    id: row.id,
+    slug: row.slug,
+    name: row.name,
+    description: row.description,
+    category: row.category,
+    toolKind: row.tool_kind,
+    grade: row.grade,
+    intensity: row.intensity,
+    material: row.material,
+    model: row.model,
+    image: row.image_url,
+    variants: [...row.product_variants].sort(bySortOrder).map((v) => ({
+      id: v.id,
+      label: v.label,
+      priceCents: v.price_cents,
+      matchaGrams: v.matcha_grams,
+      stock: v.stock,
+    })),
+    contents: items.map(({ quantity, item }) => ({
+      slug: item.slug,
+      name: item.name,
+      quantity,
+      toolKind: item.tool_kind,
+      grade: item.grade,
+      intensity: item.intensity,
+      priceCents: firstVariant(item.product_variants)?.price_cents ?? 0,
+      matchaGrams: firstVariant(item.product_variants)?.matcha_grams ?? null,
+    })),
+    separatePriceCents: items.length ? items.reduce((sum, { quantity, item }) => sum + quantity * (firstVariant(item.product_variants)?.price_cents ?? 0), 0) : null,
+  };
+};
 
 // Une commande ou une fiche modifiée invalide ce tag : stock et textes sont relus aussitôt.
 export const CATALOG_TAG = "catalogue";
 
+const CATEGORY_ORDER: Record<Category, number> = { kit: 0, matcha: 1, tool: 2 };
+
 // Le catalogue est public (RLS : produits actifs) : lu sans cookie, il peut être mis en cache pour tous.
-export async function getProducts(category?: Category): Promise<CatalogProduct[]> {
+export async function getProducts(): Promise<CatalogProduct[]> {
   "use cache";
   cacheLife("minutes");
   cacheTag(CATALOG_TAG);
   if (!isSupabaseConfigured) return [];
-  let query = createPublicClient(supabaseUrl!, supabaseKey!).from("products").select(PRODUCT_COLUMNS).order("name");
-  if (category) query = query.eq("category", category);
-  const { data } = await query;
-  return ((data ?? []) as unknown as ProductRow[]).map(toProduct);
+  const { data } = await createPublicClient(supabaseUrl!, supabaseKey!).from("products").select(PRODUCT_COLUMNS).order("created_at").order("slug");
+  return ((data ?? []) as unknown as ProductRow[]).map(toProduct).sort((a, b) => CATEGORY_ORDER[a.category] - CATEGORY_ORDER[b.category]);
 }
 
 export async function getProduct(slug: string): Promise<CatalogProduct | null> {
@@ -72,23 +94,31 @@ export async function getProduct(slug: string): Promise<CatalogProduct | null> {
   return products.find((p) => p.slug === slug) ?? null;
 }
 
-export type Shopper = { signedIn: boolean; measurements: Measurements | null };
+export type Shopper = { signedIn: boolean; profile: TasteProfile | null };
+
+type ProfileRow = {
+  cups_per_week: number;
+  drink: Drink;
+  taste: Taste;
+  experience: Experience;
+  owned: ToolKind[];
+  cafe_price_cents: number | null;
+};
+
+export const toTasteProfile = (row: ProfileRow): TasteProfile => ({
+  cupsPerWeek: row.cups_per_week,
+  drink: row.drink,
+  taste: row.taste,
+  experience: row.experience,
+  owned: row.owned,
+  cafePriceCents: row.cafe_price_cents,
+});
 
 export async function getShopper(): Promise<Shopper> {
-  if (!isSupabaseConfigured) return { signedIn: false, measurements: null };
+  if (!isSupabaseConfigured) return { signedIn: false, profile: null };
   const supabase = await createClient();
   const { data: auth } = await supabase.auth.getUser();
-  if (!auth.user) return { signedIn: false, measurements: null };
-  const { data: m } = await supabase.from("measurements").select("*").eq("user_id", auth.user.id).maybeSingle();
-  return {
-    signedIn: true,
-    measurements: m && {
-      heightCm: Number(m.height_cm),
-      weightKg: Number(m.weight_kg),
-      age: m.age,
-      chestCm: m.chest_cm === null ? null : Number(m.chest_cm),
-      waistCm: m.waist_cm === null ? null : Number(m.waist_cm),
-      preferredFit: m.preferred_fit,
-    },
-  };
+  if (!auth.user) return { signedIn: false, profile: null };
+  const { data } = await supabase.from("taste_profiles").select("*").eq("user_id", auth.user.id).maybeSingle();
+  return { signedIn: true, profile: data && toTasteProfile(data as ProfileRow) };
 }

@@ -9,16 +9,16 @@ type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
 };
 
-// Champ du MASTER : bordure 1 px, rayon 8 px, texte 16 px, anneau de 3 px au focus.
+// Champ carré, filet 1 px, fond papier ; le focus ajoute un anneau vert.
 export const inputClass =
-  "w-full rounded-lg border border-input bg-card px-4 py-3 text-[16px] text-foreground transition-[border-color,box-shadow] duration-200 focus:border-ring focus:shadow-[0_0_0_3px_rgb(24_24_27/0.13)] focus:outline-none aria-[invalid=true]:border-destructive";
+  "w-full rounded-none border border-ink/45 bg-paper px-4 py-3 text-[17px] text-ink transition-[border-color,box-shadow] duration-200 focus:border-ink focus:shadow-[0_0_0_3px_var(--color-matcha)] focus:outline-none aria-[invalid=true]:border-danger";
 
 // Libellé toujours visible au-dessus du champ, aide et erreur juste en dessous.
 export function Field({ name, label, unit, hint, error, className, ...input }: FieldProps) {
   const describedBy = [hint && `${name}-hint`, error && `${name}-error`].filter(Boolean).join(" ") || undefined;
   return (
     <div className={className}>
-      <label htmlFor={name} className="mb-2 block text-[14px] font-medium text-foreground">
+      <label htmlFor={name} className="mb-2 block text-[15px] font-medium text-ink">
         {label}
       </label>
       <div className="relative">
@@ -31,19 +31,19 @@ export function Field({ name, label, unit, hint, error, className, ...input }: F
           {...input}
         />
         {unit && (
-          <span aria-hidden className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-[15px] text-muted-foreground">
+          <span aria-hidden className="mono pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-fog">
             {unit}
           </span>
         )}
       </div>
       {error && (
-        <p id={`${name}-error`} className="mt-2 flex items-start gap-1.5 text-[13px] text-destructive">
-          <WarningCircle aria-hidden size={16} className="mt-px shrink-0" />
+        <p id={`${name}-error`} className="mt-2 flex items-start gap-1.5 text-[14px] text-danger">
+          <WarningCircle aria-hidden size={16} className="mt-0.5 shrink-0" />
           {error}
         </p>
       )}
       {hint && (
-        <p id={`${name}-hint`} className="mt-2 text-[13px] text-muted-foreground">
+        <p id={`${name}-hint`} className="mt-2 text-[14px] text-fog">
           {hint}
         </p>
       )}
@@ -51,17 +51,18 @@ export function Field({ name, label, unit, hint, error, className, ...input }: F
   );
 }
 
-// Boutons : action principale noire, secondaire au filet de 2 px, rayon 8 px, 600.
+// Boutons : capitales condensées, angles droits. Le vert est réservé à l'action principale.
 const button =
-  "inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-lg px-6 text-[15px] font-semibold transition-[background-color,color,box-shadow,transform] duration-200 ease-out hover:-translate-y-px active:translate-y-0 disabled:cursor-default disabled:opacity-50 disabled:hover:translate-y-0";
+  "inline-flex h-13 cursor-pointer items-center justify-center gap-3 px-6 font-display text-[19px] font-bold tracking-[0.02em] uppercase transition-[background-color,color,box-shadow,transform] duration-150 ease-out active:scale-[0.98] disabled:cursor-default disabled:opacity-45 disabled:active:scale-100";
 
-export const primaryButton = `${button} bg-accent text-on-accent shadow-sm hover:bg-accent-hover hover:shadow-md`;
+export const primaryButton = `${button} bg-matcha text-ink hover:bg-matcha-hover`;
 
-// Action principale posée sur un fond noir : bouton blanc.
-export const invertedButton = `${button} bg-card text-foreground shadow-sm hover:bg-muted`;
+// Sur fond clair : filet noir, se remplit au survol.
+export const secondaryButton = `${button} text-ink shadow-[inset_0_0_0_1.5px_var(--color-ink)] hover:bg-ink hover:text-paper`;
 
-export const secondaryButton = `${button} text-primary shadow-[inset_0_0_0_2px_var(--color-primary)] hover:bg-primary hover:text-on-primary`;
+// Sur fond noir : filet blanc.
+export const ghostButton = `${button} text-paper shadow-[inset_0_0_0_1.5px_rgb(255_255_255/0.7)] hover:bg-paper hover:text-ink`;
 
 // Lien de texte souligné : « Tout voir », « Modifier ».
 export const textLink =
-  "inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-foreground underline decoration-foreground/30 underline-offset-[6px] transition-colors duration-200 hover:decoration-foreground";
+  "inline-flex min-h-11 items-center gap-2 text-[16px] font-medium underline decoration-current/35 underline-offset-[6px] transition-colors duration-200 hover:decoration-current";

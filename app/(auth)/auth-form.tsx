@@ -13,9 +13,9 @@ export function AuthForm({ mode }: { mode: "signin" | "signup" }) {
 
   if (state.notice) {
     return (
-      <div role="status" className="mt-8 rounded-xl bg-background p-6 text-center">
-        <p className="font-display text-[26px] font-semibold">Vérifiez votre boîte de réception</p>
-        <p className="mt-2 text-muted-foreground [overflow-wrap:anywhere]">{state.notice}</p>
+      <div role="status" className="mt-8 bg-steel p-6 text-center">
+        <p className="display text-[32px]">Vérifiez votre boîte de réception</p>
+        <p className="mt-2 text-fog [overflow-wrap:anywhere]">{state.notice}</p>
       </div>
     );
   }
@@ -26,7 +26,7 @@ export function AuthForm({ mode }: { mode: "signin" | "signup" }) {
   return (
     <form action={formAction} className="mt-8 grid gap-5" noValidate>
       {error && (
-        <p role="alert" className="rounded-lg bg-destructive-tint px-4 py-3 text-[14px] text-destructive">
+        <p role="alert" className="bg-danger/10 px-4 py-3 text-[15px] text-danger">
           {error}
         </p>
       )}

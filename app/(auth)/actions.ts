@@ -14,9 +14,9 @@ export async function signIn(_prev: AuthState, formData: FormData): Promise<Auth
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithPassword({ email, password: String(formData.get("password") ?? "") });
   if (error) return { error: "E-mail ou mot de passe incorrect.", email };
-  // Sans destination demandée : la boutique si les mensurations sont connues, sinon leur saisie.
-  const { data: measured } = await supabase.from("measurements").select("user_id").eq("user_id", data.user.id).maybeSingle();
-  redirect(safeNextPath(formData.get("next"), measured ? "/costumes" : "/compte/mensurations"));
+  // Sans destination demandée : la boutique si le profil de goût existe, sinon sa saisie.
+  const { data: profile } = await supabase.from("taste_profiles").select("user_id").eq("user_id", data.user.id).maybeSingle();
+  redirect(safeNextPath(formData.get("next"), profile ? "/boutique" : "/compte/profil"));
 }
 
 const CONFIRMATION_SENT = (email: string) =>
@@ -41,7 +41,7 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
   });
   if (error) return { error: "La création du compte a échoué. Vérifiez l'adresse e-mail, ou connectez-vous si vous avez déjà un compte.", email };
   if (!data.session) return { notice: CONFIRMATION_SENT(email) };
-  redirect("/compte/mensurations");
+  redirect("/compte/profil");
 }
 
 export async function signOut() {

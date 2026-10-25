@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Deux clients commandent au même instant le dernier article d'une taille : un seul doit l'obtenir.
+# Deux clients commandent au même instant le dernier exemplaire d'une variante : un seul doit l'obtenir.
 # Lancer après « npx supabase start » : bash supabase/tests/oversell.sh
 set -uo pipefail
 DB=${DB_URL:-postgresql://postgres:postgres@localhost:54322/postgres}
 A=30000000-0000-4000-8000-00000000000a
 B=30000000-0000-4000-8000-00000000000b
-VARIANT="(select v.id from product_variants v join products p on p.id = v.product_id where p.slug = 'costume-gris-anthracite' and v.size_label = '52')"
+VARIANT="(select v.id from product_variants v join products p on p.id = v.product_id where p.slug = 'le-coffre' and v.label = 'Unique')"
 
 initial=$(psql "$DB" -At -c "select stock from product_variants where id = $VARIANT")
 cleanup() {

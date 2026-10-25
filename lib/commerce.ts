@@ -30,18 +30,20 @@ export async function isAdmin() {
 export type CartLine = {
   variantId: string;
   quantity: number;
-  size: string;
+  label: string;
   stock: number;
-  product: { slug: string; name: string; color: string; priceCents: number; image: string | null; isActive: boolean };
+  priceCents: number;
+  product: { slug: string; name: string; image: string | null; isActive: boolean };
 };
 
 type CartRow = {
   variant_id: string;
   quantity: number;
   product_variants: {
-    size_label: string;
+    label: string;
     stock: number;
-    products: { slug: string; name: string; color: string; price_cents: number; image_url: string | null; is_active: boolean };
+    price_cents: number;
+    products: { slug: string; name: string; image_url: string | null; is_active: boolean };
   };
 };
 
@@ -49,24 +51,25 @@ export async function getCart(): Promise<CartLine[]> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("cart_items")
-    .select("variant_id, quantity, product_variants(size_label, stock, products(slug, name, color, price_cents, image_url, is_active))")
+    .select("variant_id, quantity, product_variants(label, stock, price_cents, products(slug, name, image_url, is_active))")
     .order("added_at");
-  return ((data ?? []) as unknown as CartRow[]).map(({ variant_id, quantity, product_variants: { size_label, stock, products: p } }) => ({
+  return ((data ?? []) as unknown as CartRow[]).map(({ variant_id, quantity, product_variants: { label, stock, price_cents, products: p } }) => ({
     variantId: variant_id,
     quantity,
-    size: size_label,
+    label,
     stock,
-    product: { slug: p.slug, name: p.name, color: p.color, priceCents: p.price_cents, image: p.image_url, isActive: p.is_active },
+    priceCents: price_cents,
+    product: { slug: p.slug, name: p.name, image: p.image_url, isActive: p.is_active },
   }));
 }
 
-export const cartTotal = (lines: CartLine[]) => lines.reduce((sum, l) => sum + l.product.priceCents * l.quantity, 0);
+export const cartTotal = (lines: CartLine[]) => lines.reduce((sum, l) => sum + l.priceCents * l.quantity, 0);
 
 // Une ligne ne peut pas partir si l'article est retiré ou si le stock est passé sous la quantité.
 export function lineProblem(line: CartLine): string | null {
   if (!line.product.isActive) return "Article retiré de la vente.";
   if (line.stock >= line.quantity) return null;
-  if (line.stock === 0) return "Épuisé dans cette taille.";
+  if (line.stock === 0) return "Épuisé dans ce format.";
   if (line.stock === 1) return "Il n’en reste qu’un : réduisez la quantité.";
   return `Il n’en reste que ${line.stock} : réduisez la quantité.`;
 }

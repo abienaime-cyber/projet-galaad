@@ -1,4 +1,3 @@
-import { Gauge, Ruler, ShieldCheck } from "@phosphor-icons/react/ssr";
 import type { ReactNode } from "react";
 import { SegmentedNav } from "@/components/segmented-nav";
 
@@ -8,59 +7,40 @@ const TABS = [
 ] as const;
 
 const POINTS = [
-  {
-    Icon: Ruler,
-    title: "Trois chiffres suffisent",
-    text: "Taille, poids et âge. Votre tour de poitrine et votre tour de taille affinent le calcul si vous les connaissez.",
-  },
-  {
-    Icon: Gauge,
-    title: "Une estimation, dite comme telle",
-    text: "Chaque taille conseillée indique son niveau de confiance, et la taille voisine quand vous êtes entre deux.",
-  },
-  {
-    Icon: ShieldCheck,
-    title: "Vos données restent les vôtres",
-    text: "Elles ne servent qu’au calcul de taille. Vous pouvez les effacer à tout moment.",
-  },
+  { title: "Six réponses", text: "Tasses par semaine, pur ou latte, doux ou intense, ce que vous avez déjà. Une minute." },
+  { title: "Un calcul, pas un avis", text: "Chaque article reçoit un score sur 100 et ses raisons. Quand deux se valent, le site le dit." },
+  { title: "Le prix de votre tasse", text: "Calculé sur les prix de la boutique et les doses d’Ippodo, à votre rythme." },
 ];
 
 export function AuthShell({ active, title, children }: { active: (typeof TABS)[number]["key"]; title: string; children: ReactNode }) {
   return (
-    <div className="mx-auto grid max-w-[1120px] gap-8 px-4 pt-10 sm:px-8 md:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
-      <section aria-labelledby="auth-title" className="card p-6 sm:p-10">
-        <SegmentedNav
-          label="Accès au compte"
-          items={TABS.map((tab) => ({ href: tab.href, label: tab.label, current: tab.key === active }))}
-        />
-        <h1 id="auth-title" className="mt-8 text-[36px] md:text-[44px]">
+    <div className="mx-auto grid max-w-[1200px] gap-px px-4 pt-10 pb-24 sm:px-6 md:pt-16 lg:grid-cols-2">
+      <section aria-labelledby="auth-title" className="bg-paper/70 p-6 sm:p-10">
+        <SegmentedNav label="Accès au compte" items={TABS.map((tab) => ({ href: tab.href, label: tab.label, current: tab.key === active }))} />
+        <h1 id="auth-title" className="display mt-8 text-[52px] sm:text-[64px]">
           {title}
         </h1>
         {children}
       </section>
 
-      <aside aria-labelledby="why-title" className="rounded-2xl bg-primary p-6 text-on-primary sm:p-10">
-        <p className="eyebrow text-on-primary/70">Pourquoi un compte</p>
-        <h2 id="why-title" className="mt-4 text-[32px] md:text-[38px]">
-          Votre taille, article par article
+      <aside aria-labelledby="why-title" data-theme="dark" className="bg-ink p-6 text-paper sm:p-10">
+        <h2 id="why-title" className="display text-[44px] sm:text-[52px]">
+          Le bon kit, pas le plus cher
         </h2>
-        <p className="mt-4 text-on-primary/75">
-          Votre compte garde vos mensurations. Carrure les compare au tableau de tailles de chaque chemise et de chaque
-          costume, et vous indique la taille à commander.
+        <p className="mt-4 text-paper/75">
+          Votre compte garde votre profil de goût. Contrebande le compare à chaque kit, chaque matcha et chaque ustensile, et classe la boutique pour vous.
         </p>
-        <dl className="mt-10 grid gap-8">
-          {POINTS.map(({ Icon, title, text }) => (
-            <div key={title} className="flex gap-4">
-              <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-on-primary/10 text-on-primary">
-                <Icon aria-hidden size={22} />
-              </span>
+        <ol className="mt-10 grid gap-6">
+          {POINTS.map(({ title, text }, i) => (
+            <li key={title} className="grid grid-cols-[2.5rem_minmax(0,1fr)] border-t border-line-dark pt-4">
+              <span className="mono text-matcha">{String(i + 1).padStart(2, "0")}</span>
               <div>
-                <dt className="font-display text-[22px] font-semibold">{title}</dt>
-                <dd className="mt-1 text-[15px] text-on-primary/75">{text}</dd>
+                <p className="display text-[26px]">{title}</p>
+                <p className="mt-1 text-[16px] text-paper/70">{text}</p>
               </div>
-            </div>
+            </li>
           ))}
-        </dl>
+        </ol>
       </aside>
     </div>
   );

@@ -1,19 +1,17 @@
-import { Minus, Plus } from "@phosphor-icons/react/ssr";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { secondaryButton, textLink } from "@/components/field";
-import { getProduct, getShopper } from "@/lib/catalog";
+import { textLink } from "@/components/field";
+import { Tag } from "@/components/tag";
+import { getProduct, getProducts, getShopper } from "@/lib/catalog";
+import { GRADE_LABEL, match, suggestFormat, TOOL_LABEL } from "@/lib/reco";
 import { OPEN_GRAPH } from "@/lib/site";
 import { createClient } from "@/lib/supabase/server";
-import { CATEGORY_PATH, CONFIDENCE_LABEL, FIT_LABEL, fitAll, price, type CatalogProduct } from "@/lib/shop";
-import { FIT_FEEDBACK } from "@/lib/validation";
-import { AddToCart } from "./add-to-cart";
+import { categoryOf, price, variantFigures, type CatalogProduct } from "@/lib/shop";
 import { Advisor } from "./advisor";
+import { ProductHero } from "./product-hero";
 import { ReviewForm } from "./review-form";
-import { TryOn } from "./try-on";
 
 export async function generateMetadata({ params }: PageProps<"/produit/[slug]">): Promise<Metadata> {
   const product = await getProduct((await params).slug);
@@ -21,14 +19,14 @@ export async function generateMetadata({ params }: PageProps<"/produit/[slug]">)
   return {
     title: product.name,
     description: product.description,
-    openGraph: { ...OPEN_GRAPH, images: product.image ? [{ url: product.image, width: 1000, height: 1250, alt: product.name }] : undefined },
+    openGraph: { ...OPEN_GRAPH, images: product.image ? [{ url: product.image, width: 1200, height: 1200, alt: `${product.name}, rendu 3D` }] : undefined },
   };
 }
 
 export default function ProductPage({ params }: PageProps<"/produit/[slug]">) {
   return (
-    <div className="mx-auto max-w-[1280px] px-4 pt-6 sm:px-8 md:pt-8">
-      <Suspense fallback={<div aria-busy className="mt-12 aspect-[4/5] max-h-[36rem] rounded-xl bg-muted lg:w-1/2" />}>
+    <div className="mx-auto max-w-[1440px] px-4 pt-6 pb-24 sm:px-6 md:pt-8">
+      <Suspense fallback={<div aria-busy className="mt-12 aspect-square max-h-[40rem] bg-steel-2 lg:w-1/2" />}>
         {params.then(({ slug }) => (
           <ProductView slug={slug} />
         ))}
@@ -38,151 +36,196 @@ export default function ProductPage({ params }: PageProps<"/produit/[slug]">) {
 }
 
 async function ProductView({ slug }: { slug: string }) {
-  const product = await getProduct(slug);
+  const [product, products, { signedIn, profile }] = await Promise.all([getProduct(slug), getProducts(), getShopper()]);
   if (!product) notFound();
-  const isSuit = product.category === "suit";
-  const sizes = product.sizes.map((s) => s.label);
+  const aisle = categoryOf(product.category);
+  const m = profile ? match(product, profile) : null;
+  const suggested = profile && product.category === "matcha" ? suggestFormat(product.variants, profile) : null;
+  const figures = Object.fromEntries(product.variants.map((v) => [v.id, variantFigures(product, v, profile)]));
+  const kicker = product.grade ? `Matcha · grade ${GRADE_LABEL[product.grade]}` : product.toolKind ? `Ustensile · ${TOOL_LABEL[product.toolKind]}` : `Kit · ${product.contents.length} pièces`;
 
   return (
     <>
-      <nav aria-label="Fil d’Ariane" className="text-[13px] text-muted-foreground">
-        <Link href="/" className="inline-flex min-h-11 items-center hover:text-foreground hover:underline">Accueil</Link>
-        <span aria-hidden className="mx-2">/</span>
-        <Link href={CATEGORY_PATH[product.category]} className="inline-flex min-h-11 items-center hover:text-foreground hover:underline">
-          {isSuit ? "Costumes" : "Chemises"}
+      <nav aria-label="Fil d’Ariane" className="mono mb-4 text-fog uppercase">
+        <Link href="/boutique" className="inline-flex min-h-11 items-center hover:text-ink">
+          Boutique
         </Link>
         <span aria-hidden className="mx-2">/</span>
-        <span aria-current="page" className="text-foreground">{product.name}</span>
+        <Link href={`/boutique?rayon=${aisle.slug}`} className="inline-flex min-h-11 items-center hover:text-ink">
+          {aisle.label}
+        </Link>
       </nav>
-      <div className="mt-2 grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-14">
-        <div className="card relative overflow-hidden bg-muted lg:sticky lg:top-24 lg:self-start">
-          {product.image ? (
-            <Image
-              src={product.image}
-              alt={`${product.name}, sur cintre`}
-              width={1000}
-              height={1250}
-              priority
-              sizes="(min-width: 1024px) 680px, 100vw"
-              className="aspect-[4/5] w-full object-cover"
-            />
+
+      <ProductHero
+        slug={product.slug}
+        name={product.name}
+        model={product.model}
+        image={product.image}
+        kicker={kicker}
+        choiceLabel={product.category === "matcha" ? "Format" : "Coloris"}
+        variants={product.variants}
+        defaultVariantId={suggested?.id ?? null}
+        figures={figures}
+      >
+        <p className="mt-5 max-w-[36rem] text-[18px] text-pretty">{product.description}</p>
+        <section aria-labelledby="pour-vous" className="mt-8 bg-ink p-5 text-paper sm:p-6" data-theme="dark">
+          <h2 id="pour-vous" className="mono text-matcha uppercase">
+            Pour vous
+          </h2>
+          {m ? (
+            <>
+              <p className="mt-2 flex items-baseline gap-3">
+                <span className="display text-[64px] leading-none">{m.score}</span>
+                <span className="mono text-fog-dark">/ 100 selon votre profil de goût</span>
+              </p>
+              <ul className="mt-4 grid gap-2 text-[16px] text-paper/85">
+                {m.reasons.map((r) => (
+                  <li key={r} className="flex gap-3">
+                    <span aria-hidden className="mt-2 size-1.5 shrink-0 bg-matcha" />
+                    {r}
+                  </li>
+                ))}
+              </ul>
+              {suggested && product.variants[0].stock > 0 && suggested.id !== product.variants[0].id && (
+                <p className="mono mt-4 text-fog-dark">Format présélectionné : {suggested.label}, la petite boîte ne tiendrait pas trois semaines.</p>
+              )}
+              <Link href="/compte/profil" className={`${textLink} mt-2 text-paper`}>
+                Modifier mon profil
+              </Link>
+            </>
           ) : (
-            <div className="aspect-[4/5]" />
+            <p className="mt-2 text-paper/80">
+              Faites votre profil de goût : le calcul dira si cet article vous va, combien de temps dure une boîte à votre rythme et ce que coûte votre tasse.{" "}
+              <Link href={signedIn ? "/compte/profil" : "/inscription"} className="text-matcha underline underline-offset-4">
+                {signedIn ? "Faire mon profil" : "Créer un compte"}
+              </Link>
+            </p>
           )}
-          {/* Seuls les visuels du catalogue d'origine ont leur version détourée pour l'essayage. */}
-          {product.image === `/products/${product.slug}.jpg` && <TryOn slug={product.slug} name={product.name} />}
-        </div>
+        </section>
+      </ProductHero>
 
-        <div className="lg:max-w-[32rem] lg:pt-2">
-          <h1 className="text-[36px] md:text-[46px]">{product.name}</h1>
-          <p className="mt-2 text-muted-foreground">
-            {product.color} · {product.material}
-          </p>
-          <p className="figures mt-4 text-[22px] font-semibold">{price(product.priceCents)}</p>
-
-          <Suspense fallback={<div aria-busy className="mt-8 h-72 rounded-xl bg-muted" />}>
-            <YourSize product={product} />
-          </Suspense>
-
-          <div className="card mt-10 px-5 sm:px-6">
-            <Disclosure title="Description" open>
-              <p className="text-pretty text-muted-foreground">{product.description}</p>
-            </Disclosure>
-            <Disclosure title="Coupe et matière">
-              <dl className="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-10 gap-y-3">
-                <dt className="text-muted-foreground">Coupe</dt>
-                <dd>{FIT_LABEL[product.fit]}</dd>
-                <dt className="text-muted-foreground">Matière</dt>
-                <dd>{product.material}</dd>
-                <dt className="text-muted-foreground">Couleur</dt>
-                <dd>{product.color}</dd>
-                {sizes.length > 0 && (
-                  <>
-                    <dt className="text-muted-foreground">Tailles</dt>
-                    <dd className="tabular-nums">
-                      {sizes[0]} à {sizes.at(-1)}
-                    </dd>
-                  </>
-                )}
-              </dl>
-            </Disclosure>
-          </div>
-
-          <Suspense fallback={null}>
-            <Reviews product={product} />
-          </Suspense>
-        </div>
+      <div className="mt-20 grid gap-16 lg:grid-cols-2">
+        {product.category === "kit" && <KitContents product={product} />}
+        {product.category === "matcha" && <Preparation product={product} />}
+        {product.category === "tool" && <InKits product={product} products={products} />}
+        <Details product={product} />
       </div>
+
+      {m && (
+        <div className="mt-16">
+          <Advisor slug={product.slug} />
+        </div>
+      )}
+
+      <Suspense fallback={null}>
+        <Reviews product={product} />
+      </Suspense>
     </>
   );
 }
 
-// Volet dépliable natif : clavier et lecteur d'écran sans script. Le « + » devient « − » à l'ouverture.
-function Disclosure({ title, open, children }: { title: string; open?: boolean; children: React.ReactNode }) {
+function KitContents({ product }: { product: CatalogProduct }) {
+  const kitPrice = product.variants[0].priceCents;
   return (
-    <details open={open} className="group border-b border-border last:border-b-0">
-      <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between text-[15px] font-semibold [&::-webkit-details-marker]:hidden">
-        {title}
-        <Plus aria-hidden size={18} className="group-open:hidden" />
-        <Minus aria-hidden size={18} className="hidden group-open:block" />
-      </summary>
-      <div className="pb-6 text-[15px]">{children}</div>
-    </details>
+    <section aria-labelledby="contenu-kit">
+      <h2 id="contenu-kit" className="display border-b border-ink pb-2 text-[44px]">
+        Pièces du kit
+      </h2>
+      <ol className="mt-4 grid gap-2">
+        {product.contents.map((item, i) => (
+          <li key={item.slug}>
+            <Link href={`/produit/${item.slug}`} className="group flex items-center justify-between gap-4 py-1">
+              <Tag index={String(i + 1).padStart(2, "0")}>{item.name}</Tag>
+              <span className="mono text-fog group-hover:text-ink">{price(item.priceCents)}</span>
+            </Link>
+          </li>
+        ))}
+      </ol>
+      {product.separatePriceCents && product.separatePriceCents > kitPrice && (
+        <p className="mono mt-6 border-t border-line pt-4">
+          Achetées une à une : {price(product.separatePriceCents)}. Dans le kit : {price(kitPrice)}, soit {price(product.separatePriceCents - kitPrice)} de moins.
+        </p>
+      )}
+    </section>
   );
 }
 
-async function YourSize({ product }: { product: CatalogProduct }) {
-  const { signedIn, measurements } = await getShopper();
-  const [{ rec, inStock }] = fitAll([product], measurements);
-  const sizes = product.sizes.map(({ label }) => ({
-    label,
-    variantId: product.variantIds[label],
-    inStock: (product.stock[label] ?? 0) > 0,
-    state: label === rec?.size ? ("chosen" as const) : label === rec?.alternative ? ("alternative" as const) : ("idle" as const),
-  }));
+const STEPS = [
+  { title: "Tamiser", text: "2 g de matcha, environ une cuillère et demie bombée, à travers le tamis dans le bol." },
+  { title: "Verser", text: "60 ml d’eau à 80 °C. Pour un latte : 3 g de matcha et 100 ml d’eau." },
+  { title: "Fouetter", text: "15 secondes, vite, en dessinant des M, jusqu’à une mousse fine. Pour un latte, ajoutez 100 ml de lait chaud." },
+];
 
+function Preparation({ product }: { product: CatalogProduct }) {
   return (
-    <>
-      <section aria-labelledby="your-size" className="card mt-8 border-t-4 border-accent p-5 sm:p-6">
-        <h2 id="your-size" className="eyebrow text-accent">
-          Votre taille
-        </h2>
-        {rec?.size ? (
-          <>
-            <p className="mt-3 flex items-baseline gap-3">
-              <span className={`figures text-[48px] leading-none font-bold text-foreground ${rec.estimated ? "estimated" : ""}`}>{rec.size}</span>
-              {rec.alternative && <span className="text-muted-foreground">ou {rec.alternative}</span>}
+    <section aria-labelledby="preparation">
+      <h2 id="preparation" className="display border-b border-ink pb-2 text-[44px]">
+        Préparation
+      </h2>
+      <ol className="mt-2">
+        {STEPS.map((s, i) => (
+          <li key={s.title} className="grid grid-cols-[3.5rem_minmax(0,1fr)] gap-2 border-b border-line py-4">
+            <span className="mono text-fog">{String(i + 1).padStart(2, "0")}</span>
+            <p>
+              <span className="display mr-2 text-[24px]">{s.title}</span>
+              {s.text}
             </p>
-            <p className="mt-3 text-[14px] text-muted-foreground">
-              Taille estimée, {CONFIDENCE_LABEL[rec.confidence]}.{" "}
-              {inStock ? <span className="font-semibold text-success">En stock dans votre taille.</span> : "Épuisée dans votre taille pour le moment."}
-            </p>
-            <Link href="/compte/mensurations" className={`${textLink} mt-2`}>
-              Modifier mes mensurations
-            </Link>
-          </>
-        ) : rec ? (
-          <p className="mt-2">
-            Vos mensurations sortent du tableau de tailles de cet article.{" "}
-            <Link href="/compte/mensurations" className="font-semibold underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground">
-              Vérifier mes mensurations
-            </Link>
-          </p>
-        ) : (
-          <>
-            <p className="mt-2 max-w-[30rem]">
-              Donnez votre taille, votre poids et votre âge : nous calculons la taille à prendre pour cet article.
-            </p>
-            <Link href={signedIn ? "/compte/mensurations" : "/inscription"} className={`${secondaryButton} mt-5`}>
-              {signedIn ? "Saisir mes mensurations" : "Créer un compte"}
-            </Link>
-          </>
-        )}
-      </section>
+          </li>
+        ))}
+      </ol>
+      <p className="mono mt-4 text-fog">
+        Doses et température :{" "}
+        <a href="https://ippodotea.com/blogs/recipes-to-brew-japanese-tea/matcha-latte-recipe" className="underline underline-offset-4 hover:text-ink">
+          méthode Ippodo
+        </a>
+        , maison de thé de Kyoto. Intensité de ce matcha : {product.intensity}/5.
+      </p>
+    </section>
+  );
+}
 
-      <AddToCart slug={product.slug} sizes={sizes} defaultSize={inStock ? rec!.size : null} />
-      {rec?.size && <Advisor slug={product.slug} />}
-    </>
+// Un ustensile : les kits qui le contiennent déjà.
+function InKits({ product, products }: { product: CatalogProduct; products: CatalogProduct[] }) {
+  const kits = products.filter((p) => p.contents.some((c) => c.slug === product.slug));
+  if (kits.length === 0) return null;
+  return (
+    <section aria-labelledby="dans-les-kits">
+      <h2 id="dans-les-kits" className="display border-b border-ink pb-2 text-[44px]">
+        Aussi dans
+      </h2>
+      <ul className="mt-2">
+        {kits.map((k) => (
+          <li key={k.slug} className="border-b border-line">
+            <Link href={`/produit/${k.slug}`} className="group flex min-h-14 items-center justify-between gap-4">
+              <span className="display text-[26px] group-hover:text-matcha-ink">{k.name}</span>
+              <span className="mono text-fog">{price(k.variants[0].priceCents)}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function Details({ product }: { product: CatalogProduct }) {
+  const rows: [string, string][] = [["Matière", product.material]];
+  if (product.grade) rows.push(["Grade", GRADE_LABEL[product.grade]], ["Intensité", `${product.intensity} sur 5, de doux à corsé`]);
+  if (product.variants.length > 1) rows.push(["Formats", product.variants.map((v) => v.label).join(", ")]);
+  rows.push(["Visuel", "Modèle 3D, pas une photo de l’article"]);
+  return (
+    <section aria-labelledby="details">
+      <h2 id="details" className="display border-b border-ink pb-2 text-[44px]">
+        Fiche
+      </h2>
+      <dl>
+        {rows.map(([k, v]) => (
+          <div key={k} className="grid grid-cols-[7rem_minmax(0,1fr)] gap-6 border-b border-line py-3">
+            <dt className="text-fog">{k}</dt>
+            <dd>{v}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }
 
@@ -191,7 +234,7 @@ const monthYear = new Intl.DateTimeFormat("fr-FR", { month: "long", year: "numer
 async function Reviews({ product }: { product: CatalogProduct }) {
   const supabase = await createClient();
   const [{ data: reviews }, { data: purchased }, { data: auth }] = await Promise.all([
-    supabase.from("reviews").select("id, user_id, rating, fit_feedback, comment, created_at").eq("product_id", product.id).order("created_at", { ascending: false }),
+    supabase.from("reviews").select("id, user_id, rating, comment, created_at").eq("product_id", product.id).order("created_at", { ascending: false }),
     supabase.rpc("has_purchased", { p_product_id: product.id }),
     supabase.auth.getUser(),
   ]);
@@ -200,26 +243,24 @@ async function Reviews({ product }: { product: CatalogProduct }) {
   const average = list.length ? list.reduce((s, r) => s + r.rating, 0) / list.length : 0;
 
   return (
-    <section aria-labelledby="reviews-title" className="mt-12">
-      <h2 id="reviews-title" className="text-[30px]">
+    <section aria-labelledby="reviews-title" className="mt-20">
+      <h2 id="reviews-title" className="display border-b border-ink pb-2 text-[44px]">
         Avis clients
       </h2>
       {list.length === 0 ? (
-        <p className="mt-2 text-sm text-muted-foreground">Aucun avis pour le moment. Seuls les clients qui ont acheté l’article peuvent le noter.</p>
+        <p className="mt-4 text-fog">Aucun avis pour le moment. Seuls les clients qui ont acheté l’article peuvent le noter.</p>
       ) : (
         <>
-          <p className="mt-2 text-sm text-muted-foreground">
-            <span className="figures text-[17px] font-semibold text-foreground">{average.toFixed(1).replace(".", ",")}</span> sur 5, {list.length} avis
+          <p className="mono mt-4">
+            {average.toFixed(1).replace(".", ",")} sur 5 · {list.length} avis
           </p>
-          <ul className="mt-5 grid gap-3">
+          <ul className="mt-4 grid gap-px md:grid-cols-2">
             {list.map((r) => (
-              <li key={r.id} className="card p-5 text-[14px]">
-                <p>
-                  <span className="font-semibold tabular-nums">{r.rating}/5</span>
-                  {r.fit_feedback && <span className="text-muted-foreground"> · {FIT_FEEDBACK[r.fit_feedback as keyof typeof FIT_FEEDBACK]}</span>}
-                  <span className="text-muted-foreground"> · {monthYear.format(new Date(r.created_at))}</span>
+              <li key={r.id} className="bg-paper/60 p-5 text-[16px]">
+                <p className="mono text-fog">
+                  {r.rating}/5 · {monthYear.format(new Date(r.created_at))}
                 </p>
-                {r.comment && <p className="mt-1 max-w-[34rem] [overflow-wrap:anywhere]">{r.comment}</p>}
+                {r.comment && <p className="mt-2 max-w-[40rem] [overflow-wrap:anywhere]">{r.comment}</p>}
               </li>
             ))}
           </ul>

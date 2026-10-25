@@ -4,7 +4,7 @@ import { updateTag } from "next/cache";
 import { AI_ERROR_MESSAGE, AI_QUOTA_MESSAGE, AiError, writeProductCopy } from "@/lib/ai";
 import { CATALOG_TAG } from "@/lib/catalog";
 import { requireAdmin } from "@/lib/commerce";
-import { FIT_LABEL } from "@/lib/shop";
+import { GRADE_LABEL, TOOL_LABEL, type Grade, type ToolKind } from "@/lib/reco";
 import { parseForm, productCopySchema } from "@/lib/validation";
 
 export type CopyState = { draft?: string; error?: string; saved?: boolean };
@@ -14,7 +14,7 @@ export async function generateCopy(_prev: CopyState, formData: FormData): Promis
   const { supabase } = await requireAdmin();
   const { data: p } = await supabase
     .from("products")
-    .select("name, category, fit, color, material, description")
+    .select("name, category, tool_kind, grade, intensity, material, description")
     .eq("id", String(formData.get("product_id") ?? ""))
     .maybeSingle();
   if (!p) return { error: "Produit introuvable." };
@@ -23,9 +23,8 @@ export async function generateCopy(_prev: CopyState, formData: FormData): Promis
   try {
     const { description } = await writeProductCopy({
       name: p.name,
-      category: p.category === "suit" ? "costume" : "chemise",
-      fit: FIT_LABEL[p.fit as keyof typeof FIT_LABEL],
-      color: p.color,
+      category: { kit: "kit", matcha: "matcha", tool: "ustensile" }[p.category as "kit" | "matcha" | "tool"],
+      details: p.grade ? `grade ${GRADE_LABEL[p.grade as Grade]}, intensité ${p.intensity}/5` : p.tool_kind ? TOOL_LABEL[p.tool_kind as ToolKind] : "",
       material: p.material,
       currentDescription: p.description,
       notes: String(formData.get("notes") ?? "").slice(0, 500),

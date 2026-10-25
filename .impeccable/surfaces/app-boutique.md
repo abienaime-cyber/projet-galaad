@@ -5,19 +5,24 @@ primary_target: "app/(boutique)"
 related_targets: ["app/page.tsx","components"]
 ---
 
-# Boutique (accueil, costumes, chemises, fiche produit)
+# Boutique (accueil, boutique, fiche produit)
 
-Mode : Persuade pour l'accueil, Operate pour les pages de catégorie et la fiche. Public : client Carrure qui vient d'enregistrer ses mensurations, ou visiteur qui découvre. Tâche : voir les costumes (et chemises) qui existent dans sa taille. Succès : en un clic après les mensurations, le client voit les costumes à sa taille, la taille affichée sur chaque photo.
+Mode : Persuade pour l'accueil, Operate pour la boutique et la fiche. Public : buveur de matcha latte en coffee shop qui veut le faire chez lui, ou amateur qui complète son matériel. Tâche : comprendre l'offre (un kit pour faire son matcha chez soi, au prix de la poudre), voir comment on prépare, trouver le kit qui lui va, l'ajouter au panier. Succès : depuis l'accueil, un clic mène au kit et à son prix ; après le profil de goût, la boutique « Pour moi » montre le bon kit en tête, avec son score et ses raisons.
 
-Contraintes : photos Pexels portées, détourées et posées sur un même gris de studio (#f1f0ed) ; aucun avis, aucun chiffre de vente inventé ; taille toujours « estimée » avec son niveau de confiance ; jamais « sur mesure » : on parle de « taille calculée ».
+Contraintes : aucune promesse de santé, aucun prix de coffee shop affiché comme un fait (le client donne le sien), faits de préparation sourcés (Ippodo), faits de fabrication sourcés (AFP). Visuels : modèles 3D faits en code, jamais présentés comme des photos.
 
-Historique : Apple Store (23/10/2026), rejeté (« ça fait cheap ») ; maison italienne sombre (24/10/2026), rejetée (« j'aime pas le design ») ; l'utilisateur demande de reprendre un site très connu et choisit Mr Porter (24/10/2026). Le site Mr Porter a refusé l'accès (403) : la mise en page suit la connaissance générale du site, sans copie de son nom, logo, textes ni photos.
+Historique : après Carrure (costumes), l'utilisateur change de produit le 25/10/2026 et impose une direction artistique d'après des captures d'un site de matcha au thème « cartel », avec trois vidéos de mouvements : protocole de préparation épinglé (tamiser, verser, fouetter), panneau vert qui recouvre la page en remontant, chaîne de production où la feuille devient poudre puis boîte.
 
 ## Direction contract
 
-THESIS: Le grand magasin de luxe en ligne, façon Mr Porter : page blanche, la marchandise sur gris de studio, la taille du client posée sur chaque photo. Refuse la vitrine sombre et la grille de tuiles Apple.
-OWN-WORLD: Fond blanc, texte noir #121212, gris de studio #f1f0ed sous chaque photo, un seul accent laiton foncé #85642c pour la taille. Marque CARRURE en Bodoni espacé, titres Bodoni à graisse de texte, tout le reste en Jost : noms d'articles et navigation en capitales espacées 12 px. Bandeau noir en tête, pied de page noir, bouton noir plein, angles droits, filets 1 px.
-STORY: Le visiteur voit trois tenues côte à côte sur le même gris et « Le costume à votre taille », donne ses mesures, retrouve sur l'accueil puis dans la catégorie les costumes en stock dans sa taille, sa taille en laiton sur chaque photo, ouvre une fiche et lit « Votre taille ».
-FIRST VIEWPORT: Accueil : bandeau noir, en-tête centré (marque puis rubriques), trois photos détourées sur gris (une sur mobile), titre Bodoni centré dessous. Catégorie : fil d'Ariane, titre centré, ligne de taille et onglets entre deux filets, grille 2 / 3 / 4 colonnes.
-FORM: Reprise d’un site connu demandée par l’utilisateur (sortie « canon ») : Mr Porter. seed: none (tirage volontairement sauté : l’utilisateur a imposé le site de référence ; un tirage aurait proposé d’autres directions que la sienne)
+THESIS: Le matcha comme marchandise de contrebande : on entre dans un dossier saisi, on inspecte les pièces étiquetées, on suit le protocole. Refuse la boutique de thé zen (bambou, beige, calligraphie) et la grille de cartes blanches.
+
+OWN-WORLD: Noir #0b0c0d, acier bleuté #d5dbe2 à #aab4be en dégradé, blanc #f4f6f8, un seul vert matcha acide #a3e048. Titres Barlow Condensed 800 en capitales serrées, texte Barlow, mentions techniques (doses, prix, numéros d'étiquette) en Fragment Mono. Étiquettes grises numérotées posées sur les objets 3D, filets 1 px, croix de repère aux angles des grilles, colonne de carrés de progression à droite. Angles droits.
+
+STORY: Le visiteur voit la plaque d'acier gravée CONTREBANDE et le prix du kit, inspecte les pièces saisies, suit le protocole au défilement, règle le prix de son matcha habituel et lit ce qu'il économise, voit la feuille devenir poudre puis boîte, ouvre le coffre et choisit son kit.
+
+FIRST VIEWPORT: Fond noir. Rangée d'horloges en mono (Kyoto, Paris, chez vous). Au centre, plaque d'acier brossé en 3D qui suit le pointeur, gravée CONTREBANDE et 抹茶. Dessous, titre condensé « Le matcha du coffee shop, chez vous » et la ligne de prix mono calculée (kit dès 49 €, tasse à 1,07 €). Bouton vert « Voir le Kit Essentiel » et lien « Faire mon profil de goût ». « (défiler) » en mono à gauche et à droite.
+
+FORM: Direction épinglée par l'utilisateur (captures et vidéos fournies), sans tirage. Geste signature : le protocole de préparation 3D piloté par le défilement (GSAP ScrollTrigger), réversible image par image. seed: none (unavailable)
+
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

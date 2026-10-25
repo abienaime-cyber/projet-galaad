@@ -15,7 +15,7 @@ const optionalText = (max: number) =>
 const quantity = z.coerce.number().int().min(1, "Quantité minimale : 1.").max(10, "Quantité maximale : 10.");
 
 export const cartLineSchema = z.object({
-  variantId: z.uuid("Choisissez une taille."),
+  variantId: z.uuid("Choisissez un format."),
   quantity,
 });
 
@@ -28,10 +28,9 @@ export const addressSchema = z.object({
 });
 
 export const RETURN_REASONS = {
-  too_small: "Trop petit",
-  too_large: "Trop grand",
+  damaged: "Arrivé abîmé",
   not_as_described: "Différent de la description",
-  damaged: "Article abîmé",
+  taste: "Le goût ne me convient pas",
   changed_mind: "Je ne le veux plus",
 } as const;
 
@@ -41,14 +40,9 @@ export const returnSchema = z.object({
   comment: optionalText(500),
 });
 
-export const FIT_FEEDBACK = { small: "Taille petit", true_to_size: "Taille normalement", large: "Taille grand" } as const;
-
 export const reviewSchema = z.object({
   productId: z.uuid(),
   rating: z.coerce.number().int().min(1, "Choisissez une note de 1 à 5.").max(5, "Choisissez une note de 1 à 5."),
-  fitFeedback: z
-    .enum(Object.keys(FIT_FEEDBACK) as [keyof typeof FIT_FEEDBACK])
-    .or(z.literal("").transform(() => null)),
   comment: optionalText(1000),
 });
 

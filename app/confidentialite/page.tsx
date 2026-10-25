@@ -5,20 +5,20 @@ import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Confidentialité",
-  description: "Les données que Carrure collecte, pourquoi, combien de temps, et comment exercer vos droits.",
+  description: "Les données que Contrebande collecte, pourquoi, combien de temps, et comment exercer vos droits.",
 };
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Confidentialité" updated="23 octobre 2026">
+    <LegalPage title="Confidentialité" updated="25 octobre 2026">
       <p>
-        Carrure est un projet étudiant de démonstration. Cette page décrit ce que le site enregistre, à quoi cela sert et comment
+        Contrebande est un projet étudiant de démonstration. Cette page décrit ce que le site enregistre, à quoi cela sert et comment
         exercer vos droits au titre du Règlement général sur la protection des données (RGPD).
       </p>
 
       <h2 id="responsable">Responsable du traitement</h2>
       <p>
-        L’équipe du projet Carrure.{" "}
+        L’équipe du projet Contrebande.{" "}
         {CONTACT_EMAIL ? (
           <>
             Contact : <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
@@ -32,30 +32,23 @@ export default function PrivacyPage() {
       <ul>
         <li>Compte : adresse e-mail, nom si vous le donnez, mot de passe chiffré. Pour vous identifier.</li>
         <li>
-          Mensurations : taille, poids, âge, et si vous les donnez, tours de poitrine et de taille, coupe préférée. Pour calculer votre
-          taille, article par article. Vous pouvez les modifier ou les supprimer à tout moment dans{" "}
-          <Link href="/compte/mensurations">votre compte</Link>.
+          Profil de goût : nombre de tasses par semaine, façon de boire le matcha, goût préféré, ustensiles déjà possédés et, si vous le
+          donnez, le prix de votre matcha en coffee shop. Pour classer la boutique et calculer le prix de votre tasse. Vous pouvez le
+          modifier ou l’effacer à tout moment dans <Link href="/compte/profil">votre compte</Link>.
         </li>
         <li>Adresse de livraison, panier, commandes et retours. Pour traiter vos commandes (paiement simulé).</li>
-        <li>Avis : note, ressenti sur la taille et commentaire, publiés sur la fiche de l’article.</li>
+        <li>Avis : note et commentaire, publiés sur la fiche de l’article.</li>
       </ul>
       <p>
-        Base légale : l’exécution du service que vous demandez (calcul de taille, commande). Aucune donnée n’est vendue ni utilisée à
+        Base légale : l’exécution du service que vous demandez (recommandation, commande). Aucune donnée n’est vendue ni utilisée à
         des fins publicitaires.
       </p>
 
       <h2 id="ia">Conseiller IA</h2>
       <p>
-        Quand vous demandez un conseil sur une fiche produit, vos mensurations et la taille calculée sont envoyées à Anthropic, qui
+        Quand vous demandez un conseil sur une fiche produit, votre profil de goût et le score calculé sont envoyés à Anthropic, qui
         fournit le modèle d’IA. Ni votre nom ni votre e-mail ne sont transmis. Rien n’est envoyé tant que vous n’appuyez pas sur le
         bouton.
-      </p>
-
-      <h2 id="camera">Essayage par caméra</h2>
-      <p>
-        L’essayage utilise votre caméra seulement après votre accord. L’image est traitée dans votre navigateur : elle n’est ni envoyée ni
-        enregistrée. À la première ouverture, le navigateur télécharge le modèle de détection depuis les serveurs de Google et de jsDelivr,
-        qui voient alors votre adresse IP, comme pour tout fichier téléchargé.
       </p>
 
       <h2 id="sous-traitants">Hébergement et sous-traitants</h2>
@@ -63,7 +56,6 @@ export default function PrivacyPage() {
         <li>Supabase : base de données et authentification.</li>
         <li>Vercel : hébergement du site et mesure d’audience.</li>
         <li>Anthropic : conseiller IA, uniquement à votre demande.</li>
-        <li>Google et jsDelivr : fichiers du modèle d’essayage, uniquement si vous ouvrez l’essayage.</li>
       </ul>
 
       <h2 id="duree">Durée de conservation</h2>
@@ -86,7 +78,7 @@ export default function PrivacyPage() {
       <h2 id="droits">Vos droits</h2>
       <p>
         Vous pouvez accéder à vos données, les rectifier, les effacer, vous opposer à leur traitement ou demander leur portabilité. Les
-        mensurations se gèrent directement dans votre compte ; pour le reste, écrivez au responsable du traitement. Vous pouvez aussi
+        réponses du profil de goût se gèrent directement dans votre compte ; pour le reste, écrivez au responsable du traitement. Vous pouvez aussi
         adresser une réclamation à la CNIL sur <a href="https://www.cnil.fr">cnil.fr</a>.
       </p>
     </LegalPage>

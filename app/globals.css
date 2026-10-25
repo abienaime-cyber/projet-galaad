@@ -1,84 +1,90 @@
 @import "tailwindcss";
 
-/* Système de design généré par UI UX Pro Max (design-system/carrure/MASTER.md).
-   Palette « Museum/Gallery » de la base du skill (n° 76) : noir galerie sur blanc, aucune couleur d'accent.
-   Les photos gardent leur fond gris clair (--color-muted) : seul le vêtement porte la couleur. */
+/* Contrebande : noir, acier bleuté, un seul vert matcha. Angles droits, filets de 1 px.
+   Contrastes vérifiés : fog sur steel 5,5:1, fog-dark sur ink 8:1, matcha-ink sur steel 5,1:1. */
 @theme {
-  --color-primary: #18181b;
-  --color-on-primary: #ffffff;
-  --color-primary-hover: #27272a;
-  --color-secondary: #27272a;
-  --color-accent: #18181b;
-  --color-accent-hover: #3f3f46;
-  --color-on-accent: #ffffff;
-  --color-background: #fafafa;
-  --color-foreground: #09090b;
-  --color-card: #ffffff;
-  --color-muted: #e8ecf0;
-  --color-muted-foreground: #475569;
-  --color-border: #e4e4e7;
-  /* Bord des champs : #E4E4E7 ne fait que 1,2:1 sur blanc ; il faut 3:1 pour un contour de champ. */
-  --color-input: #71717a;
-  --color-ring: #18181b;
-  /* #DC2626 de la palette tombe à 4,4:1 sur le fond d'erreur rosé : un cran plus sombre. */
-  --color-destructive: #b91c1c;
-  --color-destructive-tint: #fef2f2;
-  --color-success: #15803d;
+  --color-ink: #0b0c0d;
+  --color-ink-2: #17191c;
+  --color-steel: #d5dbe2;
+  --color-steel-2: #c4ccd5;
+  --color-steel-3: #aab4be;
+  --color-paper: #f4f6f8;
+  --color-matcha: #a3e048;
+  --color-matcha-hover: #b6ee63;
+  --color-matcha-ink: #33590f;
+  --color-fog: #4a545f;
+  --color-fog-dark: #9aa4ae;
+  --color-line: rgb(11 12 13 / 0.16);
+  --color-line-dark: rgb(255 255 255 / 0.14);
+  --color-danger: #9f1d14;
+  --color-danger-dark: #ff8a7a;
 
-  --font-sans: var(--font-montserrat), "Helvetica Neue", Arial, sans-serif;
-  --font-display: var(--font-cormorant), Garamond, Georgia, serif;
-
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px rgb(0 0 0 / 0.15);
+  --font-display: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-barlow), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-fragment-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
-  --animate-spinner: spinner-fade 1s linear infinite;
+  --animate-blink: blink 1.1s steps(1) infinite;
 
-  @keyframes spinner-fade {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0.15;
+  @keyframes blink {
+    50% {
+      opacity: 0;
     }
   }
 }
 
-/* Mouvement réduit : transitions coupées, rien ne se soulève au survol. */
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
   ::after {
     transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
 
-@custom-variant reduced-transparency (@media (prefers-reduced-transparency: reduce));
+/* Hauteur de l'en-tête collant : deux lignes sous 768 px. Les sections épinglées commencent dessous. */
+:root {
+  --header-h: 6rem;
+}
+@media (min-width: 768px) {
+  :root {
+    --header-h: 3.5rem;
+  }
+}
 
 @layer base {
   html {
     color-scheme: light;
     -webkit-tap-highlight-color: transparent;
+    scrollbar-color: var(--color-steel-3) transparent;
   }
 
   body {
-    background: var(--color-background);
-    color: var(--color-foreground);
+    background: var(--color-steel);
+    color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.5;
   }
 
   ::selection {
-    background: rgb(24 24 27 / 0.12);
+    background: var(--color-matcha);
+    color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-ring);
+    outline: 2px solid var(--color-ink);
     outline-offset: 2px;
+    box-shadow: 0 0 0 5px var(--color-matcha);
+  }
+
+  .dark :focus-visible,
+  [data-theme="dark"] :focus-visible {
+    outline-color: var(--color-matcha);
+    box-shadow: none;
   }
 
   a,
@@ -92,19 +98,19 @@
 
   input,
   textarea {
-    caret-color: var(--color-accent);
+    caret-color: var(--color-matcha-ink);
   }
 
   select {
     appearance: none;
-    background: var(--color-card)
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 3.5 5 7l3.5-3.5' fill='none' stroke='%2318181b' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")
+    background: var(--color-paper)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 3.5 5 7l3.5-3.5' fill='none' stroke='%230b0c0d' stroke-width='1.4'/%3E%3C/svg%3E")
       no-repeat right 14px center / 10px;
     padding-right: 38px;
   }
 
   ::placeholder {
-    color: var(--color-muted-foreground);
+    color: var(--color-fog);
     opacity: 1;
   }
 
@@ -115,46 +121,49 @@
   }
 
   a {
-    text-underline-offset: 0.2em;
+    text-underline-offset: 0.22em;
     text-decoration-thickness: 1px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
 }
 
-/* Titres en Cormorant, sauf les petites capitales et les noms d'articles (font-sans). Hors couche, pour primer sur les utilitaires. */
-:is(h1, h2, h3):not(.eyebrow):not(.font-sans) {
+/* Titre condensé en capitales : la voix de la marque. */
+@utility display {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  text-wrap: balance;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.005em;
 }
 
-/* Petites capitales espacées : navigation, libellés de section, boutons. */
-@utility eyebrow {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 1.4;
-  text-transform: uppercase;
+/* Mention technique : doses, prix, numéros, indications de défilement. */
+@utility mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
 }
 
 @utility figures {
-  font-family: var(--font-sans);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
-/* Valeur estimée : soulignée en pointillé, une mesure réelle ne l'est pas. */
-@utility estimated {
-  text-decoration: underline dotted var(--color-input);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+/* Fond acier : un dégradé de projecteur, du clair au centre au gris bleu sur les bords. */
+@utility steel-light {
+  background: radial-gradient(120% 90% at 50% 35%, #e6ebf0 0%, var(--color-steel) 45%, var(--color-steel-3) 100%);
 }
 
-/* Carte : fond blanc, rayon 12 px, filet gris et ombre légère (le style galerie retient l'ombre). */
-@utility card {
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  box-shadow: var(--shadow-sm);
+/* Grille de repérage : filets et croix aux intersections, comme une planche technique. */
+@utility registration {
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px), linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: var(--cell, 33.333%) var(--cell-h, 25%);
 }
+

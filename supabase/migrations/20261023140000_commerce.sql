@@ -1,9 +1,8 @@
 -- Paniers, commandes, retours et avis (partie B), plus les vues du tableau de bord admin.
 
 create type public.order_status as enum ('paid', 'shipped', 'delivered', 'cancelled');
-create type public.return_reason as enum ('too_small', 'too_large', 'not_as_described', 'damaged', 'changed_mind');
+create type public.return_reason as enum ('damaged', 'not_as_described', 'taste', 'changed_mind');
 create type public.return_status as enum ('requested', 'accepted', 'refused', 'refunded');
-create type public.size_feedback as enum ('small', 'true_to_size', 'large');
 
 -- Panier : un par client, persistant en base -------------------------------
 
@@ -51,7 +50,7 @@ create table public.order_items (
   variant_id uuid not null references public.product_variants (id) on delete restrict,
   -- Nom et prix figés : la fiche produit peut changer après la vente.
   product_name text not null,
-  size_label text not null,
+  variant_label text not null,
   unit_price_cents integer not null check (unit_price_cents > 0),
   quantity smallint not null check (quantity between 1 and 10),
   unique (order_id, variant_id)
@@ -103,7 +102,6 @@ create table public.reviews (
   product_id uuid not null references public.products (id) on delete cascade,
   user_id uuid not null references public.profiles (id) on delete cascade,
   rating smallint not null check (rating between 1 and 5),
-  fit_feedback public.size_feedback,
   comment text check (char_length(comment) <= 1000),
   created_at timestamptz not null default now(),
   unique (product_id, user_id)
@@ -125,7 +123,7 @@ $$;
 
 -- Panier ---------------------------------------------------------------------
 
--- Ajoute (ou cumule) une taille au panier du client connecté. RLS appliquée (security invoker).
+-- Ajoute (ou cumule) une variante au panier du client connecté. RLS appliquée (security invoker).
 create function public.add_to_cart(p_variant_id uuid, p_quantity smallint default 1) returns void
 language plpgsql set search_path = '' as $$
 declare
@@ -146,7 +144,7 @@ $$;
 --
 -- Tout se passe dans une seule transaction :
 -- 1. on verrouille (FOR UPDATE) les variantes du panier, triées par id pour éviter les interblocages ;
---    une commande concurrente sur la même taille attend la fin de celle-ci ;
+--    une commande concurrente sur la même variante attend la fin de celle-ci ;
 -- 2. on vérifie le stock sous verrou, puis on le décrémente ;
 -- 3. la contrainte CHECK (stock >= 0) reste le dernier filet de sécurité.
 -- Si une étape échoue, rien n'est écrit : ni commande, ni décrément.
@@ -180,7 +178,7 @@ begin
     raise exception 'Panier vide' using errcode = 'P0002';
   end if;
 
-  select string_agg(p.name || ' (' || v.size_label || ')', ', ') into v_short
+  select string_agg(p.name || ' (' || v.label || ')', ', ') into v_short
   from public.cart_items ci
   join public.product_variants v on v.id = ci.variant_id
   join public.products p on p.id = v.product_id
@@ -190,7 +188,7 @@ begin
   end if;
 
   insert into public.orders (user_id, total_cents, ship_recipient, ship_line1, ship_line2, ship_postal_code, ship_city, ship_country)
-  select v_user, sum(p.price_cents * ci.quantity), v_address.recipient, v_address.line1, v_address.line2,
+  select v_user, sum(v.price_cents * ci.quantity), v_address.recipient, v_address.line1, v_address.line2,
     v_address.postal_code, v_address.city, v_address.country
   from public.cart_items ci
   join public.product_variants v on v.id = ci.variant_id
@@ -198,8 +196,8 @@ begin
   where ci.cart_id = v_cart
   returning id into v_order;
 
-  insert into public.order_items (order_id, variant_id, product_name, size_label, unit_price_cents, quantity)
-  select v_order, v.id, p.name, v.size_label, p.price_cents, ci.quantity
+  insert into public.order_items (order_id, variant_id, product_name, variant_label, unit_price_cents, quantity)
+  select v_order, v.id, p.name, v.label, v.price_cents, ci.quantity
   from public.cart_items ci
   join public.product_variants v on v.id = ci.variant_id
   join public.products p on p.id = v.product_id
@@ -273,10 +271,15 @@ with sold as (
   select coalesce(sum(oi.quantity), 0) as units
   from public.order_items oi join public.orders o on o.id = oi.order_id
   where o.status <> 'cancelled'
-), wrong_size as (
+), damaged as (
   select coalesce(sum(r.quantity), 0) as units
   from public.returns r
-  where r.reason in ('too_small', 'too_large') and r.status <> 'refused'
+  where r.reason = 'damaged' and r.status <> 'refused'
+), customers as (
+  select count(*) as total,
+    count(*) filter (where exists (select 1 from public.taste_profiles t where t.user_id = p.id)) as with_profile
+  from public.profiles p
+  where p.role = 'customer'
 )
 select
   coalesce(sum(o.total_cents), 0)::bigint as revenue_cents,
@@ -285,9 +288,11 @@ select
   (select count(*) from public.profiles p where p.role = 'customer' and p.created_at > now() - interval '30 days')::int
     as new_customers_30d,
   (select units from sold)::int as units_sold,
-  (select units from wrong_size)::int as wrong_size_returns,
+  (select units from damaged)::int as damaged_returns,
   case when (select units from sold) = 0 then 0
-    else round(100.0 * (select units from wrong_size) / (select units from sold), 1) end as wrong_size_return_rate
+    else round(100.0 * (select units from damaged) / (select units from sold), 1) end as damaged_return_rate,
+  case when (select total from customers) = 0 then 0
+    else round(100.0 * (select with_profile from customers) / (select total from customers), 1) end as taste_profile_rate
 from public.orders o
 where o.status <> 'cancelled';
 
@@ -301,14 +306,15 @@ where o.status <> 'cancelled'
 group by p.slug, p.name
 order by units desc, revenue_cents desc;
 
-create view public.admin_sizes_sold with (security_invoker = true) as
-select p.category, oi.size_label, sum(oi.quantity)::int as units
+-- Formats vendus : 30 g ou 100 g pour le matcha, coloris pour les ustensiles.
+create view public.admin_variants_sold with (security_invoker = true) as
+select p.category, oi.variant_label, sum(oi.quantity)::int as units
 from public.order_items oi
 join public.orders o on o.id = oi.order_id
 join public.product_variants v on v.id = oi.variant_id
 join public.products p on p.id = v.product_id
 where o.status <> 'cancelled'
-group by p.category, oi.size_label
+group by p.category, oi.variant_label
 order by units desc;
 
 create view public.admin_returns_by_reason with (security_invoker = true) as
@@ -318,7 +324,7 @@ where status <> 'refused'
 group by reason
 order by units desc;
 
-revoke all on public.admin_kpis, public.admin_top_products, public.admin_sizes_sold, public.admin_returns_by_reason from anon;
+revoke all on public.admin_kpis, public.admin_top_products, public.admin_variants_sold, public.admin_returns_by_reason from anon;
 
 revoke execute on function public.add_to_cart(uuid, smallint) from public, anon;
 grant execute on function public.add_to_cart(uuid, smallint) to authenticated;

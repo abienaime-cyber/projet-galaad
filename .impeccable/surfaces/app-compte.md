@@ -5,24 +5,22 @@ primary_target: "app/compte"
 related_targets: ["app/(auth)","components"]
 ---
 
-# Espace compte (connexion, inscription, mensurations)
+# Espace compte (connexion, inscription, profil de goût, commandes)
 
-Mode : Operate. Public : client Carrure, sur téléphone ou ordinateur, souvent mètre ruban en main. Tâche : créer un compte, puis saisir taille, poids, âge et, s'il les connaît, tour de poitrine, tour de taille et coupe préférée. Succès : profil enregistré en moins d'une minute, et le client comprend ce que ses chiffres donnent comme taille.
+Mode : Operate. Public : client Contrebande, souvent sur téléphone. Tâche : créer un compte, puis remplir le profil de goût (tasses par semaine, pur ou latte, doux ou intense, ustensiles déjà possédés, prix de son matcha en coffee shop). Succès : profil rempli en moins d'une minute, et le client lit aussitôt ce que le calcul en tire : prix de sa tasse, durée d'une boîte, économie.
 
-Contraintes : vouvoiement sobre, unités toujours affichées, valeurs estimées toujours signalées comme telles, rien d'inventé.
-
-Historique : le monde « atelier de coupe » (marine, mètre jaune, angles carrés) a été rejeté par l'utilisateur le 23/10/2026 ; il réclame le look Apple Store. Direction épinglée par l'utilisateur, sans tirage.
+Contraintes : vouvoiement, unités toujours affichées, aucun chiffre inventé, les données de goût expliquées et effaçables.
 
 ## Direction contract
 
-THESIS: Le compte comme une page de l'Apple Store : blanc, calme, une seule couleur d'action, et la taille lue sur un curseur iOS. Refuse le formulaire d'administration gris et toute matière « atelier ».
+THESIS: Le profil de goût comme une fiche de déclaration en douane : des cases nettes, des réponses courtes, et le verdict calculé imprimé à côté. Refuse le formulaire d'administration gris.
 
-OWN-WORLD: Fond blanc, tuiles #f5f5f7 très arrondies (28 px), texte #1d1d1f et #6e6e73, filets #d2d2d7, un seul bleu d'action #0071e3 (liens #0066cc), rouge #e30000 pour les erreurs. SF Pro sur les appareils Apple, Inter ailleurs. Boutons pilule, champs à libellé flottant arrondis à 12 px, choix en tuiles à bordure bleue comme le choix de capacité d'un iPhone, onglets en contrôle segmenté iOS.
+OWN-WORLD: Même monde que la boutique : acier bleuté #d5dbe2, noir #0b0c0d, vert #a3e048 pour l'action et l'état choisi. Cases à cocher et choix en tuiles carrées à filet 1 px, la tuile choisie passe au noir. Libellés en Barlow, valeurs en Fragment Mono, titres Barlow Condensed.
 
-STORY: Le client saisit ses chiffres, voit le curseur glisser vers sa taille et la pastille de taille s'allumer, enregistre, et lit si la valeur est mesurée ou estimée.
+STORY: Le client répond, voit le relevé à droite se mettre à jour (tasses par boîte, prix de la tasse, économie mensuelle), enregistre, arrive sur la boutique « Pour moi ».
 
-FIRST VIEWPORT: Barre de navigation claire translucide de 48 px, mot Carrure à gauche. Mensurations : grand titre de 48 px, intro grise de 21 px ; formulaire à gauche ; à droite une tuile #f5f5f7 collante avec la jauge (piste iOS, partie remplie bleue, pouce blanc ombré, pastilles de tailles chemise au-dessus et costume au-dessous) et les lectures en grands chiffres. Connexion : colonne centrée de 460 px, contrôle segmenté, titre centré, champs flottants, bouton pilule bleu ; tuile grise « Votre taille, article par article » en dessous.
+FIRST VIEWPORT: Titre condensé « Profil de goût », une ligne d'explication. Formulaire en colonne à gauche, relevé noir collant à droite (sous le formulaire sur mobile). Connexion : carte acier centrée, onglets Se connecter / Créer un compte, bouton vert.
 
-FORM: Canon de la catégorie, Apple Store (apple.com/fr/shop), choisi explicitement par l'utilisateur. Geste signature : le curseur iOS dont le pouce suit un ressort critique. seed: seed:a1519ec5236d8983 (tirage fait ; direction épinglée par l'utilisateur, structure conservée)
+FORM: Extension de la direction épinglée de la boutique. Geste signature : le relevé qui se recalcule pendant la saisie. seed: none (unavailable)
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

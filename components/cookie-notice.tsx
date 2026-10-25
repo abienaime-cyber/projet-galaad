@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useState, useSyncExternalStore } from "react";
-import { secondaryButton } from "./field";
+import { ghostButton } from "./field";
 
-const KEY = "carrure-cookies-vu";
+const KEY = "contrebande-cookies-vu";
 const noSubscribe = () => () => {};
 
 function readSeen() {
@@ -30,14 +30,14 @@ export function CookieNotice() {
   }
 
   return (
-    <div role="region" aria-label="Cookies" className="fixed inset-x-4 bottom-4 z-40 mx-auto max-w-[640px] rounded-xl bg-card p-5 shadow-xl sm:flex sm:items-center sm:gap-6">
-      <p className="text-sm text-muted-foreground">
-        Carrure ne dépose que les cookies nécessaires à votre connexion. La mesure d’audience se fait sans cookie.{" "}
-        <Link href="/confidentialite#cookies" className="font-semibold text-foreground underline underline-offset-4">
+    <div role="region" aria-label="Cookies" data-theme="dark" className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-[640px] bg-ink p-5 text-paper shadow-[0_18px_40px_rgb(0_0_0/0.35)] sm:flex sm:items-center sm:gap-6">
+      <p className="text-[15px] text-paper/75">
+        Contrebande ne dépose que les cookies nécessaires à votre connexion. La mesure d’audience se fait sans cookie.{" "}
+        <Link href="/confidentialite#cookies" className="text-paper underline underline-offset-4">
           En savoir plus
         </Link>
       </p>
-      <button type="button" onClick={close} className={`${secondaryButton} mt-3 shrink-0 sm:mt-0`}>
+      <button type="button" onClick={close} className={`${ghostButton} mt-3 h-11 shrink-0 text-[17px] sm:mt-0`}>
         J’ai compris
       </button>
     </div>

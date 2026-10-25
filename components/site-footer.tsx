@@ -1,29 +1,34 @@
 import Link from "next/link";
+import { CATEGORIES } from "@/lib/shop";
 
-const footLink = "inline-flex min-h-11 items-center text-on-primary/75 transition-colors duration-200 hover:text-on-primary";
+const footLink = "inline-flex min-h-11 items-center text-paper/70 transition-colors duration-150 hover:text-matcha";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 bg-primary text-[14px] text-on-primary/75 md:mt-32">
-      <div className="mx-auto grid max-w-[1280px] gap-10 px-4 pt-16 pb-10 sm:px-8 md:grid-cols-[1fr_auto_auto] md:gap-16">
-        <div>
-          <p className="font-display text-[32px] leading-none font-semibold text-on-primary">Carrure</p>
-          <p className="mt-4 max-w-[28rem]">Chemises et costumes pour homme, avec votre taille calculée pour chaque article.</p>
-        </div>
+    <footer className="bg-ink text-[15px] text-paper/70" data-theme="dark">
+      <div className="mx-auto grid max-w-[1440px] gap-10 px-4 pt-16 pb-8 sm:grid-cols-3 sm:px-6">
         <nav aria-label="Boutique" className="flex flex-col">
-          <p className="eyebrow mb-2 text-on-primary">Boutique</p>
-          <Link href="/costumes" className={footLink}>
-            Costumes
+          <p className="mono mb-2 text-paper uppercase">Boutique</p>
+          {CATEGORIES.map((c) => (
+            <Link key={c.value} href={`/boutique?rayon=${c.slug}`} className={footLink}>
+              {c.label}
+            </Link>
+          ))}
+        </nav>
+        <nav aria-label="Compte" className="flex flex-col">
+          <p className="mono mb-2 text-paper uppercase">Compte</p>
+          <Link href="/compte/profil" className={footLink}>
+            Profil de goût
           </Link>
-          <Link href="/chemises" className={footLink}>
-            Chemises
+          <Link href="/compte/commandes" className={footLink}>
+            Commandes et retours
           </Link>
-          <Link href="/inscription" className={footLink}>
-            Trouver ma taille
+          <Link href="/panier" className={footLink}>
+            Panier
           </Link>
         </nav>
         <nav aria-label="Informations légales" className="flex flex-col">
-          <p className="eyebrow mb-2 text-on-primary">Informations</p>
+          <p className="mono mb-2 text-paper uppercase">Informations</p>
           <Link href="/confidentialite" className={footLink}>
             Confidentialité
           </Link>
@@ -32,9 +37,14 @@ export function SiteFooter() {
           </Link>
         </nav>
       </div>
-      <p className="mx-auto max-w-[1280px] border-t border-on-primary/15 px-4 py-6 text-[13px] sm:px-8">
-        Carrure est un projet étudiant de démonstration. Aucune vente réelle.
+      {/* Le nom de la marque sur toute la largeur, comme une plaque. */}
+      <p aria-hidden className="display mx-auto max-w-[1440px] overflow-hidden px-3 text-center text-[18.5vw] leading-[0.78] text-paper xl:text-[266px]">
+        Contrebande
       </p>
+      <div className="mono mx-auto flex max-w-[1440px] flex-wrap justify-between gap-x-8 gap-y-2 border-t border-line-dark px-4 py-6 text-[12px] text-fog-dark sm:px-6">
+        <p>© 2026 Contrebande. Projet étudiant de démonstration : aucune vente réelle.</p>
+        <p>Objets modélisés en 3D. Doses : Ippodo (Kyoto). Fabrication : AFP.</p>
+      </div>
     </footer>
   );
 }
