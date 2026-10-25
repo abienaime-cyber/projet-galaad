@@ -66,7 +66,6 @@ export default async function HomePage() {
       <Hero
         kitName={kit?.name ?? "Kit Essentiel"}
         kitSlug="kit-essentiel"
-        kitVariantId={firstInStock(kit)?.id ?? null}
         kitPrice={kit ? price(minPrice(kit)) : "—"}
         cupPrice={refill?.matchaGrams ? price(costPerCupCents(refill.priceCents, refill.matchaGrams, "pur")) : "—"}
       />

@@ -57,6 +57,9 @@ const button =
 
 export const primaryButton = `${button} bg-matcha text-ink hover:bg-matcha-hover`;
 
+// Sur le panneau vert : noir plein.
+export const inkButton = `${button} bg-ink text-paper hover:bg-ink-2`;
+
 // Sur fond clair : filet noir, se remplit au survol.
 export const secondaryButton = `${button} text-ink shadow-[inset_0_0_0_1.5px_var(--color-ink)] hover:bg-ink hover:text-paper`;
 

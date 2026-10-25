@@ -7,10 +7,10 @@ import { useScene } from "@/components/three/use-scene";
 
 // Doses et gestes : méthode de la maison Ippodo (Kyoto).
 export const PROTOCOL = [
-  { title: "Tamiser", text: "2 g de matcha à travers le tamis, dans le bol. Plus de grumeaux." },
-  { title: "Verser", text: "60 ml d’eau à 80 °C : de l’eau bouillante, refroidie un instant dans une tasse." },
-  { title: "Fouetter", text: "15 secondes, vite, en dessinant des M. La mousse se forme en surface." },
-  { title: "Servir", text: "Tel quel, ou sur 100 ml de lait chaud pour un latte, avec 3 g de matcha." },
+  { title: "Tamiser", text: "2 g de matcha à travers le tamis, dans le bol." },
+  { title: "Verser", text: "60 ml d’eau à 80 °C." },
+  { title: "Fouetter", text: "15 secondes, vite." },
+  { title: "Servir", text: "Tel quel. Pour un latte : 3 g de matcha, 100 ml d’eau et 100 ml de lait." },
 ];
 
 // Le protocole épinglé : le défilement fait avancer la scène 3D, image par image, dans les deux sens.
@@ -111,7 +111,7 @@ export function Protocol() {
       <p aria-hidden className="mono absolute top-1/2 left-4 text-[12px] text-fog-dark max-sm:hidden">
         (défiler)
       </p>
-      <p aria-hidden className="mono absolute top-1/2 right-4 text-[12px] text-fog-dark max-sm:hidden">
+      <p aria-hidden className="mono absolute top-1/2 right-10 text-[12px] text-fog-dark max-sm:hidden">
         (défiler)
       </p>
       <ol className="absolute inset-x-4 bottom-8 grid text-center sm:bottom-12">

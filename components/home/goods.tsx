@@ -115,7 +115,7 @@ export function Goods({ exhibits }: { exhibits: Exhibit[] }) {
           ))}
       </div>
 
-      <aside data-theme="dark" className="bg-ink p-5 text-paper sm:p-6">
+      <aside data-theme="dark" className="bg-ink p-5 text-paper sm:p-6 lg:pr-10">
         <h3 className="display text-[44px]">Protocole d’assemblage</h3>
         <p className="mt-2 text-[16px] text-paper/70">Sept pièces pour un matcha fait maison. Les kits en réunissent quatre à neuf.</p>
         <ol className="mt-6 border-t border-line-dark">

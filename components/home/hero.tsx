@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useEffect, useRef, useState } from "react";
-import { addToCart, type AddState } from "@/app/panier/actions";
+import { useEffect, useRef, useState } from "react";
 import { ghostButton, primaryButton } from "@/components/field";
 import { gsap, MOTION_OK, SplitText, useGSAP } from "@/components/gsap";
-import { Spinner } from "@/components/spinner";
 import { useScene } from "@/components/three/use-scene";
 
 const CLOCKS = [
@@ -37,12 +35,11 @@ function Clock({ city, zone }: { city: string; zone: string }) {
   );
 }
 
-type Props = { kitName: string; kitSlug: string; kitVariantId: string | null; kitPrice: string; cupPrice: string };
+type Props = { kitName: string; kitSlug: string; kitPrice: string; cupPrice: string };
 
-export function Hero({ kitName, kitSlug, kitVariantId, kitPrice, cupPrice }: Props) {
+export function Hero({ kitName, kitSlug, kitPrice, cupPrice }: Props) {
   const root = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [state, action, pending] = useActionState<AddState, FormData>(addToCart, {});
 
   // La plaque d'acier : elle monte à l'arrivée, puis s'incline vers le pointeur et flotte doucement.
   const { state: scene } = useScene(
@@ -107,7 +104,7 @@ export function Hero({ kitName, kitSlug, kitVariantId, kitPrice, cupPrice }: Pro
         const split = SplitText.create(".hero-title", { type: "lines", mask: "lines" });
         gsap.timeline({ delay: 0.5 })
           .from(split.lines, { yPercent: 110, duration: 1, ease: "expo.out", stagger: 0.09 })
-          .from(".hero-fade", { autoAlpha: 0, y: 14, duration: 0.7, ease: "expo.out", stagger: 0.08 }, "-=0.6");
+          .from(".hero-fade", { y: 14, duration: 0.7, ease: "expo.out", stagger: 0.08 }, "-=0.6");
         return () => split.revert();
       });
       return () => mm.revert();
@@ -141,40 +138,25 @@ export function Hero({ kitName, kitSlug, kitVariantId, kitPrice, cupPrice }: Pro
           <p className="hero-fade text-[17px] text-paper/80">
             Le fouet, la cuillère, le tamis et une boîte de matcha. La tasse revient à <span className="mono text-paper">{cupPrice}</span>, doses Ippodo.
           </p>
-          <form action={action} className="hero-fade flex w-full flex-wrap gap-2">
-            {kitVariantId && <input type="hidden" name="variant_id" value={kitVariantId} />}
-            <input type="hidden" name="slug" value={kitSlug} />
-            <button type="submit" disabled={pending || !kitVariantId} className={`${primaryButton} flex-1 whitespace-nowrap`}>
-              {pending ? <Spinner /> : <span aria-hidden className="size-2 bg-ink" />}
-              {kitName} · {kitPrice}
-            </button>
+          <div className="hero-fade flex w-full flex-wrap gap-2">
+            <Link href={`/produit/${kitSlug}`} className={`${primaryButton} flex-1 whitespace-nowrap`}>
+              <span aria-hidden className="size-2 bg-ink" />
+              Voir le {kitName} · {kitPrice}
+            </Link>
             <Link href="/boutique?rayon=kits" className={`${ghostButton} flex-1 whitespace-nowrap`}>
               Les 4 kits
             </Link>
-          </form>
-          <p aria-live="polite" className="hero-fade min-h-6 text-[15px]">
-            {state.added ? (
-              <>
-                <span className="text-matcha">Ajouté au panier.</span>{" "}
-                <Link href="/panier" className="underline underline-offset-4">
-                  Voir le panier
-                </Link>
-              </>
-            ) : state.error ? (
-              <span className="text-danger-dark">{state.error}</span>
-            ) : (
-              <Link href="/compte/profil" className="text-paper/70 underline underline-offset-4 hover:text-paper">
-                Pas sûr du kit ? Faites votre profil de goût.
-              </Link>
-            )}
-          </p>
+          </div>
+          <Link href="/compte/profil" className="hero-fade text-[15px] text-paper/70 underline underline-offset-4 hover:text-paper">
+            Pas sûr du kit ? Faites votre profil de goût.
+          </Link>
         </div>
       </div>
 
       <p aria-hidden className="mono absolute top-1/2 left-4 text-[12px] text-fog-dark max-sm:hidden">
         (défiler)
       </p>
-      <p aria-hidden className="mono absolute top-1/2 right-4 text-[12px] text-fog-dark max-sm:hidden">
+      <p aria-hidden className="mono absolute top-1/2 right-10 text-[12px] text-fog-dark max-sm:hidden">
         (défiler)
       </p>
     </section>

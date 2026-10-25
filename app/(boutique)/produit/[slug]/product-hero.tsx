@@ -37,11 +37,11 @@ export function ProductHero({ slug, name, model, image, kicker, choiceLabel, var
       </div>
 
       <div className="min-w-0">
-        <p className="mono text-fog uppercase">{kicker}</p>
-        <h1 className="display mt-2 text-[56px] sm:text-[76px]">{name}</h1>
+        <h1 className="display text-[56px] sm:text-[76px]">{name}</h1>
         <p className="figures mt-4 text-[28px]" aria-live="polite">
           {price(variant.priceCents)}
         </p>
+        <p className="mono mt-1 text-fog uppercase">{kicker}</p>
 
         {children}
 

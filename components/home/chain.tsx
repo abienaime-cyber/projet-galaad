@@ -7,8 +7,8 @@ import { useScene } from "@/components/three/use-scene";
 // Faits sourcés : AFP (26 juin 2025) pour la culture et la fabrication, Ippodo pour les doses.
 const STAGES = [
   { title: "Feuilles à l’ombre", text: "Les théiers sont cultivés à l’ombre pendant les dernières semaines avant la récolte." },
-  { title: "Tencha", text: "Ces feuilles s’appellent tencha. Elles sont cuites à la vapeur, puis séchées." },
-  { title: "La meule", text: "Elles sont moulues entre deux meules de pierre. Il faut jusqu’à une heure pour produire 40 g de matcha." },
+  { title: "Tencha", text: "Ces feuilles cultivées à l’ombre s’appellent tencha." },
+  { title: "La meule", text: "Elles sont moulues en poudre. Il faut jusqu’à une heure pour produire 40 g de matcha." },
   { title: "La boîte", text: "30 g chez nous : 15 matchas purs ou 10 lattes, aux doses d’Ippodo." },
 ];
 
@@ -88,7 +88,6 @@ export function Chain() {
       </ol>
       {pinned && (
         <div aria-live="polite" className="absolute inset-x-4 bottom-10 z-10 sm:right-6 sm:left-auto sm:w-[22rem]">
-          <p className="mono text-fog">{String(stage + 1).padStart(2, "0")} / 04</p>
           <p className="display text-[40px]">{STAGES[stage].title}</p>
           <p className="mt-1 text-[16px] text-fog">{STAGES[stage].text}</p>
         </div>

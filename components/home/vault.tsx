@@ -80,20 +80,28 @@ export function Vault({ name, slug, variantId, price, separate, pieces, descript
               ref={(el) => {
                 labels.current[i] = el;
               }}
-              className="absolute top-0 left-0 z-10 opacity-0 will-change-transform"
+              className="absolute top-0 left-0 z-10 opacity-0 will-change-transform max-md:hidden"
             >
               <Tag index={p.index}>{p.label}</Tag>
             </Link>
           ))}
-        <p className="mono absolute bottom-4 left-1/2 z-10 -translate-x-1/2 text-[12px] text-fog">(cliquez sur les étiquettes)</p>
+        <p className="mono absolute bottom-4 left-1/2 z-10 -translate-x-1/2 text-[12px] text-fog max-md:hidden">(cliquez sur les étiquettes)</p>
       </div>
 
       <aside className="flex flex-col justify-end gap-5 p-5 sm:p-6 lg:pb-12">
-        <p className="mono text-fog uppercase">{pieces.length} pièces · valise aluminium</p>
         <h3 className="display text-[56px]">{name}</h3>
         <p className="text-[17px]">{description}</p>
+        <ol aria-label="Pièces du coffre" className="flex flex-wrap gap-1.5 md:hidden">
+          {pieces.map((p, i) => (
+            <li key={p.slug + i}>
+              <Link href={`/produit/${p.slug}`}>
+                <Tag index={p.index}>{p.label}</Tag>
+              </Link>
+            </li>
+          ))}
+        </ol>
         <p className="mono text-[15px]">
-          {price}
+          {price} · {pieces.length} pièces, valise aluminium
           {separate && <span className="text-fog"> · {separate} pièce par pièce</span>}
         </p>
         <form action={action} className="grid gap-2">

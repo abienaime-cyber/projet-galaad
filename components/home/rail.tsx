@@ -22,7 +22,7 @@ export function Rail({ sections }: { sections: string[] }) {
   }, []);
 
   return (
-    <nav aria-label="Sections de la page" className="fixed top-1/2 right-2 z-30 hidden -translate-y-1/2 flex-col gap-1 lg:flex">
+    <nav aria-label="Sections de la page" className="fixed top-1/2 right-0 z-30 hidden -translate-y-1/2 flex-col gap-1 lg:flex">
       {sections.map((label, i) => (
         <button
           key={label}

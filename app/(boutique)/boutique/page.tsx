@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { primaryButton, textLink } from "@/components/field";
+import { inkButton, textLink } from "@/components/field";
 import { RevealGroup } from "@/components/gsap";
 import { ProductTile } from "@/components/product-tile";
 import { SegmentedNav } from "@/components/segmented-nav";
@@ -135,6 +135,7 @@ function Verdict({ profile, products }: { profile: TasteProfile; products: Catal
               <span className="mono text-fog-dark">
                 {best.match.score}/100 · {CONFIDENCE_LABEL[confidence]}
               </span>
+              <span className="block text-[15px] text-paper/80">{best.match.reasons[0]}</span>
             </Link>
           </li>
         ))}
@@ -155,7 +156,7 @@ function ProfilePrompt({ signedIn }: { signedIn: boolean }) {
         </p>
       </div>
       <div className="flex flex-wrap items-center gap-4">
-        <Link href={signedIn ? "/compte/profil" : "/inscription"} className={`${primaryButton} bg-ink text-paper hover:bg-ink-2`}>
+        <Link href={signedIn ? "/compte/profil" : "/inscription"} className={inkButton}>
           {signedIn ? "Faire mon profil" : "Créer un compte"}
         </Link>
         {!signedIn && (
