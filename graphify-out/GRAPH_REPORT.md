@@ -1,17 +1,17 @@
 # Graph Report - projet-galaad  (2026-10-25)
 
 ## Corpus Check
-- 107 files · ~191,556 words
+- 107 files · ~192,226 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 9 file(s) not represented in the graph (top: (none) 3, .woff2 2, .example 1)
 
 ## Summary
-- 680 nodes · 1700 edges · 29 communities (22 shown, 7 thin omitted)
+- 698 nodes · 1712 edges · 34 communities (27 shown, 7 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 22 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `65ad4dd4`
+- Built from commit: `e4c5a3c9`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,15 +20,15 @@
 - package.json
 - Next.js Tooling & Agent Rules
 - app/page.tsx
-- shop.ts
+- taste-form.tsx
 - 20261023140000_commerce.sql
-- commerce.ts
+- next
 - models.ts
 - app/layout.tsx
 - Geist Font Loading
 - commerce.ts
 - Product
-- Carrure : système de design
+- Design System: Contrebande
 - Espace compte (connexion, inscription, mensurations)
 - [slug]/actions.ts
 - Boutique (accueil, costumes, chemises, fiche produit)
@@ -42,6 +42,11 @@
 - devDependencies
 - scripts
 - eslint.config.mjs
+- boutique/page.tsx
+- reco.ts
+- shop.ts
+- reco.test.ts
+- ai.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `next` - 51 edges
@@ -52,20 +57,20 @@
 6. `useScene()` - 19 edges
 7. `ProductView()` - 17 edges
 8. `HomePage()` - 17 edges
-9. `Spinner()` - 17 edges
-10. `compilerOptions` - 16 edges
+9. `compilerOptions` - 16 edges
+10. `askAdvisor()` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `sitemap()` --calls--> `getProducts()`  [EXTRACTED]
-  app/sitemap.ts → lib/catalog.ts
+- `Do:` --references--> `pinStart()`  [INFERRED]
+  DESIGN.md → components/gsap.tsx
+- `Vault()` --indirect_call--> `addToCart()`  [INFERRED]
+  components/home/vault.tsx → app/panier/actions.ts
 - `AuthForm()` --calls--> `Field()`  [EXTRACTED]
   app/(auth)/auth-form.tsx → components/field.tsx
 - `AuthForm()` --calls--> `Spinner()`  [EXTRACTED]
   app/(auth)/auth-form.tsx → components/spinner.tsx
 - `Catalog()` --calls--> `SegmentedNav()`  [EXTRACTED]
   app/(boutique)/boutique/page.tsx → components/segmented-nav.tsx
-- `askAdvisor()` --calls--> `minPrice()`  [EXTRACTED]
-  app/(boutique)/produit/[slug]/actions.ts → lib/shop.ts
 
 ## Import Cycles
 - None detected.
@@ -73,7 +78,7 @@
 ## Hyperedges (group relationships)
 - **Next.js App Bootstrap Stack** — readme_create_next_app, readme_nextjs, readme_next_font, readme_geist_font, app_page [INFERRED 0.75]
 
-## Communities (29 total, 7 thin omitted)
+## Communities (34 total, 7 thin omitted)
 
 ### Community 0 - "TypeScript Compiler Config"
 Cohesion: 0.11
@@ -88,48 +93,48 @@ Cohesion: 0.20
 Nodes (10): generate-agent-files.js (next dev), node_modules/next/dist/docs, Next.js Agent Rules, pnpm allowBuilds config, sharp, unrs-resolver, create-next-app, Development Server (dev script) (+2 more)
 
 ### Community 3 - "app/page.tsx"
-Cohesion: 0.08
-Nodes (49): Grid(), EXHIBITS, firstInStock(), HomePage(), two(), VAULT, AddState, addToCart() (+41 more)
+Cohesion: 0.09
+Nodes (41): EXHIBITS, firstInStock(), HomePage(), two(), VAULT, MOTION_OK, PINNED_HEIGHT, pinStart() (+33 more)
 
-### Community 4 - "shop.ts"
-Cohesion: 0.05
-Nodes (64): metadata, ProfilePrompt(), Search, ShopPage(), Verdict(), saveTaste(), TasteState, Choices() (+56 more)
+### Community 4 - "taste-form.tsx"
+Cohesion: 0.18
+Nodes (20): saveTaste(), TasteState, Choices(), Question(), Readout(), TasteForm(), Drink, Experience (+12 more)
 
 ### Community 5 - "20261023140000_commerce.sql"
 Cohesion: 0.10
 Nodes (43): addresses_one_default_idx, addresses_user_id_idx, kit_items_check, kit_items_item_id_idx, on_auth_user_created, product_variants_product_id_idx, products_active_category_idx, products_updated_at (+35 more)
 
-### Community 6 - "commerce.ts"
-Cohesion: 0.11
-Nodes (29): AuthState, CONFIRMATION_SENT(), field(), signIn(), signOut(), signUp(), GET(), deleteTaste() (+21 more)
+### Community 6 - "next"
+Cohesion: 0.06
+Nodes (51): AuthState, CONFIRMATION_SENT(), field(), signIn(), signOut(), signUp(), AuthForm(), AuthShell() (+43 more)
 
 ### Community 7 - "models.ts"
 Cohesion: 0.11
 Nodes (47): arrange(), BOWL, BOWL_COLORS, buildModel(), CASE, chasen(), chashaku(), chawan() (+39 more)
 
 ### Community 8 - "app/layout.tsx"
-Cohesion: 0.05
-Nodes (45): AuthForm(), AuthShell(), POINTS, TABS, metadata, SignInPage(), metadata, SignUpPage() (+37 more)
+Cohesion: 0.09
+Nodes (22): metadata, TermsPage(), metadata, PrivacyPage(), barlow, condensed, metadata, mono (+14 more)
 
 ### Community 11 - "commerce.ts"
-Cohesion: 0.07
-Nodes (46): ADDRESS_FIELDS, CheckoutState, placeOrder(), Address, CheckoutForm(), Checkout(), CheckoutPage(), metadata (+38 more)
+Cohesion: 0.06
+Nodes (55): Props, ADDRESS_FIELDS, CheckoutState, placeOrder(), Address, CheckoutForm(), Checkout(), CheckoutPage() (+47 more)
 
 ### Community 12 - "Product"
 Cohesion: 0.17
 Nodes (11): Accessibility & Inclusion, Brand Commitments, Capabilities and Constraints, Evidence on Hand, Operating Context, Platform, Positioning, Product (+3 more)
 
-### Community 13 - "Carrure : système de design"
-Cohesion: 0.22
-Nodes (8): Carrure : système de design, Composants (spécifications du MASTER), Couleurs, Direction, Mouvement, Photos, Typographie, Vérifications faites (checklist pré-livraison du MASTER)
+### Community 13 - "Design System: Contrebande"
+Cohesion: 0.08
+Nodes (25): Buttons, Cards / Containers, Chips, Colors, Components, Design System: Contrebande, Do:, Do's and Don'ts (+17 more)
 
 ### Community 15 - "[slug]/actions.ts"
-Cohesion: 0.08
-Nodes (36): CopyState, generateCopy(), publishCopy(), AdminPage(), CATEGORY, Dashboard(), metadata, pct (+28 more)
+Cohesion: 0.14
+Nodes (23): CopyState, generateCopy(), publishCopy(), AdminPage(), CATEGORY, Dashboard(), metadata, pct (+15 more)
 
 ### Community 17 - "produit/[slug]/page.tsx"
-Cohesion: 0.11
-Nodes (36): Catalog(), addReview(), AdviceState, askAdvisor(), detailsOf(), ReviewState, Ritual, Advisor() (+28 more)
+Cohesion: 0.12
+Nodes (28): addReview(), AdviceState, askAdvisor(), detailsOf(), ReviewState, Ritual, Advisor(), Details() (+20 more)
 
 ### Community 18 - "rls.test.sql"
 Cohesion: 0.50
@@ -163,25 +168,45 @@ Nodes (6): scripts, build, dev, lint, start, test
 Cohesion: 0.50
 Nodes (3): eslintConfig, eslint, eslint-config-next
 
+### Community 29 - "boutique/page.tsx"
+Cohesion: 0.20
+Nodes (17): Catalog(), Grid(), metadata, ProfilePrompt(), Search, ShopPage(), Verdict(), RevealGroup() (+9 more)
+
+### Community 30 - "reco.ts"
+Cohesion: 0.16
+Nodes (18): BestPick, Category, clamp(), Confidence, confidenceOf(), DOSE_G, DRINK_LABEL, essentials() (+10 more)
+
+### Community 31 - "shop.ts"
+Cohesion: 0.18
+Nodes (14): cupsPerTin(), monthlySavingsCents(), paybackCups(), TasteProfile, weeksOfUse(), CatalogProduct, CONFIDENCE_LABEL, euros (+6 more)
+
+### Community 32 - "reco.test.ts"
+Cohesion: 0.14
+Nodes (7): RecoProduct, ceremonie, latte, quotidien, form(), valid, vitest
+
+### Community 33 - "ai.ts"
+Cohesion: 0.20
+Nodes (10): AdviceInput, AdviceSchema, adviseMatcha(), AiError, AiErrorKind, ask(), CopyInput, CopySchema (+2 more)
+
 ## Knowledge Gaps
 - **13 isolated node(s):** `react-dom`, `@tailwindcss/turbopack`, `@types/node`, `@types/react`, `@types/react-dom` (+8 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 224 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 235 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `next` connect `app/layout.tsx` to `package.json`, `app/page.tsx`, `shop.ts`, `commerce.ts`, `commerce.ts`, `[slug]/actions.ts`, `produit/[slug]/page.tsx`?**
-  _High betweenness centrality (0.187) - this node is a cross-community bridge._
+- **Why does `next` connect `next` to `package.json`, `app/page.tsx`, `taste-form.tsx`, `app/layout.tsx`, `commerce.ts`, `[slug]/actions.ts`, `produit/[slug]/page.tsx`, `boutique/page.tsx`?**
+  _High betweenness centrality (0.193) - this node is a cross-community bridge._
 - **What connects `react-dom`, `@tailwindcss/turbopack`, `@types/node` to the rest of the system?**
   _13 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `TypeScript Compiler Config` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
-- **Why does `react` connect `app/page.tsx` to `package.json`, `shop.ts`, `commerce.ts`, `app/layout.tsx`, `commerce.ts`, `[slug]/actions.ts`, `produit/[slug]/page.tsx`?**
-  _High betweenness centrality (0.109) - this node is a cross-community bridge._
+- **Why does `react` connect `app/page.tsx` to `package.json`, `taste-form.tsx`, `next`, `app/layout.tsx`, `commerce.ts`, `[slug]/actions.ts`, `produit/[slug]/page.tsx`, `boutique/page.tsx`?**
+  _High betweenness centrality (0.120) - this node is a cross-community bridge._
 - **Should `package.json` be split into smaller, more focused modules?**
   _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._
-- **Why does `three` connect `models.ts` to `package.json`, `app/page.tsx`, `materials.ts`?**
-  _High betweenness centrality (0.035) - this node is a cross-community bridge._
+- **Why does `pinStart()` connect `app/page.tsx` to `Design System: Contrebande`?**
+  _High betweenness centrality (0.059) - this node is a cross-community bridge._
 - **Should `app/page.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07544757033248081 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08531073446327683 - nodes in this community are weakly interconnected._
