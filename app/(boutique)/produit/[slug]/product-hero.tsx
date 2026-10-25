@@ -28,7 +28,6 @@ export function ProductHero({ slug, name, model, image, kicker, choiceLabel, var
   const [variantId, setVariantId] = useState(defaultVariantId ?? variants.find((v) => v.stock > 0)?.id ?? variants[0].id);
   const [state, action, pending] = useActionState<AddState, FormData>(addToCart, {});
   const variant = variants.find((v) => v.id === variantId)!;
-  const anyInStock = variants.some((v) => v.stock > 0);
   const choose = variants.length > 1;
 
   return (
@@ -87,7 +86,7 @@ export function ProductHero({ slug, name, model, image, kicker, choiceLabel, var
           )}
 
           <div className="mt-6 grid gap-3">
-            <button type="submit" disabled={pending || !anyInStock || variant.stock === 0} className={`${primaryButton} w-full`}>
+            <button type="submit" disabled={pending || variant.stock === 0} className={`${primaryButton} w-full`}>
               {pending ? (
                 <>
                   <Spinner />

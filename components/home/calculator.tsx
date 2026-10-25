@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { gsap, MOTION_OK, useGSAP } from "@/components/gsap";
-import { costPerCupCents, type Drink } from "@/lib/reco";
+import { costPerCupCents, DOSE_G, type Drink } from "@/lib/reco";
 import { price } from "@/lib/shop";
 import { Smoke } from "./smoke";
 
@@ -93,7 +93,7 @@ export function Calculator({ refill, kit }: Props) {
               <span className="mono text-fog-dark">la tasse</span>
             </p>
             <p className="mono mt-2 text-[12px] text-fog-dark">
-              {refill.name}, {refill.grams} g à {price(refill.priceCents)}, {drink === "pur" ? "2" : "3"} g par tasse (Ippodo). Lait non compté.
+              {refill.name}, {refill.grams} g à {price(refill.priceCents)}, {DOSE_G[drink]} g par tasse (Ippodo). Lait non compté.
             </p>
           </div>
 

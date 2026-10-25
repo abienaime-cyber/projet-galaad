@@ -5,6 +5,8 @@ import { useEffect, useRef } from "react";
 import type * as THREE from "three";
 import { useScene } from "./use-scene";
 
+const VIEW = { elevation: 22, azimuth: 0, margin: 1.2 };
+
 // Modèle 3D de l'article, à faire tourner au doigt ou à la souris.
 // Le geste suit le doigt 1:1, puis l'objet garde la vitesse du lâcher et ralentit (inertie).
 export function ProductViewer({ model, variant, image, name }: { model: string; variant?: string; image: string | null; name: string }) {
@@ -26,7 +28,7 @@ export function ProductViewer({ model, variant, image, name }: { model: string; 
       invalidate();
     };
     place(variant);
-    stage.frame(pivot, { elevation: 22, azimuth: 0, margin: 1.2 });
+    stage.frame(pivot, VIEW);
     swapRef.current = place;
 
     let angle = 0.5;
@@ -70,11 +72,13 @@ export function ProductViewer({ model, variant, image, name }: { model: string; 
       idleAt = performance.now() + 2500;
       invalidate();
     };
-    canvas.addEventListener("pointerdown", down);
-    canvas.addEventListener("pointermove", move);
-    canvas.addEventListener("pointerup", up);
-    canvas.addEventListener("pointercancel", up);
-    canvas.addEventListener("keydown", key);
+    const listeners = new AbortController();
+    const { signal } = listeners;
+    canvas.addEventListener("pointerdown", down, { signal });
+    canvas.addEventListener("pointermove", move, { signal });
+    canvas.addEventListener("pointerup", up, { signal });
+    canvas.addEventListener("pointercancel", up, { signal });
+    canvas.addEventListener("keydown", key, { signal });
 
     return {
       frame: (dt) => {
@@ -87,14 +91,8 @@ export function ProductViewer({ model, variant, image, name }: { model: string; 
         pivot.rotation.y = angle;
         return dragging || Math.abs(velocity) > 0.002;
       },
-      resize: () => stage.frame(pivot, { elevation: 22, azimuth: 0, margin: 1.2 }),
-      dispose: () => {
-        canvas.removeEventListener("pointerdown", down);
-        canvas.removeEventListener("pointermove", move);
-        canvas.removeEventListener("pointerup", up);
-        canvas.removeEventListener("pointercancel", up);
-        canvas.removeEventListener("keydown", key);
-      },
+      resize: () => stage.frame(pivot, VIEW),
+      dispose: () => listeners.abort(),
     };
   });
 

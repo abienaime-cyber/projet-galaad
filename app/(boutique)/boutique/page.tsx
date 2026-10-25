@@ -7,7 +7,7 @@ import { ProductTile } from "@/components/product-tile";
 import { SegmentedNav } from "@/components/segmented-nav";
 import { getProducts, getShopper } from "@/lib/catalog";
 import { DRINK_LABEL, TASTE_LABEL, type TasteProfile } from "@/lib/reco";
-import { bestOf, CATEGORIES, CONFIDENCE_LABEL, forMe, rateAll, type Rated } from "@/lib/shop";
+import { bestOf, CATEGORIES, CONFIDENCE_LABEL, forMe, rateAll, type CatalogProduct, type Rated } from "@/lib/shop";
 
 export const metadata: Metadata = {
   title: "Boutique",
@@ -112,7 +112,7 @@ function Grid({ items }: { items: Rated[] }) {
 }
 
 // Le verdict du calcul, en tête : le kit et le matcha conseillés, et la confiance qu'on peut leur accorder.
-function Verdict({ profile, products }: { profile: TasteProfile; products: Awaited<ReturnType<typeof getProducts>> }) {
+function Verdict({ profile, products }: { profile: TasteProfile; products: CatalogProduct[] }) {
   const picks = (["kit", "matcha"] as const).map((c) => bestOf(products, c, profile)).filter((p) => p !== null);
   return (
     <section aria-labelledby="verdict" data-theme="dark" className="mt-6 grid gap-6 bg-ink p-5 text-paper sm:p-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">

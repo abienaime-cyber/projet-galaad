@@ -14,8 +14,6 @@ const easeInOut = (t: number) => {
 };
 const window01 = (p: number, a: number, b: number) => clamp01((p - a) / (b - a));
 
-export const PROTOCOL_STEPS = 4;
-
 export function protocolScene() {
   const root = new THREE.Group();
 
@@ -78,7 +76,7 @@ export function protocolScene() {
 
     // 1. Tamiser : le tamis descend sur le bol, la poudre passe, le tas grossit.
     const sieveIn = ease(sift * 3);
-    const sieveOut = ease((pour - 0.0) * 4);
+    const sieveOut = ease(pour * 4);
     sieve.position.set(-0.05, 1.4 - 0.62 * sieveIn + 1.6 * sieveOut, 0);
     sieve.rotation.set(0, 0.6, Math.sin(sift * 40) * 0.03 * (sift < 1 ? 1 : 0));
     sieve.visible = sieveOut < 1;
@@ -95,13 +93,14 @@ export function protocolScene() {
     pos.needsUpdate = true;
     dust.visible = sift > 0.02 && pour < 0.05;
 
-    pile.scale.set(0.24 * clamp01(sift * 1.4), 0.06 * clamp01(sift * 1.4) * (1 - ease(pour * 3)), 0.24 * clamp01(sift * 1.4));
+    const heap = clamp01(sift * 1.4);
+    pile.scale.set(0.24 * heap, 0.06 * heap * (1 - ease(pour * 3)), 0.24 * heap);
     pile.position.y = BOWL.teaY - 0.17;
     pile.visible = sift > 0.05 && pour < 0.35;
 
     // 2. Verser : la bouilloire arrive de la droite, s'incline, l'eau remplit le bol.
     const potIn = easeInOut(pour * 2.2);
-    const potOut = ease((whiskT - 0.0) * 3);
+    const potOut = ease(whiskT * 3);
     pot.position.set(1.15 + 1.6 * (1 - potIn) + 1.8 * potOut, 0.62 + 0.7 * (1 - potIn), -0.1);
     pot.rotation.set(0, Math.PI, -0.62 * easeInOut((pour - 0.25) * 3) * (1 - potOut));
     pot.visible = pour > 0 && potOut < 1;
@@ -125,7 +124,7 @@ export function protocolScene() {
     }
 
     // 3. Fouetter : le fouet plonge, va et vient en M, la mousse se forme.
-    const dip = easeInOut(whiskT * 4) * (1 - easeInOut((serve - 0.0) * 3));
+    const dip = easeInOut(whiskT * 4) * (1 - easeInOut(serve * 3));
     const stroke = Math.sin(whiskT * Math.PI * 22) * 0.18 * clamp01(whiskT * 6) * clamp01((1 - whiskT) * 6);
     whisk.position.set(stroke, 0.36 + 0.62 * 1.16 + 1.2 * (1 - dip), Math.sin(whiskT * Math.PI * 11) * 0.06);
     whisk.rotation.set(Math.PI, whiskT * 3, stroke * 0.6);

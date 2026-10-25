@@ -105,9 +105,9 @@ export function chashaku() {
   const pos = geometry.attributes.position;
   for (let i = 0; i < pos.count; i++) {
     const x = pos.getX(i);
-    let y = pos.getY(i) * 0.3;
-    const z = pos.getZ(i) * (1.25 + 0.35 * THREE.MathUtils.smoothstep(x, 0.55, 0.9));
     const t = THREE.MathUtils.smoothstep(x, 0.55, 0.9);
+    let y = pos.getY(i) * 0.3;
+    const z = pos.getZ(i) * (1.25 + 0.35 * t);
     y += 0.12 * t * t + 0.02 * Math.cos((x / 0.9) * Math.PI);
     // Creux de la cuillère : le dessus s'enfonce au centre.
     if (y > 0) y -= 0.025 * t * Math.max(0, 1 - Math.abs(z) / 0.09);

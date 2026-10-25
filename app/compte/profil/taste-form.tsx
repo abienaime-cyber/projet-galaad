@@ -13,6 +13,8 @@ import { saveTaste, type TasteState } from "./actions";
 const tile =
   "flex h-full min-h-16 cursor-pointer flex-col justify-center px-4 py-3 shadow-[inset_0_0_0_1px_var(--color-ink)] transition-colors duration-150 hover:bg-ink/6 peer-checked:bg-ink peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink";
 
+const stepper = "inline-flex size-14 items-center justify-center shadow-[inset_0_0_0_1px_var(--color-ink)] hover:bg-ink hover:text-paper";
+
 export function TasteForm({ initial, products }: { initial: TasteProfile | null; products: CatalogProduct[] }) {
   const [state, action, pending] = useActionState<TasteState, FormData>(saveTaste, {});
   const [cups, setCups] = useState(initial?.cupsPerWeek ?? 5);
@@ -41,7 +43,7 @@ export function TasteForm({ initial, products }: { initial: TasteProfile | null;
 
         <Question number="01" title="Combien de tasses par semaine ?" error={errors.cupsPerWeek}>
           <div className="flex items-stretch">
-            <button type="button" aria-label="Une tasse de moins" onClick={() => setCups((c) => Math.max(CUPS.min, c - 1))} className="inline-flex size-14 items-center justify-center shadow-[inset_0_0_0_1px_var(--color-ink)] hover:bg-ink hover:text-paper">
+            <button type="button" aria-label="Une tasse de moins" onClick={() => setCups((c) => Math.max(CUPS.min, c - 1))} className={stepper}>
               <Minus aria-hidden size={20} />
             </button>
             <label className="sr-only" htmlFor="cups_per_week">
@@ -55,7 +57,7 @@ export function TasteForm({ initial, products }: { initial: TasteProfile | null;
               onChange={(e) => setCups(Math.min(CUPS.max, Math.max(CUPS.min, Number(e.target.value.replace(/\D/g, "")) || CUPS.min)))}
               className="figures h-14 w-24 border-y border-ink bg-paper text-center text-[28px] focus:outline-none"
             />
-            <button type="button" aria-label="Une tasse de plus" onClick={() => setCups((c) => Math.min(CUPS.max, c + 1))} className="inline-flex size-14 items-center justify-center shadow-[inset_0_0_0_1px_var(--color-ink)] hover:bg-ink hover:text-paper">
+            <button type="button" aria-label="Une tasse de plus" onClick={() => setCups((c) => Math.min(CUPS.max, c + 1))} className={stepper}>
               <Plus aria-hidden size={20} />
             </button>
           </div>

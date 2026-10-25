@@ -191,24 +191,3 @@ export function tinLabel(grade: string, grams: string, dark: boolean) {
   });
 }
 
-// Plaque gravée de l'accueil : relief tiré du texte, en carte de bosselage.
-export function plateBump(lines: { text: string; font: string; x: number; y: number }[], w = 2048, h = 1024) {
-  return canvasTexture(
-    w,
-    h,
-    (ctx) => {
-      ctx.fillStyle = "#808080";
-      ctx.fillRect(0, 0, w, h);
-      ctx.fillStyle = "#ffffff";
-      ctx.textBaseline = "middle";
-      for (const line of lines) {
-        ctx.font = line.font;
-        ctx.fillText(line.text, line.x * w, line.y * h);
-      }
-      ctx.strokeStyle = "#ffffff";
-      ctx.lineWidth = 6;
-      ctx.strokeRect(w * 0.025, h * 0.05, w * 0.95, h * 0.9);
-    },
-    false,
-  );
-}

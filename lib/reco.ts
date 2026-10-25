@@ -66,9 +66,7 @@ function matchMatcha(item: RecoItem, p: TasteProfile): Match {
   const fit = GRADE_FIT[p.drink][item.grade!];
   const gap = Math.abs(item.intensity! - TARGET_INTENSITY[p.taste]);
   const reasons = [
-    fit === 0
-      ? `Grade ${GRADE_LABEL[item.grade!]} : fait pour un matcha ${DRINK_LABEL[p.drink]}.`
-      : `Grade ${GRADE_LABEL[item.grade!]} : pas le plus adapté à un matcha ${DRINK_LABEL[p.drink]}.`,
+    `Grade ${GRADE_LABEL[item.grade!]} : ${fit === 0 ? "fait pour" : "pas le plus adapté à"} un matcha ${DRINK_LABEL[p.drink]}.`,
     `Intensité ${item.intensity}/5 pour un goût ${TASTE_LABEL[p.taste]}${gap <= 1 ? " : proche de ce que vous aimez." : "."}`,
   ];
   return { score: clamp(100 + fit - 8 * gap), reasons };
@@ -115,6 +113,12 @@ export type Ranked<T> = { product: T; match: Match };
 
 export type BestPick<T> = { best: Ranked<T>; alternative: Ranked<T> | null; confidence: Confidence };
 
+function confidenceOf(gap: number): Confidence {
+  if (gap >= 15) return "high";
+  if (gap >= 6) return "medium";
+  return "low";
+}
+
 // Le meilleur choix d'une catégorie, et la confiance qu'on peut lui accorder :
 // plus l'écart avec le second est faible, plus le choix est serré.
 export function pickBest<T extends RecoProduct>(products: T[], p: TasteProfile): BestPick<T> | null {
@@ -122,7 +126,7 @@ export function pickBest<T extends RecoProduct>(products: T[], p: TasteProfile):
   if (ranked.length === 0) return null;
   const [best, second] = ranked;
   const gap = second ? best.match.score - second.match.score : 100;
-  const confidence: Confidence = gap >= 15 ? "high" : gap >= 6 ? "medium" : "low";
+  const confidence = confidenceOf(gap);
   return { best, alternative: confidence === "high" ? null : (second ?? null), confidence };
 }
 

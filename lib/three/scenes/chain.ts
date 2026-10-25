@@ -12,7 +12,6 @@ const smooth = (t: number) => {
 };
 
 const COUNT = 6000;
-export const CHAIN_STAGES = 4;
 
 function granite() {
   const rand = M.seeded(41);
@@ -97,7 +96,7 @@ export function chainScene() {
     const spin = p * Math.PI * 4;
     for (let i = 0; i < COUNT; i++) {
       const k = i * 3;
-      const t = smooth((f * 1.5 - delay[i] * 0.5) / 1);
+      const t = smooth(f * 1.5 - delay[i] * 0.5);
       // Pendant le passage, chaque grain décrit un arc vers le haut.
       const lift = Math.sin(Math.PI * t) * (0.35 + delay[i] * 0.4);
       let x = from[k] + (to[k] - from[k]) * t;

@@ -36,11 +36,21 @@ type ProductRow = {
 
 const bySortOrder = (a: { sort_order: number }, b: { sort_order: number }) => a.sort_order - b.sort_order;
 
-// Une pièce achetée seule : son premier format.
-const firstVariant = (variants: ItemVariant[]) => [...variants].sort(bySortOrder)[0];
-
 const toProduct = (row: ProductRow): CatalogProduct => {
-  const items = [...row.kit_items].sort(bySortOrder);
+  const contents = [...row.kit_items].sort(bySortOrder).map(({ quantity, item }) => {
+    // Une pièce achetée seule : son premier format.
+    const first = [...item.product_variants].sort(bySortOrder)[0];
+    return {
+      slug: item.slug,
+      name: item.name,
+      quantity,
+      toolKind: item.tool_kind,
+      grade: item.grade,
+      intensity: item.intensity,
+      priceCents: first?.price_cents ?? 0,
+      matchaGrams: first?.matcha_grams ?? null,
+    };
+  });
   return {
     id: row.id,
     slug: row.slug,
@@ -60,17 +70,8 @@ const toProduct = (row: ProductRow): CatalogProduct => {
       matchaGrams: v.matcha_grams,
       stock: v.stock,
     })),
-    contents: items.map(({ quantity, item }) => ({
-      slug: item.slug,
-      name: item.name,
-      quantity,
-      toolKind: item.tool_kind,
-      grade: item.grade,
-      intensity: item.intensity,
-      priceCents: firstVariant(item.product_variants)?.price_cents ?? 0,
-      matchaGrams: firstVariant(item.product_variants)?.matcha_grams ?? null,
-    })),
-    separatePriceCents: items.length ? items.reduce((sum, { quantity, item }) => sum + quantity * (firstVariant(item.product_variants)?.price_cents ?? 0), 0) : null,
+    contents,
+    separatePriceCents: contents.length ? contents.reduce((sum, c) => sum + c.quantity * c.priceCents, 0) : null,
   };
 };
 

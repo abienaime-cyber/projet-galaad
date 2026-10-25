@@ -25,7 +25,10 @@ export function Vault({ name, slug, variantId, price, separate, pieces, descript
     ({ THREE, stage, mod, reduced, invalidate }) => {
       const { root, anchors, open } = mod.vaultScene();
       stage.scene.add(root);
-      const fit = () => stage.frame(root, { elevation: stage.camera.aspect < 1 ? 62 : 50, azimuth: 0, margin: stage.camera.aspect < 1 ? 0.85 : 0.98 });
+      const fit = () => {
+        const narrow = stage.camera.aspect < 1;
+        stage.frame(root, { elevation: narrow ? 62 : 50, azimuth: 0, margin: narrow ? 0.85 : 0.98 });
+      };
       fit();
       const lid = { t: reduced ? 1 : 0 };
       const trigger = reduced

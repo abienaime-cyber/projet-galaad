@@ -35,6 +35,12 @@ export default function ProductPage({ params }: PageProps<"/produit/[slug]">) {
   );
 }
 
+function kickerOf(product: CatalogProduct) {
+  if (product.grade) return `Matcha · grade ${GRADE_LABEL[product.grade]}`;
+  if (product.toolKind) return `Ustensile · ${TOOL_LABEL[product.toolKind]}`;
+  return `Kit · ${product.contents.length} pièces`;
+}
+
 async function ProductView({ slug }: { slug: string }) {
   const [product, products, { signedIn, profile }] = await Promise.all([getProduct(slug), getProducts(), getShopper()]);
   if (!product) notFound();
@@ -42,7 +48,6 @@ async function ProductView({ slug }: { slug: string }) {
   const m = profile ? match(product, profile) : null;
   const suggested = profile && product.category === "matcha" ? suggestFormat(product.variants, profile) : null;
   const figures = Object.fromEntries(product.variants.map((v) => [v.id, variantFigures(product, v, profile)]));
-  const kicker = product.grade ? `Matcha · grade ${GRADE_LABEL[product.grade]}` : product.toolKind ? `Ustensile · ${TOOL_LABEL[product.toolKind]}` : `Kit · ${product.contents.length} pièces`;
 
   return (
     <>
@@ -61,7 +66,7 @@ async function ProductView({ slug }: { slug: string }) {
         name={product.name}
         model={product.model}
         image={product.image}
-        kicker={kicker}
+        kicker={kickerOf(product)}
         choiceLabel={product.category === "matcha" ? "Format" : "Coloris"}
         variants={product.variants}
         defaultVariantId={suggested?.id ?? null}

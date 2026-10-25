@@ -38,7 +38,7 @@ export function parseTaste(read: (name: string) => string, readAll: (name: strin
   const errors: TasteErrors = {};
 
   const cups = parseNumber(read("cups_per_week"));
-  if (cups === null || Number.isNaN(cups) || !Number.isInteger(cups) || cups < CUPS.min || cups > CUPS.max) {
+  if (cups === null || !Number.isInteger(cups) || cups < CUPS.min || cups > CUPS.max) {
     errors.cupsPerWeek = `Indiquez un nombre entier de tasses, entre ${CUPS.min} et ${CUPS.max} par semaine.`;
   }
   const drink = oneOf(DRINKS, read("drink"));

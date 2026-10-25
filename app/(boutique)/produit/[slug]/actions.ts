@@ -6,11 +6,17 @@ import { getProduct, getProducts, getShopper } from "@/lib/catalog";
 import { requireUser } from "@/lib/commerce";
 import { GRADE_LABEL, match, TOOL_LABEL } from "@/lib/reco";
 import { createClient } from "@/lib/supabase/server";
-import { forMe, minPrice, price, rateAll, variantFigures } from "@/lib/shop";
+import { forMe, minPrice, price, rateAll, variantFigures, type CatalogProduct } from "@/lib/shop";
 import { parseForm, reviewSchema, type FieldErrors } from "@/lib/validation";
 
 export type Ritual = { title: string; why: string; items: { slug: string; name: string; image: string | null; price: string }[] };
 export type AdviceState = { explanation?: string; rituals?: Ritual[]; error?: string };
+
+function detailsOf(product: CatalogProduct) {
+  if (product.grade) return `grade ${GRADE_LABEL[product.grade]}, intensité ${product.intensity}/5`;
+  if (product.toolKind) return TOOL_LABEL[product.toolKind];
+  return product.contents.map((c) => c.name).join(", ");
+}
 
 export async function askAdvisor(_prev: AdviceState, formData: FormData): Promise<AdviceState> {
   const slug = String(formData.get("slug") ?? "");
@@ -34,7 +40,7 @@ export async function askAdvisor(_prev: AdviceState, formData: FormData): Promis
         slug,
         name: product.name,
         category: product.category,
-        details: product.grade ? `grade ${GRADE_LABEL[product.grade]}, intensité ${product.intensity}/5` : product.toolKind ? TOOL_LABEL[product.toolKind] : product.contents.map((c) => c.name).join(", "),
+        details: detailsOf(product),
       },
       match: result,
       profile,
