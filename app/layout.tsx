@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow, Barlow_Condensed, Fragment_Mono } from "next/font/google";
+import { Fraunces, Instrument_Sans } from "next/font/google";
 import { Analytics } from "@/components/analytics";
 import { CookieNotice } from "@/components/cookie-notice";
 import { SiteFooter } from "@/components/site-footer";
@@ -7,11 +7,10 @@ import { SiteHeader } from "@/components/site-header";
 import { OPEN_GRAPH, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-// Polices retenues avec UI UX Pro Max (domaine typography : Barlow Condensed pour les titres, Barlow pour le texte),
-// plus une mono pour les doses, les prix et les étiquettes.
-const condensed = Barlow_Condensed({ variable: "--font-barlow-condensed", subsets: ["latin"], weight: ["600", "700", "800"] });
-const barlow = Barlow({ variable: "--font-barlow", subsets: ["latin"], weight: ["400", "500", "600"] });
-const mono = Fragment_Mono({ variable: "--font-fragment-mono", subsets: ["latin"], weight: "400" });
+// Polices choisies par l'utilisateur le 26/10/2026 : Fraunces pour les titres (serif douce, axes opsz et SOFT),
+// Instrument Sans pour le texte, les prix et les doses (chiffres tabulaires).
+const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"], axes: ["opsz", "SOFT"] });
+const instrument = Instrument_Sans({ variable: "--font-instrument-sans", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -22,11 +21,11 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-export const viewport: Viewport = { themeColor: "#0b0c0d" };
+export const viewport: Viewport = { themeColor: "#dfe8d0" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${condensed.variable} ${barlow.variable} ${mono.variable} h-full antialiased`}>
+    <html lang="fr" className={`${fraunces.variable} ${instrument.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <SiteHeader />
         {/* Le pied de page démarre sous la ligne de flottaison : il ne saute pas quand le contenu arrive en streaming. */}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { inkButton, textLink } from "@/components/field";
+import { primaryButton, textLink } from "@/components/field";
 import { RevealGroup } from "@/components/gsap";
 import { ProductTile } from "@/components/product-tile";
 import { SegmentedNav } from "@/components/segmented-nav";
@@ -146,7 +146,7 @@ function Verdict({ profile, products }: { profile: TasteProfile; products: Catal
 
 function ProfilePrompt({ signedIn }: { signedIn: boolean }) {
   return (
-    <section aria-labelledby="profil-prompt" className="mt-6 grid gap-5 bg-matcha p-6 sm:p-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+    <section aria-labelledby="profil-prompt" className="mt-6 grid gap-5 bg-celadon p-6 sm:p-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
       <div>
         <h2 id="profil-prompt" className="display text-[40px] sm:text-[52px]">
           Le bon kit en six réponses
@@ -156,7 +156,7 @@ function ProfilePrompt({ signedIn }: { signedIn: boolean }) {
         </p>
       </div>
       <div className="flex flex-wrap items-center gap-4">
-        <Link href={signedIn ? "/compte/profil" : "/inscription"} className={inkButton}>
+        <Link href={signedIn ? "/compte/profil" : "/inscription"} className={primaryButton}>
           {signedIn ? "Faire mon profil" : "Créer un compte"}
         </Link>
         {!signedIn && (

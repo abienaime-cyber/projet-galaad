@@ -44,7 +44,7 @@ export function Calculator({ refill, kit }: Props) {
 
   return (
     <section ref={section} data-rail="Calcul" aria-labelledby="calc-title" className="relative bg-paper">
-      <div className="curtain relative flex min-h-svh flex-col overflow-hidden bg-moss text-ink">
+      <div className="curtain relative flex min-h-svh flex-col overflow-hidden bg-celadon text-ink">
         <Smoke className="absolute inset-0 size-full" />
         <h2 id="calc-title" className="spread display relative flex flex-wrap justify-between gap-x-4 px-4 pt-5 text-[15vw] sm:text-[17vw] leading-[0.82] sm:px-6 lg:text-[11vw] xl:text-[170px]">
           <span>Votre</span> <span>tasse</span> <span>maison.</span>
@@ -63,7 +63,7 @@ export function Calculator({ refill, kit }: Props) {
                   role="radio"
                   aria-checked={cafe === c}
                   onClick={() => setCafe(c)}
-                  className="mono min-h-11 min-w-14 px-3 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.5)] transition-colors hover:bg-paper/10 aria-checked:bg-matcha aria-checked:text-ink aria-checked:shadow-none"
+                  className="mono min-h-11 min-w-14 px-3 shadow-[inset_0_0_0_1px_rgb(35_49_40/0.5)] transition-colors hover:bg-paper/10 aria-checked:bg-matcha aria-checked:text-on-matcha aria-checked:shadow-none"
                 >
                   {price(c)}
                 </button>
@@ -82,7 +82,7 @@ export function Calculator({ refill, kit }: Props) {
                   role="radio"
                   aria-checked={drink === d}
                   onClick={() => setDrink(d)}
-                  className="mono min-h-11 px-4 uppercase shadow-[inset_0_0_0_1px_rgb(255_255_255/0.5)] transition-colors hover:bg-paper/10 aria-checked:bg-paper aria-checked:text-ink aria-checked:shadow-none"
+                  className="mono min-h-11 px-4 uppercase shadow-[inset_0_0_0_1px_rgb(35_49_40/0.5)] transition-colors hover:bg-paper/10 aria-checked:bg-paper aria-checked:text-ink aria-checked:shadow-none"
                 >
                   {d}
                 </button>

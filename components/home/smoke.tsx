@@ -28,12 +28,12 @@ void main() {
   vec2 q = vec2(fbm(p + vec2(0.0, t * 0.05)), fbm(p + vec2(5.2, 1.3) - t * 0.04));
   vec2 r = vec2(fbm(p + 3.5 * q + vec2(1.7, 9.2) + t * 0.06), fbm(p + 3.5 * q + vec2(8.3, 2.8)));
   float f = fbm(p + 3.0 * r);
-  vec3 deep = vec3(0.13, 0.24, 0.05);
-  vec3 mid = vec3(0.42, 0.62, 0.16);
-  vec3 lime = vec3(0.74, 0.9, 0.42);
+  vec3 deep = vec3(0.66, 0.76, 0.52);
+  vec3 mid = vec3(0.83, 0.87, 0.76);
+  vec3 lime = vec3(0.97, 0.96, 0.94);
   vec3 c = mix(deep, mid, smoothstep(0.2, 0.65, f));
   c = mix(c, lime, smoothstep(0.55, 0.95, f * f * 1.6 + 0.25 * r.x));
-  c *= 0.85 + 0.3 * smoothstep(0.0, 0.8, q.y);
+  c *= 0.94 + 0.06 * smoothstep(0.0, 0.8, q.y);
   color = vec4(c, 1.0);
 }`;
 

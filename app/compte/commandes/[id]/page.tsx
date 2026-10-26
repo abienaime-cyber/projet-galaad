@@ -53,7 +53,7 @@ async function Order({ id, thanks }: { id: string; thanks: boolean }) {
   return (
     <>
       {thanks && (
-        <p role="status" className="mt-6 bg-matcha p-5 text-[17px]">
+        <p role="status" className="mt-6 bg-matcha p-5 text-[17px] text-on-matcha">
           <span className="font-semibold">Merci, votre commande est enregistrée.</span> Le stock a été réservé
           pour vous.
         </p>

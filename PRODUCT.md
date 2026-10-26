@@ -47,7 +47,7 @@ La recommandation est calculée par un algorithme déterministe (`lib/reco.ts`) 
 - Nom : USUCHA (薄茶, le matcha léger qu'on fouette au quotidien), choisi par l'utilisateur le 26/10/2026. Accroche : le matcha du coffee shop, fouetté chez vous.
 - Logo : tampon carré vert portant 薄茶, et le nom en capitales condensées (`components/logo.tsx`, `public/brand/`).
 - Menu : trois liens seulement (Accueil, Boutique, Panier) ; le compte derrière une icône.
-- Direction artistique imposée par l'utilisateur le 25/10/2026, d'après des références d'un site de matcha au thème « cartel » : noir, gris acier bleuté, vert matcha acide, titres condensés en capitales, petites mentions techniques, étiquettes numérotées sur les objets, sections épinglées au défilement. On reprend l'esprit, jamais le nom, le logo ni les textes de la référence.
+- Direction artistique imposée par l'utilisateur le 25/10/2026, d'après des références d'un site de matcha au thème « cartel » : noir, gris acier bleuté, vert matcha acide, titres condensés en capitales, petites mentions techniques, étiquettes numérotées sur les objets, sections épinglées au défilement. On reprend l'esprit, jamais le nom, le logo ni les textes de la référence. Le 26/10/2026, l'utilisateur a refusé le noir et choisi une palette claire « céramique » (porcelaine, céladon, vert-de-gris, vert matcha foncé) et la typographie Fraunces + Instrument Sans.
 - Voix : vouvoiement, direct et sobre, le ton d'un bon caviste. Un brin de malice dans les titres (« Pièces saisies », « Le Coffre »), jamais dans les informations.
 - Interface en français.
 - Aucune promesse de santé ni de bienfait. Aucun avis, client ou chiffre de vente inventé dans l'interface.
@@ -55,7 +55,7 @@ La recommandation est calculée par un algorithme déterministe (`lib/reco.ts`) 
 ## Evidence on Hand
 
 - 17 produits fictifs avec descriptions et prix choisis pour la démo (`supabase/seed.sql`).
-- Visuels : modèles 3D faits en code, rendus en PNG. Ce sont des illustrations, pas des photos des articles.
+- Visuels : vraies photos Pexels (`CREDITS.md`). Elles montrent du matériel du commerce, pas les articles vendus.
 - Faits de préparation sourcés : doses et température de la maison Ippodo (Kyoto) : 2 g de matcha, 60 ml d'eau à 80 °C, 15 secondes de fouet pour un matcha pur ; 3 g, 100 ml d'eau et 100 ml de lait pour un latte.
 - Faits de fabrication sourcés (AFP, 26 juin 2025) : le matcha vient de feuilles appelées tencha, cultivées à l'ombre les dernières semaines avant la récolte ; il faut jusqu'à une heure pour produire 40 g de matcha.
 - Prix d'un matcha en coffee shop : non vérifié de façon fiable. Le site demande au client le prix qu'il paie, sans en afficher un par défaut comme un fait.

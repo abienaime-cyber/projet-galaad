@@ -70,7 +70,7 @@ export function Hero({ kitName, kitSlug, kitPrice }: Props) {
         </p>
       </div>
 
-      <Powder src="/photos/tin-quotidien.jpg" shape="tas" className="absolute inset-x-0 top-[9%] -z-10 h-[58%] w-full touch-pan-y sm:inset-0 sm:h-full lg:left-[34%] lg:w-[66%]" />
+      <Powder src="/photos/tin-quotidien.jpg" shape="tas" light className="absolute inset-x-0 top-[9%] -z-10 h-[58%] w-full touch-pan-y sm:inset-0 sm:h-full lg:left-[34%] lg:w-[66%]" />
       <p aria-hidden className="mono pointer-events-none absolute top-1/2 right-10 hidden -translate-y-1/2 text-[12px] text-fog-dark sm:block">
         (défiler)
       </p>

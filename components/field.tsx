@@ -51,20 +51,17 @@ export function Field({ name, label, unit, hint, error, className, ...input }: F
   );
 }
 
-// Boutons : capitales condensées, angles droits. Le vert est réservé à l'action principale.
+// Boutons : Instrument Sans demi-gras, angles droits. Le vert est réservé à l'action principale.
 const button =
-  "inline-flex h-13 cursor-pointer items-center justify-center gap-3 px-6 font-display text-[19px] font-bold tracking-[0.02em] uppercase transition-[background-color,color,box-shadow,transform] duration-150 ease-out active:scale-[0.98] disabled:cursor-default disabled:opacity-45 disabled:active:scale-100";
+  "inline-flex h-13 cursor-pointer items-center justify-center gap-3 px-6 font-sans text-[16px] font-semibold tracking-[0.01em] transition-[background-color,color,box-shadow,transform] duration-150 ease-out active:scale-[0.98] disabled:cursor-default disabled:opacity-45 disabled:active:scale-100";
 
-export const primaryButton = `${button} bg-matcha text-ink hover:bg-matcha-hover`;
+export const primaryButton = `${button} bg-matcha text-on-matcha hover:bg-matcha-hover`;
 
-// Sur le panneau vert : noir plein.
-export const inkButton = `${button} bg-ink text-paper hover:bg-ink-2`;
-
-// Sur fond clair : filet noir, se remplit au survol.
+// Sur fond clair : filet vert-de-gris, se remplit au survol.
 export const secondaryButton = `${button} text-ink shadow-[inset_0_0_0_1.5px_var(--color-ink)] hover:bg-ink hover:text-paper`;
 
-// Sur fond noir : filet blanc.
-export const ghostButton = `${button} text-paper shadow-[inset_0_0_0_1.5px_rgb(255_255_255/0.7)] hover:bg-paper hover:text-ink`;
+// Sur les zones céladon : filet de la couleur du texte.
+export const ghostButton = `${button} text-paper shadow-[inset_0_0_0_1.5px_var(--color-paper)] hover:bg-paper hover:text-ink`;
 
 // Lien de texte souligné : « Tout voir », « Modifier ».
 export const textLink =

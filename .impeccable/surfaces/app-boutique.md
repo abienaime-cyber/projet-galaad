@@ -17,11 +17,11 @@ Historique : après Carrure (costumes), l'utilisateur change de produit le 25/10
 
 THESIS: Le matcha comme marchandise saisie qu'on touche : une vraie poudre qu'on écarte du doigt, des pièces qu'on inspecte, une préparation en quatre photos, une boîte qu'on tapote. Refuse la boutique de thé zen (bambou, beige, calligraphie), la grille de cartes blanches et les objets 3D modélisés.
 
-OWN-WORLD: Noir #000000, gris bleuté #dee5ea, acier #8e9ba4 et #606b7f, blanc #f3f6f8, vert matcha acide #a2df46, verts de poudre #79a83d et #5c7e2a (relevés au pixel sur la référence). Titres Barlow Condensed 800 en capitales serrées, texte Barlow, mentions techniques en Fragment Mono. Logo : tampon carré vert 薄茶 et USUCHA en Barlow Condensed 900. Étiquettes grises numérotées, filets 1 px, croix de repère aux angles des grilles, colonne de carrés de progression à droite.
+OWN-WORLD: Palette céramique choisie par l'utilisateur le 26/10/2026 : porcelaine #f7f5f0, céladon #dfe8d0, texte vert-de-gris #233128, vert matcha d'action #4a7627, verts de poudre #79a83d et #5c7e2a. Aucun noir. Titres Fraunces 600 (SOFT 60) en bas de casse, texte et mentions en Instrument Sans. Logo : tampon carré vert 薄茶 et « usucha » en Fraunces. Étiquettes grises numérotées, filets 1 px, croix de repère aux angles des grilles, colonne de carrés de progression à droite.
 
 STORY: Le visiteur touche la poudre, voit le prix du kit, parcourt la planche de photos, inspecte les pièces, suit la préparation photo par photo, règle le prix de son matcha habituel, voit la feuille devenir poudre puis boîte, tapote la boîte pour servir ses tasses et choisit son kit.
 
-FIRST VIEWPORT: Fond noir. Rangée d'horloges en mono (Kyoto, Paris, chez vous). Un tas de vraie poudre de matcha en milliers de grains, qui s'écarte sous le doigt. Titre « Le matcha du coffee shop, fouetté chez vous. », bouton vert « Kit Essentiel · 49 € » et « Les 4 kits ». « (touchez la poudre) » et « (défiler) » en mono.
+FIRST VIEWPORT: Fond céladon. Rangée d'horloges en petites capitales (Kyoto, Paris, chez vous). Un tas de vraie poudre de matcha en milliers de grains, qui s'écarte sous le doigt. Titre « Le matcha du coffee shop, fouetté chez vous. », bouton vert « Kit Essentiel · 49 € » et « Les 4 kits ». « (touchez la poudre) » et « (défiler) » en mono.
 
 FORM: Direction épinglée par l'utilisateur (captures et vidéos fournies), sans tirage. Geste signature : la poudre interactive faite des pixels d'une vraie photo. seed: none (unavailable)
 

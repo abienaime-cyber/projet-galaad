@@ -53,7 +53,7 @@ export function Pieces({ pieces }: { pieces: Piece[] }) {
           <figcaption className="mt-3 flex items-stretch">
             <span className="mono grid w-10 place-items-center bg-gunmetal text-[12px] text-ink">{piece.index}</span>
             <span className="mono flex flex-1 items-center bg-paper px-3 text-[13px] uppercase">{piece.name}</span>
-            <Link href={`/produit/${piece.slug}`} className="mono inline-flex min-h-11 items-center bg-ink px-3 text-[13px] text-paper transition-colors hover:bg-matcha hover:text-ink">
+            <Link href={`/produit/${piece.slug}`} className="mono inline-flex min-h-11 items-center bg-ink px-3 text-[13px] text-paper transition-colors hover:bg-matcha hover:text-on-matcha">
               {piece.price} →
             </Link>
           </figcaption>
@@ -74,7 +74,7 @@ export function Pieces({ pieces }: { pieces: Piece[] }) {
               >
                 <span className="text-fog-dark">{p.index}.</span>
                 <span className="flex-1">{p.label}</span>
-                <span aria-hidden className={`size-2.5 ${i === current ? "bg-matcha" : "shadow-[inset_0_0_0_1px_rgb(255_255_255/0.6)]"}`} />
+                <span aria-hidden className={`size-2.5 ${i === current ? "bg-matcha" : "shadow-[inset_0_0_0_1px_rgb(35_49_40/0.6)]"}`} />
               </button>
             </li>
           ))}

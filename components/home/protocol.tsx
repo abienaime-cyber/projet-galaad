@@ -76,7 +76,7 @@ export function Protocol() {
 
   return (
     <section ref={section} data-theme="dark" data-rail="Préparation" aria-labelledby="protocol-title" className="relative overflow-hidden bg-ink text-paper" style={{ height: PINNED_HEIGHT }}>
-      <div aria-hidden className="absolute inset-x-0 top-[9%] bottom-[24%] sm:top-[6%] sm:bottom-[20%]">
+      <div aria-hidden className="absolute inset-x-0 top-[13%] bottom-[24%] overflow-hidden sm:top-[10%] sm:bottom-[25%]">
         {PROTOCOL.map((s, i) => (
           <div key={s.photo} className="step-photo absolute inset-0 will-change-transform">
             <Image
@@ -85,7 +85,7 @@ export function Protocol() {
               fill
               priority={i === 0}
               sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-contain [mask-image:radial-gradient(closest-side,#000_62%,transparent)]"
+              className="object-contain"
             />
           </div>
         ))}

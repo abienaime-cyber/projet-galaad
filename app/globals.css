@@ -1,31 +1,36 @@
 @import "tailwindcss";
 
-/* USUCHA : la palette de la référence, relevée au pixel. Noir pur, gris bleuté, vert acide, acier.
-   Angles droits, filets de 1 px. Contrastes : fog sur steel 6,1:1, fog-dark sur ink 8,3:1, matcha-ink sur steel 6,4:1. Moss (3,7:1) et iron (4,2:1) : grands titres seulement. */
+/* USUCHA, palette céramique : tout le site est clair. Fond porcelaine, zones fortes en céladon pâle,
+   texte vert-de-gris, un vert matcha foncé pour l'action. Aucun noir.
+   Contrastes : ink sur porcelaine 12,5:1 ; fog 6:1 sur porcelaine, 5,2:1 sur céladon ; texte du bouton sur matcha 4,6:1.
+   Iron et moss (4,3 à 4,4:1) : grands textes seulement. */
 @theme {
-  --color-ink: #000000;
-  --color-ink-2: #111315;
-  --color-steel: #dee5ea;
-  --color-steel-2: #c8cfd7;
-  --color-steel-3: #b3bbc4;
-  --color-iron: #606b7f;
-  --color-gunmetal: #8e9ba4;
-  --color-paper: #f3f6f8;
-  --color-matcha: #a2df46;
-  --color-matcha-hover: #b4ea64;
+  --color-ink: #233128;
+  --color-ink-2: #2f3f34;
+  --color-steel: #f7f5f0;
+  --color-steel-2: #efebe2;
+  --color-steel-3: #ddd8cb;
+  --color-iron: #6b7563;
+  --color-gunmetal: #a3ab98;
+  --color-paper: #fdfcf8;
+  --color-celadon: #dfe8d0;
+  --color-celadon-2: #d3dfc1;
+  --color-matcha: #4a7627;
+  --color-matcha-hover: #3f6620;
+  --color-on-matcha: #fdfcf8;
   --color-powder: #79a83d;
   --color-moss: #5c7e2a;
-  --color-matcha-ink: #33590f;
-  --color-fog: #4a545f;
-  --color-fog-dark: #9aa4ae;
-  --color-line: rgb(0 0 0 / 0.16);
-  --color-line-dark: rgb(255 255 255 / 0.14);
+  --color-matcha-ink: #3d6420;
+  --color-fog: #566150;
+  --color-fog-dark: #566150;
+  --color-line: rgb(35 49 40 / 0.16);
+  --color-line-dark: rgb(35 49 40 / 0.18);
   --color-danger: #9f1d14;
-  --color-danger-dark: #ff8a7a;
+  --color-danger-dark: #9f1d14;
 
-  --font-display: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
-  --font-sans: var(--font-barlow), "Helvetica Neue", Arial, sans-serif;
-  --font-mono: var(--font-fragment-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-instrument-sans), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-instrument-sans), "Helvetica Neue", Arial, sans-serif;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -54,6 +59,17 @@
   --header-h: 3.5rem;
 }
 
+/* Les zones fortes (ex-zones noires) : fond céladon, texte vert-de-gris. On remappe les jetons au lieu de réécrire
+   chaque composant : « ink » y devient le fond, « paper » le texte, et le vert d'action fonce pour rester lisible. */
+[data-theme="dark"] {
+  --color-ink: #dfe8d0;
+  --color-ink-2: #d3dfc1;
+  --color-paper: #233128;
+  --color-matcha: #3d6420;
+  --color-matcha-hover: #33561a;
+  --color-gunmetal: #8f9a83;
+}
+
 @layer base {
   html {
     color-scheme: light;
@@ -71,19 +87,12 @@
 
   ::selection {
     background: var(--color-matcha);
-    color: var(--color-ink);
+    color: var(--color-on-matcha);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-ink);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 5px var(--color-matcha);
-  }
-
-  .dark :focus-visible,
-  [data-theme="dark"] :focus-visible {
-    outline-color: var(--color-matcha);
-    box-shadow: none;
+    outline: 2px solid var(--color-matcha);
+    outline-offset: 3px;
   }
 
   a,
@@ -103,7 +112,7 @@
   select {
     appearance: none;
     background: var(--color-paper)
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 3.5 5 7l3.5-3.5' fill='none' stroke='%230b0c0d' stroke-width='1.4'/%3E%3C/svg%3E")
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 3.5 5 7l3.5-3.5' fill='none' stroke='%23233128' stroke-width='1.4'/%3E%3C/svg%3E")
       no-repeat right 14px center / 10px;
     padding-right: 38px;
   }
@@ -131,21 +140,22 @@
   }
 }
 
-/* Titre condensé en capitales : la voix de la marque. */
+/* Titre en Fraunces, bas de casse, douceur réglée sur l'axe SOFT : la voix de la marque. */
 @utility display {
   font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 0.9;
-  letter-spacing: -0.005em;
+  font-weight: 600;
+  font-variation-settings: "SOFT" 60;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-/* Mention technique : doses, prix, numéros, indications de défilement. */
+/* Petite mention : doses, prix, numéros, indications. Instrument Sans, chiffres tabulaires. */
 @utility mono {
   font-family: var(--font-mono);
   font-size: 13px;
+  font-weight: 500;
   line-height: 1.45;
-  letter-spacing: 0;
+  letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums;
 }
 
@@ -154,9 +164,9 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Fond acier : un dégradé de projecteur, du clair au centre au gris bleu sur les bords. */
+/* Fond porcelaine éclairé : un dégradé doux, plus clair au centre. */
 @utility steel-light {
-  background: radial-gradient(120% 90% at 50% 35%, #eef2f5 0%, var(--color-steel) 50%, var(--color-steel-2) 100%);
+  background: radial-gradient(120% 90% at 50% 35%, var(--color-paper) 0%, var(--color-steel) 50%, var(--color-steel-2) 100%);
 }
 
 /* Grille de repérage : filets et croix aux intersections, comme une planche technique. */

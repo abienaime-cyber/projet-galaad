@@ -12,7 +12,7 @@ export default function NotFound() {
         <h1 className="display relative flex items-center justify-between text-[30vw] leading-[0.8] sm:text-[240px]" aria-label="Erreur 404">
           <span aria-hidden>4</span>
           <span aria-hidden className="relative aspect-square w-[34vw] max-w-[320px]">
-            <Powder src="/photos/tin-quotidien.jpg" shape="tas" className="absolute -inset-[20%] size-[140%] touch-pan-y" />
+            <Powder src="/photos/tin-quotidien.jpg" shape="tas" light className="absolute -inset-[20%] size-[140%] touch-pan-y" />
           </span>
           <span aria-hidden>4</span>
         </h1>

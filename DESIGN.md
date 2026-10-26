@@ -1,62 +1,63 @@
 ---
 name: USUCHA
-description: Le kit pour faire chez soi le matcha du coffee shop, présenté comme une marchandise saisie qu'on touche.
+description: Le kit pour faire chez soi le matcha du coffee shop, dans une maison claire couleur céramique.
 colors:
-  ink: "#000000"
-  ink-2: "#111315"
-  steel: "#dee5ea"
-  steel-2: "#c8cfd7"
-  steel-3: "#b3bbc4"
-  iron: "#606b7f"
-  gunmetal: "#8e9ba4"
-  paper: "#f3f6f8"
-  matcha: "#a2df46"
-  matcha-hover: "#b4ea64"
+  ink: "#233128"
+  ink-2: "#2f3f34"
+  steel: "#f7f5f0"
+  steel-2: "#efebe2"
+  steel-3: "#ddd8cb"
+  celadon: "#dfe8d0"
+  celadon-2: "#d3dfc1"
+  iron: "#6b7563"
+  gunmetal: "#a3ab98"
+  paper: "#fdfcf8"
+  matcha: "#4a7627"
+  matcha-hover: "#3f6620"
+  on-matcha: "#fdfcf8"
   powder: "#79a83d"
   moss: "#5c7e2a"
-  matcha-ink: "#33590f"
-  fog: "#4a545f"
-  fog-dark: "#9aa4ae"
-  line: "rgb(0 0 0 / 0.16)"
-  line-dark: "rgb(255 255 255 / 0.14)"
+  matcha-ink: "#3d6420"
+  fog: "#566150"
+  line: "rgb(35 49 40 / 0.16)"
   danger: "#9f1d14"
-  danger-dark: "#ff8a7a"
 typography:
   display:
-    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
-    fontSize: "clamp(56px, 8.6vw, 128px)"
-    fontWeight: 800
-    lineHeight: 0.86
-    letterSpacing: "-0.005em"
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "clamp(40px, 7vw, 118px)"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "-0.02em"
+    fontVariation: "SOFT 60"
   headline:
-    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
+    fontFamily: "Fraunces, Georgia, serif"
     fontSize: "56px"
-    fontWeight: 800
-    lineHeight: 0.9
-    letterSpacing: "-0.005em"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "-0.02em"
   title:
-    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
+    fontFamily: "Fraunces, Georgia, serif"
     fontSize: "26px"
-    fontWeight: 800
-    lineHeight: 0.95
-    letterSpacing: "-0.005em"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "-0.02em"
   body:
-    fontFamily: "Barlow, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Instrument Sans, Helvetica Neue, Arial, sans-serif"
     fontSize: "17px"
     fontWeight: 400
     lineHeight: 1.5
   label:
-    fontFamily: "Fragment Mono, ui-monospace, Menlo, monospace"
+    fontFamily: "Instrument Sans, Helvetica Neue, Arial, sans-serif"
     fontSize: "13px"
-    fontWeight: 400
+    fontWeight: 500
     lineHeight: 1.45
-    letterSpacing: "0"
+    letterSpacing: "0.02em"
     fontFeature: "tnum"
   button:
-    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
-    fontSize: "19px"
-    fontWeight: 700
-    letterSpacing: "0.02em"
+    fontFamily: "Instrument Sans, Helvetica Neue, Arial, sans-serif"
+    fontSize: "16px"
+    fontWeight: 600
+    letterSpacing: "0.01em"
 rounded:
   none: "0px"
 spacing:
@@ -68,7 +69,7 @@ spacing:
 components:
   button-primary:
     backgroundColor: "{colors.matcha}"
-    textColor: "{colors.ink}"
+    textColor: "{colors.on-matcha}"
     typography: "{typography.button}"
     rounded: "{rounded.none}"
     padding: "0 24px"
@@ -87,14 +88,14 @@ components:
     textColor: "{colors.paper}"
   button-ghost:
     backgroundColor: "transparent"
-    textColor: "{colors.paper}"
+    textColor: "{colors.ink}"
     typography: "{typography.button}"
     rounded: "{rounded.none}"
     padding: "0 24px"
     height: "52px"
   button-ghost-hover:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.celadon}"
   input:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
@@ -110,13 +111,13 @@ components:
     padding: "4px 10px"
   tag-matcha:
     backgroundColor: "{colors.matcha}"
-    textColor: "{colors.ink}"
+    textColor: "{colors.on-matcha}"
   tag-dark:
-    backgroundColor: "{colors.ink-2}"
-    textColor: "{colors.paper}"
+    backgroundColor: "{colors.celadon-2}"
+    textColor: "{colors.ink}"
   header:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
+    backgroundColor: "{colors.celadon}"
+    textColor: "{colors.ink}"
     height: "56px"
   product-tile:
     backgroundColor: "{colors.paper}"
@@ -139,82 +140,79 @@ components:
 
 ## Overview
 
-**Creative North Star: "La pièce à conviction"**
+**Creative North Star: "La pièce à conviction, dans une maison de thé claire"**
 
-Le matcha et ses ustensiles sont présentés comme une marchandise saisie : posés sous un projecteur sur un fond d'acier, étiquetés, numérotés, consignés. Le noir porte la marque (en-tête, pied de page, sections de démonstration), l'acier bleuté porte la boutique, et un seul vert matcha acide désigne l'action, la sélection et le progrès.
+Le matcha et ses ustensiles restent présentés comme des pièces étiquetées, numérotées, consignées. Mais tout se passe à la lumière du jour : fond porcelaine, zones fortes en céladon pâle, texte vert-de-gris, et un seul vert matcha foncé pour l'action. Aucun noir : l'utilisateur l'a refusé le 26/10/2026 et a choisi cette palette « céramique ».
 
-La densité est celle d'une planche technique : grands titres condensés en capitales, petites mentions en mono pour les doses, prix, numéros et indications de défilement, filets de 1 px, angles droits partout. Les images sont de vraies photos, jamais des objets modélisés. L'accueil se vit au doigt : une vraie poudre de matcha qu'on écarte, une boîte qu'on tapote, des photos qui s'enchaînent au défilement. Tout reste lisible et complet sans mouvement.
-
-Palette relevée au pixel sur les captures de référence fournies par l'utilisateur le 25/10/2026, et reprise telle quelle.
+Les titres sont en Fraunces, une serif douce, en bas de casse. Le texte, les prix et les doses sont en Instrument Sans. La densité reste celle d'une planche : filets de 1 px, angles droits, petites mentions pour les doses et les numéros. Les images sont de vraies photos. L'accueil se vit au doigt : la poudre qu'on écarte, la boîte qu'on tapote, les photos qui s'enchaînent au défilement. Tout reste lisible et complet sans mouvement.
 
 **Key Characteristics:**
-- Noir pur, gris bleuté #dee5ea, acier, un seul vert matcha acide #a2df46.
-- Titres en Barlow Condensed 800, capitales, interlignage serré (0.82 à 0.95).
-- Mentions techniques en Fragment Mono 13 px, chiffres tabulaires.
+- Porcelaine #f7f5f0, céladon #dfe8d0, texte vert-de-gris #233128, un seul vert d'action #4a7627.
+- Titres en Fraunces 600, axe SOFT à 60, bas de casse, interlignage 1.
+- Texte, prix et mentions en Instrument Sans, chiffres tabulaires.
 - Angles droits, filets de 1 px, aucune ombre de surface.
-- Vraies photos (Pexels, voir CREDITS.md), sur fond noir pour la préparation.
-- Logo : tampon carré vert portant 薄茶 (usucha), et le nom en Barlow Condensed 900. Tracés vectoriels dans `components/logo.tsx`.
+- Vraies photos (Pexels, voir CREDITS.md), cadrées nettes sur le céladon pour la préparation.
+- Logo : tampon carré vert portant 薄茶 en porcelaine, et « usucha » en Fraunces 600 bas de casse. Tracés vectoriels dans `components/logo.tsx`.
 
 ## Colors
 
-Une palette froide et quasi monochrome, percée d'un vert acide unique.
+Une palette claire, couleur céramique : porcelaine, céladon, vert-de-gris, et un vert matcha foncé unique pour agir.
 
 ### Primary
-- **Vert matcha acide** (matcha): l'action principale (bouton primaire), la sélection (`::selection`, choix cochés), l'anneau de focus, le progrès (rail de sections, étapes du protocole), le badge du panier, les bandeaux d'appel au profil de goût. Survol en **vert matcha éclairci** (matcha-hover).
-- **Vert matcha profond** (matcha-ink): le vert lisible sur acier ou papier, pour un message de succès en texte et le caret des champs (6,4:1 sur steel).
+- **Vert matcha** (matcha, #4a7627) : l'action principale (bouton primaire, texte porcelaine dessus, 4,6:1), la sélection, l'anneau de focus, le progrès (rail, étapes), le badge du panier. Survol plus foncé (matcha-hover). Dans les zones céladon, le jeton fonce à #3d6420 pour garder le contraste.
+- **Vert matcha profond** (matcha-ink) : le vert en texte sur fond clair (6,3:1 sur porcelaine).
 
 ### Neutral
-- **Encre** (ink): fond des zones sombres (en-tête, pied de page, hero, protocole), texte courant sur fond clair, bouton secondaire au survol.
-- **Encre relevée** (ink-2): cartes et étiquettes posées sur l'encre.
-- **Fer** (iron) et **acier canon** (gunmetal): numéros d'étiquette, logo en gris sur le gris bleuté, titres de la chaîne. Grands textes seulement (iron 4,2:1 sur steel).
-- **Poudre** (powder) et **mousse** (moss): verts de la poudre réelle, pour les grands chiffres sur fond clair et le rideau vert du calcul (moss 3,7:1 sur steel : grands titres seulement).
-- **Acier** (steel): fond de page par défaut.
-- **Acier moyen** (steel-2) et **acier sombre** (steel-3): bords du dégradé de projecteur, barre de défilement, pastilles neutres.
-- **Papier** (paper): champs, vignettes produit (à 55 %, 90 % au survol), texte sur fond noir, étiquettes claires.
-- **Brume** (fog): texte secondaire et placeholders sur fond clair (6,1:1 sur steel).
-- **Brume claire** (fog-dark): texte secondaire sur l'encre (8,3:1).
-- **Filet** (line) et **filet clair** (line-dark): toutes les séparations de 1 px, respectivement sur fond clair et sur fond noir.
-- **Alerte** (danger) sur fond clair, **alerte claire** (danger-dark) sur fond noir.
+- **Porcelaine** (steel) : fond de page par défaut.
+- **Céladon** (celadon) et **céladon soutenu** (celadon-2) : les zones fortes de l'accueil (en-tête, hero, préparation, kits, pied de page), le bandeau d'appel au profil de goût, le rideau du calcul.
+- **Vert-de-gris** (ink) : texte courant, onglet actif, puces. **Vert-de-gris relevé** (ink-2) : survol des éléments pleins.
+- **Papier** (paper) : champs, vignettes produit, texte sur le vert d'action.
+- **Brume** (fog) : texte secondaire et placeholders (6:1 sur porcelaine, 5,2:1 sur céladon).
+- **Fer** (iron) et **gris-vert** (gunmetal) : numéros d'étiquette, logo en filigrane. Grands textes seulement.
+- **Poudre** (powder) et **mousse** (moss) : verts de la poudre réelle, grands chiffres seulement.
+- **Filet** (line) : toutes les séparations de 1 px.
+- **Alerte** (danger) : erreurs, sur tous les fonds.
 
 ### Named Rules
-**The One Green Rule.** Le vert matcha est la seule couleur d'accent. Il marque l'action, la sélection ou le progrès, jamais la décoration d'un texte courant sur fond clair : là, on prend matcha-ink.
+**The One Green Rule.** Le vert matcha est la seule couleur d'accent. Il marque l'action, la sélection ou le progrès.
 
-**The Two Grounds Rule.** Chaque zone est soit acier/papier avec texte encre, soit encre avec texte papier (marquée `data-theme="dark"`). Les gris secondaires changent avec le fond : fog sur clair, fog-dark sur noir.
+**The Céladon Zone Rule.** Les zones marquées `data-theme="dark"` (nom historique) sont les zones céladon. Le CSS y remappe les jetons : `ink` devient le fond céladon, `paper` le texte vert-de-gris, `matcha` fonce. Les composants n'ont rien à changer.
+
+**The No Black Rule.** Aucun noir pur ni gris neutre froid : les sombres sont des verts-de-gris.
 
 ## Typography
 
-**Display Font:** Barlow Condensed 600/700/800 (repli Arial Narrow)
-**Body Font:** Barlow 400/500/600 (repli Helvetica Neue, Arial)
-**Label/Mono Font:** Fragment Mono 400 (repli ui-monospace, Menlo)
+**Display Font:** Fraunces 600, axes opsz et SOFT (repli Georgia)
+**Body Font:** Instrument Sans 400/500/600 (repli Helvetica Neue, Arial)
 
-**Character:** Un titre condensé en capitales qui parle fort comme un tampon, un texte courant neutre et lisible, et une mono de fiche technique pour tout ce qui se compte.
+**Character:** Une serif douce et chaleureuse qui parle comme une maison de thé, et une sans nette pour tout ce qui se lit et se compte.
 
 ### Hierarchy
-- **Display** (800, de 15vw sur mobile à 128 px, 0.82 à 0.9): titres de section de l'accueil, plaque de marque du pied de page (18,5vw, 266 px max). Composition en `justify-between` sur toute la largeur possible.
-- **Headline** (800, 40 à 80 px, 0.9): titres de page et de bloc (« La boutique », « Protocole de préparation »).
-- **Title** (800, 24 à 34 px, 0.95): noms de produit dans les vignettes, titres de panneau.
-- **Body** (400, 17 px, 1.5): texte courant ; aides et erreurs à 14 px, libellés de champ 15 px en 500. `text-wrap: pretty` sur les paragraphes, `balance` sur les titres.
-- **Label** (mono 400, 13 px, 1.45, chiffres tabulaires): prix, doses, formats, numéros d'étape (« 01 », « Étape 02 »), navigation, indications (« (défiler) », « (faites tourner) »). En capitales pour la navigation et les étiquettes ; 11 à 12 px pour les sources et mentions de pied.
-- **Bouton** (Barlow Condensed 700, 19 px, capitales, +0.02em).
+- **Display** (600, SOFT 60, interlignage 1, -0.02em) : titres de section de l'accueil et plaque de marque du pied de page.
+- **Headline** (600, 40 à 88 px) : titres de page et de bloc (« La boutique », « Préparation »).
+- **Title** (600, 24 à 34 px) : noms de produit, titres de panneau.
+- **Body** (Instrument Sans 400, 17 px, 1.5) : texte courant ; aides et erreurs à 14 px, libellés 15 px en 500.
+- **Label** (Instrument Sans 500, 13 px, +0.02em, chiffres tabulaires) : prix, doses, formats, numéros, navigation, indications. En capitales pour la navigation et les étiquettes.
+- **Bouton** (Instrument Sans 600, 16 px, casse normale).
 
 ### Named Rules
-**The Stamp Rule.** Barlow Condensed n'apparaît qu'en capitales et en gras (700 ou 800). Jamais pour un paragraphe.
+**The Lowercase Rule.** Les titres Fraunces s'écrivent en casse de phrase, jamais en capitales.
 
-**The Ledger Rule.** Tout chiffre que le client compare (prix, grammes, tasses, scores) passe en mono tabulaire.
+**The Ledger Rule.** Tout chiffre que le client compare (prix, grammes, tasses, scores) est en chiffres tabulaires.
 
 ## Layout
 
 Conteneur de 1440 px maximum, gouttières de 16 px puis 24 px dès 640 px. Les panneaux ont 20 px puis 24 px de marge interne. Les grilles de vignettes et d'étapes se séparent par un filet (gap de 1 px ou ombre interne de 1 px) plutôt que par de l'espace. L'en-tête collant mesure 56 px, plus une seconde ligne de rayons de 40 px sous 768 px (`--header-h` vaut 6rem puis 3.5rem) ; le contenu démarre à `100svh` moins l'en-tête pour que le pied de page ne saute pas.
 
-L'accueil est une suite de sections pleine hauteur qui alternent encre, acier éclairé et papier, chacune déclarée au rail de navigation (`data-rail`). Les sections épinglées font exactement `100svh - --header-h` et se calent sous l'en-tête. Les grilles de repérage (filets et croix, cellules réglables) habillent les fonds techniques. Les colonnes latérales d'info (22 à 25 rem) accompagnent la scène 3D à partir de 1024 px et passent dessous en mobile.
+L'accueil est une suite de sections pleine hauteur qui alternent céladon, porcelaine éclairée et papier, chacune déclarée au rail de navigation (`data-rail`). Les sections épinglées font exactement `100svh - --header-h` et se calent sous l'en-tête. Les grilles de repérage (filets et croix, cellules réglables) habillent les fonds techniques. Les colonnes latérales d'info (22 à 25 rem) accompagnent la photo ou la poudre à partir de 1024 px et passent dessous en mobile.
 
 ## Elevation & Depth
 
-Système plat. Les surfaces ne portent aucune ombre portée : la séparation vient des deux fonds (encre / acier), des filets de 1 px et du dégradé de projecteur sur acier (clair au centre, steel-3 aux bords). La profondeur réelle est confiée aux objets 3D, éclairés en studio (lumière clé, environnement, ombre douce au sol) sur fond transparent.
+Système plat. Les surfaces ne portent aucune ombre portée : la séparation vient des deux fonds (céladon / porcelaine), des filets de 1 px et du dégradé doux sur porcelaine (plus clair au centre). La profondeur réelle est confiée aux photos.
 
 ### Shadow Vocabulary
-- **Filet intérieur** (`box-shadow: inset 0 0 0 1px var(--color-line)`): contour des vignettes et des onglets ; 1.5 px encre ou blanc 70 % pour les boutons secondaire et fantôme.
-- **Anneau de focus** (`outline: 2px solid ink; outline-offset: 2px; box-shadow: 0 0 0 5px matcha`): sur fond sombre, contour matcha seul. Les champs : bord encre plus anneau matcha de 3 px.
+- **Filet intérieur** (`box-shadow: inset 0 0 0 1px var(--color-line)`): contour des vignettes et des onglets ; 1.5 px vert-de-gris pour les boutons secondaire et fantôme.
+- **Anneau de focus** (`outline: 2px solid matcha; outline-offset: 3px`) sur tous les fonds. Les champs : bord vert-de-gris plus anneau matcha de 3 px.
 - **Couche flottante** (`box-shadow: 0 18px 40px rgb(0 0 0 / 0.35)`): réservée aux éléments qui flottent au-dessus de la page (bandeau cookies, aperçu d'étiquette).
 
 ### Named Rules
@@ -227,37 +225,37 @@ Angles droits sans exception (rayon 0) : boutons, champs, vignettes, étiquettes
 ## Components
 
 ### Buttons
-Des capitales condensées dans un rectangle net, qui s'enfoncent légèrement au clic.
+Instrument Sans demi-gras dans un rectangle net, qui s'enfonce légèrement au clic.
 - **Shape:** angles droits (0), hauteur 52 px, 24 px de côté, icône ou spinner à 12 px du texte.
-- **Primary:** fond matcha, texte encre ; survol matcha-hover. Une seule par zone. Sur un bandeau matcha, il s'inverse en encre et texte papier.
-- **Secondary:** sur fond clair, filet encre de 1.5 px ; au survol il se remplit d'encre, texte papier.
-- **Ghost:** sur fond noir, filet blanc 70 % ; au survol il se remplit de papier, texte encre.
+- **Primary:** fond matcha, texte papier (on-matcha) ; survol matcha-hover. Une seule par zone.
+- **Secondary:** sur porcelaine, filet vert-de-gris de 1.5 px ; au survol il se remplit, texte papier.
+- **Ghost:** sur céladon, filet de la couleur du texte ; au survol il se remplit de vert-de-gris, texte céladon.
 - **Hover / Focus:** transition de 150 ms en `--ease-out`, `scale(0.98)` à l'appui, désactivé à 45 % d'opacité.
-- **Text link:** Barlow 500 16 px, soulignement à 35 % qui se fonce au survol, cible de 44 px.
+- **Text link:** Instrument Sans 500 16 px, soulignement à 35 % qui se fonce au survol, cible de 44 px.
 
 ### Chips
-- **Étiquette numérotée:** mono 12 px en capitales ; index sur gris, nom sur papier, encre ou matcha. Sert au score « Pour vous » (matcha à partir de 85), à « Épuisé » (encre), et aux étiquettes accrochées aux objets 3D.
+- **Étiquette numérotée:** mono 12 px en capitales ; index sur gris, nom sur papier, vert-de-gris ou matcha. Sert au score « Pour vous » (matcha à partir de 85), à « Épuisé » (vert-de-gris), et aux étiquettes des pièces.
 - **Choix:** dans les panneaux sombres, cases mono de 44 px cerclées de blanc 50 % ; cochées, elles passent en matcha ou papier pleins.
 
 ### Cards / Containers
-- **Vignette produit:** rendu 3D carré sur acier éclairé, nom en Title, formats en mono fog, prix en mono 15 px poussé en bas ; fond papier 55 %, filet intérieur, papier 90 % et zoom de l'image à 1.04 au survol (500 ms).
-- **Panneau sombre:** encre ou encre relevée, marge 20 à 24 px, séparé par des filets line-dark.
-- **Bandeau d'appel:** fond matcha plein, titre Headline, bouton encre.
+- **Vignette produit:** photo 4:5, nom en Title, formats en mono fog, prix en mono 15 px poussé en bas ; fond papier 55 %, filet intérieur, papier 90 % et zoom de l'image à 1.04 au survol (500 ms).
+- **Panneau céladon:** céladon ou céladon soutenu, marge 20 à 24 px, séparé par des filets.
+- **Bandeau d'appel:** fond céladon, titre Headline, bouton primaire vert.
 
 ### Inputs / Fields
-- **Style:** papier, bord encre 45 %, rayon 0, 48 px de haut, texte 17 px ; unité en mono fog à droite. Libellé toujours visible au-dessus.
-- **Focus:** bord encre plein et anneau matcha de 3 px (200 ms).
+- **Style:** papier, bord vert-de-gris 45 %, rayon 0, 48 px de haut, texte 17 px ; unité en mono fog à droite. Libellé toujours visible au-dessus.
+- **Focus:** bord vert-de-gris plein et anneau matcha de 3 px (200 ms).
 - **Error:** bord danger, message 14 px danger avec icône d'alerte, relié par `aria-describedby`.
-- **Select:** même champ, chevron dessiné en encre à droite.
+- **Select:** même champ, chevron dessiné en vert-de-gris à droite.
 
 ### Navigation
-- **En-tête:** une seule barre encre collante de 56 px ; logo de 26 px de haut ; trois liens en mono 13 px capitales (Accueil, Boutique, Panier), matcha au survol ; le compte derrière une icône Phosphor de 21 px dans une cible de 44 px ; badge du panier carré matcha. Sous 640 px, Accueil passe sur le logo et Panier devient une icône.
-- **Onglets segmentés:** filet encre de 1 px autour, items mono 13 px capitales de 44 px ; la page en cours passe en encre pleine, texte papier.
+- **En-tête:** une seule barre céladon collante de 56 px ; logo de 26 px de haut ; trois liens en Instrument Sans 13 px capitales (Accueil, Boutique, Panier), matcha au survol ; le compte derrière une icône Phosphor de 21 px dans une cible de 44 px ; badge du panier carré matcha. Sous 640 px, Accueil passe sur le logo et Panier devient une icône.
+- **Onglets segmentés:** filet vert-de-gris de 1 px autour, items 13 px capitales de 44 px ; la page en cours passe en vert-de-gris plein, texte papier.
 - **Rail de sections:** colonne fixe à droite dès 1024 px, un carré par section, matcha jusqu'à la section lue.
-- **Pied de page:** encre, trois colonnes de liens, puis le logo sur toute la largeur comme une plaque, puis une ligne de mentions mono 12 px fog-dark.
+- **Pied de page:** céladon, trois colonnes de liens, puis le logo sur toute la largeur comme une plaque, puis une ligne de mentions 12 px fog.
 
 ### Photos et poudre interactive
-- **Photos:** `public/photos/<modèle>.jpg`, une par produit, plus la série de préparation (même bol, même lumière, fond noir). Sur le noir, les photos se fondent par un masque radial ; en vignette, elles remplissent un cadre 4:5.
+- **Photos:** `public/photos/<modèle>.jpg`, une par produit, plus la série de préparation (même bol, même lumière, fond sombre d'origine). Sur le céladon, elles sont cadrées nettes, sans masque ; en vignette, elles remplissent un cadre 4:5.
 - **Poudre** (`components/powder.tsx`) : WebGL nu. Chaque grain est un pixel d'une vraie photo de poudre ; la forme « tas » découpe dans la texture un tas aux bords irréguliers. La souris écarte les grains, un appui les souffle, chacun revient à sa place à son rythme. La boucle dort quand rien ne bouge et hors écran. Mouvement réduit : poudre posée, immobile.
 - **Boîte** (`components/home/pot.tsx`) : chaque appui sert une tasse ; la boîte tressaute, une bouffée de grains s'échappe, le compteur tombe de 2 g.
 - **Loupe produit** (`components/photo-zoom.tsx`) : zoom 2,2 sous la souris, ou au doigt par appui.
@@ -273,8 +271,8 @@ Des capitales condensées dans un rectangle net, qui s'enfoncent légèrement au
 ### Do:
 - **Do** garder un rayon de 0 sur tout élément d'interface.
 - **Do** réserver le matcha à l'action principale, à la sélection et au progrès ; matcha-ink pour du vert en texte sur fond clair.
-- **Do** écrire prix, doses, formats et numéros en Fragment Mono tabulaire.
-- **Do** séparer par des filets de 1 px (line sur clair, line-dark sur noir) plutôt que par des ombres.
+- **Do** écrire prix, doses, formats et numéros en chiffres tabulaires (utilitaire `mono` ou `figures`).
+- **Do** séparer par des filets de 1 px (line) plutôt que par des ombres.
 - **Do** utiliser de vraies photos, cohérentes entre elles (même fond, même lumière), et créditer chaque photo dans CREDITS.md.
 - **Do** conditionner chaque animation à `MOTION_OK` et fournir une version à plat, complète, en mouvement réduit.
 - **Do** caler toute section épinglée sous l'en-tête (`PINNED_HEIGHT`, `pinStart`).
@@ -282,7 +280,7 @@ Des capitales condensées dans un rectangle net, qui s'enfoncent légèrement au
 ### Don't:
 - **Don't** introduire une deuxième couleur d'accent ni un dégradé coloré sur les surfaces d'interface.
 - **Don't** arrondir les angles ni ajouter d'ombre portée à une carte ou un bouton ; l'ombre portée est réservée aux couches flottantes.
-- **Don't** composer un paragraphe en Barlow Condensed ou un titre en bas de casse.
-- **Don't** utiliser fog sur fond noir ni fog-dark sur fond clair.
+- **Don't** composer un titre Fraunces en capitales, ni un paragraphe en Fraunces.
+- **Don't** réintroduire du noir ou un gris froid : l'utilisateur les a refusés le 26/10/2026.
 - **Don't** laisser tourner une boucle de rendu hors écran ou à l'arrêt.
 - **Don't** revenir à des objets modélisés en 3D : l'utilisateur les a refusés le 26/10/2026.

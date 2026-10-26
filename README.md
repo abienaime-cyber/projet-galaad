@@ -78,7 +78,7 @@ Aucune clé secrète n'est dans le dépôt : `.env*` est ignoré par git, seul `
 | Textes alternatifs | photos produit décrites par le nom de l'article ; poudre et photos décoratives en `aria-hidden`, leur contenu existe en texte |
 | Images compressées | `next/image` sert de l'AVIF ou du WebP à la bonne taille |
 | Vitesse | la poudre interactive ne tourne que visible à l'écran et s'arrête quand rien ne bouge ; moins de grains sur téléphone |
-| Contraste | jetons vérifiés dans `app/globals.css` (texte secondaire 5,5:1 sur l'acier, 8:1 sur le noir) |
+| Contraste | jetons vérifiés dans `app/globals.css` (texte courant 12,5:1 et secondaire 6:1 sur la porcelaine, 5,2:1 sur le céladon) |
 | Responsive | vérifié à 390 et 1440 px de large, sans défilement horizontal |
 | Page 404 | `app/not-found.tsx` (« Bol vide ») |
 | Liens cassés | parcours automatique des pages principales, connecté et déconnecté |
@@ -168,7 +168,7 @@ Sur `/admin/produits/<slug>`, l'IA rédige une description à partir des seules 
 
 ## Design
 
-Direction artistique donnée par l'utilisateur (captures et vidéos d'un site de matcha au thème « cartel »), reprise en esprit sans nom, logo, image ni texte de la référence. Palette relevée au pixel sur ces captures. Nom et logo : USUCHA (薄茶), tampon carré vert et nom en capitales condensées. Construite avec les skills **impeccable** (brief et contrat de direction dans `.impeccable/surfaces/`) et **UI UX Pro Max** (polices Barlow Condensed et Barlow, presets GSAP de défilement). Système détaillé dans `DESIGN.md`.
+Direction artistique donnée par l'utilisateur (captures et vidéos d'un site de matcha au thème « cartel »), reprise en esprit sans nom, logo, image ni texte de la référence. Palette relevée au pixel sur ces captures. Le 26/10/2026, l'utilisateur a remplacé le noir par une palette claire « céramique » et choisi Fraunces + Instrument Sans. Nom et logo : USUCHA (薄茶), tampon carré vert et « usucha » en Fraunces. Construite avec les skills **impeccable** (brief et contrat de direction dans `.impeccable/surfaces/`) et **UI UX Pro Max** (presets GSAP de défilement). Système détaillé dans `DESIGN.md`.
 
 ## Sources des faits affichés
 
@@ -197,7 +197,7 @@ supabase/            migrations, seed, tests pgTAP et test de survente
 
 ## Crédits
 
-- Polices Barlow, Barlow Condensed et Fragment Mono : SIL Open Font License (Google Fonts).
+- Polices Fraunces et Instrument Sans : SIL Open Font License (Google Fonts).
 - Photos : Pexels, licence Pexels, détail dans `CREDITS.md`.
 - GSAP : licence standard de GreenSock, gratuite.
 - Icônes : Phosphor (licence MIT).

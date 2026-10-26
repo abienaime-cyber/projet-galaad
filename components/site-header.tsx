@@ -13,7 +13,7 @@ const iconLink = "inline-flex size-11 items-center justify-center text-paper tra
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 bg-ink text-paper" data-theme="dark">
-      <a href="#contenu" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-matcha focus:px-4 focus:py-2 focus:text-ink">
+      <a href="#contenu" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-matcha focus:px-4 focus:py-2 focus:text-on-matcha">
         Aller au contenu
       </a>
       <div className="mx-auto flex h-14 max-w-[1440px] items-center gap-2 px-4 sm:px-6">
@@ -59,7 +59,7 @@ function AccountLinks({ count, admin, signedIn }: { count: number; admin: boolea
         <ShoppingBagOpen aria-hidden size={21} className="sm:hidden" />
         <span className="max-sm:hidden">Panier</span>
         {count > 0 && (
-          <span className="figures inline-flex h-[17px] min-w-[17px] items-center justify-center bg-matcha px-1 text-[11px] text-ink max-sm:absolute max-sm:top-1.5 max-sm:right-0.5">
+          <span className="figures inline-flex h-[17px] min-w-[17px] items-center justify-center bg-matcha px-1 text-[11px] text-on-matcha max-sm:absolute max-sm:top-1.5 max-sm:right-0.5">
             {count}
           </span>
         )}

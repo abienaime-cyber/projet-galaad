@@ -119,7 +119,7 @@ export function Pot({ name, slug, grams, price, dose }: Props) {
 
         <div className="relative mx-auto aspect-square w-full max-w-[520px]">
           <canvas ref={canvasRef} aria-hidden className="pointer-events-none absolute -inset-[20%] z-20 size-[140%]" />
-          <span ref={plus} aria-hidden className="mono pointer-events-none invisible absolute top-[18%] left-1/2 z-30 -translate-x-1/2 bg-ink px-2 py-1 text-[13px] text-matcha">
+          <span ref={plus} aria-hidden className="mono pointer-events-none invisible absolute top-[18%] left-1/2 z-30 -translate-x-1/2 bg-matcha px-2 py-1 text-[13px] text-on-matcha">
             +1 tasse
           </span>
           <button
