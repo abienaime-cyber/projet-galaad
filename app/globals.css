@@ -1,20 +1,24 @@
 @import "tailwindcss";
 
-/* Contrebande : noir, acier bleuté, un seul vert matcha. Angles droits, filets de 1 px.
-   Contrastes vérifiés : fog sur steel 5,5:1, fog-dark sur ink 8:1, matcha-ink sur steel 5,1:1. */
+/* USUCHA : la palette de la référence, relevée au pixel. Noir pur, gris bleuté, vert acide, acier.
+   Angles droits, filets de 1 px. Contrastes : fog sur steel 6,1:1, fog-dark sur ink 8,3:1, matcha-ink sur steel 6,4:1. Moss (3,7:1) et iron (4,2:1) : grands titres seulement. */
 @theme {
-  --color-ink: #0b0c0d;
-  --color-ink-2: #17191c;
-  --color-steel: #d5dbe2;
-  --color-steel-2: #c4ccd5;
-  --color-steel-3: #aab4be;
-  --color-paper: #f4f6f8;
-  --color-matcha: #a3e048;
-  --color-matcha-hover: #b6ee63;
+  --color-ink: #000000;
+  --color-ink-2: #111315;
+  --color-steel: #dee5ea;
+  --color-steel-2: #c8cfd7;
+  --color-steel-3: #b3bbc4;
+  --color-iron: #606b7f;
+  --color-gunmetal: #8e9ba4;
+  --color-paper: #f3f6f8;
+  --color-matcha: #a2df46;
+  --color-matcha-hover: #b4ea64;
+  --color-powder: #79a83d;
+  --color-moss: #5c7e2a;
   --color-matcha-ink: #33590f;
   --color-fog: #4a545f;
   --color-fog-dark: #9aa4ae;
-  --color-line: rgb(11 12 13 / 0.16);
+  --color-line: rgb(0 0 0 / 0.16);
   --color-line-dark: rgb(255 255 255 / 0.14);
   --color-danger: #9f1d14;
   --color-danger-dark: #ff8a7a;
@@ -45,14 +49,9 @@
   }
 }
 
-/* Hauteur de l'en-tête collant : deux lignes sous 768 px. Les sections épinglées commencent dessous. */
+/* Hauteur de l'en-tête collant, une seule ligne partout. Les sections épinglées commencent dessous. */
 :root {
-  --header-h: 6rem;
-}
-@media (min-width: 768px) {
-  :root {
-    --header-h: 3.5rem;
-  }
+  --header-h: 3.5rem;
 }
 
 @layer base {
@@ -157,7 +156,7 @@
 
 /* Fond acier : un dégradé de projecteur, du clair au centre au gris bleu sur les bords. */
 @utility steel-light {
-  background: radial-gradient(120% 90% at 50% 35%, #e6ebf0 0%, var(--color-steel) 45%, var(--color-steel-3) 100%);
+  background: radial-gradient(120% 90% at 50% 35%, #eef2f5 0%, var(--color-steel) 50%, var(--color-steel-2) 100%);
 }
 
 /* Grille de repérage : filets et croix aux intersections, comme une planche technique. */
@@ -167,3 +166,13 @@
   background-size: var(--cell, 33.333%) var(--cell-h, 25%);
 }
 
+
+/* Cadre de visée : quatre coins de 14 px, sans boîte complète. Couleur : currentColor. */
+@utility corners {
+  --c: linear-gradient(currentColor, currentColor);
+  background:
+    var(--c) top left / 14px 1px no-repeat, var(--c) top left / 1px 14px no-repeat,
+    var(--c) top right / 14px 1px no-repeat, var(--c) top right / 1px 14px no-repeat,
+    var(--c) bottom left / 14px 1px no-repeat, var(--c) bottom left / 1px 14px no-repeat,
+    var(--c) bottom right / 14px 1px no-repeat, var(--c) bottom right / 1px 14px no-repeat;
+}

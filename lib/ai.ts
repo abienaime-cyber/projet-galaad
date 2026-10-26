@@ -56,7 +56,7 @@ async function ask<T extends z.ZodType>(schema: T, system: string, prompt: strin
 }
 
 const VOICE =
-  "Tu écris pour Contrebande, boutique en ligne de kits pour préparer le matcha chez soi. Ton : direct et sobre, celui d'un bon caviste. Vouvoiement, phrases courtes, précis, sans superlatifs, sans familiarité, sans promesse de santé. Tu écris en français.";
+  "Tu écris pour USUCHA, boutique en ligne de kits pour préparer le matcha chez soi. Ton : direct et sobre, celui d'un bon caviste. Vouvoiement, phrases courtes, précis, sans superlatifs, sans familiarité, sans promesse de santé. Tu écris en français.";
 
 // Faits de préparation, sourcés : méthode de la maison Ippodo (Kyoto).
 const PREPARATION_FACTS = "Matcha pur : 2 g de matcha tamisé, 60 ml d'eau à 80 °C, fouetter 15 secondes en M. Latte : 3 g de matcha, 100 ml d'eau à 80 °C, fouetter, puis 100 ml de lait chaud ou moussé.";

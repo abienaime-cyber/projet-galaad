@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/logo";
 import { CATEGORIES } from "@/lib/shop";
 
 const footLink = "inline-flex min-h-11 items-center text-paper/70 transition-colors duration-150 hover:text-matcha";
@@ -37,13 +38,13 @@ export function SiteFooter() {
           </Link>
         </nav>
       </div>
-      {/* Le nom de la marque sur toute la largeur, comme une plaque. */}
-      <p aria-hidden className="display mx-auto max-w-[1440px] overflow-hidden px-3 text-center text-[18.5vw] leading-[0.78] text-paper xl:text-[266px]">
-        Contrebande
-      </p>
+      {/* Le logo sur toute la largeur, comme une plaque. */}
+      <div aria-hidden className="mx-auto max-w-[1440px] px-4 pb-6 text-paper sm:px-6">
+        <Logo className="h-auto w-full" />
+      </div>
       <div className="mono mx-auto flex max-w-[1440px] flex-wrap justify-between gap-x-8 gap-y-2 border-t border-line-dark px-4 py-6 text-[12px] text-fog-dark sm:px-6">
-        <p>© 2026 Contrebande. Projet étudiant de démonstration : aucune vente réelle.</p>
-        <p>Objets modélisés en 3D. Doses : Ippodo (Kyoto). Fabrication : AFP.</p>
+        <p>© 2026 USUCHA. Projet étudiant de démonstration : aucune vente réelle.</p>
+        <p>Photos : Pexels, voir CREDITS.md. Elles montrent du matériel du commerce, pas nos produits.</p>
       </div>
     </footer>
   );

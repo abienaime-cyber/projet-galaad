@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps<"/produit/[slug]">)
   return {
     title: product.name,
     description: product.description,
-    openGraph: { ...OPEN_GRAPH, images: product.image ? [{ url: product.image, width: 1200, height: 1200, alt: `${product.name}, rendu 3D` }] : undefined },
+    openGraph: { ...OPEN_GRAPH, images: product.image ? [{ url: product.image, alt: product.name }] : undefined },
   };
 }
 
@@ -64,7 +64,6 @@ async function ProductView({ slug }: { slug: string }) {
       <ProductHero
         slug={product.slug}
         name={product.name}
-        model={product.model}
         image={product.image}
         kicker={kickerOf(product)}
         choiceLabel={product.category === "matcha" ? "Format" : "Coloris"}
@@ -216,7 +215,7 @@ function Details({ product }: { product: CatalogProduct }) {
   const rows: [string, string][] = [["Matière", product.material]];
   if (product.grade) rows.push(["Grade", GRADE_LABEL[product.grade]], ["Intensité", `${product.intensity} sur 5, de doux à corsé`]);
   if (product.variants.length > 1) rows.push(["Formats", product.variants.map((v) => v.label).join(", ")]);
-  rows.push(["Visuel", "Modèle 3D, pas une photo de l’article"]);
+  rows.push(["Visuel", "Photo d’illustration (Pexels), pas l’article vendu"]);
   return (
     <section aria-labelledby="details">
       <h2 id="details" className="display border-b border-ink pb-2 text-[44px]">

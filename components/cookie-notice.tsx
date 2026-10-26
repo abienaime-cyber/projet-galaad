@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useSyncExternalStore } from "react";
 import { ghostButton } from "./field";
 
-const KEY = "contrebande-cookies-vu";
+const KEY = "usucha-cookies-vu";
 const noSubscribe = () => () => {};
 
 function readSeen() {
@@ -32,7 +32,7 @@ export function CookieNotice() {
   return (
     <div role="region" aria-label="Cookies" data-theme="dark" className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-[640px] bg-ink p-5 text-paper shadow-[0_18px_40px_rgb(0_0_0/0.35)] sm:flex sm:items-center sm:gap-6">
       <p className="text-[15px] text-paper/75">
-        Contrebande ne dépose que les cookies nécessaires à votre connexion. La mesure d’audience se fait sans cookie.{" "}
+        USUCHA ne dépose que les cookies nécessaires à votre connexion. La mesure d’audience se fait sans cookie.{" "}
         <Link href="/confidentialite#cookies" className="text-paper underline underline-offset-4">
           En savoir plus
         </Link>

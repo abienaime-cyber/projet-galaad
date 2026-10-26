@@ -1,7 +1,7 @@
 -- Données « pire cas » pour tester l'interface (break-ui). Base locale uniquement, jamais en production.
 -- Appliquer : psql "postgresql://postgres:postgres@localhost:54322/postgres" -f supabase/fixtures/worst-case.sql
 -- Revenir aux données de démo : supabase db reset
--- Compte : pire@contrebande.test / contrebande-demo. Chaque valeur est réaliste ou à la limite fixée par le schéma.
+-- Compte : pire@usucha.test / usucha-demo. Chaque valeur est réaliste ou à la limite fixée par le schéma.
 
 begin;
 
@@ -9,13 +9,13 @@ insert into auth.users (instance_id, id, aud, role, email, encrypted_password, e
   raw_app_meta_data, raw_user_meta_data, created_at, updated_at,
   confirmation_token, recovery_token, email_change, email_change_token_new)
 values ('00000000-0000-0000-0000-000000000000', '00000000-0000-4000-8000-0000000000ff', 'authenticated', 'authenticated',
-  'pire@contrebande.test', extensions.crypt('contrebande-demo', extensions.gen_salt('bf')), now(),
+  'pire@usucha.test', extensions.crypt('usucha-demo', extensions.gen_salt('bf')), now(),
   '{"provider":"email","providers":["email"]}',
   '{"full_name":"Aleksandra Wiśniewska-Kowalczyk de La Rochefoucauld-Montmorency"}', now() - interval '3 years', now(), '', '', '', '');
 
 insert into auth.identities (user_id, provider_id, identity_data, provider, created_at, updated_at)
 values ('00000000-0000-4000-8000-0000000000ff', '00000000-0000-4000-8000-0000000000ff',
-  '{"sub":"00000000-0000-4000-8000-0000000000ff","email":"pire@contrebande.test","email_verified":true}', 'email', now(), now());
+  '{"sub":"00000000-0000-4000-8000-0000000000ff","email":"pire@usucha.test","email_verified":true}', 'email', now(), now());
 
 -- Profil aux bornes : 28 tasses par semaine, tous les ustensiles déjà achetés, café le plus cher accepté.
 insert into public.taste_profiles (user_id, cups_per_week, drink, taste, experience, owned, cafe_price_cents)
@@ -35,7 +35,7 @@ insert into public.products (slug, name, description, category, grade, intensity
 values ('matcha-pire-cas',
   'Matcha de cérémonie Okumidori première récolte, ombré trente jours, moulu à la meule de granit, édition limitée',
   'Fixture de test.', 'matcha', 'ceremonie', 1, 'Thé vert moulu à la meule de pierre, Uji, préfecture de Kyoto, Japon',
-  'tin-recolte', '/renders/tin-recolte.png');
+  'tin-recolte', '/photos/tin-recolte.jpg');
 
 insert into public.product_variants (product_id, label, sku, price_cents, matcha_grams, stock, sort_order)
 select p.id, s.label, 'PIRE-' || s.n, s.price, s.grams, s.stock, s.n
@@ -102,6 +102,6 @@ from public.products p where p.slug in ('matcha-pire-cas', 'matcha-quotidien');
 insert into public.reviews (product_id, user_id, rating, comment)
 select p.id, u.id, 5, 'Ok'
 from public.products p, public.profiles u join auth.users au on au.id = u.id
-where p.slug = 'matcha-pire-cas' and au.email = 'client1@contrebande.test';
+where p.slug = 'matcha-pire-cas' and au.email = 'client1@usucha.test';
 
 commit;

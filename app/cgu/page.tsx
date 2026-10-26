@@ -4,7 +4,7 @@ import { LegalPage } from "@/components/legal-page";
 
 export const metadata: Metadata = {
   title: "CGU et mentions légales",
-  description: "Conditions d’utilisation du site de démonstration Contrebande et mentions légales.",
+  description: "Conditions d’utilisation du site de démonstration USUCHA et mentions légales.",
 };
 
 export default function TermsPage() {
@@ -12,7 +12,7 @@ export default function TermsPage() {
     <LegalPage title="Conditions d’utilisation" updated="25 octobre 2026">
       <h2 id="objet">Objet</h2>
       <p>
-        Contrebande est un site de démonstration réalisé dans le cadre d’un projet étudiant. Il ne vend rien : le paiement est simulé,
+        USUCHA est un site de démonstration réalisé dans le cadre d’un projet étudiant. Il ne vend rien : le paiement est simulé,
         aucune carte n’est demandée, aucun article n’est expédié. Les produits et leurs prix sont fictifs.
       </p>
 
@@ -43,7 +43,7 @@ export default function TermsPage() {
 
       <h2 id="visuels">Visuels</h2>
       <p>
-        Les visuels des articles sont des modèles 3D dessinés en code par l’équipe, pas des photos des produits. Les polices Barlow,
+        Les photos du site viennent de Pexels, sous licence Pexels (usage gratuit). Elles montrent du matériel du commerce, pas les articles vendus. La liste des photos et de leurs auteurs est dans le fichier CREDITS.md du projet. Les polices Barlow,
         Barlow Condensed et Fragment Mono sont publiées sous licence SIL Open Font License.
       </p>
 
@@ -57,7 +57,7 @@ export default function TermsPage() {
 
       <h2 id="mentions">Mentions légales</h2>
       <ul>
-        <li>Éditeur : l’équipe du projet étudiant Contrebande, à titre non commercial.</li>
+        <li>Éditeur : l’équipe du projet étudiant USUCHA, à titre non commercial.</li>
         <li>
           Hébergeur : Vercel Inc., États-Unis (<a href="https://vercel.com">vercel.com</a>).
         </li>

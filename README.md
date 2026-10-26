@@ -1,22 +1,22 @@
-# Contrebande
+# USUCHA
 
 Boutique en ligne de kits pour préparer le matcha chez soi : fouet en bambou (chasen), cuillère (chashaku), tamis, bol, bouilloire, et le matcha lui-même en trois grades. Le client remplit un **profil de goût** ; un calcul déterministe classe la boutique pour lui, donne la durée d'une boîte à son rythme et le prix de revient de sa tasse.
 
-Projet étudiant réalisé en binôme avec Ilian : Next.js 16, Supabase (Postgres, Auth, RLS), Three.js, GSAP, déploiement Vercel.
+Projet étudiant réalisé en binôme avec Ilian : Next.js 16, Supabase (Postgres, Auth, RLS), GSAP, WebGL, déploiement Vercel.
 
 - **Démo en ligne :** _à renseigner après le déploiement Vercel_ (voir [Déploiement](#déploiement-sur-vercel)).
-- **Comptes de test** (créés par le seed, mot de passe `contrebande-demo`) :
-  - client : `client@contrebande.test` (profil de goût rempli, une commande livrée) ;
-  - admin : `admin@contrebande.test` (tableau de bord et fiches produit).
+- **Comptes de test** (créés par le seed, mot de passe `usucha-demo`) :
+  - client : `client@usucha.test` (profil de goût rempli, une commande livrée) ;
+  - admin : `admin@usucha.test` (tableau de bord et fiches produit).
 
 Ce mot de passe est public. Changez-le avant toute mise en ligne réelle. Les produits et les prix sont fictifs.
 
 ## Démo en trois minutes
 
-1. **Accueil** : la plaque d'acier gravée en 3D suit la souris ; « Kit Essentiel · 49 € » l'ajoute directement au panier. En défilant : les pièces saisies (étiquettes cliquables posées sur les objets 3D), le protocole de préparation épinglé (tamiser, verser, fouetter, servir), le calcul du prix de la tasse, la chaîne de production (la feuille devient poudre puis boîte), le coffre qui s'ouvre.
+1. **Accueil** : un tas de vraie poudre de matcha qu'on écarte du doigt ou à la souris ; « Kit Essentiel · 49 € » ouvre la fiche du kit. En défilant : la planche de 12 photos (une case s'agrandit au toucher), les pièces saisies (une ligne de l'inventaire change la photo), la préparation épinglée en 4 photos (tamiser, verser, fouetter, servir), le calcul du prix de la tasse, la chaîne feuille, poudre (qu'on touche aussi), boîte, puis la boîte qu'on tapote pour servir des tasses, et les 4 kits.
 2. **Inscription** sur `/inscription`, puis **profil de goût** : six réponses. Le relevé à droite se recalcule à chaque clic (kit et matcha conseillés, prix de la tasse, économie mensuelle).
 3. **Boutique** `/boutique`, vue **« Pour moi »** : les articles qui conviennent, le mieux noté d'abord, avec leur score sur 100.
-4. **Fiche produit** : modèle 3D à faire tourner, bloc « Pour vous » (score et raisons), relevé chiffré du format choisi, **Ajouter au panier**. Le bouton « Pourquoi ce score ? » appelle le conseiller IA.
+4. **Fiche produit** : photo à inspecter à la loupe (souris ou doigt), bloc « Pour vous » (score et raisons), relevé chiffré du format choisi, **Ajouter au panier**. Le bouton « Pourquoi ce score ? » appelle le conseiller IA.
 5. **Panier** (enregistré en base), **commande** avec paiement simulé, **historique** dans `/compte/commandes`, demande de retour.
 6. Connexion en **admin** : `/admin` affiche le CA, le panier moyen, les meilleures ventes, le taux de retour pour casse, la part des clients avec un profil de goût et les formats les plus vendus. `/admin/produits` rédige une fiche avec l'IA.
 
@@ -72,12 +72,12 @@ Aucune clé secrète n'est dans le dépôt : `.env*` est ignoré par git, seul `
 | HTTPS forcé | Vercel redirige HTTP vers HTTPS (308) ; en-têtes HSTS et de sécurité dans `next.config.ts` |
 | Bandeau cookies | `components/cookie-notice.tsx` : information seule, car seuls des cookies de connexion (exemptés par la CNIL) sont déposés |
 | Meta title et description | `metadata` du layout et de chaque page |
-| Image réseaux | `app/opengraph-image.jpg` (la plaque gravée) ; le rendu de l'article sur chaque fiche |
+| Image réseaux | `app/opengraph-image.jpg` (l'accueil et sa poudre) ; la photo de l'article sur chaque fiche |
 | Favicon | `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png` |
 | Sitemap et robots.txt | `app/sitemap.ts`, `app/robots.ts` (pages privées exclues) |
-| Textes alternatifs | rendus décrits comme « rendu 3D » ; scènes décoratives en `aria-hidden`, leur contenu existe en texte |
-| Images compressées | `next/image` sert de l'AVIF ou du WebP ; Three.js n'est chargé qu'à l'approche de chaque scène |
-| Vitesse | les scènes 3D ne tournent que visibles à l'écran et s'arrêtent quand rien ne bouge |
+| Textes alternatifs | photos produit décrites par le nom de l'article ; poudre et photos décoratives en `aria-hidden`, leur contenu existe en texte |
+| Images compressées | `next/image` sert de l'AVIF ou du WebP à la bonne taille |
+| Vitesse | la poudre interactive ne tourne que visible à l'écran et s'arrête quand rien ne bouge ; moins de grains sur téléphone |
 | Contraste | jetons vérifiés dans `app/globals.css` (texte secondaire 5,5:1 sur l'acier, 8:1 sur le noir) |
 | Responsive | vérifié à 390 et 1440 px de large, sans défilement horizontal |
 | Page 404 | `app/not-found.tsx` (« Bol vide ») |
@@ -87,7 +87,7 @@ Aucune clé secrète n'est dans le dépôt : `.env*` est ignoré par git, seul `
 | Analytics | Vercel Web Analytics, sans cookie, numéros de commande masqués |
 | Un seul CTA | un bouton principal (vert) par écran |
 
-Données « pire cas » pour tester l'interface : `supabase/fixtures/worst-case.sql` (compte `pire@contrebande.test`). `supabase db reset` remet les données de démo.
+Données « pire cas » pour tester l'interface : `supabase/fixtures/worst-case.sql` (compte `pire@usucha.test`). `supabase db reset` remet les données de démo.
 
 ## Base de données
 
@@ -157,18 +157,18 @@ Code : `lib/ai.ts`. Les appels partent **uniquement du serveur** (actions serveu
 
 Sur `/admin/produits/<slug>`, l'IA rédige une description à partir des seules caractéristiques du produit. Rien n'est publié avant que l'admin ait relu et cliqué sur « Publier ».
 
-## 3D et animations
+## Photos et animations
 
-- **Objets 3D faits en code** (`lib/three/models.ts`) : profils tournés pour le bol à bec, la boîte, la bouilloire et le support ; 100 brins en tubes pour le fouet ; tamis à maille transparente ; valise en aluminium. Matières dessinées au canvas (grès moucheté, bambou, acier brossé). Aucun fichier 3D à télécharger.
-- **Scènes de l'accueil** (`lib/three/scenes/`) : chaque scène est une fonction de la progression du défilement, de 0 à 1. On peut remonter la page, la scène se défait image par image.
-- **Vignettes de la boutique** : rendus PNG des mêmes modèles, produits par `node scripts/renders/render.mjs` (Vite et le Chromium de Playwright). Ce sont des illustrations, pas des photos des articles.
-- **GSAP** (`gsap`, `@gsap/react`) : ScrollTrigger (sections épinglées, rideau vert, coffre qui s'ouvre), SplitText (titres ligne à ligne), `ScrollTrigger.batch` (vignettes). Guidé par les skills officiels de GreenSock, installés dans `.claude/skills/gsap-*` depuis [greensock/gsap-skills](https://github.com/greensock/gsap-skills) (licence MIT).
+- **Vraies photos** : `public/photos/`, une par produit, plus une série de préparation (même bol, même lumière). Toutes viennent de Pexels ; la liste, les liens et les auteurs sont dans `CREDITS.md`. Elles montrent du matériel du commerce, pas nos articles : pour une vraie mise en ligne, remplacez-les par vos photos en gardant les mêmes noms de fichier.
+- **Poudre interactive** (`components/powder.tsx`) : chaque grain est un pixel d'une vraie photo de poudre de matcha. La souris écarte les grains, un appui les souffle, puis ils reviennent. WebGL nu, sans bibliothèque ; la boucle s'arrête quand rien ne bouge.
+- **Boîte à tapoter** (`components/home/pot.tsx`) : chaque appui sert une tasse de 2 g ; la boîte tressaute, une bouffée de poudre s'échappe, le compteur descend.
+- **GSAP** (`gsap`, `@gsap/react`) : ScrollTrigger (préparation épinglée photo par photo, chaîne feuille, poudre, boîte, rideau vert du calcul), SplitText (titres ligne à ligne), `ScrollTrigger.batch` (vignettes). Guidé par les skills officiels de GreenSock, installés dans `.claude/skills/gsap-*` depuis [greensock/gsap-skills](https://github.com/greensock/gsap-skills) (licence MIT).
 - **Nuage de matcha** : shader WebGL (bruit fractal) dans `components/home/smoke.tsx`.
-- **Mouvement réduit** : pas d'épinglage ni de rotation ; le protocole s'affiche en quatre images fixes, la chaîne de production en liste.
+- **Mouvement réduit** : pas d'épinglage ; la poudre est posée, immobile ; la préparation s'affiche en quatre photos à plat.
 
 ## Design
 
-Direction artistique donnée par l'utilisateur (captures et vidéos d'un site de matcha au thème « cartel »), reprise en esprit sans nom, logo ni texte de la référence. Construite avec les skills **impeccable** (brief et contrat de direction dans `.impeccable/surfaces/`) et **UI UX Pro Max** (polices Barlow Condensed et Barlow, presets GSAP de défilement). Système détaillé dans `DESIGN.md`.
+Direction artistique donnée par l'utilisateur (captures et vidéos d'un site de matcha au thème « cartel »), reprise en esprit sans nom, logo, image ni texte de la référence. Palette relevée au pixel sur ces captures. Nom et logo : USUCHA (薄茶), tampon carré vert et nom en capitales condensées. Construite avec les skills **impeccable** (brief et contrat de direction dans `.impeccable/surfaces/`) et **UI UX Pro Max** (polices Barlow Condensed et Barlow, presets GSAP de défilement). Système détaillé dans `DESIGN.md`.
 
 ## Sources des faits affichés
 
@@ -186,17 +186,18 @@ app/
   compte/            profil de goût, commandes, retours
   admin/             tableau de bord, fiches produit
 components/
-  home/              sections de l'accueil (plaque, pièces, protocole, calcul, chaîne, coffre)
-  three/             montage des scènes, visionneuse 3D de la fiche
+  home/              sections de l'accueil (poudre, stock, pièces, préparation, calcul, chaîne, boîte)
+  powder.tsx         poudre de matcha interactive (WebGL)
+  logo.tsx           logo USUCHA en tracés vectoriels
 lib/
   reco.ts taste.ts   recommandation et profil de goût
-  three/             modèles, matières, scènes
-scripts/renders/     studio de rendu des vignettes
+public/photos/       photos (sources dans CREDITS.md)
 supabase/            migrations, seed, tests pgTAP et test de survente
 ```
 
 ## Crédits
 
-- Polices Barlow, Barlow Condensed et Fragment Mono : SIL Open Font License (Google Fonts). Deux fichiers sont copiés dans `scripts/renders/fonts` pour le studio de rendu.
-- Three.js : licence MIT. GSAP : licence standard de GreenSock, gratuite.
+- Polices Barlow, Barlow Condensed et Fragment Mono : SIL Open Font License (Google Fonts).
+- Photos : Pexels, licence Pexels, détail dans `CREDITS.md`.
+- GSAP : licence standard de GreenSock, gratuite.
 - Icônes : Phosphor (licence MIT).

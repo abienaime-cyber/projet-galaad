@@ -1,98 +1,89 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, useState } from "react";
-import { gsap, MOTION_OK, PINNED_HEIGHT, pinStart, ScrollTrigger, useGSAP } from "@/components/gsap";
-import { useScene } from "@/components/three/use-scene";
+import { gsap, MOTION_OK, PINNED_HEIGHT, pinStart, useGSAP } from "@/components/gsap";
+import { Powder } from "@/components/powder";
 
-// Faits sourcés : AFP (26 juin 2025) pour la culture et la fabrication, Ippodo pour les doses.
 const STAGES = [
-  { title: "Feuilles à l’ombre", text: "Les théiers sont cultivés à l’ombre pendant les dernières semaines avant la récolte." },
-  { title: "Tencha", text: "Ces feuilles cultivées à l’ombre s’appellent tencha." },
-  { title: "La meule", text: "Elles sont moulues en poudre. Il faut jusqu’à une heure pour produire 40 g de matcha." },
-  { title: "La boîte", text: "30 g chez nous : 15 matchas purs ou 10 lattes, aux doses d’Ippodo." },
+  { title: "Feuille", text: "Ces feuilles cultivées à l’ombre s’appellent tencha." },
+  { title: "Mouture", text: "Elles sont moulues en poudre. Touchez-la." },
+  { title: "Boîte", text: "La poudre craint l’air et la lumière : elle voyage en boîte fermée." },
 ];
 
-// La feuille devient brisures, puis poudre autour de la meule, puis boîte. Épinglé, piloté par le défilement.
+// La chaîne du matcha, épinglée : la feuille se referme, se défait en poudre (qu'on peut toucher), puis la boîte s'ouvre.
 export function Chain() {
   const section = useRef<HTMLElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const progress = useRef(0);
   const [stage, setStage] = useState(0);
-  const [pinned, setPinned] = useState(true);
-
-  const { invalidate } = useScene(
-    canvasRef,
-    ({ stage: s, mod, reduced }) => {
-      const { root, apply } = mod.chainScene();
-      s.scene.add(root);
-      s.camera.fov = 32;
-      if (reduced) progress.current = 1;
-      let shown = -1;
-      return {
-        frame: () => {
-          if (shown === progress.current) return false;
-          shown = progress.current;
-          apply(shown, s.camera);
-          s.camera.updateProjectionMatrix();
-          return false;
-        },
-        // Nouveau format d'écran : recadrer à la prochaine image.
-        resize: () => {
-          shown = -1;
-        },
-      };
-    },
-    { shadow: 0.18, load: () => import("@/lib/three/scenes/chain") },
-  );
 
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        setPinned(true);
-        ScrollTrigger.create({
-          trigger: section.current,
-          start: pinStart,
-          end: "+=280%",
-          pin: true,
-          scrub: 0.8,
-          onUpdate: (self) => {
-            progress.current = self.progress;
-            setStage(Math.min(STAGES.length - 1, Math.round(self.progress * (STAGES.length - 1))));
-            invalidate();
-          },
-        });
+        gsap.set(".chain-powder", { autoAlpha: 0 });
+        gsap.set(".chain-tin", { clipPath: "circle(0% at 50% 50%)" });
+        gsap
+          .timeline({
+            defaults: { ease: "power2.inOut" },
+            scrollTrigger: {
+              trigger: section.current,
+              start: pinStart,
+              end: "+=240%",
+              pin: true,
+              scrub: 0.6,
+              onUpdate: (self) => setStage(Math.min(STAGES.length - 1, Math.floor(self.progress * STAGES.length))),
+            },
+          })
+          .to(".chain-leaf", { scale: 1.08, duration: 0.6, ease: "none" })
+          .to(".chain-leaf", { clipPath: "circle(0% at 50% 50%)", rotate: 25, duration: 0.5 })
+          .to(".chain-powder", { autoAlpha: 1, duration: 0.3 }, "<0.2")
+          .to({}, { duration: 0.6 })
+          .to(".chain-powder", { autoAlpha: 0, scale: 0.6, duration: 0.4 })
+          .to(".chain-tin", { clipPath: "circle(42% at 50% 50%)", duration: 0.6 }, "<0.1")
+          .to(".chain-tin", { scale: 1.06, duration: 0.5, ease: "none" });
       });
-      mm.add("(prefers-reduced-motion: reduce)", () => setPinned(false));
       return () => mm.revert();
     },
     { scope: section },
   );
 
   return (
-    <section ref={section} data-rail="Fabrication" aria-labelledby="chain-title" className={`relative overflow-hidden bg-paper ${pinned ? "" : "pb-16"}`} style={pinned ? { height: PINNED_HEIGHT } : undefined}>
-      <h2 id="chain-title" className="display relative z-10 flex justify-between gap-3 px-4 pt-5 text-[13vw] leading-[0.85] text-fog sm:px-6 lg:text-[9vw] xl:text-[136px]">
-        <span>La</span> <span>chaîne</span> <span>du matcha.</span>
+    <section ref={section} data-rail="Chaîne" aria-labelledby="chain-title" className="relative overflow-hidden bg-paper" style={{ minHeight: PINNED_HEIGHT }}>
+      <h2 id="chain-title" className="display grid grid-cols-3 px-4 pt-4 text-[34px] text-iron sm:px-6 sm:text-[64px]">
+        <span>Feuille.</span>
+        <span className="text-center">Poudre.</span>
+        <span className="text-right">Boîte.</span>
       </h2>
-      {pinned && <canvas ref={canvasRef} aria-hidden className="absolute inset-0 size-full" />}
-      <ol className={`z-10 grid gap-1 px-4 sm:px-6 ${pinned ? "absolute top-1/2 left-0 w-64 -translate-y-1/2 max-md:hidden" : "mt-10 md:grid-cols-4 md:gap-6"}`}>
+
+      <div className="relative mx-auto mt-4 aspect-square w-[min(78vw,58svh)]">
+        <div className="chain-leaf absolute inset-0 [clip-path:circle(42%_at_50%_50%)]">
+          <Image src="/photos/chain-leaf.jpg" alt="Feuilles de thé sur le théier" fill sizes="(min-width: 768px) 58svh, 78vw" className="object-cover" />
+        </div>
+        <Powder src="/photos/tin-quotidien.jpg" shape="tas" light className="chain-powder absolute -inset-[15%] size-[130%] touch-pan-y" />
+        <div className="chain-tin absolute inset-0 [clip-path:circle(42%_at_50%_50%)]">
+          <Image src="/photos/chain-tin.jpg" alt="Boîte de matcha ouverte, vue de dessus" fill sizes="(min-width: 768px) 58svh, 78vw" className="object-cover" />
+        </div>
+      </div>
+
+      <ol className="mono absolute top-1/2 left-4 hidden -translate-y-1/2 flex-col gap-2 text-[12px] uppercase sm:flex sm:left-6">
         {STAGES.map((s, i) => (
-          <li key={s.title} aria-current={pinned && i === stage ? "step" : undefined} className={`grid grid-cols-[2.25rem_minmax(0,1fr)] py-1 transition-colors duration-300 ${!pinned || i === stage ? "text-ink" : "text-fog/60"}`}>
-            <span className="mono">{String(i + 1).padStart(2, "0")}</span>
-            <span>
-              <span className="mono uppercase">{s.title}</span>
-              {!pinned && <span className="mt-1 block text-[16px] text-fog">{s.text}</span>}
-            </span>
+          <li key={s.title} className={`flex items-center gap-2 transition-colors ${i === stage ? "text-ink" : "text-steel-3"}`}>
+            <span aria-hidden className={`size-1.5 ${i === stage ? "bg-matcha" : "bg-steel-2"}`} />
+            {String(i + 1).padStart(2, "0")} {s.title}
           </li>
         ))}
       </ol>
-      {pinned && (
-        <div aria-live="polite" className="absolute inset-x-4 bottom-10 z-10 sm:right-6 sm:left-auto sm:w-[22rem]">
-          <p className="display text-[40px]">{STAGES[stage].title}</p>
-          <p className="mt-1 text-[16px] text-fog">{STAGES[stage].text}</p>
-        </div>
-      )}
-      <p className={`mono z-10 px-4 text-[11px] text-fog sm:px-6 ${pinned ? "absolute bottom-3 left-0" : "mt-8"}`}>Sources : AFP, 26 juin 2025 ; Ippodo, Kyoto.</p>
+
+      <div className="mx-auto grid max-w-[34rem] px-4 pt-4 pb-8 text-center sm:absolute sm:right-6 sm:bottom-10 sm:max-w-[20rem] sm:px-0 sm:text-left">
+        {STAGES.map((s, i) => (
+          <p key={s.title} aria-hidden={i !== stage} className={`col-start-1 row-start-1 transition-[opacity,translate] duration-500 ${i === stage ? "opacity-100" : "translate-y-2 opacity-0"}`}>
+            <span className="mono block text-[12px] text-fog uppercase">
+              {String(i + 1).padStart(2, "0")} / {s.title}
+            </span>
+            <span className="mt-1 block text-[17px]">{s.text}</span>
+          </p>
+        ))}
+      </div>
     </section>
   );
 }

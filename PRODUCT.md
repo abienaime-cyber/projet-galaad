@@ -19,7 +19,7 @@ Second public : l'administrateur de la boutique, qui suit les ventes et rédige 
 
 ## Product Purpose
 
-Contrebande vend des kits pour préparer le matcha chez soi : fouet en bambou (chasen), cuillère (chashaku), tamis, bol, bouilloire, et le matcha lui-même, en trois grades. Le client remplit un profil de goût (tasses par semaine, pur ou latte, doux ou intense, ustensiles déjà possédés, prix de son matcha habituel en coffee shop). Le site calcule le kit, le matcha et le format qui lui conviennent, la durée d'une boîte à son rythme et le prix de revient de sa tasse.
+USUCHA vend des kits pour préparer le matcha chez soi : fouet en bambou (chasen), cuillère (chashaku), tamis, bol, bouilloire, et le matcha lui-même, en trois grades. Le client remplit un profil de goût (tasses par semaine, pur ou latte, doux ou intense, ustensiles déjà possédés, prix de son matcha habituel en coffee shop). Le site calcule le kit, le matcha et le format qui lui conviennent, la durée d'une boîte à son rythme et le prix de revient de sa tasse.
 
 Succès : le client achète le bon kit du premier coup, ne rachète pas ce qu'il a déjà, et sait ce que lui coûte une tasse faite maison.
 
@@ -38,13 +38,15 @@ La recommandation est calculée par un algorithme déterministe (`lib/reco.ts`) 
 ## Capabilities and Constraints
 
 - Next.js 16 (App Router, Cache Components), Tailwind v4, Supabase (Postgres, Auth, RLS), déploiement Vercel.
-- 3D en Three.js, animations en GSAP (ScrollTrigger, SplitText). Les objets sont modélisés en code ; les vignettes de la boutique sont des rendus de ces modèles (`scripts/renders`).
+- Vraies photos (Pexels, `CREDITS.md`), animations en GSAP (ScrollTrigger, SplitText), poudre interactive en WebGL nu. Plus de 3D modélisée : refusée par l'utilisateur le 26/10/2026.
 - Clé IA uniquement côté serveur. Aucune clé secrète dans le code.
 - Catégories : kits, matcha (30 g, 100 g, 20 g pour la petite série), ustensiles.
 
 ## Brand Commitments
 
-- Nom : Contrebande. Accroche : le matcha du coffee shop, sorti en douce, chez vous.
+- Nom : USUCHA (薄茶, le matcha léger qu'on fouette au quotidien), choisi par l'utilisateur le 26/10/2026. Accroche : le matcha du coffee shop, fouetté chez vous.
+- Logo : tampon carré vert portant 薄茶, et le nom en capitales condensées (`components/logo.tsx`, `public/brand/`).
+- Menu : trois liens seulement (Accueil, Boutique, Panier) ; le compte derrière une icône.
 - Direction artistique imposée par l'utilisateur le 25/10/2026, d'après des références d'un site de matcha au thème « cartel » : noir, gris acier bleuté, vert matcha acide, titres condensés en capitales, petites mentions techniques, étiquettes numérotées sur les objets, sections épinglées au défilement. On reprend l'esprit, jamais le nom, le logo ni les textes de la référence.
 - Voix : vouvoiement, direct et sobre, le ton d'un bon caviste. Un brin de malice dans les titres (« Pièces saisies », « Le Coffre »), jamais dans les informations.
 - Interface en français.

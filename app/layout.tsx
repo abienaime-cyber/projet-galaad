@@ -15,7 +15,7 @@ const mono = Fragment_Mono({ variable: "--font-fragment-mono", subsets: ["latin"
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Contrebande, le kit pour faire son matcha chez soi", template: "%s · Contrebande" },
+  title: { default: "USUCHA, le kit pour faire son matcha chez soi", template: "%s · USUCHA" },
   description:
     "Fouet, cuillère, tamis, bol et matcha : le kit pour préparer chez vous le matcha du coffee shop. Un profil de goût calcule le kit et le format qui vous conviennent.",
   openGraph: OPEN_GRAPH,

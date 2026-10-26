@@ -3,7 +3,7 @@
 
 insert into public.products (slug, name, description, category, tool_kind, grade, intensity, material, model, image_url)
 select p.slug, p.name, p.description, p.category::public.product_category, p.tool_kind::public.tool_kind,
-  p.grade::public.matcha_grade, p.intensity, p.material, p.model, '/renders/' || p.model || '.png'
+  p.grade::public.matcha_grade, p.intensity, p.material, p.model, '/photos/' || p.model || '.jpg'
 from (values
   ('kit-essentiel', 'Kit Essentiel', 'Le strict nécessaire pour un premier matcha : le fouet, la cuillère, le tamis et une boîte de matcha Quotidien. Le bol, vous l''avez sans doute déjà.', 'kit', null, null, null::smallint, 'Bambou, acier inoxydable, matcha', 'kit-essentiel'),
   ('kit-latte', 'Kit Latte', 'Pour le matcha au lait : le fouet, la cuillère, le tamis, un verre double paroi et une boîte de matcha Latte, fait pour tenir face au lait.', 'kit', null, null, null, 'Bambou, acier inoxydable, verre, matcha', 'kit-latte'),
@@ -70,24 +70,24 @@ join public.products k on k.slug = c.kit
 join public.products i on i.slug = c.item;
 
 -- Comptes de démonstration ---------------------------------------------------
--- client@contrebande.test et admin@contrebande.test se connectent avec le mot de passe « contrebande-demo ».
+-- client@usucha.test et admin@usucha.test se connectent avec le mot de passe « usucha-demo ».
 -- Mot de passe public, fait pour la démo : à changer avant toute mise en ligne réelle.
 
 insert into auth.users (instance_id, id, aud, role, email, encrypted_password, email_confirmed_at,
   raw_app_meta_data, raw_user_meta_data, created_at, updated_at,
   confirmation_token, recovery_token, email_change, email_change_token_new)
 select '00000000-0000-0000-0000-000000000000', u.id, 'authenticated', 'authenticated', u.email,
-  extensions.crypt('contrebande-demo', extensions.gen_salt('bf')), now(),
+  extensions.crypt('usucha-demo', extensions.gen_salt('bf')), now(),
   '{"provider":"email","providers":["email"]}', jsonb_build_object('full_name', u.full_name),
   now() - u.age, now() - u.age, '', '', '', ''
 from (values
-  ('00000000-0000-4000-8000-000000000001'::uuid, 'client@contrebande.test', 'Client démo', interval '90 days'),
-  ('00000000-0000-4000-8000-000000000002'::uuid, 'admin@contrebande.test', 'Admin démo', interval '120 days')
+  ('00000000-0000-4000-8000-000000000001'::uuid, 'client@usucha.test', 'Client démo', interval '90 days'),
+  ('00000000-0000-4000-8000-000000000002'::uuid, 'admin@usucha.test', 'Admin démo', interval '120 days')
 ) as u (id, email, full_name, age);
 
 insert into auth.identities (user_id, provider_id, identity_data, provider, created_at, updated_at)
 select id, id::text, jsonb_build_object('sub', id::text, 'email', email, 'email_verified', true), 'email', now(), now()
-from auth.users where email in ('client@contrebande.test', 'admin@contrebande.test');
+from auth.users where email in ('client@usucha.test', 'admin@usucha.test');
 
 update public.profiles set role = 'admin' where id = '00000000-0000-4000-8000-000000000002';
 update public.profiles p set created_at = u.created_at from auth.users u where u.id = p.id;
@@ -101,7 +101,7 @@ values ('00000000-0000-4000-8000-000000000001', 'Client démo', '12 rue du Faubo
 -- Clients fictifs sans mot de passe : ils ne servent qu'à remplir l'historique des ventes.
 insert into auth.users (instance_id, id, aud, role, email, raw_user_meta_data, created_at, updated_at)
 select '00000000-0000-0000-0000-000000000000', gen_random_uuid(), 'authenticated', 'authenticated',
-  'client' || i || '@contrebande.test', jsonb_build_object('full_name', 'Client ' || i),
+  'client' || i || '@usucha.test', jsonb_build_object('full_name', 'Client ' || i),
   now() - (i * 7 || ' days')::interval, now()
 from generate_series(1, 12) as i;
 
@@ -121,7 +121,7 @@ begin
   perform setseed(0.42);
   for v_customer in
     select p.id, p.created_at from public.profiles p join auth.users u on u.id = p.id
-    where u.email like 'client_%@contrebande.test'
+    where u.email like 'client_%@usucha.test'
   loop
     for n in 1 .. 2 + floor(random() * 6)::int loop
       v_day := floor(random() * least(80, extract(day from now() - v_customer.created_at)))::int;

@@ -3,15 +3,14 @@
 import Link from "next/link";
 import { useActionState, useState } from "react";
 import { primaryButton } from "@/components/field";
+import { PhotoZoom } from "@/components/photo-zoom";
 import { Spinner } from "@/components/spinner";
-import { ProductViewer } from "@/components/three/product-viewer";
 import { addToCart, type AddState } from "@/app/panier/actions";
 import { price, type Figure, type Variant } from "@/lib/shop";
 
 type Props = {
   slug: string;
   name: string;
-  model: string;
   image: string | null;
   kicker: string;
   choiceLabel: string;
@@ -22,18 +21,20 @@ type Props = {
   children: React.ReactNode;
 };
 
-// Haut de fiche : le modèle 3D à gauche, le choix du format et l'ajout au panier à droite.
-// Le format choisi change le prix, le relevé chiffré et, pour le bol, la couleur du modèle.
-export function ProductHero({ slug, name, model, image, kicker, choiceLabel, variants, defaultVariantId, figures, children }: Props) {
+// Haut de fiche : la photo à inspecter à gauche, le choix du format et l'ajout au panier à droite.
+// Le format choisi change le prix et le relevé chiffré.
+export function ProductHero({ slug, name, image, kicker, choiceLabel, variants, defaultVariantId, figures, children }: Props) {
   const [variantId, setVariantId] = useState(defaultVariantId ?? variants.find((v) => v.stock > 0)?.id ?? variants[0].id);
   const [state, action, pending] = useActionState<AddState, FormData>(addToCart, {});
   const variant = variants.find((v) => v.id === variantId)!;
+  const variantFigures = figures[variant.id] ?? [];
+  const soldOut = variant.stock === 0;
   const choose = variants.length > 1;
 
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-12">
       <div className="lg:sticky lg:top-20 lg:self-start">
-        <ProductViewer model={model} variant={variant.label} image={image} name={name} />
+        {image && <PhotoZoom src={image} alt={name} priority />}
       </div>
 
       <div className="min-w-0">
@@ -74,9 +75,9 @@ export function ProductHero({ slug, name, model, image, kicker, choiceLabel, var
             <input type="hidden" name="variant_id" value={variant.id} />
           )}
 
-          {figures[variant.id]?.length > 0 && (
+          {variantFigures.length > 0 && (
             <dl className="mt-6 border-t border-line">
-              {figures[variant.id].map((f) => (
+              {variantFigures.map((f) => (
                 <div key={f.label} className="flex items-baseline justify-between gap-6 border-b border-line py-2.5">
                   <dt className="text-fog">{f.label}</dt>
                   <dd className="mono text-right text-[14px]">{f.value}</dd>
@@ -86,13 +87,13 @@ export function ProductHero({ slug, name, model, image, kicker, choiceLabel, var
           )}
 
           <div className="mt-6 grid gap-3">
-            <button type="submit" disabled={pending || variant.stock === 0} className={`${primaryButton} w-full`}>
+            <button type="submit" disabled={pending || soldOut} className={`${primaryButton} w-full`}>
               {pending ? (
                 <>
                   <Spinner />
                   <span className="sr-only">Ajout en cours</span>
                 </>
-              ) : variant.stock === 0 ? (
+              ) : soldOut ? (
                 "Épuisé"
               ) : (
                 "Ajouter au panier"

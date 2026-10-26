@@ -1,19 +1,23 @@
 ---
-name: Contrebande
-description: Le kit pour faire chez soi le matcha du coffee shop, présenté comme une marchandise saisie.
+name: USUCHA
+description: Le kit pour faire chez soi le matcha du coffee shop, présenté comme une marchandise saisie qu'on touche.
 colors:
-  ink: "#0b0c0d"
-  ink-2: "#17191c"
-  steel: "#d5dbe2"
-  steel-2: "#c4ccd5"
-  steel-3: "#aab4be"
-  paper: "#f4f6f8"
-  matcha: "#a3e048"
-  matcha-hover: "#b6ee63"
+  ink: "#000000"
+  ink-2: "#111315"
+  steel: "#dee5ea"
+  steel-2: "#c8cfd7"
+  steel-3: "#b3bbc4"
+  iron: "#606b7f"
+  gunmetal: "#8e9ba4"
+  paper: "#f3f6f8"
+  matcha: "#a2df46"
+  matcha-hover: "#b4ea64"
+  powder: "#79a83d"
+  moss: "#5c7e2a"
   matcha-ink: "#33590f"
   fog: "#4a545f"
   fog-dark: "#9aa4ae"
-  line: "rgb(11 12 13 / 0.16)"
+  line: "rgb(0 0 0 / 0.16)"
   line-dark: "rgb(255 255 255 / 0.14)"
   danger: "#9f1d14"
   danger-dark: "#ff8a7a"
@@ -131,7 +135,7 @@ components:
     textColor: "{colors.paper}"
 ---
 
-# Design System: Contrebande
+# Design System: USUCHA
 
 ## Overview
 
@@ -139,14 +143,17 @@ components:
 
 Le matcha et ses ustensiles sont présentés comme une marchandise saisie : posés sous un projecteur sur un fond d'acier, étiquetés, numérotés, consignés. Le noir porte la marque (en-tête, pied de page, sections de démonstration), l'acier bleuté porte la boutique, et un seul vert matcha acide désigne l'action, la sélection et le progrès.
 
-La densité est celle d'une planche technique : grands titres condensés en capitales, petites mentions en mono pour les doses, prix, numéros et indications de défilement, filets de 1 px, angles droits partout. La profondeur vient des objets en 3D, jamais des surfaces. L'accueil se lit au défilement : sections épinglées, titres qui montent ligne à ligne, scènes 3D pilotées par le scroll, et tout reste lisible et complet sans mouvement.
+La densité est celle d'une planche technique : grands titres condensés en capitales, petites mentions en mono pour les doses, prix, numéros et indications de défilement, filets de 1 px, angles droits partout. Les images sont de vraies photos, jamais des objets modélisés. L'accueil se vit au doigt : une vraie poudre de matcha qu'on écarte, une boîte qu'on tapote, des photos qui s'enchaînent au défilement. Tout reste lisible et complet sans mouvement.
+
+Palette relevée au pixel sur les captures de référence fournies par l'utilisateur le 25/10/2026, et reprise telle quelle.
 
 **Key Characteristics:**
-- Noir, acier bleuté, un seul vert matcha.
+- Noir pur, gris bleuté #dee5ea, acier, un seul vert matcha acide #a2df46.
 - Titres en Barlow Condensed 800, capitales, interlignage serré (0.82 à 0.95).
 - Mentions techniques en Fragment Mono 13 px, chiffres tabulaires.
 - Angles droits, filets de 1 px, aucune ombre de surface.
-- Objets modélisés en 3D sur fond acier éclairé, rendu fixe en repli.
+- Vraies photos (Pexels, voir CREDITS.md), sur fond noir pour la préparation.
+- Logo : tampon carré vert portant 薄茶 (usucha), et le nom en Barlow Condensed 900. Tracés vectoriels dans `components/logo.tsx`.
 
 ## Colors
 
@@ -154,16 +161,18 @@ Une palette froide et quasi monochrome, percée d'un vert acide unique.
 
 ### Primary
 - **Vert matcha acide** (matcha): l'action principale (bouton primaire), la sélection (`::selection`, choix cochés), l'anneau de focus, le progrès (rail de sections, étapes du protocole), le badge du panier, les bandeaux d'appel au profil de goût. Survol en **vert matcha éclairci** (matcha-hover).
-- **Vert matcha profond** (matcha-ink): le vert lisible sur acier ou papier, pour un message de succès en texte et le caret des champs (5,1:1 sur steel).
+- **Vert matcha profond** (matcha-ink): le vert lisible sur acier ou papier, pour un message de succès en texte et le caret des champs (6,4:1 sur steel).
 
 ### Neutral
 - **Encre** (ink): fond des zones sombres (en-tête, pied de page, hero, protocole), texte courant sur fond clair, bouton secondaire au survol.
 - **Encre relevée** (ink-2): cartes et étiquettes posées sur l'encre.
+- **Fer** (iron) et **acier canon** (gunmetal): numéros d'étiquette, logo en gris sur le gris bleuté, titres de la chaîne. Grands textes seulement (iron 4,2:1 sur steel).
+- **Poudre** (powder) et **mousse** (moss): verts de la poudre réelle, pour les grands chiffres sur fond clair et le rideau vert du calcul (moss 3,7:1 sur steel : grands titres seulement).
 - **Acier** (steel): fond de page par défaut.
 - **Acier moyen** (steel-2) et **acier sombre** (steel-3): bords du dégradé de projecteur, barre de défilement, pastilles neutres.
 - **Papier** (paper): champs, vignettes produit (à 55 %, 90 % au survol), texte sur fond noir, étiquettes claires.
-- **Brume** (fog): texte secondaire et placeholders sur fond clair (5,5:1 sur steel).
-- **Brume claire** (fog-dark): texte secondaire sur l'encre (8:1).
+- **Brume** (fog): texte secondaire et placeholders sur fond clair (6,1:1 sur steel).
+- **Brume claire** (fog-dark): texte secondaire sur l'encre (8,3:1).
 - **Filet** (line) et **filet clair** (line-dark): toutes les séparations de 1 px, respectivement sur fond clair et sur fond noir.
 - **Alerte** (danger) sur fond clair, **alerte claire** (danger-dark) sur fond noir.
 
@@ -242,18 +251,21 @@ Des capitales condensées dans un rectangle net, qui s'enfoncent légèrement au
 - **Select:** même champ, chevron dessiné en encre à droite.
 
 ### Navigation
-- **En-tête:** barre encre collante de 56 px ; marque en Barlow Condensed 27 px, rayons en mono 13 px capitales papier 80 %, matcha au survol ; icônes Phosphor de 20 à 21 px dans des cibles de 44 px ; badge du panier carré matcha en chiffres mono. Sous 768 px, les rayons passent sur une seconde ligne de 40 px.
+- **En-tête:** une seule barre encre collante de 56 px ; logo de 26 px de haut ; trois liens en mono 13 px capitales (Accueil, Boutique, Panier), matcha au survol ; le compte derrière une icône Phosphor de 21 px dans une cible de 44 px ; badge du panier carré matcha. Sous 640 px, Accueil passe sur le logo et Panier devient une icône.
 - **Onglets segmentés:** filet encre de 1 px autour, items mono 13 px capitales de 44 px ; la page en cours passe en encre pleine, texte papier.
 - **Rail de sections:** colonne fixe à droite dès 1024 px, un carré par section, matcha jusqu'à la section lue.
-- **Pied de page:** encre, trois colonnes de liens, puis le nom de la marque en Display sur toute la largeur comme une plaque, puis une ligne de mentions mono 12 px fog-dark.
+- **Pied de page:** encre, trois colonnes de liens, puis le logo sur toute la largeur comme une plaque, puis une ligne de mentions mono 12 px fog-dark.
 
-### Scènes 3D
-Les objets sont modélisés en code (Three.js) et rendus dans un canvas transparent posé sur le fond CSS. Three n'est chargé qu'à 600 px de l'écran, la boucle ne tourne que si le canvas est visible et s'arrête quand plus rien ne bouge (rendu à la demande). Sans WebGL, le rendu PNG du même modèle (`public/renders`) reste affiché ; il sert aussi de vignette boutique et d'image d'attente. En mouvement réduit : pas d'inertie ni de rotation au repos, pas de flottement, et les scènes pilotées par le défilement deviennent des étapes à plat avec leur image fixe.
+### Photos et poudre interactive
+- **Photos:** `public/photos/<modèle>.jpg`, une par produit, plus la série de préparation (même bol, même lumière, fond noir). Sur le noir, les photos se fondent par un masque radial ; en vignette, elles remplissent un cadre 4:5.
+- **Poudre** (`components/powder.tsx`) : WebGL nu. Chaque grain est un pixel d'une vraie photo de poudre ; la forme « tas » découpe dans la texture un tas aux bords irréguliers. La souris écarte les grains, un appui les souffle, chacun revient à sa place à son rythme. La boucle dort quand rien ne bouge et hors écran. Mouvement réduit : poudre posée, immobile.
+- **Boîte** (`components/home/pot.tsx`) : chaque appui sert une tasse ; la boîte tressaute, une bouffée de grains s'échappe, le compteur tombe de 2 g.
+- **Loupe produit** (`components/photo-zoom.tsx`) : zoom 2,2 sous la souris, ou au doigt par appui.
 
 ### Mouvement
 - **Courbes:** `--ease-out` (cubic-bezier(0.23, 1, 0.32, 1)) pour les états d'interface, `--ease-in-out` pour les va-et-vient, `expo.out` côté GSAP.
 - **Apparitions:** les blocs montent de 28 px en fondu par paquets (700 ms, décalage 70 ms) ; les titres se composent ligne à ligne derrière un masque (900 ms, décalage 80 ms).
-- **Épinglage:** sections calées sous l'en-tête, scrub de 0.6, progression reportée sur la scène 3D et sur des carrés d'étape.
+- **Épinglage:** sections calées sous l'en-tête, scrub de 0.6 ; les photos de préparation passent de l'une à l'autre en fondu et zoom, la chaîne feuille, poudre, boîte s'ouvre et se ferme en cercle.
 - Tout est conditionné à `prefers-reduced-motion: no-preference` ; l'état caché n'est posé qu'au montage, le contenu reste visible sans JavaScript.
 
 ## Do's and Don'ts
@@ -263,7 +275,7 @@ Les objets sont modélisés en code (Three.js) et rendus dans un canvas transpar
 - **Do** réserver le matcha à l'action principale, à la sélection et au progrès ; matcha-ink pour du vert en texte sur fond clair.
 - **Do** écrire prix, doses, formats et numéros en Fragment Mono tabulaire.
 - **Do** séparer par des filets de 1 px (line sur clair, line-dark sur noir) plutôt que par des ombres.
-- **Do** poser les objets sur l'acier éclairé et prévoir leur rendu PNG en repli.
+- **Do** utiliser de vraies photos, cohérentes entre elles (même fond, même lumière), et créditer chaque photo dans CREDITS.md.
 - **Do** conditionner chaque animation à `MOTION_OK` et fournir une version à plat, complète, en mouvement réduit.
 - **Do** caler toute section épinglée sous l'en-tête (`PINNED_HEIGHT`, `pinStart`).
 
@@ -272,4 +284,5 @@ Les objets sont modélisés en code (Three.js) et rendus dans un canvas transpar
 - **Don't** arrondir les angles ni ajouter d'ombre portée à une carte ou un bouton ; l'ombre portée est réservée aux couches flottantes.
 - **Don't** composer un paragraphe en Barlow Condensed ou un titre en bas de casse.
 - **Don't** utiliser fog sur fond noir ni fog-dark sur fond clair.
-- **Don't** laisser tourner une boucle de rendu 3D hors écran ou à l'arrêt.
+- **Don't** laisser tourner une boucle de rendu hors écran ou à l'arrêt.
+- **Don't** revenir à des objets modélisés en 3D : l'utilisateur les a refusés le 26/10/2026.

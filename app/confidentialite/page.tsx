@@ -5,20 +5,20 @@ import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Confidentialité",
-  description: "Les données que Contrebande collecte, pourquoi, combien de temps, et comment exercer vos droits.",
+  description: "Les données que USUCHA collecte, pourquoi, combien de temps, et comment exercer vos droits.",
 };
 
 export default function PrivacyPage() {
   return (
     <LegalPage title="Confidentialité" updated="25 octobre 2026">
       <p>
-        Contrebande est un projet étudiant de démonstration. Cette page décrit ce que le site enregistre, à quoi cela sert et comment
+        USUCHA est un projet étudiant de démonstration. Cette page décrit ce que le site enregistre, à quoi cela sert et comment
         exercer vos droits au titre du Règlement général sur la protection des données (RGPD).
       </p>
 
       <h2 id="responsable">Responsable du traitement</h2>
       <p>
-        L’équipe du projet Contrebande.{" "}
+        L’équipe du projet USUCHA.{" "}
         {CONTACT_EMAIL ? (
           <>
             Contact : <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.

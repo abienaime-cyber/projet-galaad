@@ -44,7 +44,7 @@ export function Calculator({ refill, kit }: Props) {
 
   return (
     <section ref={section} data-rail="Calcul" aria-labelledby="calc-title" className="relative bg-paper">
-      <div className="curtain relative flex min-h-svh flex-col overflow-hidden bg-[#4f7a1d] text-ink">
+      <div className="curtain relative flex min-h-svh flex-col overflow-hidden bg-moss text-ink">
         <Smoke className="absolute inset-0 size-full" />
         <h2 id="calc-title" className="spread display relative flex flex-wrap justify-between gap-x-4 px-4 pt-5 text-[15vw] sm:text-[17vw] leading-[0.82] sm:px-6 lg:text-[11vw] xl:text-[170px]">
           <span>Votre</span> <span>tasse</span> <span>maison.</span>

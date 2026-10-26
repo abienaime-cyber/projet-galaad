@@ -28,7 +28,7 @@ export function AuthShell({ active, title, children }: { active: (typeof TABS)[n
           Le bon kit, pas le plus cher
         </h2>
         <p className="mt-4 text-paper/75">
-          Votre compte garde votre profil de goût. Contrebande le compare à chaque kit, chaque matcha et chaque ustensile, et classe la boutique pour vous.
+          Votre compte garde votre profil de goût. USUCHA le compare à chaque kit, chaque matcha et chaque ustensile, et classe la boutique pour vous.
         </p>
         <ol className="mt-10 grid gap-6">
           {POINTS.map(({ title, text }, i) => (
